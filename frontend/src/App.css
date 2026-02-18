@@ -1,0 +1,10 @@
+.app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.app h1 {
+  margin: 0 0 0.5rem;
+}
