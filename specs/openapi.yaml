@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: POE Tools API
+  version: 1.0.0
+  description: API for submitting TradeSearchRequest and retrieving simplified trade results.
+
+servers:
+  - url: http://localhost:3001
+
+paths:
+  /api/trade-search:
+    post:
+      summary: Submit a TradeSearchRequest and get simplified results
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TradeSearchRequest'
+      responses:
+        '200':
+          description: Simplified trade search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeSearchResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    TradeSearchRequest:
+      type: object
+      properties:
+        query:
+          type: object
+          description: Trade query object (structure may vary)
+        sort:
+          type: object
+          additionalProperties:
+            type: string
+            enum: [asc, desc]
+      required:
+        - query
+
+    TradeSearchResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimplifiedListing'
+
+    SimplifiedListing:
+      type: object
+      properties:
+        id:
+          type: string
+        price:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        details:
+          type: string
