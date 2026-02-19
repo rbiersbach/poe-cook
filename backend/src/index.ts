@@ -3,7 +3,7 @@ import { TradeClient } from "./trade-client";
 import { TradeSearchRequest } from "./trade-types";
 
 async function main() {
-  const client = new TradeClient({
+  const client =    new TradeClient({
     userAgent: "my-poe-tool/0.1 (contact: you@example.com)", // set a descriptive User-Agent
     // poeSessId: process.env.POESESSID, // optional
   });

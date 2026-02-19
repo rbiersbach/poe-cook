@@ -95,16 +95,16 @@ export class TradeFetchedListing {
   id!: string;
   item: unknown; // huge object; model later if you want
   listing!: {
-        price?: {
-            type: "~price" | "~b/o" | string;
-            amount: number;
-            currency: string; // e.g. "chaos", "divine"
-        };
-        account?: { name?: string; online?: unknown; };
-        whisper?: string;
-        indexed?: string;
-        [k: string]: unknown;
+    price?: {
+      type: "~price" | "~b/o" | string;
+      amount: number;
+      currency: string; // e.g. "chaos", "divine"
     };
+    account?: { name?: string; online?: unknown; };
+    whisper?: string;
+    indexed?: string;
+    [k: string]: unknown;
+  };
 
   constructor(init?: Partial<TradeFetchedListing>) {
     Object.assign(this, init);

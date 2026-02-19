@@ -12,6 +12,7 @@
     "build": "npm --workspace backend run build && npm --workspace frontend run build"
   },
   "devDependencies": {
-    "@types/node": "^25.3.0"
+    "@types/node": "^25.3.0",
+    "eslint": "^10.0.0"
   }
 }
