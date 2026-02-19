@@ -1,14 +1,9 @@
-// example.ts
-import { TradeClient } from "./trade-client";
-import { TradeSearchRequest } from "./trade-types";
+import tradeClient from "trade-client";
+import fastify from "api";
+import { TradeSearchRequest } from "trade-types";
 
 async function main() {
-  const client =    new TradeClient({
-    userAgent: "my-poe-tool/0.1 (contact: you@example.com)", // set a descriptive User-Agent
-    // poeSessId: process.env.POESESSID, // optional
-  });
 
-  const league = "Phrecia 2.0"; // change to current league
 
   const req: TradeSearchRequest = {
     query: {
@@ -16,7 +11,7 @@ async function main() {
       filters: {
         trade_filters: {
           filters: {
-            price: {  max: 15000 },
+            price: { max: 15000 },
           },
         },
       },
@@ -24,11 +19,11 @@ async function main() {
     sort: { price: "asc" },
   };
 
-  const search = await client.search(league, req);
+  const search = await tradeClient.search(req);
   console.log("query id:", search.id, "total:", search.total);
 
   const first10 = search.result.slice(0, 10);
-  const fetched = await client.fetchListings(first10, search.id);
+  const fetched = await tradeClient.fetchListings(first10, search.id);
 
   for (const r of fetched.result) {
     const price = r.listing.price
@@ -42,4 +37,13 @@ async function main() {
 main().catch((e) => {
   console.error(e);
   process.exitCode = 1;
+});
+
+// Start the API server
+fastify.listen({ port: 3001 }, (err, address) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  console.log(`Server listening at ${address}`);
 });

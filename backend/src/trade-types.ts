@@ -1,6 +1,6 @@
 // poe-trade-types.ts
 
-export type LeagueName = string;
+export type LeagueName = string ;
 
 /** POST /api/trade/search/{league} body */
 export class TradeSearchRequest {

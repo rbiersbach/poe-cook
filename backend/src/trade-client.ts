@@ -11,12 +11,14 @@ export type TradeClientOptions = {
   userAgent: string;                // REQUIRED / strongly recommended
   poeSessId?: string;               // optional (POESESSID cookie value)
   fetchImpl?: typeof fetch;         // for testing / polyfills
+  league: LeagueName;               // REQUIRED: current league name
 };
 
 export class TradeClient {
   private baseUrl: string;
   private userAgent: string;
   private poeSessId?: string;
+  private league!: LeagueName;
   private fetchImpl: typeof fetch;
 
   constructor(opts: TradeClientOptions) {
@@ -24,11 +26,12 @@ export class TradeClient {
     this.userAgent = opts.userAgent;
     this.poeSessId = opts.poeSessId;
     this.fetchImpl = opts.fetchImpl ?? fetch;
+    this.league = opts.league;
   }
 
   /** POST /api/trade/search/{league} */
-  async search(league: LeagueName, body: TradeSearchRequest): Promise<TradeSearchResponse> {
-    const url = `${this.baseUrl}/api/trade/search/${encodeURIComponent(league)}`;
+  async search(body: TradeSearchRequest): Promise<TradeSearchResponse> {
+    const url = `${this.baseUrl}/api/trade/search/${encodeURIComponent(this.league)}`;
 
     const res = await this.fetchImpl(url, {
       method: "POST",
@@ -87,3 +90,12 @@ export class TradeClient {
     throw new Error(`HTTP ${res.status} ${res.statusText}: ${text}`);
   }
 }
+
+
+const tradeClient = new TradeClient({
+  userAgent: "my-poe-tool/0.1 (contact: you@example.com)", // set a descriptive User-Agent
+  league: "Phrecia 2.0", // change to current league
+  // poeSessId: process.env.POESESSID, // optional
+});
+
+export default tradeClient;

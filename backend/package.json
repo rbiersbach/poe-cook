@@ -8,7 +8,10 @@
     "build": "tsc",
     "start": "node dist/index.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "fastify": "^5.7.4"
+  },
   "devDependencies": {
     "tsx": "^4.7.1",
     "typescript": "^5.4.5"

@@ -19,6 +19,7 @@
     "@vitejs/plugin-react": "latest",
     "tailwindcss": "^4.2.0",
     "typescript": "latest",
-    "vite": "latest"
+    "vite": "latest",
+    "vite-tsconfig-paths": "^6.1.1"
   }
 }
