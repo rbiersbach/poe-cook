@@ -13,9 +13,11 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
+    "tailwindcss": "^4.2.0",
     "typescript": "latest",
     "vite": "latest"
   }
