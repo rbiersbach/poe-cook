@@ -6,6 +6,8 @@ import {
   TradeFetchResponse,
 } from "./trade-types";
 
+import fastify from "api";
+
 export type TradeClientOptions = {
   baseUrl?: string;                 // default: https://www.pathofexile.com
   userAgent: string;                // REQUIRED / strongly recommended
@@ -39,7 +41,15 @@ export class TradeClient {
       body: JSON.stringify(body),
     });
 
-    await this.throwIfNotOk(res);
+    try {
+      await this.throwIfNotOk(res);
+    } catch (err) {
+      fastify.log.error(
+        { error: err, url, body },
+        "TradeClient.search failed"
+      );
+      throw err;
+    }
 
     // Rate limit headers can be useful for logging/backoff:
     // x-rate-limit-ip, x-rate-limit-ip-state, etc.
@@ -94,7 +104,7 @@ export class TradeClient {
 
 const tradeClient = new TradeClient({
   userAgent: "my-poe-tool/0.1 (contact: you@example.com)", // set a descriptive User-Agent
-  league: "Phrecia 2.0", // change to current league
+  league: "Keepers", // change to current league
   // poeSessId: process.env.POESESSID, // optional
 });
 

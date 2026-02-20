@@ -1,19 +1,33 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import tradeClient from "trade-client";
-import { TradeSearchRequest } from "trade-types";
+import tradeClient from "./trade-client";
 
-const fastify = Fastify();
+const fastify = Fastify({
+    logger: {
+        transport: {
+            target: "pino-pretty",
+            options: {
+                colorize: true,
+                translateTime: "SYS:standard",
+                ignore: "pid,hostname",
+            },
+        },
+    },
+});
+
 fastify.register(cors, { origin: true });
 
 fastify.post("/api/trade-search", async (request, reply) => {
     try {
-        const body = request.body as TradeSearchRequest;
-        if (!body || !body.query) {
+        const body = request.body as any;
+        const query = body?.query;
+        const sort = body?.sort;
+        if (!query || !sort) {
+            fastify.log.warn("Invalid TradeSearchRequest: missing query or sort", { body: request.body });
             return reply.status(400).send({ error: "Invalid TradeSearchRequest" });
         }
 
-        const search = await tradeClient.search(body);
+        const search = await tradeClient.search({ query, sort });
 
         // Fetch first 10 results
         const first10 = search.result.slice(0, 10);
@@ -28,8 +42,9 @@ fastify.post("/api/trade-search", async (request, reply) => {
         }));
 
         reply.send({ result: simplified });
-    } catch (err: any) {
-        reply.status(500).send({ error: "Server error", details: err.message });
+    } catch (err) {
+        fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/trade-search");
+        return reply.status(500).send({ error: "Server error" });
     }
 });
 

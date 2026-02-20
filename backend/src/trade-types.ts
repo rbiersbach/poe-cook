@@ -1,14 +1,19 @@
 // poe-trade-types.ts
 
-export type LeagueName = string ;
+export type LeagueName = string;
 
 /** POST /api/trade/search/{league} body */
 export class TradeSearchRequest {
-  query!: TradeQuery;
+  query: TradeQuery;
   sort?: Record<string, "asc" | "desc"> = { price: "asc" }; // e.g. { price: "asc" }
 
   constructor(init?: Partial<TradeSearchRequest>) {
+    this.query = new TradeQuery();
     Object.assign(this, init);
+    // If init?.query is provided, merge it over the default
+    if (init?.query) {
+      this.query = Object.assign(new TradeQuery(), init.query);
+    }
   }
 }
 

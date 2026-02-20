@@ -1,7 +1,10 @@
-import { describe, it, expect, beforeAll, afterAll, vi } from "vitest";
+import { vi } from "vitest";
+
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import supertest from "supertest";
 import fastifyApp from "api";
 import tradeClient from "trade-client";
+
 
 vi.mock("trade-client", () => ({
     default: {
@@ -9,6 +12,7 @@ vi.mock("trade-client", () => ({
         fetchListings: vi.fn(),
     },
 }));
+
 
 let server: string;
 
@@ -71,6 +75,20 @@ describe("POST /api/trade-search", () => {
         expect(response.body.error).toBe("Server error");
     });
 
+    it("returns 500 if tradeClient.fetchListings throws", async () => {
+        const mockSearch = tradeClient.search as unknown as ReturnType<typeof vi.fn>;
+        const mockFetchListings = tradeClient.fetchListings as unknown as ReturnType<typeof vi.fn>;
+        mockSearch.mockResolvedValueOnce({ result: ["id1"], id: "query999" });
+        mockFetchListings.mockRejectedValueOnce(new Error("Fetch failed"));
+
+        const response = await supertest(fastifyApp.server)
+            .post("/api/trade-search")
+            .send({ query: { term: "Headhunter" }, sort: { price: "asc" } })
+            .expect(500);
+
+        expect(response.body.error).toBe("Server error");
+    });
+
     it("returns empty results if no listings found", async () => {
         const mockSearch = tradeClient.search as unknown as ReturnType<typeof vi.fn>;
         const mockFetchListings = tradeClient.fetchListings as unknown as ReturnType<typeof vi.fn>;
@@ -85,4 +103,18 @@ describe("POST /api/trade-search", () => {
 
         expect(response.body.result).toEqual([]);
     });
-});
+
+    it("returns 400 if query is missing", async () => {
+        const response = await supertest(fastifyApp.server)
+            .post("/api/trade-search")
+            .send({ sort: { price: "asc" } })
+            .expect(400);
+        expect(response.body.error).toBe("Invalid TradeSearchRequest");
+    });
+
+    it("returns 400 if body is missing", async () => {
+        const response = await supertest(fastifyApp.server)
+            .post("/api/trade-search")
+            .expect(400);
+        expect(response.body.error).toBe("Invalid TradeSearchRequest");
+    });});
