@@ -1,13 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { TradeClient, TradeClientOptions } from "trade-client";
+import { TradeClient } from "trade-client";
 import { NoopLogger } from "logger";
 import type { TradeSearchRequest, TradeSearchResponse, TradeFetchResponse } from "trade-types";
 
-const baseOpts: TradeClientOptions = {
-  userAgent: "test-agent",
-  league: "TestLeague",
-  logger: NoopLogger,
-};
+
 
 describe("TradeClient", () => {
   let fetchImpl: ReturnType<typeof vi.fn>;
@@ -15,7 +11,7 @@ describe("TradeClient", () => {
 
   beforeEach(() => {
     fetchImpl = vi.fn();
-    client = new TradeClient({ ...baseOpts, fetchImpl: fetchImpl as any });
+    client = new TradeClient("test-agent", "TestLeague", NoopLogger, "https://www.pathofexile.com", undefined, fetchImpl as any);
   });
 
   describe("search", () => {
@@ -92,10 +88,10 @@ describe("TradeClient", () => {
         expect.objectContaining({ method: "GET" })
       );
       // Check normalized fields
-      expect(res.result[0].listing.normalized_price).toBe(180); // 1 divine = 180 chaos
-      expect(res.result[0].listing.normalized_currency).toBe("chaos");
-      expect(res.result[1].listing.normalized_price).toBe(10); // 10 chaos = 10 chaos
-      expect(res.result[1].listing.normalized_currency).toBe("chaos");
+      expect(res.result[0].listing.normalized_price?.amount).toBe(180); // 1 divine = 180 chaos
+      expect(res.result[0].listing.normalized_price?.currency).toBe("chaos");
+      expect(res.result[1].listing.normalized_price?.amount).toBe(10); // 10 chaos = 10 chaos
+      expect(res.result[1].listing.normalized_price?.currency).toBe("chaos");
     });
 
     it("throws on non-ok response", async () => {
@@ -116,13 +112,38 @@ describe("TradeClient", () => {
       expect(h["Accept"]).toBe("application/json");
     });
     it("includes POESESSID cookie if set", () => {
-      const c = new TradeClient({ ...baseOpts, poeSessId: "abc", fetchImpl: fetchImpl as any });
+      const c = new TradeClient("test-agent", "TestLeague", NoopLogger, "https://www.pathofexile.com", "abc", fetchImpl as any);
       const h = (c as any).headers();
       expect(h["Cookie"]).toMatch(/POESESSID=abc/);
     });
     it("merges extra headers", () => {
       const h = (client as any).headers({ Foo: "Bar" });
       expect(h["Foo"]).toBe("Bar");
+    });
+  });
+
+  describe("searchAndFetch", () => {
+    it("combines search and fetch and returns both", async () => {
+      const req: TradeSearchRequest = { query: {} } as any;
+      const mockSearch: TradeSearchResponse = { result: ["id1", "id2"], id: "q1" } as any;
+      const mockFetch: TradeFetchResponse = { result: [{ id: "id1", listing: {} }, { id: "id2", listing: {} }] } as any;
+
+      // Mock search and fetchListings
+      fetchImpl.mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockSearch,
+        headers: new Map(),
+      });
+      fetchImpl.mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockFetch,
+        headers: new Map(),
+      });
+
+      const res = await client.searchAndFetch(req, 2);
+      expect(res.search).toEqual(mockSearch);
+      expect(res.listings).toEqual(mockFetch);
+      expect(fetchImpl).toHaveBeenCalledTimes(2);
     });
   });
 });

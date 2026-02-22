@@ -1,36 +1,40 @@
-
-import fastify from "api";
+import { TradeApiServer } from "api";
+import { HtmlExtractor } from "html-extractor";
+import { NoopLogger } from "logger";
+import { TradeClient } from "trade-client";
 import { TradeResolver } from "trade-resolver";
-import tradeClient from "trade-client";
 
 
-const resolver = new TradeResolver(fastify.log);
-resolver.resolveTradeRequestFromUrl(
-  "https://www.pathofexile.com/trade/search/Keepers/Z6KmYGb8CQ",
-  "example-session-id"
-)
-  .then(async (req) => {
-    try {
-      const result = await tradeClient.search(req);
-      console.log("Trade search results:", result);
-      if (result.result && result.result.length > 0) {
-        const ids = result.result.slice(0, 10);
-        const fetched = await tradeClient.fetchListings(ids, result.id);
-        console.log("Fetched listings:", fetched);
-      }
-    } catch (err) {
-      console.error("Error executing trade search:", err);
-    }
-  })
-  .catch((err) => {
-    console.error("Error resolving trade request:", err);
-  });
+
+const apiServer = new TradeApiServer();
 
 // Start the API server
-fastify.listen({ port: 3001 }, (err, address) => {
+apiServer.server.listen({ port: 3001 }, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);
   }
   console.log(`Server listening at ${address}`);
 });
+
+async function runResolverWithExample() {
+  // Use real TradeClient and HtmlExtractor
+  const tradeClient = new TradeClient(
+    "poe-tools-api/1.0 (contact: support@example.com)", // userAgent
+    "Keepers", // league
+    apiServer.server.log // logger
+  );
+  const resolver = new TradeResolver(NoopLogger, tradeClient, HtmlExtractor);
+  const request = { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/Z6KmYGb8CQ" };
+  const poeSessid = "example-session-id";
+  try {
+    const result = await resolver.resolveItem(request, poeSessid);
+    console.log("ResolvedMarketData result:", result);
+  } catch (err) {
+    console.error("Error resolving item:", err);
+  }
+}
+
+// Run the test function if this file is executed directly
+
+await runResolverWithExample().catch(console.error);

@@ -136,24 +136,24 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Recipe details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Recipe'
-        '404':
+                $ref: "#/components/schemas/Recipe"
+        "404":
           description: Recipe not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     TradeSearchRequest:
@@ -199,10 +199,8 @@ components:
       properties:
         tradeUrl:
           type: string
-        fallbackPrice:
-          $ref: "#/components/schemas/Price"
       required:
-        - fallbackPrice
+        - tradeUrl
 
     ResolveItemResponse:
       type: object
@@ -231,19 +229,18 @@ components:
         name:
           type: string
         minPrice:
-          $ref: '#/components/schemas/Price'
+          $ref: "#/components/schemas/Price"
+        originalMinPrice:
+          $ref: "#/components/schemas/Price"
         medianPrice:
-          $ref: '#/components/schemas/Price'
+          $ref: "#/components/schemas/Price"
+        originalMedianPrice:
+          $ref: "#/components/schemas/Price"
         medianCount:
           type: integer
           description: Number of listings at the median price or lower
         fetchedAt:
           type: string
-        source:
-          type: string
-          enum:
-            - trade
-            - fallback
 
     RecipeItem:
       type: object

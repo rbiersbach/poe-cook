@@ -10,32 +10,29 @@ import fastify from "fastify";
 
 import { LoggerLike, NoopLogger } from "logger";
 
-export type TradeClientOptions = {
-  baseUrl?: string;                 // default: https://www.pathofexile.com
-  userAgent: string;                // REQUIRED / strongly recommended
-  poeSessId?: string;               // optional (POESESSID cookie value)
-  fetchImpl?: typeof fetch;         // for testing / polyfills
-  league: LeagueName;               // REQUIRED: current league name
-  logger: LoggerLike;               // Logger instance (required)
-};
-
 export class TradeClient {
+
   private baseUrl: string;
   private userAgent: string;
   private poeSessId?: string;
-  private league!: LeagueName;
+  private league: LeagueName;
   private fetchImpl: typeof fetch;
   private logger: LoggerLike;
 
-
-
-  constructor(opts: TradeClientOptions) {
-    this.baseUrl = opts.baseUrl ?? "https://www.pathofexile.com";
-    this.userAgent = opts.userAgent;
-    this.poeSessId = opts.poeSessId;
-    this.fetchImpl = opts.fetchImpl ?? fetch;
-    this.league = opts.league;
-    this.logger = opts.logger;
+  constructor(
+    userAgent: string,
+    league: LeagueName,
+    logger: LoggerLike,
+    baseUrl: string = "https://www.pathofexile.com",
+    poeSessId?: string,
+    fetchImpl: typeof fetch = fetch
+  ) {
+    this.baseUrl = baseUrl;
+    this.userAgent = userAgent;
+    this.poeSessId = poeSessId;
+    this.fetchImpl = fetchImpl;
+    this.league = league;
+    this.logger = logger;
   }
 
   /** POST /api/trade/search/{league} */
@@ -55,9 +52,6 @@ export class TradeClient {
       throw err;
     }
 
-    // Rate limit headers can be useful for logging/backoff:
-    // x-rate-limit-ip, x-rate-limit-ip-state, etc.
-    // If you include POESESSID, rate-limiting may become account-based.
     return (await res.json()) as TradeSearchResponse;
   }
 
@@ -90,12 +84,25 @@ export class TradeClient {
       for (const item of raw.result) {
         const price = item.listing.price;
         if (price?.amount && price?.currency) {
-          item.listing.normalized_price = TradeRate.normalize_to_chaos(Number(price.amount), String(price.currency));
-          item.listing.normalized_currency = "chaos";
+          item.listing.normalized_price = {
+            amount: TradeRate.normalize_to_chaos(Number(price.amount), String(price.currency)),
+            currency: "chaos"
+          };
         }
       }
     }
     return raw;
+  }
+
+  /**
+ * Combined search and fetch for item resolution.
+ * Returns { search, listings } for the given TradeSearchRequest.
+ */
+  async searchAndFetch(body: TradeSearchRequest, maxResults = 10): Promise<{ search: TradeSearchResponse, listings: TradeFetchResponse }> {
+    const search = await this.search(body);
+    const ids = search.result.slice(0, maxResults);
+    const listings = await this.fetchListings(ids, search.id);
+    return { search, listings };
   }
 
   private headers(extra?: Record<string, string>): HeadersInit {
@@ -120,13 +127,3 @@ export class TradeClient {
     throw new Error(`HTTP ${res.status} ${res.statusText}: ${text}`);
   }
 }
-
-
-const tradeClient = new TradeClient({
-  userAgent: "my-poe-tool/0.1 (contact: you@example.com)", // set a descriptive User-Agent
-  league: "Keepers", // change to current league
-  // poeSessId: process.env.POESESSID, // optional
-  logger: fastify().log,
-});
-
-export default tradeClient;

@@ -1,3 +1,38 @@
+// Types for resolve-item API
+export class ResolveItemRequest {
+  tradeUrl?: string;
+  constructor(init?: Partial<ResolveItemRequest>) {
+    Object.assign(this, init);
+  }
+}
+export class ResolveItemResponse {
+  resolved?: ResolvedMarketData;
+  constructor(init?: Partial<ResolveItemResponse>) {
+    Object.assign(this, init);
+  }
+}
+
+export class Price {
+  amount!: number;
+  currency!: string;
+  constructor(init?: Partial<Price>) {
+    Object.assign(this, init);
+  }
+}
+
+export class ResolvedMarketData {
+  iconUrl!: string;
+  name!: string;
+  originalMinPrice!: Price;
+  minPrice!: Price;
+  originalMedianPrice?: Price;
+  medianPrice!: Price;
+  medianCount!: number;
+  fetchedAt!: string;
+  constructor(init?: Partial<ResolvedMarketData>) {
+    Object.assign(this, init);
+  }
+}
 // poe-trade-types.ts
 
 export type LeagueName = string;
@@ -98,13 +133,22 @@ export class TradeFetchResponse {
 
 export class TradeFetchedListing {
   id!: string;
-  item: unknown; // huge object; model later if you want
+  item!: {
+    icon?: string;
+    name?: string;
+    // ...other fields as needed
+    [k: string]: unknown;
+  };
   listing!: {
     price?: {
       type: "~price" | "~b/o" | string;
       amount: number;
       currency: string; // e.g. "chaos", "divine"
     };
+    normalized_price?: {
+      amount: number;
+      currency: string;
+    }; // price normalized to chaos for easier calculations
     account?: { name?: string; online?: unknown; };
     whisper?: string;
     indexed?: string;
