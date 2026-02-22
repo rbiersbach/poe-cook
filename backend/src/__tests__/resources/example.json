@@ -1,0 +1,171 @@
+{
+    "tab": "search",
+    "realm": "pc",
+    "realms": [
+        {
+            "id": "pc",
+            "text": "PoE 1 PC"
+        },
+        {
+            "id": "xbox",
+            "text": "PoE 1 Xbox"
+        },
+        {
+            "id": "sony",
+            "text": "PoE 1 Sony"
+        }
+    ],
+    "leagues": [
+        {
+            "id": "Keepers",
+            "realm": "pc",
+            "text": "Keepers"
+        },
+        {
+            "id": "Hardcore Keepers",
+            "realm": "pc",
+            "text": "Hardcore Keepers"
+        },
+        {
+            "id": "Ruthless Keepers",
+            "realm": "pc",
+            "text": "Ruthless Keepers"
+        },
+        {
+            "id": "HC Ruthless Keepers",
+            "realm": "pc",
+            "text": "HC Ruthless Keepers"
+        },
+        {
+            "id": "Standard",
+            "realm": "pc",
+            "text": "Standard"
+        },
+        {
+            "id": "Hardcore",
+            "realm": "pc",
+            "text": "Hardcore"
+        },
+        {
+            "id": "Ruthless",
+            "realm": "pc",
+            "text": "Ruthless"
+        },
+        {
+            "id": "Hardcore Ruthless",
+            "realm": "pc",
+            "text": "Hardcore Ruthless"
+        },
+        {
+            "id": "Keepers",
+            "realm": "xbox",
+            "text": "Keepers"
+        },
+        {
+            "id": "Hardcore Keepers",
+            "realm": "xbox",
+            "text": "Hardcore Keepers"
+        },
+        {
+            "id": "Ruthless Keepers",
+            "realm": "xbox",
+            "text": "Ruthless Keepers"
+        },
+        {
+            "id": "HC Ruthless Keepers",
+            "realm": "xbox",
+            "text": "HC Ruthless Keepers"
+        },
+        {
+            "id": "Standard",
+            "realm": "xbox",
+            "text": "Standard"
+        },
+        {
+            "id": "Hardcore",
+            "realm": "xbox",
+            "text": "Hardcore"
+        },
+        {
+            "id": "Ruthless",
+            "realm": "xbox",
+            "text": "Ruthless"
+        },
+        {
+            "id": "Hardcore Ruthless",
+            "realm": "xbox",
+            "text": "Hardcore Ruthless"
+        },
+        {
+            "id": "Keepers",
+            "realm": "sony",
+            "text": "Keepers"
+        },
+        {
+            "id": "Hardcore Keepers",
+            "realm": "sony",
+            "text": "Hardcore Keepers"
+        },
+        {
+            "id": "Ruthless Keepers",
+            "realm": "sony",
+            "text": "Ruthless Keepers"
+        },
+        {
+            "id": "HC Ruthless Keepers",
+            "realm": "sony",
+            "text": "HC Ruthless Keepers"
+        },
+        {
+            "id": "Standard",
+            "realm": "sony",
+            "text": "Standard"
+        },
+        {
+            "id": "Hardcore",
+            "realm": "sony",
+            "text": "Hardcore"
+        },
+        {
+            "id": "Ruthless",
+            "realm": "sony",
+            "text": "Ruthless"
+        },
+        {
+            "id": "Hardcore Ruthless",
+            "realm": "sony",
+            "text": "Hardcore Ruthless"
+        }
+    ],
+    "news": {
+        "trade_news": {
+            "id": 2041,
+            "url": "https://www.pathofexile.com/purchase",
+            "image": "https://web.poecdn.com/public/news/2025-12-05/SupporterPacks/ENFull_News.jpg"
+        }
+    },
+    "basePath": "/trade",
+    "league": "Keepers",
+    "state": {
+        "name": "Mageblood",
+        "type": "Heavy Belt",
+        "stats": [
+            {
+                "type": "and",
+                "filters": [],
+                "disabled": false
+            }
+        ],
+        "status": "securable",
+        "filters": {
+            "misc_filters": {
+                "filters": {
+                    "corrupted": {
+                        "option": "false"
+                    }
+                },
+                "disabled": false
+            }
+        }
+    }
+}
