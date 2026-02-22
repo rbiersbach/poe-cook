@@ -1,4 +1,4 @@
-import { fetchHtml, extractJsonFromHtml, validateExtractedJson } from "html-extract";
+import { HtmlExtractor } from "html-extractor";
 import { TradeSearchRequest, TradeQuery, TradeStatGroup, TradeFilters } from "trade-types";
 import { LoggerLike, NoopLogger } from "logger";
 
@@ -10,14 +10,14 @@ export class TradeResolver {
      * Receives a Path of Exile trade page URL, fetches the HTML, extracts the JSON, validates it,
      * and returns a TradeSearchRequest object.
      */
-    async resolveTradeRequestFromUrl(url: string): Promise<TradeSearchRequest> {
+    async resolveTradeRequestFromUrl(url: string, poeSessid: string): Promise<TradeSearchRequest> {
         try {
             this.logger.info("Fetching HTML from URL", { url });
-            const html = await fetchHtml(url);
+            const html = await HtmlExtractor.fetchHtml(url, poeSessid);
             this.logger.info("HTML fetched, extracting JSON", { url });
-            const json = extractJsonFromHtml(html);
+            const json = HtmlExtractor.extractJsonFromHtml(html);
             this.logger.info("JSON extracted, validating", { url });
-            validateExtractedJson(json);
+            HtmlExtractor.validateExtractedJson(json);
             this.logger.info("JSON validated, mapping to TradeSearchRequest", { url });
 
             // Map the extracted JSON to TradeSearchRequest
