@@ -2,32 +2,35 @@ import { vi } from "vitest";
 
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import supertest from "supertest";
-import fastifyApp from "api";
-import tradeClient from "trade-client";
+import { TradeApiServer } from "../api";
+import { NoopLogger } from "../logger";
+import { TradeClient } from "trade-client";
 
 
-vi.mock("trade-client", () => ({
-    default: {
-        search: vi.fn(),
-        fetchListings: vi.fn(),
-    },
-}));
-
-
-let server: string;
+let tradeClientMock: TradeClient;
+let apiServer: TradeApiServer;
 
 beforeAll(async () => {
-    server = await fastifyApp.listen({ port: 0 });
+    tradeClientMock = {
+        search: vi.fn(),
+        fetchListings: vi.fn(),
+        logger: NoopLogger,
+    } as unknown as TradeClient;
+    apiServer = new TradeApiServer(tradeClientMock);
+    await apiServer.server.listen({ port: 0 });
+
 });
 
 afterAll(async () => {
-    await fastifyApp.close();
+    await apiServer.server.close();
 });
+
+
 
 describe("POST /api/trade-search", () => {
     it("returns simplified results for a valid request", async () => {
-        const mockSearch = tradeClient.search as unknown as ReturnType<typeof vi.fn>;
-        const mockFetchListings = tradeClient.fetchListings as unknown as ReturnType<typeof vi.fn>;
+        const mockSearch = tradeClientMock.search as unknown as ReturnType<typeof vi.fn>;
+        const mockFetchListings = tradeClientMock.fetchListings as unknown as ReturnType<typeof vi.fn>;
 
         mockSearch.mockResolvedValueOnce({
             result: ["id1", "id2"],
@@ -40,7 +43,7 @@ describe("POST /api/trade-search", () => {
             ],
         });
 
-        const response = await supertest(fastifyApp.server)
+        const response = await supertest(apiServer.server.server)
             .post("/api/trade-search")
             .send({
                 query: { term: "Headhunter" },
@@ -55,7 +58,7 @@ describe("POST /api/trade-search", () => {
     });
 
     it("returns 400 for invalid request", async () => {
-        const response = await supertest(fastifyApp.server)
+        const response = await supertest(apiServer.server.server)
             .post("/api/trade-search")
             .send({})
             .expect(400);
@@ -64,10 +67,10 @@ describe("POST /api/trade-search", () => {
     });
 
     it("returns 500 if tradeClient.search throws", async () => {
-        const mockSearch = tradeClient.search as unknown as ReturnType<typeof vi.fn>;
+        const mockSearch = tradeClientMock.search as unknown as ReturnType<typeof vi.fn>;
         mockSearch.mockRejectedValueOnce(new Error("External API error"));
 
-        const response = await supertest(fastifyApp.server)
+        const response = await supertest(apiServer.server.server)
             .post("/api/trade-search")
             .send({ query: { term: "Headhunter" }, sort: { price: "asc" } })
             .expect(500);
@@ -76,12 +79,12 @@ describe("POST /api/trade-search", () => {
     });
 
     it("returns 500 if tradeClient.fetchListings throws", async () => {
-        const mockSearch = tradeClient.search as unknown as ReturnType<typeof vi.fn>;
-        const mockFetchListings = tradeClient.fetchListings as unknown as ReturnType<typeof vi.fn>;
+        const mockSearch = tradeClientMock.search as unknown as ReturnType<typeof vi.fn>;
+        const mockFetchListings = tradeClientMock.fetchListings as unknown as ReturnType<typeof vi.fn>;
         mockSearch.mockResolvedValueOnce({ result: ["id1"], id: "query999" });
         mockFetchListings.mockRejectedValueOnce(new Error("Fetch failed"));
 
-        const response = await supertest(fastifyApp.server)
+        const response = await supertest(apiServer.server.server)
             .post("/api/trade-search")
             .send({ query: { term: "Headhunter" }, sort: { price: "asc" } })
             .expect(500);
@@ -90,13 +93,13 @@ describe("POST /api/trade-search", () => {
     });
 
     it("returns empty results if no listings found", async () => {
-        const mockSearch = tradeClient.search as unknown as ReturnType<typeof vi.fn>;
-        const mockFetchListings = tradeClient.fetchListings as unknown as ReturnType<typeof vi.fn>;
+        const mockSearch = tradeClientMock.search as unknown as ReturnType<typeof vi.fn>;
+        const mockFetchListings = tradeClientMock.fetchListings as unknown as ReturnType<typeof vi.fn>;
 
         mockSearch.mockResolvedValueOnce({ result: [], id: "query123" });
         mockFetchListings.mockResolvedValueOnce({ result: [] });
 
-        const response = await supertest(fastifyApp.server)
+        const response = await supertest(apiServer.server.server)
             .post("/api/trade-search")
             .send({ query: { term: "Nothing" }, sort: { price: "asc" } })
             .expect(200);
@@ -105,7 +108,7 @@ describe("POST /api/trade-search", () => {
     });
 
     it("returns 400 if query is missing", async () => {
-        const response = await supertest(fastifyApp.server)
+        const response = await supertest(apiServer.server.server)
             .post("/api/trade-search")
             .send({ sort: { price: "asc" } })
             .expect(400);
@@ -113,8 +116,9 @@ describe("POST /api/trade-search", () => {
     });
 
     it("returns 400 if body is missing", async () => {
-        const response = await supertest(fastifyApp.server)
+        const response = await supertest(apiServer.server.server)
             .post("/api/trade-search")
             .expect(400);
         expect(response.body.error).toBe("Invalid TradeSearchRequest");
-    });});
+    });
+});

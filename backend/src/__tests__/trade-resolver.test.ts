@@ -5,7 +5,7 @@ import { TradeResolver } from "trade-resolver";
 import { HtmlExtractor } from "html-extractor";
 import { TradeSearchRequest } from "trade-types";
 
-const exampleHtmlPath = path.join(__dirname, "./resources/example.html");
+const exampleHtmlPath = path.join(__dirname, "./resources/trade_page.html");
 
 // Mock HtmlExtractor.fetchHtml to return the example HTML
 vi.spyOn(HtmlExtractor, "fetchHtml").mockImplementation(async () => {

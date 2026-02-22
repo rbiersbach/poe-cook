@@ -2,21 +2,21 @@ import { describe, it, expect } from "vitest";
 import { HtmlExtractor } from "html-extractor";
 import fs from "fs";
 import path from "path";
-const exampleHtmlPath = path.join(__dirname, "./resources/trade_page.html");
-const exampleJsonPath = path.join(__dirname, "./resources/trade_page.json");
+const pageHtmlPath = path.join(__dirname, "./resources/trade_page.html");
+const pageJsonPath = path.join(__dirname, "./resources/trade_page.json");
 
 describe("HTML JSON extraction", () => {
     it("extracts and validates JSON from example.html", () => {
-        const html = fs.readFileSync(exampleHtmlPath, "utf8");
+        const html = fs.readFileSync(pageHtmlPath, "utf8");
         const json = HtmlExtractor.extractJsonFromHtml(html);
         expect(json).toBeDefined();
         HtmlExtractor.validateExtractedJson(json);
     });
 
     it("matches example.json exactly", () => {
-        const html = fs.readFileSync(exampleHtmlPath, "utf8");
+        const html = fs.readFileSync(pageHtmlPath, "utf8");
         const json = HtmlExtractor.extractJsonFromHtml(html);
-        const expected = JSON.parse(fs.readFileSync(exampleJsonPath, "utf8"));
+        const expected = JSON.parse(fs.readFileSync(pageJsonPath, "utf8"));
         expect(json).toEqual(expected);
     });
 

@@ -1,51 +1,62 @@
+import { TradeClient } from "trade-client";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import tradeClient from "trade-client";
 
-const fastify = Fastify({
-    logger: {
-        transport: {
-            target: "pino-pretty",
-            options: {
-                colorize: true,
-                translateTime: "SYS:standard",
-                ignore: "pid,hostname",
+export class TradeApiServer {
+    private fastify;
+    private tradeClient;
+
+    constructor(tradeClient?: TradeClient) {
+        this.fastify = Fastify({
+            logger: {
+                transport: {
+                    target: "pino-pretty",
+                    options: {
+                        colorize: true,
+                        translateTime: "SYS:standard",
+                        ignore: "pid,hostname",
+                    },
+                },
             },
-        },
-    },
-});
-
-fastify.register(cors, { origin: true });
-
-fastify.post("/api/trade-search", async (request, reply) => {
-    try {
-        const body = request.body as any;
-        const query = body?.query;
-        const sort = body?.sort;
-        if (!query || !sort) {
-            fastify.log.warn("Invalid TradeSearchRequest: missing query or sort", { body: request.body });
-            return reply.status(400).send({ error: "Invalid TradeSearchRequest" });
-        }
-
-        const search = await tradeClient.search({ query, sort });
-
-        // Fetch first 10 results
-        const first10 = search.result.slice(0, 10);
-        const fetched = await tradeClient.fetchListings(first10, search.id);
-
-        // Simplify results for frontend display
-        const simplified = fetched.result.map((r) => ({
-            id: r.id,
-            price: r.listing.price
-                ? `${r.listing.price.amount} ${r.listing.price.currency} (${r.listing.price.type})`
-                : "no price",
-        }));
-
-        reply.send({ result: simplified });
-    } catch (err) {
-        fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/trade-search");
-        return reply.status(500).send({ error: "Server error" });
+        });
+        this.fastify.register(cors, { origin: true });
+        this.tradeClient = tradeClient || new TradeClient({
+            userAgent: "poe-tools-api/1.0 (contact: you@example.com)",
+            league: "Keepers", // TODO: make dynamic or configurable
+            logger: this.fastify.log,
+        });
+        this.registerRoutes();
     }
-});
 
-export default fastify;
+    private registerRoutes() {
+        this.fastify.post("/api/trade-search", async (request, reply) => {
+            try {
+                const body = request.body as any;
+                const query = body?.query;
+                const sort = body?.sort;
+                if (!query || !sort) {
+                    this.fastify.log.warn("Invalid TradeSearchRequest: missing query or sort", { body: request.body });
+                    return reply.status(400).send({ error: "Invalid TradeSearchRequest" });
+                }
+
+                const search = await this.tradeClient.search({ query, sort });
+                const first10 = search.result.slice(0, 10);
+                const fetched = await this.tradeClient.fetchListings(first10, search.id);
+                const simplified = fetched.result.map((r) => ({
+                    id: r.id,
+                    price: r.listing.price
+                        ? `${r.listing.price.amount} ${r.listing.price.currency} (${r.listing.price.type})`
+                        : "no price",
+                }));
+                reply.send({ result: simplified });
+            } catch (err) {
+                this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/trade-search");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+    }
+
+    get server() {
+        return this.fastify;
+    }
+}

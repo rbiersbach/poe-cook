@@ -1,4 +1,3 @@
-
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { TradeClient, TradeClientOptions } from "trade-client";
 import { NoopLogger } from "logger";
@@ -56,7 +55,32 @@ describe("TradeClient", () => {
 
     it("sends correct GET request and returns response", async () => {
       const ids = ["id1", "id2"];
-      const mockRes: TradeFetchResponse = { result: [{ id: "id1" }] } as any;
+      const mockRes: TradeFetchResponse = {
+        result: [
+          {
+            id: "id1",
+            listing: {
+              price: {
+                amount: 1,
+                currency: "divine",
+                type: "~b/o",
+              },
+            },
+            item: {}, // not relevant for this test
+          },
+          {
+            id: "id2",
+            listing: {
+              price: {
+                amount: 10,
+                currency: "chaos",
+                type: "~b/o",
+              },
+            },
+            item: {}, // not relevant for this test
+          },
+        ],
+      };
       fetchImpl.mockResolvedValue({
         ok: true,
         json: async () => mockRes,
@@ -67,7 +91,11 @@ describe("TradeClient", () => {
         expect.stringContaining("/api/trade/fetch/id1%2Cid2?query=q1"),
         expect.objectContaining({ method: "GET" })
       );
-      expect(res).toEqual(mockRes);
+      // Check normalized fields
+      expect(res.result[0].listing.normalized_price).toBe(180); // 1 divine = 180 chaos
+      expect(res.result[0].listing.normalized_currency).toBe("chaos");
+      expect(res.result[1].listing.normalized_price).toBe(10); // 10 chaos = 10 chaos
+      expect(res.result[1].listing.normalized_currency).toBe("chaos");
     });
 
     it("throws on non-ok response", async () => {

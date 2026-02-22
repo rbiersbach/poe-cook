@@ -1,4 +1,4 @@
-// poe-trade-client.ts
+import { TradeRate } from "trade-rate";
 import {
   LeagueName,
   TradeSearchRequest,
@@ -84,7 +84,18 @@ export class TradeClient {
       this.logger.error({ error: err, url, ids, queryId }, "TradeClient.fetchListings failed");
       throw err;
     }
-    return (await res.json()) as TradeFetchResponse;
+    const raw = await res.json() as TradeFetchResponse;
+    // Normalize prices for each listing
+    if (raw.result && Array.isArray(raw.result)) {
+      for (const item of raw.result) {
+        const price = item.listing.price;
+        if (price?.amount && price?.currency) {
+          item.listing.normalized_price = TradeRate.normalize_to_chaos(Number(price.amount), String(price.currency));
+          item.listing.normalized_currency = "chaos";
+        }
+      }
+    }
+    return raw;
   }
 
   private headers(extra?: Record<string, string>): HeadersInit {
