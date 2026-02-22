@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import tradeClient from "./trade-client";
+import tradeClient from "trade-client";
 
 const fastify = Fastify({
     logger: {

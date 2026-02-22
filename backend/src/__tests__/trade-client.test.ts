@@ -1,11 +1,13 @@
 
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { TradeClient, TradeClientOptions } from "../trade-client";
-import type { TradeSearchRequest, TradeSearchResponse, TradeFetchResponse } from "../trade-types";
+import { TradeClient, TradeClientOptions } from "trade-client";
+import { NoopLogger } from "logger";
+import type { TradeSearchRequest, TradeSearchResponse, TradeFetchResponse } from "trade-types";
 
 const baseOpts: TradeClientOptions = {
   userAgent: "test-agent",
   league: "TestLeague",
+  logger: NoopLogger,
 };
 
 describe("TradeClient", () => {

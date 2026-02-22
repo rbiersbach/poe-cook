@@ -4,9 +4,11 @@ import {
   TradeSearchRequest,
   TradeSearchResponse,
   TradeFetchResponse,
-} from "./trade-types";
+} from "trade-types";
+import fastify from "fastify";
 
-import fastify from "api";
+
+import { LoggerLike, NoopLogger } from "logger";
 
 export type TradeClientOptions = {
   baseUrl?: string;                 // default: https://www.pathofexile.com
@@ -14,6 +16,7 @@ export type TradeClientOptions = {
   poeSessId?: string;               // optional (POESESSID cookie value)
   fetchImpl?: typeof fetch;         // for testing / polyfills
   league: LeagueName;               // REQUIRED: current league name
+  logger: LoggerLike;               // Logger instance (required)
 };
 
 export class TradeClient {
@@ -22,6 +25,9 @@ export class TradeClient {
   private poeSessId?: string;
   private league!: LeagueName;
   private fetchImpl: typeof fetch;
+  private logger: LoggerLike;
+
+
 
   constructor(opts: TradeClientOptions) {
     this.baseUrl = opts.baseUrl ?? "https://www.pathofexile.com";
@@ -29,6 +35,7 @@ export class TradeClient {
     this.poeSessId = opts.poeSessId;
     this.fetchImpl = opts.fetchImpl ?? fetch;
     this.league = opts.league;
+    this.logger = opts.logger;
   }
 
   /** POST /api/trade/search/{league} */
@@ -44,16 +51,13 @@ export class TradeClient {
     try {
       await this.throwIfNotOk(res);
     } catch (err) {
-      fastify.log.error(
-        { error: err, url, body },
-        "TradeClient.search failed"
-      );
+      this.logger.error({ error: err, url, body }, "TradeClient.search failed");
       throw err;
     }
 
     // Rate limit headers can be useful for logging/backoff:
     // x-rate-limit-ip, x-rate-limit-ip-state, etc.
-    // If you include POESESSID, rate-limiting may become account-based. :contentReference[oaicite:5]{index=5}
+    // If you include POESESSID, rate-limiting may become account-based.
     return (await res.json()) as TradeSearchResponse;
   }
 
@@ -74,7 +78,12 @@ export class TradeClient {
       headers: this.headers(),
     });
 
-    await this.throwIfNotOk(res);
+    try {
+      await this.throwIfNotOk(res);
+    } catch (err) {
+      this.logger.error({ error: err, url, ids, queryId }, "TradeClient.fetchListings failed");
+      throw err;
+    }
     return (await res.json()) as TradeFetchResponse;
   }
 
@@ -106,6 +115,7 @@ const tradeClient = new TradeClient({
   userAgent: "my-poe-tool/0.1 (contact: you@example.com)", // set a descriptive User-Agent
   league: "Keepers", // change to current league
   // poeSessId: process.env.POESESSID, // optional
+  logger: fastify().log,
 });
 
 export default tradeClient;
