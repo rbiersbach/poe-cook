@@ -1,0 +1,1858 @@
+{
+    "result": [
+        {
+            "id": "98c916b0bbeb8d40429e5f913ff7f8f529e896b4579841b978c622c59bc29752",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T12:34:47Z",
+                "stash": {
+                    "name": "7",
+                    "x": 0,
+                    "y": 0
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 90,
+                    "currency": "divine"
+                },
+                "fee": 42520,
+                "account": {
+                    "name": "haulin_as#6768",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiOThjOTE2YjBiYmViOGQ0MDQyOWU1ZjkxM2ZmN2Y4ZjUyOWU4OTZiNDU3OTg0MWI5NzhjNjIyYzU5YmMyOTc1MiIsImRhdCI6ImY0YmFlYzY3NzQzMjI5MmY4ZDkyNDQxYmIyOGQwNWU4IiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9.fhSLWSBGeskrHGrCCCTfzRQKs4-nlmadPaH7Blv5p7c"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "98c916b0bbeb8d40429e5f913ff7f8f529e896b4579841b978c622c59bc29752",
+                "name": "",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 86,
+                "identified": false,
+                "note": "~b/o 90 divine",
+                "implicitMods": [
+                    "+30 to Strength"
+                ],
+                "frameType": 3,
+                "extended": {
+                    "mods": {
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpIZWF2eSBCZWx0DQotLS0tLS0tLQ0KSXRlbSBMZXZlbDogODYNCi0tLS0tLS0tDQorMzAgdG8gU3RyZW5ndGggKGltcGxpY2l0KQ0KLS0tLS0tLS0NClVuaWRlbnRpZmllZA0KLS0tLS0tLS0NCk5vdGU6IH5iL28gOTAgZGl2aW5lDQo="
+                }
+            }
+        },
+        {
+            "id": "4d108221c4baa57282a55ce66533ccdfe2b1e2ed41b3971d572a0b36a1afc83c",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T11:44:59Z",
+                "stash": {
+                    "name": "10",
+                    "x": 7,
+                    "y": 0
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 93,
+                    "currency": "divine"
+                },
+                "fee": 42520,
+                "account": {
+                    "name": "EinsuperTyp#3010",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiNGQxMDgyMjFjNGJhYTU3MjgyYTU1Y2U2NjUzM2NjZGZlMmIxZTJlZDQxYjM5NzFkNTcyYTBiMzZhMWFmYzgzYyIsImRhdCI6IjM5YWM1MjZmMDUxOTVkMWE2ZWE1ODdkYjEzYjcyZDc2IiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9.EVAMhOQZGUi4pqWbnj7J7FIqne6swZ33Cv_QM5bZlLs"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "4d108221c4baa57282a55ce66533ccdfe2b1e2ed41b3971d572a0b36a1afc83c",
+                "name": "Mageblood",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 85,
+                "identified": true,
+                "note": "~b/o 93 divine",
+                "requirements": [
+                    {
+                        "name": "Level",
+                        "values": [
+                            [
+                                "44",
+                                0
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 62
+                    }
+                ],
+                "implicitMods": [
+                    "+31 to Strength"
+                ],
+                "explicitMods": [
+                    "+38 to Dexterity",
+                    "+16% to Fire Resistance",
+                    "+21% to Cold Resistance",
+                    "Magic Utility Flasks cannot be Used",
+                    "Leftmost 2 Magic Utility Flasks constantly apply their Flask Effects to you",
+                    "Magic Utility Flask Effects cannot be removed"
+                ],
+                "flavourText": [
+                    "Rivers of power course through your veins."
+                ],
+                "frameType": 3,
+                "extended": {
+                    "mods": {
+                        "explicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3261801346",
+                                        "min": "30",
+                                        "max": "50"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3372524247",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_4220027924",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3986704288",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 56,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_2388347909",
+                                        "min": "2",
+                                        "max": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_344389721",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            }
+                        ],
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "explicit": [
+                            [
+                                "explicit.stat_3261801346",
+                                [
+                                    0
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3372524247",
+                                [
+                                    1
+                                ]
+                            ],
+                            [
+                                "explicit.stat_4220027924",
+                                [
+                                    2
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3986704288",
+                                [
+                                    3
+                                ]
+                            ],
+                            [
+                                "explicit.stat_2388347909",
+                                [
+                                    4
+                                ]
+                            ],
+                            [
+                                "explicit.stat_344389721",
+                                [
+                                    5
+                                ]
+                            ]
+                        ],
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpNYWdlYmxvb2QNCkhlYXZ5IEJlbHQNCi0tLS0tLS0tDQpSZXF1aXJlbWVudHM6DQpMZXZlbDogNDQNCi0tLS0tLS0tDQpJdGVtIExldmVsOiA4NQ0KLS0tLS0tLS0NCiszMSB0byBTdHJlbmd0aCAoaW1wbGljaXQpDQotLS0tLS0tLQ0KKzM4IHRvIERleHRlcml0eQ0KKzE2JSB0byBGaXJlIFJlc2lzdGFuY2UNCisyMSUgdG8gQ29sZCBSZXNpc3RhbmNlDQpNYWdpYyBVdGlsaXR5IEZsYXNrcyBjYW5ub3QgYmUgVXNlZA0KTGVmdG1vc3QgMiBNYWdpYyBVdGlsaXR5IEZsYXNrcyBjb25zdGFudGx5IGFwcGx5IHRoZWlyIEZsYXNrIEVmZmVjdHMgdG8geW91DQpNYWdpYyBVdGlsaXR5IEZsYXNrIEVmZmVjdHMgY2Fubm90IGJlIHJlbW92ZWQNCi0tLS0tLS0tDQpSaXZlcnMgb2YgcG93ZXIgY291cnNlIHRocm91Z2ggeW91ciB2ZWlucy4NCi0tLS0tLS0tDQpOb3RlOiB+Yi9vIDkzIGRpdmluZQ0K"
+                }
+            }
+        },
+        {
+            "id": "567190a4703e9fd178fcebcbb77e4c425991c1a858bbf9876f60ef23edf12563",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T12:37:48Z",
+                "stash": {
+                    "name": "11",
+                    "x": 7,
+                    "y": 5
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 94,
+                    "currency": "divine"
+                },
+                "fee": 42520,
+                "account": {
+                    "name": "orestis1997polo#3345",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiNTY3MTkwYTQ3MDNlOWZkMTc4ZmNlYmNiYjc3ZTRjNDI1OTkxYzFhODU4YmJmOTg3NmY2MGVmMjNlZGYxMjU2MyIsImRhdCI6ImZkZWYxNDk2ZmZlNDFhZWQzZTIwN2MyNzg4MDZjNjM5IiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9.KjZIIO7tTHA_w8x2OElq1NUc-IgRcZDyuGXIQPkF8zE"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "567190a4703e9fd178fcebcbb77e4c425991c1a858bbf9876f60ef23edf12563",
+                "name": "Mageblood",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 85,
+                "identified": true,
+                "note": "~b/o 94 divine",
+                "requirements": [
+                    {
+                        "name": "Level",
+                        "values": [
+                            [
+                                "44",
+                                0
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 62
+                    }
+                ],
+                "implicitMods": [
+                    "+28 to Strength"
+                ],
+                "explicitMods": [
+                    "+34 to Dexterity",
+                    "+16% to Fire Resistance",
+                    "+16% to Cold Resistance",
+                    "Magic Utility Flasks cannot be Used",
+                    "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
+                    "Magic Utility Flask Effects cannot be removed"
+                ],
+                "flavourText": [
+                    "Rivers of power course through your veins."
+                ],
+                "frameType": 3,
+                "extended": {
+                    "mods": {
+                        "explicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3261801346",
+                                        "min": "30",
+                                        "max": "50"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3372524247",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_4220027924",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3986704288",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 56,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_2388347909",
+                                        "min": "2",
+                                        "max": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_344389721",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            }
+                        ],
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "explicit": [
+                            [
+                                "explicit.stat_3261801346",
+                                [
+                                    0
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3372524247",
+                                [
+                                    1
+                                ]
+                            ],
+                            [
+                                "explicit.stat_4220027924",
+                                [
+                                    2
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3986704288",
+                                [
+                                    3
+                                ]
+                            ],
+                            [
+                                "explicit.stat_2388347909",
+                                [
+                                    4
+                                ]
+                            ],
+                            [
+                                "explicit.stat_344389721",
+                                [
+                                    5
+                                ]
+                            ]
+                        ],
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpNYWdlYmxvb2QNCkhlYXZ5IEJlbHQNCi0tLS0tLS0tDQpSZXF1aXJlbWVudHM6DQpMZXZlbDogNDQNCi0tLS0tLS0tDQpJdGVtIExldmVsOiA4NQ0KLS0tLS0tLS0NCisyOCB0byBTdHJlbmd0aCAoaW1wbGljaXQpDQotLS0tLS0tLQ0KKzM0IHRvIERleHRlcml0eQ0KKzE2JSB0byBGaXJlIFJlc2lzdGFuY2UNCisxNiUgdG8gQ29sZCBSZXNpc3RhbmNlDQpNYWdpYyBVdGlsaXR5IEZsYXNrcyBjYW5ub3QgYmUgVXNlZA0KTGVmdG1vc3QgNCBNYWdpYyBVdGlsaXR5IEZsYXNrcyBjb25zdGFudGx5IGFwcGx5IHRoZWlyIEZsYXNrIEVmZmVjdHMgdG8geW91DQpNYWdpYyBVdGlsaXR5IEZsYXNrIEVmZmVjdHMgY2Fubm90IGJlIHJlbW92ZWQNCi0tLS0tLS0tDQpSaXZlcnMgb2YgcG93ZXIgY291cnNlIHRocm91Z2ggeW91ciB2ZWlucy4NCi0tLS0tLS0tDQpOb3RlOiB+Yi9vIDk0IGRpdmluZQ0K"
+                }
+            }
+        },
+        {
+            "id": "0a6fb70980465a638e3c3c30595e2325eaa7a40d5fab778c3436c7023b336b54",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T11:10:19Z",
+                "stash": {
+                    "name": "2",
+                    "x": 6,
+                    "y": 3
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 94,
+                    "currency": "divine"
+                },
+                "fee": 42520,
+                "account": {
+                    "name": "Quest71#3981",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiMGE2ZmI3MDk4MDQ2NWE2MzhlM2MzYzMwNTk1ZTIzMjVlYWE3YTQwZDVmYWI3NzhjMzQzNmM3MDIzYjMzNmI1NCIsImRhdCI6IjE3YmQyM2EyMWQyZmNhYzQ4MGVmYzc5ZTYwMGJjMDAzIiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9.Yd9M6tSc9VM1uZONryCN2ROfYaCx-Ritt5nzbC8lf7E"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "0a6fb70980465a638e3c3c30595e2325eaa7a40d5fab778c3436c7023b336b54",
+                "name": "Mageblood",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 83,
+                "identified": true,
+                "note": "~b/o 94 divine",
+                "requirements": [
+                    {
+                        "name": "Level",
+                        "values": [
+                            [
+                                "44",
+                                0
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 62
+                    }
+                ],
+                "implicitMods": [
+                    "+35 to Strength"
+                ],
+                "explicitMods": [
+                    "+31 to Dexterity",
+                    "+23% to Fire Resistance",
+                    "+19% to Cold Resistance",
+                    "Magic Utility Flasks cannot be Used",
+                    "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
+                    "Magic Utility Flask Effects cannot be removed"
+                ],
+                "flavourText": [
+                    "Rivers of power course through your veins."
+                ],
+                "frameType": 3,
+                "extended": {
+                    "mods": {
+                        "explicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3261801346",
+                                        "min": "30",
+                                        "max": "50"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3372524247",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_4220027924",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3986704288",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 56,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_2388347909",
+                                        "min": "2",
+                                        "max": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_344389721",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            }
+                        ],
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "explicit": [
+                            [
+                                "explicit.stat_3261801346",
+                                [
+                                    0
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3372524247",
+                                [
+                                    1
+                                ]
+                            ],
+                            [
+                                "explicit.stat_4220027924",
+                                [
+                                    2
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3986704288",
+                                [
+                                    3
+                                ]
+                            ],
+                            [
+                                "explicit.stat_2388347909",
+                                [
+                                    4
+                                ]
+                            ],
+                            [
+                                "explicit.stat_344389721",
+                                [
+                                    5
+                                ]
+                            ]
+                        ],
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpNYWdlYmxvb2QNCkhlYXZ5IEJlbHQNCi0tLS0tLS0tDQpSZXF1aXJlbWVudHM6DQpMZXZlbDogNDQNCi0tLS0tLS0tDQpJdGVtIExldmVsOiA4Mw0KLS0tLS0tLS0NCiszNSB0byBTdHJlbmd0aCAoaW1wbGljaXQpDQotLS0tLS0tLQ0KKzMxIHRvIERleHRlcml0eQ0KKzIzJSB0byBGaXJlIFJlc2lzdGFuY2UNCisxOSUgdG8gQ29sZCBSZXNpc3RhbmNlDQpNYWdpYyBVdGlsaXR5IEZsYXNrcyBjYW5ub3QgYmUgVXNlZA0KTGVmdG1vc3QgNCBNYWdpYyBVdGlsaXR5IEZsYXNrcyBjb25zdGFudGx5IGFwcGx5IHRoZWlyIEZsYXNrIEVmZmVjdHMgdG8geW91DQpNYWdpYyBVdGlsaXR5IEZsYXNrIEVmZmVjdHMgY2Fubm90IGJlIHJlbW92ZWQNCi0tLS0tLS0tDQpSaXZlcnMgb2YgcG93ZXIgY291cnNlIHRocm91Z2ggeW91ciB2ZWlucy4NCi0tLS0tLS0tDQpOb3RlOiB+Yi9vIDk0IGRpdmluZQ0K"
+                }
+            }
+        },
+        {
+            "id": "ae6ae0be8ca1d0383c0bb34bcb981a8bdae993bec8900eb488b93ff6231445d2",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T09:43:57Z",
+                "stash": {
+                    "name": "$$",
+                    "x": 10,
+                    "y": 0
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 95,
+                    "currency": "divine"
+                },
+                "fee": 59528,
+                "account": {
+                    "name": "Zomble#4643",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiYWU2YWUwYmU4Y2ExZDAzODNjMGJiMzRiY2I5ODFhOGJkYWU5OTNiZWM4OTAwZWI0ODhiOTNmZjYyMzE0NDVkMiIsImRhdCI6IjdmMTVjYjMxMWUxYTJhOTdhZTJlMDNjNmFhYTk2Y2I5IiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9.Dh3NGM261bIkSpLR1auyPR1f6nIJpnbiKegeFF8YyuY"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "ae6ae0be8ca1d0383c0bb34bcb981a8bdae993bec8900eb488b93ff6231445d2",
+                "name": "Mageblood",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 86,
+                "identified": true,
+                "note": "~b/o 95 divine",
+                "properties": [
+                    {
+                        "name": "Quality (Attribute Modifiers)",
+                        "values": [
+                            [
+                                "+20%",
+                                1
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 6
+                    }
+                ],
+                "requirements": [
+                    {
+                        "name": "Level",
+                        "values": [
+                            [
+                                "44",
+                                0
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 62
+                    }
+                ],
+                "implicitMods": [
+                    "+42 to Strength"
+                ],
+                "explicitMods": [
+                    "+49 to Dexterity",
+                    "+18% to Fire Resistance",
+                    "+24% to Cold Resistance",
+                    "Magic Utility Flasks cannot be Used",
+                    "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
+                    "Magic Utility Flask Effects cannot be removed"
+                ],
+                "flavourText": [
+                    "Rivers of power course through your veins."
+                ],
+                "frameType": 3,
+                "extended": {
+                    "mods": {
+                        "explicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3261801346",
+                                        "min": "30",
+                                        "max": "50"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3372524247",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_4220027924",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3986704288",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 56,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_2388347909",
+                                        "min": "2",
+                                        "max": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_344389721",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            }
+                        ],
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "explicit": [
+                            [
+                                "explicit.stat_3261801346",
+                                [
+                                    0
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3372524247",
+                                [
+                                    1
+                                ]
+                            ],
+                            [
+                                "explicit.stat_4220027924",
+                                [
+                                    2
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3986704288",
+                                [
+                                    3
+                                ]
+                            ],
+                            [
+                                "explicit.stat_2388347909",
+                                [
+                                    4
+                                ]
+                            ],
+                            [
+                                "explicit.stat_344389721",
+                                [
+                                    5
+                                ]
+                            ]
+                        ],
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpNYWdlYmxvb2QNCkhlYXZ5IEJlbHQNCi0tLS0tLS0tDQpRdWFsaXR5IChBdHRyaWJ1dGUgTW9kaWZpZXJzKTogKzIwJSAoYXVnbWVudGVkKQ0KLS0tLS0tLS0NClJlcXVpcmVtZW50czoNCkxldmVsOiA0NA0KLS0tLS0tLS0NCkl0ZW0gTGV2ZWw6IDg2DQotLS0tLS0tLQ0KKzQyIHRvIFN0cmVuZ3RoIChpbXBsaWNpdCkNCi0tLS0tLS0tDQorNDkgdG8gRGV4dGVyaXR5DQorMTglIHRvIEZpcmUgUmVzaXN0YW5jZQ0KKzI0JSB0byBDb2xkIFJlc2lzdGFuY2UNCk1hZ2ljIFV0aWxpdHkgRmxhc2tzIGNhbm5vdCBiZSBVc2VkDQpMZWZ0bW9zdCA0IE1hZ2ljIFV0aWxpdHkgRmxhc2tzIGNvbnN0YW50bHkgYXBwbHkgdGhlaXIgRmxhc2sgRWZmZWN0cyB0byB5b3UNCk1hZ2ljIFV0aWxpdHkgRmxhc2sgRWZmZWN0cyBjYW5ub3QgYmUgcmVtb3ZlZA0KLS0tLS0tLS0NClJpdmVycyBvZiBwb3dlciBjb3Vyc2UgdGhyb3VnaCB5b3VyIHZlaW5zLg0KLS0tLS0tLS0NCk5vdGU6IH5iL28gOTUgZGl2aW5lDQo="
+                }
+            }
+        },
+        {
+            "id": "2621390cb73dd51574ff9c76cfeb5fad9d368d3a76e843761e485389e39f9584",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T12:28:49Z",
+                "stash": {
+                    "name": "1",
+                    "x": 7,
+                    "y": 10
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 95,
+                    "currency": "divine"
+                },
+                "fee": 59528,
+                "account": {
+                    "name": "K0c9I40k#7426",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiMjYyMTM5MGNiNzNkZDUxNTc0ZmY5Yzc2Y2ZlYjVmYWQ5ZDM2OGQzYTc2ZTg0Mzc2MWU0ODUzODllMzlmOTU4NCIsImRhdCI6IjNjNTZhNjRkZDg4YzViMzdhZDI1Mzc4NTMwNjQ1YTlmIiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9._OMuF3qDFTKmA_ipNDT557PdoYL0kuRxyZuESesnAuI"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "2621390cb73dd51574ff9c76cfeb5fad9d368d3a76e843761e485389e39f9584",
+                "name": "Mageblood",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 85,
+                "identified": true,
+                "note": "~b/o 95 divine",
+                "properties": [
+                    {
+                        "name": "Quality (Attribute Modifiers)",
+                        "values": [
+                            [
+                                "+20%",
+                                1
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 6
+                    }
+                ],
+                "requirements": [
+                    {
+                        "name": "Level",
+                        "values": [
+                            [
+                                "44",
+                                0
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 62
+                    }
+                ],
+                "implicitMods": [
+                    "+30 to Strength"
+                ],
+                "explicitMods": [
+                    "+44 to Dexterity",
+                    "+16% to Fire Resistance",
+                    "+20% to Cold Resistance",
+                    "Magic Utility Flasks cannot be Used",
+                    "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
+                    "Magic Utility Flask Effects cannot be removed"
+                ],
+                "flavourText": [
+                    "Rivers of power course through your veins."
+                ],
+                "frameType": 3,
+                "extended": {
+                    "mods": {
+                        "explicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3261801346",
+                                        "min": "30",
+                                        "max": "50"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3372524247",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_4220027924",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3986704288",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 56,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_2388347909",
+                                        "min": "2",
+                                        "max": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_344389721",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            }
+                        ],
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "explicit": [
+                            [
+                                "explicit.stat_3261801346",
+                                [
+                                    0
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3372524247",
+                                [
+                                    1
+                                ]
+                            ],
+                            [
+                                "explicit.stat_4220027924",
+                                [
+                                    2
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3986704288",
+                                [
+                                    3
+                                ]
+                            ],
+                            [
+                                "explicit.stat_2388347909",
+                                [
+                                    4
+                                ]
+                            ],
+                            [
+                                "explicit.stat_344389721",
+                                [
+                                    5
+                                ]
+                            ]
+                        ],
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpNYWdlYmxvb2QNCkhlYXZ5IEJlbHQNCi0tLS0tLS0tDQpRdWFsaXR5IChBdHRyaWJ1dGUgTW9kaWZpZXJzKTogKzIwJSAoYXVnbWVudGVkKQ0KLS0tLS0tLS0NClJlcXVpcmVtZW50czoNCkxldmVsOiA0NA0KLS0tLS0tLS0NCkl0ZW0gTGV2ZWw6IDg1DQotLS0tLS0tLQ0KKzMwIHRvIFN0cmVuZ3RoIChpbXBsaWNpdCkNCi0tLS0tLS0tDQorNDQgdG8gRGV4dGVyaXR5DQorMTYlIHRvIEZpcmUgUmVzaXN0YW5jZQ0KKzIwJSB0byBDb2xkIFJlc2lzdGFuY2UNCk1hZ2ljIFV0aWxpdHkgRmxhc2tzIGNhbm5vdCBiZSBVc2VkDQpMZWZ0bW9zdCA0IE1hZ2ljIFV0aWxpdHkgRmxhc2tzIGNvbnN0YW50bHkgYXBwbHkgdGhlaXIgRmxhc2sgRWZmZWN0cyB0byB5b3UNCk1hZ2ljIFV0aWxpdHkgRmxhc2sgRWZmZWN0cyBjYW5ub3QgYmUgcmVtb3ZlZA0KLS0tLS0tLS0NClJpdmVycyBvZiBwb3dlciBjb3Vyc2UgdGhyb3VnaCB5b3VyIHZlaW5zLg0KLS0tLS0tLS0NCk5vdGU6IH5iL28gOTUgZGl2aW5lDQo="
+                }
+            }
+        },
+        {
+            "id": "7e3ae2578bce49d4506f41ebe36b7bf4c1913179855b9bb10b070a55fdd2bb50",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T09:13:13Z",
+                "stash": {
+                    "name": "高額",
+                    "x": 7,
+                    "y": 10
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 95,
+                    "currency": "divine"
+                },
+                "fee": 42520,
+                "account": {
+                    "name": "メガンテ#5126",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiN2UzYWUyNTc4YmNlNDlkNDUwNmY0MWViZTM2YjdiZjRjMTkxMzE3OTg1NWI5YmIxMGIwNzBhNTVmZGQyYmI1MCIsImRhdCI6IjQ1NjQ0ODM0OGZhYThmMzJjOTVlNzMxMTFkZWE2MTMwIiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9.9CiE956O6is8lCFINhDvCMkju_UP7Adr1eLL2kzZPGM"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjEsInJlbGljIjoxMX1d/922ddbaf97/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "7e3ae2578bce49d4506f41ebe36b7bf4c1913179855b9bb10b070a55fdd2bb50",
+                "isRelic": true,
+                "foilVariation": 11,
+                "name": "Mageblood",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 84,
+                "identified": true,
+                "note": "~b/o 95 divine",
+                "requirements": [
+                    {
+                        "name": "Level",
+                        "values": [
+                            [
+                                "44",
+                                0
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 62
+                    }
+                ],
+                "implicitMods": [
+                    "+29 to Strength"
+                ],
+                "explicitMods": [
+                    "+35 to Dexterity",
+                    "+16% to Fire Resistance",
+                    "+24% to Cold Resistance",
+                    "Magic Utility Flasks cannot be Used",
+                    "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
+                    "Magic Utility Flask Effects cannot be removed"
+                ],
+                "flavourText": [
+                    "Rivers of power course through your veins."
+                ],
+                "frameType": 10,
+                "extended": {
+                    "mods": {
+                        "explicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3261801346",
+                                        "min": "30",
+                                        "max": "50"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3372524247",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_4220027924",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3986704288",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 56,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_2388347909",
+                                        "min": "2",
+                                        "max": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_344389721",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            }
+                        ],
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "explicit": [
+                            [
+                                "explicit.stat_3261801346",
+                                [
+                                    0
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3372524247",
+                                [
+                                    1
+                                ]
+                            ],
+                            [
+                                "explicit.stat_4220027924",
+                                [
+                                    2
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3986704288",
+                                [
+                                    3
+                                ]
+                            ],
+                            [
+                                "explicit.stat_2388347909",
+                                [
+                                    4
+                                ]
+                            ],
+                            [
+                                "explicit.stat_344389721",
+                                [
+                                    5
+                                ]
+                            ]
+                        ],
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpNYWdlYmxvb2QNCkhlYXZ5IEJlbHQNCi0tLS0tLS0tDQpSZXF1aXJlbWVudHM6DQpMZXZlbDogNDQNCi0tLS0tLS0tDQpJdGVtIExldmVsOiA4NA0KLS0tLS0tLS0NCisyOSB0byBTdHJlbmd0aCAoaW1wbGljaXQpDQotLS0tLS0tLQ0KKzM1IHRvIERleHRlcml0eQ0KKzE2JSB0byBGaXJlIFJlc2lzdGFuY2UNCisyNCUgdG8gQ29sZCBSZXNpc3RhbmNlDQpNYWdpYyBVdGlsaXR5IEZsYXNrcyBjYW5ub3QgYmUgVXNlZA0KTGVmdG1vc3QgNCBNYWdpYyBVdGlsaXR5IEZsYXNrcyBjb25zdGFudGx5IGFwcGx5IHRoZWlyIEZsYXNrIEVmZmVjdHMgdG8geW91DQpNYWdpYyBVdGlsaXR5IEZsYXNrIEVmZmVjdHMgY2Fubm90IGJlIHJlbW92ZWQNCi0tLS0tLS0tDQpSaXZlcnMgb2YgcG93ZXIgY291cnNlIHRocm91Z2ggeW91ciB2ZWlucy4NCi0tLS0tLS0tDQpGb2lsIFVuaXF1ZSAoQ2VsZXN0aWFsIFBlYXJsKQ0KLS0tLS0tLS0NCk5vdGU6IH5iL28gOTUgZGl2aW5lDQo="
+                }
+            }
+        },
+        {
+            "id": "2cc5ce82fabc3b616c4919ab0273c660f9c45a11f6d6624e5f175ce8386ee0a2",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T13:03:38Z",
+                "stash": {
+                    "name": "15",
+                    "x": 0,
+                    "y": 0
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 95,
+                    "currency": "divine"
+                },
+                "fee": 59528,
+                "account": {
+                    "name": "noujin1#6826",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiMmNjNWNlODJmYWJjM2I2MTZjNDkxOWFiMDI3M2M2NjBmOWM0NWExMWY2ZDY2MjRlNWYxNzVjZTgzODZlZTBhMiIsImRhdCI6IjIyZDNkZDljMzU2NzJmMDZkYTcyZmU3NDYyYWJiNTBjIiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9.lTQG1e-pxyfQAKa6c2mes-EVfBd2MwwSuTDTEE26bvQ"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "2cc5ce82fabc3b616c4919ab0273c660f9c45a11f6d6624e5f175ce8386ee0a2",
+                "name": "Mageblood",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 80,
+                "identified": true,
+                "note": "~b/o 95 divine",
+                "properties": [
+                    {
+                        "name": "Quality (Attribute Modifiers)",
+                        "values": [
+                            [
+                                "+20%",
+                                1
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 6
+                    }
+                ],
+                "requirements": [
+                    {
+                        "name": "Level",
+                        "values": [
+                            [
+                                "44",
+                                0
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 62
+                    }
+                ],
+                "implicitMods": [
+                    "+42 to Strength"
+                ],
+                "explicitMods": [
+                    "+49 to Dexterity",
+                    "+23% to Fire Resistance",
+                    "+23% to Cold Resistance",
+                    "Magic Utility Flasks cannot be Used",
+                    "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
+                    "Magic Utility Flask Effects cannot be removed"
+                ],
+                "flavourText": [
+                    "Rivers of power course through your veins."
+                ],
+                "frameType": 3,
+                "extended": {
+                    "mods": {
+                        "explicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3261801346",
+                                        "min": "30",
+                                        "max": "50"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3372524247",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_4220027924",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3986704288",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 56,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_2388347909",
+                                        "min": "2",
+                                        "max": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_344389721",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            }
+                        ],
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "explicit": [
+                            [
+                                "explicit.stat_3261801346",
+                                [
+                                    0
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3372524247",
+                                [
+                                    1
+                                ]
+                            ],
+                            [
+                                "explicit.stat_4220027924",
+                                [
+                                    2
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3986704288",
+                                [
+                                    3
+                                ]
+                            ],
+                            [
+                                "explicit.stat_2388347909",
+                                [
+                                    4
+                                ]
+                            ],
+                            [
+                                "explicit.stat_344389721",
+                                [
+                                    5
+                                ]
+                            ]
+                        ],
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpNYWdlYmxvb2QNCkhlYXZ5IEJlbHQNCi0tLS0tLS0tDQpRdWFsaXR5IChBdHRyaWJ1dGUgTW9kaWZpZXJzKTogKzIwJSAoYXVnbWVudGVkKQ0KLS0tLS0tLS0NClJlcXVpcmVtZW50czoNCkxldmVsOiA0NA0KLS0tLS0tLS0NCkl0ZW0gTGV2ZWw6IDgwDQotLS0tLS0tLQ0KKzQyIHRvIFN0cmVuZ3RoIChpbXBsaWNpdCkNCi0tLS0tLS0tDQorNDkgdG8gRGV4dGVyaXR5DQorMjMlIHRvIEZpcmUgUmVzaXN0YW5jZQ0KKzIzJSB0byBDb2xkIFJlc2lzdGFuY2UNCk1hZ2ljIFV0aWxpdHkgRmxhc2tzIGNhbm5vdCBiZSBVc2VkDQpMZWZ0bW9zdCA0IE1hZ2ljIFV0aWxpdHkgRmxhc2tzIGNvbnN0YW50bHkgYXBwbHkgdGhlaXIgRmxhc2sgRWZmZWN0cyB0byB5b3UNCk1hZ2ljIFV0aWxpdHkgRmxhc2sgRWZmZWN0cyBjYW5ub3QgYmUgcmVtb3ZlZA0KLS0tLS0tLS0NClJpdmVycyBvZiBwb3dlciBjb3Vyc2UgdGhyb3VnaCB5b3VyIHZlaW5zLg0KLS0tLS0tLS0NCk5vdGU6IH5iL28gOTUgZGl2aW5lDQo="
+                }
+            }
+        },
+        {
+            "id": "ed2cc6e59e3b365ad2712347137098597c85ea1870db86e7874c5d3b7fa3f565",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T04:55:56Z",
+                "stash": {
+                    "name": "T",
+                    "x": 3,
+                    "y": 3
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 95,
+                    "currency": "divine"
+                },
+                "fee": 42520,
+                "account": {
+                    "name": "18MgNic#5368",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiZWQyY2M2ZTU5ZTNiMzY1YWQyNzEyMzQ3MTM3MDk4NTk3Yzg1ZWExODcwZGI4NmU3ODc0YzVkM2I3ZmEzZjU2NSIsImRhdCI6IjRiZTBhNGFhN2NhOTlkOWE1OTljY2QxNDI4Mzk5MGVlIiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9.owkdpP6BZKsFKuMrhPOacd3Fnhv5vpmerIM5lHfAusw"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjEsInJlbGljIjoxMH1d/af054170cd/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "ed2cc6e59e3b365ad2712347137098597c85ea1870db86e7874c5d3b7fa3f565",
+                "isRelic": true,
+                "foilVariation": 10,
+                "name": "",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 84,
+                "identified": false,
+                "note": "~b/o 95 divine",
+                "implicitMods": [
+                    "+25 to Strength"
+                ],
+                "frameType": 10,
+                "extended": {
+                    "mods": {
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpIZWF2eSBCZWx0DQotLS0tLS0tLQ0KSXRlbSBMZXZlbDogODQNCi0tLS0tLS0tDQorMjUgdG8gU3RyZW5ndGggKGltcGxpY2l0KQ0KLS0tLS0tLS0NClVuaWRlbnRpZmllZA0KLS0tLS0tLS0NCkZvaWwgVW5pcXVlIChDZWxlc3RpYWwgQXVyZWF0ZSkNCi0tLS0tLS0tDQpOb3RlOiB+Yi9vIDk1IGRpdmluZQ0K"
+                }
+            }
+        },
+        {
+            "id": "900552f6ae0d9906f2ab8add68c0b8b01da201fe2345b17b2830731be34ce0bc",
+            "listing": {
+                "method": "psapi",
+                "indexed": "2026-02-22T07:07:30Z",
+                "stash": {
+                    "name": "$$",
+                    "x": 4,
+                    "y": 1
+                },
+                "price": {
+                    "type": "~b/o",
+                    "amount": 95,
+                    "currency": "divine"
+                },
+                "fee": 59528,
+                "account": {
+                    "name": "quallzballz#7476",
+                    "online": null
+                },
+                "hideout_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTljNzAwNTg0OGQwYzIxMDE5ZDE3ZjVhOWFjNGVhYiIsImlzcyI6Ilo2S21ZR2I4Q1EiLCJhdWQiOiI3NmIyMWM2Yi04NmEyLTQyMWYtYjk2NS1hN2EzMzg1MTVlNzkiLCJ0b2siOiJoaWRlb3V0Iiwic3ViIjoiOTAwNTUyZjZhZTBkOTkwNmYyYWI4YWRkNjhjMGI4YjAxZGEyMDFmZTIzNDViMTdiMjgzMDczMWJlMzRjZTBiYyIsImRhdCI6IjM5OGM1NzI0NDJhZDAxYTIwMjdkYWZhMTMwNmMyMGE1IiwiaWF0IjoxNzcxNzY1ODMwLCJleHAiOjE3NzE3NjYxMzB9.A2DYvWSRgkJDoNdXVg-ug-MZsnGfBx2YA9TpEtc6ZSU"
+            },
+            "item": {
+                "verified": true,
+                "w": 2,
+                "h": 1,
+                "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvSW5qZWN0b3JCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/21ec0269de/InjectorBelt.png",
+                "league": "Keepers",
+                "id": "900552f6ae0d9906f2ab8add68c0b8b01da201fe2345b17b2830731be34ce0bc",
+                "name": "Mageblood",
+                "typeLine": "Heavy Belt",
+                "baseType": "Heavy Belt",
+                "rarity": "Unique",
+                "ilvl": 81,
+                "identified": true,
+                "note": "~b/o 95 divine",
+                "properties": [
+                    {
+                        "name": "Quality (Attribute Modifiers)",
+                        "values": [
+                            [
+                                "+20%",
+                                1
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 6
+                    }
+                ],
+                "requirements": [
+                    {
+                        "name": "Level",
+                        "values": [
+                            [
+                                "44",
+                                0
+                            ]
+                        ],
+                        "displayMode": 0,
+                        "type": 62
+                    }
+                ],
+                "implicitMods": [
+                    "+42 to Strength"
+                ],
+                "explicitMods": [
+                    "+38 to Dexterity",
+                    "+18% to Fire Resistance",
+                    "+22% to Cold Resistance",
+                    "Magic Utility Flasks cannot be Used",
+                    "Leftmost 4 Magic Utility Flasks constantly apply their Flask Effects to you",
+                    "Magic Utility Flask Effects cannot be removed"
+                ],
+                "flavourText": [
+                    "Rivers of power course through your veins."
+                ],
+                "frameType": 3,
+                "extended": {
+                    "mods": {
+                        "explicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3261801346",
+                                        "min": "30",
+                                        "max": "50"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3372524247",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_4220027924",
+                                        "min": "15",
+                                        "max": "25"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_3986704288",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 56,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_2388347909",
+                                        "min": "2",
+                                        "max": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 1,
+                                "magnitudes": [
+                                    {
+                                        "hash": "explicit.stat_344389721",
+                                        "min": "1",
+                                        "max": "1"
+                                    }
+                                ]
+                            }
+                        ],
+                        "implicit": [
+                            {
+                                "name": "",
+                                "tier": "",
+                                "level": 10,
+                                "magnitudes": [
+                                    {
+                                        "hash": "implicit.stat_4080418644",
+                                        "min": "25",
+                                        "max": "35"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "hashes": {
+                        "explicit": [
+                            [
+                                "explicit.stat_3261801346",
+                                [
+                                    0
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3372524247",
+                                [
+                                    1
+                                ]
+                            ],
+                            [
+                                "explicit.stat_4220027924",
+                                [
+                                    2
+                                ]
+                            ],
+                            [
+                                "explicit.stat_3986704288",
+                                [
+                                    3
+                                ]
+                            ],
+                            [
+                                "explicit.stat_2388347909",
+                                [
+                                    4
+                                ]
+                            ],
+                            [
+                                "explicit.stat_344389721",
+                                [
+                                    5
+                                ]
+                            ]
+                        ],
+                        "implicit": [
+                            [
+                                "implicit.stat_4080418644",
+                                [
+                                    0
+                                ]
+                            ]
+                        ]
+                    },
+                    "text": "SXRlbSBDbGFzczogQmVsdHMNClJhcml0eTogVW5pcXVlDQpNYWdlYmxvb2QNCkhlYXZ5IEJlbHQNCi0tLS0tLS0tDQpRdWFsaXR5IChBdHRyaWJ1dGUgTW9kaWZpZXJzKTogKzIwJSAoYXVnbWVudGVkKQ0KLS0tLS0tLS0NClJlcXVpcmVtZW50czoNCkxldmVsOiA0NA0KLS0tLS0tLS0NCkl0ZW0gTGV2ZWw6IDgxDQotLS0tLS0tLQ0KKzQyIHRvIFN0cmVuZ3RoIChpbXBsaWNpdCkNCi0tLS0tLS0tDQorMzggdG8gRGV4dGVyaXR5DQorMTglIHRvIEZpcmUgUmVzaXN0YW5jZQ0KKzIyJSB0byBDb2xkIFJlc2lzdGFuY2UNCk1hZ2ljIFV0aWxpdHkgRmxhc2tzIGNhbm5vdCBiZSBVc2VkDQpMZWZ0bW9zdCA0IE1hZ2ljIFV0aWxpdHkgRmxhc2tzIGNvbnN0YW50bHkgYXBwbHkgdGhlaXIgRmxhc2sgRWZmZWN0cyB0byB5b3UNCk1hZ2ljIFV0aWxpdHkgRmxhc2sgRWZmZWN0cyBjYW5ub3QgYmUgcmVtb3ZlZA0KLS0tLS0tLS0NClJpdmVycyBvZiBwb3dlciBjb3Vyc2UgdGhyb3VnaCB5b3VyIHZlaW5zLg0KLS0tLS0tLS0NCk5vdGU6IH5iL28gOTUgZGl2aW5lDQo="
+                }
+            }
+        }
+    ]
+}

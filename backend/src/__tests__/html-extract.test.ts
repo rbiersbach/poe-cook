@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { HtmlExtractor } from "html-extractor";
 import fs from "fs";
 import path from "path";
-const exampleHtmlPath = path.join(__dirname, "./resources/example.html");
-const exampleJsonPath = path.join(__dirname, "./resources/example.json");
+const exampleHtmlPath = path.join(__dirname, "./resources/trade_page.html");
+const exampleJsonPath = path.join(__dirname, "./resources/trade_page.json");
 
 describe("HTML JSON extraction", () => {
     it("extracts and validates JSON from example.html", () => {
