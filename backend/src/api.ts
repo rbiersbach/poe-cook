@@ -1,10 +1,11 @@
 import { TradeClient } from "trade-client";
+import { FastifyRequest, FastifyInstance } from "fastify";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 
 export class TradeApiServer {
-    private fastify;
-    private tradeClient;
+    private fastify!: FastifyInstance;
+    private tradeClient!: TradeClient;
 
     constructor(tradeClient?: TradeClient) {
         this.fastify = Fastify({
@@ -20,22 +21,22 @@ export class TradeApiServer {
             },
         });
         this.fastify.register(cors, { origin: true });
-        this.tradeClient = tradeClient || new TradeClient({
-            userAgent: "poe-tools-api/1.0 (contact: you@example.com)",
-            league: "Keepers", // TODO: make dynamic or configurable
-            logger: this.fastify.log,
-        });
+        this.tradeClient = tradeClient || new TradeClient(
+            "poe-tools-api/1.0 (contact: you@example.com)",
+            "Keepers", // TODO: make dynamic or configurable
+            this.fastify.log
+        );
         this.registerRoutes();
     }
 
     private registerRoutes() {
-        this.fastify.post("/api/trade-search", async (request, reply) => {
+        this.fastify.post("/api/trade-search", async (request: FastifyRequest, reply) => {
             try {
                 const body = request.body as any;
                 const query = body?.query;
                 const sort = body?.sort;
                 if (!query || !sort) {
-                    this.fastify.log.warn("Invalid TradeSearchRequest: missing query or sort", { body: request.body });
+                    this.fastify.log.warn({ body: request.body }, "Invalid TradeSearchRequest: missing query or sort");
                     return reply.status(400).send({ error: "Invalid TradeSearchRequest" });
                 }
 
