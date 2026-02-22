@@ -21,6 +21,9 @@
     "supertest": "^7.2.2",
     "tsx": "^4.7.1",
     "typescript": "^5.4.5",
-    "vitest": "^4.0.18"
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.0.18",
+    "axios": "^1.13.5",
+    "jsdom": "^28.1.0"
   }
 }
