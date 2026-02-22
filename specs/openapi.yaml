@@ -16,16 +16,134 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TradeSearchRequest'
+              $ref: "#/components/schemas/TradeSearchRequest"
       responses:
-        '200':
+        "200":
           description: Simplified trade search results
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TradeSearchResponse'
-        '400':
+                $ref: "#/components/schemas/TradeSearchResponse"
+        "400":
           description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/resolve-item:
+    post:
+      summary: Resolve a trade item (fetch price and icon)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResolveItemRequest"
+      responses:
+        "200":
+          description: Resolved item data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResolveItemResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/recipes:
+    post:
+      summary: Create a recipe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRecipeRequest"
+      responses:
+        "200":
+          description: Created recipe
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateRecipeResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    get:
+      summary: List recipes
+      parameters:
+        - in: query
+          name: cursor
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: List of recipes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListRecipesResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/recipes/{id}:
+    get:
+      summary: Get recipe details by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recipe details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '404':
+          description: Recipe not found
           content:
             application/json:
               schema:
@@ -36,7 +154,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-
 components:
   schemas:
     TradeSearchRequest:
@@ -59,7 +176,7 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/SimplifiedListing'
+            $ref: "#/components/schemas/SimplifiedListing"
 
     SimplifiedListing:
       type: object
@@ -76,3 +193,125 @@ components:
           type: string
         details:
           type: string
+
+    ResolveItemRequest:
+      type: object
+      properties:
+        tradeUrl:
+          type: string
+        fallbackPrice:
+          $ref: "#/components/schemas/Price"
+      required:
+        - fallbackPrice
+
+    ResolveItemResponse:
+      type: object
+      properties:
+        resolved:
+          $ref: "#/components/schemas/ResolvedMarketData"
+        error:
+          type: string
+
+    Price:
+      type: object
+      properties:
+        amount:
+          type: number
+        currency:
+          type: string
+      required:
+        - amount
+        - currency
+
+    ResolvedMarketData:
+      type: object
+      properties:
+        iconUrl:
+          type: string
+        name:
+          type: string
+        minPrice:
+          $ref: '#/components/schemas/Price'
+        medianPrice:
+          $ref: '#/components/schemas/Price'
+        medianCount:
+          type: integer
+          description: Number of listings at the median price or lower
+        fetchedAt:
+          type: string
+        source:
+          type: string
+          enum:
+            - trade
+            - fallback
+
+    RecipeItem:
+      type: object
+      properties:
+        tradeUrl:
+          type: string
+        qty:
+          type: integer
+        fallbackPrice:
+          $ref: "#/components/schemas/Price"
+        resolved:
+          $ref: "#/components/schemas/ResolvedMarketData"
+        error:
+          type: string
+      required:
+        - qty
+
+    Recipe:
+      type: object
+      properties:
+        id:
+          type: string
+        inputs:
+          type: array
+          items:
+            $ref: "#/components/schemas/RecipeItem"
+        output:
+          $ref: "#/components/schemas/RecipeItem"
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - inputs
+        - output
+        - createdAt
+        - updatedAt
+
+    CreateRecipeRequest:
+      type: object
+      properties:
+        inputs:
+          type: array
+          items:
+            $ref: "#/components/schemas/RecipeItem"
+        output:
+          $ref: "#/components/schemas/RecipeItem"
+      required:
+        - inputs
+        - output
+
+    CreateRecipeResponse:
+      type: object
+      properties:
+        recipe:
+          $ref: "#/components/schemas/Recipe"
+      required:
+        - recipe
+
+    ListRecipesResponse:
+      type: object
+      properties:
+        recipes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Recipe"
+        nextCursor:
+          type: string
+      required:
+        - recipes
