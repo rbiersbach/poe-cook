@@ -292,6 +292,29 @@ describe("POST /api/recipes", () => {
     });
 });
 
+describe("GET /api/recipes/:id", () => {
+    beforeEach(() => {
+        mockGet.mockClear();
+    });
+
+    it("returns the recipe for a valid id", async () => {
+        const recipe = { id: "r1", inputs: [], output: {}, createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" };
+        mockGet.mockReturnValueOnce(recipe);
+        const response = await supertest(apiServer.server.server)
+            .get("/api/recipes/r1")
+            .expect(200);
+        expect(response.body.id).toBe("r1");
+    });
+
+    it("returns 404 if recipe not found", async () => {
+        mockGet.mockReturnValueOnce(undefined);
+        const response = await supertest(apiServer.server.server)
+            .get("/api/recipes/doesnotexist")
+            .expect(404);
+        expect(response.body.error).toBe("Recipe not found");
+    });
+});
+
 describe("GET /api/recipes", () => {
     beforeEach(() => {
         mockGetAll.mockClear();

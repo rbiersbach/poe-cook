@@ -63,28 +63,7 @@ export class TradeApiServer {
             }
         });
 
-        // GET /api/recipes - List recipes
-        this.fastify.get("/api/recipes", async (request: FastifyRequest, reply) => {
-            try {
-                const { cursor, limit } = request.query as { cursor?: string; limit?: string };
-                let recipes = this.recipeStore.getAll();
-                let startIdx = 0;
-                if (cursor) {
-                    startIdx = recipes.findIndex(r => r.id === cursor) + 1;
-                    if (startIdx === 0) startIdx = 0; // cursor not found, start from beginning
-                }
-                let limitedRecipes = recipes.slice(startIdx, limit ? startIdx + parseInt(limit, 10) : undefined);
-                let nextCursor = undefined;
-                if (limit && (startIdx + parseInt(limit, 10)) < recipes.length) {
-                    nextCursor = recipes[startIdx + parseInt(limit, 10) - 1]?.id;
-                }
-                this.fastify.log.info({ cursor, limit, count: limitedRecipes.length }, "List recipes");
-                reply.send({ recipes: limitedRecipes, ...(nextCursor ? { nextCursor } : {}) });
-            } catch (err) {
-                this.fastify.log.error({ error: err, query: request.query }, "Unexpected error in GET /api/recipes");
-                return reply.status(500).send({ error: "Server error" });
-            }
-        });
+
         this.fastify.post("/api/resolve-item", async (request: FastifyRequest<{ Body: ResolveItemRequest }>, reply) => {
             try {
                 const body = request.body;
@@ -104,6 +83,29 @@ export class TradeApiServer {
                     return reply.status(400).send({ error: err.message });
                 }
                 this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/resolve-item");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+
+        // GET /api/recipes - List recipes
+        this.fastify.get("/api/recipes", async (request: FastifyRequest, reply) => {
+            try {
+                const { cursor, limit } = request.query as { cursor?: string; limit?: string };
+                let recipes = this.recipeStore.getAll();
+                let startIdx = 0;
+                if (cursor) {
+                    startIdx = recipes.findIndex(r => r.id === cursor) + 1;
+                    if (startIdx === 0) startIdx = 0; // cursor not found, start from beginning
+                }
+                let limitedRecipes = recipes.slice(startIdx, limit ? startIdx + parseInt(limit, 10) : undefined);
+                let nextCursor = undefined;
+                if (limit && (startIdx + parseInt(limit, 10)) < recipes.length) {
+                    nextCursor = recipes[startIdx + parseInt(limit, 10) - 1]?.id;
+                }
+                this.fastify.log.info({ cursor, limit, count: limitedRecipes.length }, "List recipes");
+                reply.send({ recipes: limitedRecipes, ...(nextCursor ? { nextCursor } : {}) });
+            } catch (err) {
+                this.fastify.log.error({ error: err, query: request.query }, "Unexpected error in GET /api/recipes");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -130,6 +132,22 @@ export class TradeApiServer {
                 reply.send({ recipe });
             } catch (err) {
                 this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/recipes");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+        // GET /api/recipes/:id - Get single recipe by id
+        this.fastify.get("/api/recipes/:id", async (request: FastifyRequest, reply) => {
+            try {
+                const { id } = request.params as { id: string };
+                const recipe = this.recipeStore.get(id);
+                if (!recipe) {
+                    this.fastify.log.info({ id }, "Recipe not found in GET /api/recipes/:id");
+                    return reply.status(404).send({ error: "Recipe not found" });
+                }
+                this.fastify.log.info({ id }, "Fetched recipe by id");
+                reply.send(recipe);
+            } catch (err) {
+                this.fastify.log.error({ error: err, params: request.params }, "Unexpected error in GET /api/recipes/:id");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
