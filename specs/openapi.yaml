@@ -245,8 +245,8 @@ components:
     RecipeItem:
       type: object
       properties:
-        tradeUrl:
-          type: string
+        search:
+          $ref: "#/components/schemas/TradeSearchRequest"
         qty:
           type: integer
         fallbackPrice:
@@ -256,6 +256,7 @@ components:
         error:
           type: string
       required:
+        - search
         - qty
 
     Recipe:

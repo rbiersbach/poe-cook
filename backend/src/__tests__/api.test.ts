@@ -216,7 +216,7 @@ describe("POST /api/recipes", () => {
         const recipeInput = {
             inputs: [
                 {
-                    tradeUrl: "url1",
+                    search: { query: { url: "url1" }, sort: { price: "asc" } },
                     qty: 2,
                     fallbackPrice: { amount: 10, currency: "chaos" },
                     resolved: {
@@ -231,7 +231,7 @@ describe("POST /api/recipes", () => {
                     }
                 },
                 {
-                    tradeUrl: "url2",
+                    search: { query: { url: "url2" }, sort: { price: "asc" } },
                     qty: 1,
                     fallbackPrice: { amount: 20, currency: "divine" },
                     resolved: {
@@ -247,7 +247,7 @@ describe("POST /api/recipes", () => {
                 }
             ],
             output: {
-                tradeUrl: "url3",
+                search: { query: { url: "url3" }, sort: { price: "asc" } },
                 qty: 1,
                 fallbackPrice: { amount: 100, currency: "chaos" },
                 resolved: {
@@ -268,8 +268,10 @@ describe("POST /api/recipes", () => {
             .send(recipeInput)
             .expect(200);
         expect(mockAdd).toHaveBeenCalled();
-        expect(response.body.recipe.inputs).toEqual(recipeInput.inputs);
-        expect(response.body.recipe.output).toEqual(recipeInput.output);
+        // All items should have search, not tradeUrl
+        expect(response.body.recipe.inputs[0].search).toBeDefined();
+        expect(response.body.recipe.inputs[1].search).toBeDefined();
+        expect(response.body.recipe.output.search).toBeDefined();
         expect(typeof response.body.recipe.id).toBe("string");
         expect(typeof response.body.recipe.createdAt).toBe("string");
         expect(typeof response.body.recipe.updatedAt).toBe("string");

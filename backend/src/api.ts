@@ -120,6 +120,11 @@ export class TradeApiServer {
                     this.fastify.log.warn({ body: request.body }, "Invalid CreateRecipeRequest: missing inputs or output");
                     return reply.status(400).send({ error: "Invalid CreateRecipeRequest" });
                 }
+                // Validate all items have search
+                if (!inputs.every((item: any) => item.search) || !output.search) {
+                    this.fastify.log.warn({ body: request.body }, "Invalid CreateRecipeRequest: each item must have a search object");
+                    return reply.status(400).send({ error: "Each item must have a search object" });
+                }
                 // Generate recipe id and timestamps
                 const recipe = {
                     id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,

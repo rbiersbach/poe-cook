@@ -162,7 +162,7 @@ export class TradeFetchedListing {
 
 // Types for Recipe API
 export class RecipeItem {
-  tradeUrl?: string;
+  search!: TradeSearchRequest;
   qty!: number;
   fallbackPrice?: Price;
   resolved?: ResolvedMarketData;
