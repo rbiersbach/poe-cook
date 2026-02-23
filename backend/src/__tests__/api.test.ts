@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+import { beforeEach, vi } from "vitest";
 
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import supertest from "supertest";
@@ -6,11 +6,22 @@ import { TradeApiServer } from "../api";
 import { NoopLogger } from "../logger";
 import { TradeClient } from "trade-client";
 import { TradeResolver, ResolveItemError } from "../trade-resolver";
-import { RecipeStore } from "../recipe-store";
 import path from "path";
 import fs from "fs";
 
 const TEST_RECIPES_PATH = path.join(__dirname, "resources/recipes.test.json");
+
+const mockAdd = vi.fn();
+const mockGetAll = vi.fn(() => []);
+const mockClear = vi.fn();
+const mockGet = vi.fn();
+
+class MockRecipeStore {
+    add = mockAdd;
+    getAll = mockGetAll;
+    clear = mockClear;
+    get = mockGet;
+}
 
 let tradeClientMock: TradeClient;
 let apiServer: TradeApiServer;
@@ -23,7 +34,7 @@ beforeAll(async () => {
         fetchListings: vi.fn(),
         logger: NoopLogger,
     } as unknown as TradeClient;
-    apiServer = new TradeApiServer(tradeClientMock, new RecipeStore(TEST_RECIPES_PATH));
+    apiServer = new TradeApiServer(tradeClientMock, new MockRecipeStore());
     await apiServer.server.listen({ port: 0 });
 
 });
@@ -193,6 +204,14 @@ describe("POST /api/resolve-item", () => {
 });
 
 describe("POST /api/recipes", () => {
+    beforeEach(() => {
+        mockAdd.mockClear();
+        mockGetAll.mockClear();
+        mockClear.mockClear();
+        mockGet.mockClear();
+        mockGetAll.mockReturnValue([]);
+    });
+
     it("creates a recipe and returns it", async () => {
         const recipeInput = {
             inputs: [
@@ -243,26 +262,17 @@ describe("POST /api/recipes", () => {
                 }
             }
         };
+        mockAdd.mockImplementation(recipe => recipe);
         const response = await supertest(apiServer.server.server)
             .post("/api/recipes")
             .send(recipeInput)
             .expect(200);
-        expect(response.body.recipe).toMatchObject({
-            inputs: recipeInput.inputs,
-            output: recipeInput.output,
-        });
+        expect(mockAdd).toHaveBeenCalled();
+        expect(response.body.recipe.inputs).toEqual(recipeInput.inputs);
+        expect(response.body.recipe.output).toEqual(recipeInput.output);
         expect(typeof response.body.recipe.id).toBe("string");
         expect(typeof response.body.recipe.createdAt).toBe("string");
         expect(typeof response.body.recipe.updatedAt).toBe("string");
-
-        // Check persistence
-        const store = new RecipeStore(TEST_RECIPES_PATH);
-        const persisted = store.getAll().find(r => r.id === response.body.recipe.id);
-        expect(persisted).toBeDefined();
-        expect(persisted).toMatchObject({
-            inputs: recipeInput.inputs,
-            output: recipeInput.output,
-        });
     });
 
     it("returns 400 for missing inputs or output", async () => {

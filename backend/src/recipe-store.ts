@@ -5,8 +5,7 @@ import { Recipe } from "trade-types";
 const DEFAULT_RECIPES_PATH = path.join(__dirname, "../data/recipes.json");
 
 export class RecipeStore {
-
-    private recipes: Recipe[] = [];
+    private recipes: Map<string, Recipe> = new Map();
     private filePath: string;
 
     constructor(filePath?: string) {
@@ -18,30 +17,36 @@ export class RecipeStore {
         if (fs.existsSync(this.filePath)) {
             const raw = fs.readFileSync(this.filePath, "utf-8");
             try {
-                this.recipes = JSON.parse(raw);
+                const arr: Recipe[] = JSON.parse(raw);
+                this.recipes = new Map(arr.map(r => [r.id, r]));
             } catch {
-                this.recipes = [];
+                this.recipes = new Map();
             }
         } else {
-            this.recipes = [];
+            this.recipes = new Map();
         }
     }
 
     private save() {
-        fs.writeFileSync(this.filePath, JSON.stringify(this.recipes, null, 2));
+        fs.writeFileSync(this.filePath, JSON.stringify(Array.from(this.recipes.values()), null, 2));
     }
 
     getAll(): Recipe[] {
-        return this.recipes;
+        return Array.from(this.recipes.values());
     }
 
     add(recipe: Recipe): Recipe {
-        this.recipes.push(recipe);
+        this.recipes.set(recipe.id, recipe);
         this.save();
         return recipe;
     }
+
     clear() {
-        this.recipes = [];
+        this.recipes = new Map();
         this.save();
+    }
+
+    get(id: string): Recipe | undefined {
+        return this.recipes.get(id);
     }
 }
