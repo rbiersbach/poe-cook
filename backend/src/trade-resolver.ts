@@ -44,7 +44,7 @@ export class TradeResolver {
             this.logger.info({ url }, "TradeSearchRequest created successfully");
             return new TradeSearchRequest({ query });
         } catch (error) {
-            this.logger.error("Failed to resolve TradeSearchRequest", { error, url });
+            this.logger.error({ error, url }, "Failed to resolve TradeSearchRequest");
             throw new Error(`Failed to resolve TradeSearchRequest from URL: ${url} - ${(error as Error).message}`);
         }
     }
@@ -52,9 +52,10 @@ export class TradeResolver {
     /**
      * Resolves a trade item from a tradeUrl, returning enriched market data.
      */
-    async resolveItemFromUrl(tradeUrl: string, poeSessid: string): Promise<ResolvedMarketData> {
+    async resolveItemFromUrl(tradeUrl: string, poeSessid: string): Promise<{ resolved: ResolvedMarketData, search: TradeSearchRequest }> {
         const searchRequest = await this.resolveTradeRequestFromUrl(tradeUrl, poeSessid);
-        return this.resolveItemFromSearch(searchRequest, poeSessid);
+        const resolved = await this.resolveItemFromSearch(searchRequest, poeSessid);
+        return { resolved, search: searchRequest };
     }
 
     /**
@@ -74,13 +75,24 @@ export class TradeResolver {
         type NormalizedPrice = { original: Price, normalized_price: number };
         const prices: NormalizedPrice[] = [];
         let iconUrl = "";
-        let name = searchRequest.query.name || "Unknown";
+        let name = "Unknown";
         for (const result of listings.result) {
             if (result.item && result.item.icon) {
                 iconUrl = result.item.icon;
             }
-            if (result.item && result.item.name) {
-                name = result.item.name;
+            // Prefer to update name if both name and type are present in result.item
+            if (result.item && (result.item.name || result.item.type || result.item.baseType)) {
+                const resName = typeof result.item.name === "string" ? result.item.name : "";
+                const resType = typeof result.item.type === "string" ? result.item.type : "";
+                const resBaseType = typeof result.item.baseType === "string" ? result.item.baseType : "";
+                const resTypeOrBase = resType || resBaseType;
+                if (resName && resTypeOrBase) {
+                    name = `${resName} ${resTypeOrBase}`;
+                } else if (resName) {
+                    name = resName;
+                } else if (resTypeOrBase) {
+                    name = resTypeOrBase;
+                }
             }
             if (result.listing && result.listing.normalized_price && result.listing.price) {
                 const price = result.listing.price;
@@ -102,7 +114,7 @@ export class TradeResolver {
         const fetchedAt = new Date().toISOString();
 
         if (!minPriceAmount || !medianPriceAmount) {
-            this.logger.error("No valid normalized prices found", { prices });
+            this.logger.error({ prices }, "No valid normalized prices found");
             throw new ResolveItemError("No valid normalized prices found for item resolution", { prices });
         }
 

@@ -207,6 +207,8 @@ components:
       properties:
         resolved:
           $ref: "#/components/schemas/ResolvedMarketData"
+        search:
+          $ref: "#/components/schemas/TradeSearchRequest"
         error:
           type: string
 
@@ -245,6 +247,9 @@ components:
     RecipeItem:
       type: object
       properties:
+        tradeUrl:
+          type: string
+          description: The original trade URL for the item
         search:
           $ref: "#/components/schemas/TradeSearchRequest"
         qty:

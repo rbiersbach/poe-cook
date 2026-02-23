@@ -58,8 +58,10 @@ export class RecipeService {
      */
     async refreshItem(item: RecipeItem): Promise<RecipeItem> {
         try {
+            // Use tradeUrl from item if present, otherwise try to extract from search
+            const tradeUrl = item.tradeUrl || item.search?.query?.tradeUrl;
             const resolved = await this.resolver.resolveItemFromSearch(item.search, "example-session-id");
-            return { ...item, resolved };
+            return { ...item, resolved, tradeUrl };
         } catch (err) {
             this.logger.warn({ error: err, item }, "Failed to refresh item");
             return { ...item };

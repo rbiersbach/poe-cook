@@ -99,19 +99,19 @@ describe("TradeResolver", () => {
         const poeSessid = "test-session-id";
         const result = await resolver.resolveItemFromUrl(tradeUrl, poeSessid);
         expect(result).toBeDefined();
-        expect(result.iconUrl).toContain("InjectorBelt.png");
-        expect(result.name).toBe("Mageblood");
-        expect(result.minPrice.amount).toBe(16200);
-        expect(result.minPrice.currency).toBe("chaos");
-        expect(result.originalMinPrice.amount).toBe(90);
-        expect(result.originalMinPrice.currency).toBe("divine");
-        expect(result.medianPrice.amount).toBe(16740);
-        expect(result.medianPrice.currency).toBe("chaos");
-        expect(result.originalMedianPrice?.amount).toBe(93);
-        expect(result.originalMedianPrice?.currency).toBe("divine");
-        expect(result.medianCount).toBe(4);
-        expect(typeof result.fetchedAt).toBe("string");
-        // Add checks for any new properties here
+        expect(result.resolved.iconUrl).toContain("InjectorBelt.png");
+        expect(result.resolved.name).toBe("Mageblood");
+        expect(result.resolved.minPrice.amount).toBe(16200);
+        expect(result.resolved.minPrice.currency).toBe("chaos");
+        expect(result.resolved.originalMinPrice.amount).toBe(90);
+        expect(result.resolved.originalMinPrice.currency).toBe("divine");
+        expect(result.resolved.medianPrice.amount).toBe(16740);
+        expect(result.resolved.medianPrice.currency).toBe("chaos");
+        expect(result.resolved.originalMedianPrice?.amount).toBe(93);
+        expect(result.resolved.originalMedianPrice?.currency).toBe("divine");
+        expect(result.resolved.medianCount).toBe(4);
+        expect(typeof result.resolved.fetchedAt).toBe("string");
+        expect(result.search).toBeDefined();
     });
 
     it("should resolve a TradeSearchRequest from a PoE trade page URL", async () => {

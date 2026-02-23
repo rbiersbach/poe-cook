@@ -153,14 +153,17 @@ describe("POST /api/resolve-item", () => {
     it("returns resolved item for a valid request (happy path)", async () => {
         // Mock TradeResolver and tradeClient
         const mockResult = {
-            iconUrl: "icon.png",
-            name: "Test Item",
-            minPrice: { amount: 100, currency: "chaos" },
-            originalMinPrice: { amount: 1, currency: "divine" },
-            medianPrice: { amount: 120, currency: "chaos" },
-            originalMedianPrice: { amount: 2, currency: "divine" },
-            medianCount: 2,
-            fetchedAt: new Date().toISOString(),
+            resolved: {
+                iconUrl: "icon.png",
+                name: "Test Item",
+                minPrice: { amount: 100, currency: "chaos" },
+                originalMinPrice: { amount: 1, currency: "divine" },
+                medianPrice: { amount: 120, currency: "chaos" },
+                originalMedianPrice: { amount: 2, currency: "divine" },
+                medianCount: 2,
+                fetchedAt: new Date().toISOString(),
+            },
+            search: { query: { name: "Test Item" } },
         };
         const spy = vi.spyOn(TradeResolver.prototype, "resolveItemFromUrl").mockResolvedValueOnce(mockResult);
 
@@ -177,6 +180,7 @@ describe("POST /api/resolve-item", () => {
             originalMedianPrice: { amount: 2, currency: "divine" },
             medianCount: 2,
         });
+        expect(response.body.search).toBeDefined();
         spy.mockRestore();
     });
 

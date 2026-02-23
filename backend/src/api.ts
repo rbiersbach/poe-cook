@@ -89,7 +89,7 @@ export class TradeApiServer {
                 const poeSessid = "example-session-id";
                 const resolver = new TradeResolver(this.logger, this.tradeClient, HtmlExtractor);
                 const result = await resolver.resolveItemFromUrl(tradeUrl, poeSessid as string);
-                reply.send({ resolved: result });
+                reply.send(result);
             } catch (err) {
                 if (err instanceof ResolveItemError) {
                     this.logger.warn({ error: err, body: request.body }, "ResolveItemError in /api/resolve-item");
@@ -139,7 +139,7 @@ export class TradeApiServer {
                     this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: each item must have a search object");
                     return reply.status(400).send({ error: "Each item must have a search object" });
                 }
-                // Generate recipe id and timestamps
+
                 const recipe = {
                     id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
                     inputs,

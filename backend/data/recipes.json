@@ -1,1 +1,225 @@
-[]
+[
+  {
+    "id": "1771877701526-0b04f21d98a22",
+    "inputs": [
+      {
+        "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/opV2bEWZsl",
+        "search": {
+          "query": {
+            "status": {
+              "option": "securable"
+            },
+            "name": "Tempered Flesh",
+            "type": "Crimson Jewel",
+            "stats": [
+              {
+                "type": "and",
+                "filters": [],
+                "disabled": false
+              }
+            ]
+          },
+          "sort": {
+            "price": "asc"
+          }
+        },
+        "qty": 1,
+        "fallbackPrice": {
+          "amount": 0,
+          "currency": "chaos"
+        },
+        "resolved": {
+          "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL1RlbXBlcmVkUmVkIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/66e750a720/TemperedRed.png",
+          "name": "Tempered Flesh Crimson Jewel",
+          "originalMinPrice": {
+            "type": "~b/o",
+            "amount": 1,
+            "currency": "chaos"
+          },
+          "minPrice": {
+            "amount": 1,
+            "currency": "chaos"
+          },
+          "originalMedianPrice": {
+            "type": "~b/o",
+            "amount": 4,
+            "currency": "chaos"
+          },
+          "medianPrice": {
+            "amount": 4,
+            "currency": "chaos"
+          },
+          "medianCount": 6,
+          "fetchedAt": "2026-02-23T20:13:33.186Z"
+        }
+      },
+      {
+        "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/X3mM3qokhP",
+        "search": {
+          "query": {
+            "status": {
+              "option": "securable"
+            },
+            "type": "Vial of Transcendence",
+            "stats": [
+              {
+                "type": "and",
+                "filters": [],
+                "disabled": false
+              }
+            ]
+          },
+          "sort": {
+            "price": "asc"
+          }
+        },
+        "qty": 1,
+        "fallbackPrice": {
+          "amount": 0,
+          "currency": "chaos"
+        },
+        "resolved": {
+          "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVmlhbFRlbXBlcmVkRmxlc2giLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/ff6f1f931e/VialTemperedFlesh.png",
+          "name": "Vial of Transcendence",
+          "originalMinPrice": {
+            "type": "~b/o",
+            "amount": 48,
+            "currency": "chaos"
+          },
+          "minPrice": {
+            "amount": 48,
+            "currency": "chaos"
+          },
+          "originalMedianPrice": {
+            "type": "~b/o",
+            "amount": 50,
+            "currency": "chaos"
+          },
+          "medianPrice": {
+            "amount": 50,
+            "currency": "chaos"
+          },
+          "medianCount": 10,
+          "fetchedAt": "2026-02-23T20:14:31.235Z"
+        }
+      },
+      {
+        "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/4mM8MQMgh9",
+        "search": {
+          "query": {
+            "status": {
+              "option": "securable"
+            },
+            "stats": [
+              {
+                "type": "and",
+                "filters": [
+                  {
+                    "id": "pseudo.pseudo_temple_apex",
+                    "disabled": false,
+                    "value": {
+                      "option": 1
+                    }
+                  },
+                  {
+                    "id": "pseudo.pseudo_temple_sacrifice_room_3",
+                    "disabled": false,
+                    "value": {
+                      "option": 1
+                    }
+                  }
+                ],
+                "disabled": false
+              }
+            ]
+          },
+          "sort": {
+            "price": "asc"
+          }
+        },
+        "qty": 1,
+        "fallbackPrice": {
+          "amount": 0,
+          "currency": "chaos"
+        },
+        "resolved": {
+          "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9UZW1wbGVNYXAiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/9be10cc6b3/TempleMap.png",
+          "name": "Chronicle of Atzoatl",
+          "originalMinPrice": {
+            "type": "~b/o",
+            "amount": 1,
+            "currency": "chaos"
+          },
+          "minPrice": {
+            "amount": 1,
+            "currency": "chaos"
+          },
+          "originalMedianPrice": {
+            "type": "~b/o",
+            "amount": 2,
+            "currency": "chaos"
+          },
+          "medianPrice": {
+            "amount": 2,
+            "currency": "chaos"
+          },
+          "medianCount": 10,
+          "fetchedAt": "2026-02-23T20:14:43.758Z"
+        }
+      }
+    ],
+    "output": {
+      "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/6zoE0w82hG",
+      "search": {
+        "query": {
+          "status": {
+            "option": "securable"
+          },
+          "name": "Transcendent Flesh",
+          "type": "Crimson Jewel",
+          "stats": [
+            {
+              "type": "and",
+              "filters": [],
+              "disabled": false
+            }
+          ]
+        },
+        "sort": {
+          "price": "asc"
+        }
+      },
+      "qty": 1,
+      "fallbackPrice": {
+        "amount": 0,
+        "currency": "chaos"
+      },
+      "resolved": {
+        "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL1RyYW5zY2VuZGVudFJlZCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/7dcf8933ad/TranscendentRed.png",
+        "name": "Transcendent Flesh Crimson Jewel",
+        "originalMinPrice": {
+          "type": "~b/o",
+          "amount": 147,
+          "currency": "chaos"
+        },
+        "minPrice": {
+          "amount": 147,
+          "currency": "chaos"
+        },
+        "originalMedianPrice": {
+          "type": "~b/o",
+          "amount": 160,
+          "currency": "chaos"
+        },
+        "medianPrice": {
+          "amount": 160,
+          "currency": "chaos"
+        },
+        "medianCount": 6,
+        "fetchedAt": "2026-02-23T20:14:54.174Z"
+      }
+    },
+    "createdAt": "2026-02-23T20:15:01.526Z",
+    "updatedAt": "2026-02-23T20:15:01.526Z"
+  }
+]
