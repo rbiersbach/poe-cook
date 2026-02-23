@@ -2,10 +2,15 @@ import { TradeClient } from "trade-client";
 import { FastifyRequest, FastifyInstance } from "fastify";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
+import { TradeResolver } from "./trade-resolver";
+import { HtmlExtractor } from "./html-extractor";
+import { ResolveItemRequest } from "./trade-types";
+import { ResolveItemError } from "./trade-resolver";
 
 export class TradeApiServer {
     private fastify!: FastifyInstance;
     private tradeClient!: TradeClient;
+    
 
     constructor(tradeClient?: TradeClient) {
         this.fastify = Fastify({
@@ -52,6 +57,28 @@ export class TradeApiServer {
                 reply.send({ result: simplified });
             } catch (err) {
                 this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/trade-search");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+        this.fastify.post("/api/resolve-item", async (request: FastifyRequest<{ Body: ResolveItemRequest }>, reply) => {
+            try {
+                const body = request.body;
+                const tradeUrl = body?.tradeUrl;
+                if (!tradeUrl) {
+                    this.fastify.log.warn({ body: request.body }, "Invalid ResolveItemRequest: missing tradeUrl");
+                    return reply.status(400).send({ error: "Invalid ResolveItemRequest" });
+                }
+                // Optionally: get POESESSID from headers/cookies
+                const poeSessid = "example-session-id";
+                const resolver = new TradeResolver(this.fastify.log, this.tradeClient, HtmlExtractor);
+                const result = await resolver.resolveItem({ tradeUrl }, poeSessid as string);
+                reply.send({ resolved: result });
+            } catch (err) {
+                if (err instanceof ResolveItemError) {
+                    this.fastify.log.warn({ error: err, body: request.body }, "ResolveItemError in /api/resolve-item");
+                    return reply.status(400).send({ error: err.message });
+                }
+                this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/resolve-item");
                 return reply.status(500).send({ error: "Server error" });
             }
         });

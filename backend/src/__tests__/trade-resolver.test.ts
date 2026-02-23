@@ -4,6 +4,7 @@ import path from "path";
 import { TradeResolver } from "../trade-resolver";
 import { HtmlExtractor } from "../html-extractor";
 import { TradeSearchRequest } from "../trade-types";
+import { ResolveItemError } from "../trade-resolver";
 
 const exampleHtmlPath = path.join(__dirname, "./resources/trade_page.html");
 
@@ -112,6 +113,7 @@ describe("TradeResolver", () => {
         expect(typeof result.fetchedAt).toBe("string");
         // Add checks for any new properties here
     });
+
     it("should resolve a TradeSearchRequest from a PoE trade page URL", async () => {
         const tradeRequest = await resolver.resolveTradeRequestFromUrl("https://www.pathofexile.com/trade", "test-session-id");
         expect(tradeRequest).toBeInstanceOf(TradeSearchRequest);
@@ -120,5 +122,27 @@ describe("TradeResolver", () => {
         expect(tradeRequest.query.type).toBe("Heavy Belt");
         expect(tradeRequest.query.status?.option).toBe("securable");
         expect(tradeRequest.query.stats?.[0]?.type).toBe("and");
+    });
+
+    it("should throw ResolveItemError if no listings found", async () => {
+        listingsData.result = [];
+        const request = { tradeUrl: "https://www.pathofexile.com/trade" };
+        const poeSessid = "test-session-id";
+        await expect(resolver.resolveItem(request, poeSessid)).rejects.toThrowError(/No listings found/);
+        await expect(resolver.resolveItem(request, poeSessid)).rejects.toThrowError(ResolveItemError);
+    });
+
+    it("should throw ResolveItemError if no valid normalized prices found", async () => {
+        listingsData.result = [
+            {
+                id: "id1",
+                item: { icon: "icon.png", name: "Test" },
+                listing: { price: { amount: 1, currency: "divine" } } // missing normalized_price
+            }
+        ];
+        const request = { tradeUrl: "https://www.pathofexile.com/trade" };
+        const poeSessid = "test-session-id";
+        await expect(resolver.resolveItem(request, poeSessid)).rejects.toThrowError(/No valid normalized prices/);
+        await expect(resolver.resolveItem(request, poeSessid)).rejects.toThrowError(ResolveItemError);
     });
 });

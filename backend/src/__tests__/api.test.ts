@@ -5,6 +5,7 @@ import supertest from "supertest";
 import { TradeApiServer } from "../api";
 import { NoopLogger } from "../logger";
 import { TradeClient } from "trade-client";
+import { TradeResolver, ResolveItemError } from "../trade-resolver";
 
 
 let tradeClientMock: TradeClient;
@@ -120,5 +121,65 @@ describe("POST /api/trade-search", () => {
             .post("/api/trade-search")
             .expect(400);
         expect(response.body.error).toBe("Invalid TradeSearchRequest");
+    });
+});
+
+describe("POST /api/resolve-item", () => {
+    it("returns resolved item for a valid request (happy path)", async () => {
+        // Mock TradeResolver and tradeClient
+        const mockResult = {
+            iconUrl: "icon.png",
+            name: "Test Item",
+            minPrice: { amount: 100, currency: "chaos" },
+            originalMinPrice: { amount: 1, currency: "divine" },
+            medianPrice: { amount: 120, currency: "chaos" },
+            originalMedianPrice: { amount: 2, currency: "divine" },
+            medianCount: 2,
+            fetchedAt: new Date().toISOString(),
+        };
+        const spy = vi.spyOn(TradeResolver.prototype, "resolveItem").mockResolvedValueOnce(mockResult);
+
+        const response = await supertest(apiServer.server.server)
+            .post("/api/resolve-item")
+            .send({ tradeUrl: "https://www.pathofexile.com/trade" })
+            .expect(200);
+        expect(response.body.resolved).toMatchObject({
+            iconUrl: "icon.png",
+            name: "Test Item",
+            minPrice: { amount: 100, currency: "chaos" },
+            originalMinPrice: { amount: 1, currency: "divine" },
+            medianPrice: { amount: 120, currency: "chaos" },
+            originalMedianPrice: { amount: 2, currency: "divine" },
+            medianCount: 2,
+        });
+        spy.mockRestore();
+    });
+
+    it("returns 400 if tradeUrl is missing", async () => {
+        const response = await supertest(apiServer.server.server)
+            .post("/api/resolve-item")
+            .send({})
+            .expect(400);
+        expect(response.body.error).toBe("Invalid ResolveItemRequest");
+    });
+
+    it("returns 400 if ResolveItemError is thrown", async () => {
+        const spy = vi.spyOn(TradeResolver.prototype, "resolveItem").mockRejectedValueOnce(new ResolveItemError("No listings found"));
+        const response = await supertest(apiServer.server.server)
+            .post("/api/resolve-item")
+            .send({ tradeUrl: "https://www.pathofexile.com/trade" })
+            .expect(400);
+        expect(response.body.error).toBe("No listings found");
+        spy.mockRestore();
+    });
+
+    it("returns 500 for unexpected errors", async () => {
+        const spy = vi.spyOn(TradeResolver.prototype, "resolveItem").mockRejectedValueOnce(new Error("Unexpected failure"));
+        const response = await supertest(apiServer.server.server)
+            .post("/api/resolve-item")
+            .send({ tradeUrl: "https://www.pathofexile.com/trade" })
+            .expect(500);
+        expect(response.body.error).toBe("Server error");
+        spy.mockRestore();
     });
 });

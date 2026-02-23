@@ -6,6 +6,12 @@ import { LoggerLike, NoopLogger } from "./logger";
 import { TradeClient } from "./trade-client";
 
 
+export class ResolveItemError extends Error {
+    constructor(message: string, public details?: unknown) {
+        super(message);
+        this.name = "ResolveItemError";
+    }
+}
 export class TradeResolver {
     constructor(
         private logger: LoggerLike,
@@ -56,7 +62,7 @@ export class TradeResolver {
 
         if (!listings || !listings.result || listings.result.length === 0) {
             this.logger.warn("No listings found", { request });
-            throw new Error("No listings found for item resolution");
+            throw new ResolveItemError("No listings found for item resolution", { request });
         }
 
         // Extract icon, name, normalized prices
@@ -93,7 +99,7 @@ export class TradeResolver {
 
         if (!minPriceAmount || !medianPriceAmount) {
             this.logger.error({ prices }, "No valid normalized prices found");
-            throw new Error("No valid normalized prices found for item resolution");
+            throw new ResolveItemError("No valid normalized prices found for item resolution", { prices });
         }
 
         const minPrice: Price = {
@@ -117,3 +123,4 @@ export class TradeResolver {
         });
     }
 }
+
