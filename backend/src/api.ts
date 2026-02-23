@@ -2,11 +2,11 @@ import { TradeClient } from "trade-client";
 import { FastifyRequest, FastifyInstance } from "fastify";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import { TradeResolver } from "./trade-resolver";
-import { HtmlExtractor } from "./html-extractor";
-import { ResolveItemRequest } from "./trade-types";
-import { ResolveItemError } from "./trade-resolver";
-import { RecipeStore } from "./recipe-store";
+import { TradeResolver } from "trade-resolver";
+import { HtmlExtractor } from "html-extractor";
+import { ResolveItemRequest } from "trade-types";
+import { ResolveItemError } from "trade-resolver";
+import { RecipeStore } from "recipe-store";
 export class TradeApiServer {
     private fastify!: FastifyInstance;
     private tradeClient!: TradeClient;
@@ -59,6 +59,29 @@ export class TradeApiServer {
                 reply.send({ result: simplified });
             } catch (err) {
                 this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/trade-search");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+
+        // GET /api/recipes - List recipes
+        this.fastify.get("/api/recipes", async (request: FastifyRequest, reply) => {
+            try {
+                const { cursor, limit } = request.query as { cursor?: string; limit?: string };
+                let recipes = this.recipeStore.getAll();
+                let startIdx = 0;
+                if (cursor) {
+                    startIdx = recipes.findIndex(r => r.id === cursor) + 1;
+                    if (startIdx === 0) startIdx = 0; // cursor not found, start from beginning
+                }
+                let limitedRecipes = recipes.slice(startIdx, limit ? startIdx + parseInt(limit, 10) : undefined);
+                let nextCursor = undefined;
+                if (limit && (startIdx + parseInt(limit, 10)) < recipes.length) {
+                    nextCursor = recipes[startIdx + parseInt(limit, 10) - 1]?.id;
+                }
+                this.fastify.log.info({ cursor, limit, count: limitedRecipes.length }, "List recipes");
+                reply.send({ recipes: limitedRecipes, ...(nextCursor ? { nextCursor } : {}) });
+            } catch (err) {
+                this.fastify.log.error({ error: err, query: request.query }, "Unexpected error in GET /api/recipes");
                 return reply.status(500).send({ error: "Server error" });
             }
         });

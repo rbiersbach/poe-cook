@@ -291,3 +291,45 @@ describe("POST /api/recipes", () => {
         expect(response.body.error).toBe("Invalid CreateRecipeRequest");
     });
 });
+
+describe("GET /api/recipes", () => {
+    beforeEach(() => {
+        mockGetAll.mockClear();
+        mockGetAll.mockReturnValue([
+            { id: "r1", inputs: [], output: {}, createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" },
+            { id: "r2", inputs: [], output: {}, createdAt: "2024-01-02T00:00:00Z", updatedAt: "2024-01-02T00:00:00Z" },
+            { id: "r3", inputs: [], output: {}, createdAt: "2024-01-03T00:00:00Z", updatedAt: "2024-01-03T00:00:00Z" },
+        ]);
+    });
+
+    it("returns all recipes if no cursor/limit", async () => {
+        const response = await supertest(apiServer.server.server)
+            .get("/api/recipes")
+            .expect(200);
+        expect(response.body.recipes.length).toBe(3);
+        expect(response.body.recipes[0].id).toBe("r1");
+    });
+
+    it("returns limited recipes and nextCursor", async () => {
+        const response = await supertest(apiServer.server.server)
+            .get("/api/recipes?limit=2")
+            .expect(200);
+        expect(response.body.recipes.length).toBe(2);
+        expect(response.body.nextCursor).toBe("r2");
+    });
+
+    it("returns recipes after cursor", async () => {
+        const response = await supertest(apiServer.server.server)
+            .get("/api/recipes?cursor=r1&limit=1")
+            .expect(200);
+        expect(response.body.recipes.length).toBe(1);
+        expect(response.body.recipes[0].id).toBe("r2");
+    });
+
+    it("returns empty array if cursor at end", async () => {
+        const response = await supertest(apiServer.server.server)
+            .get("/api/recipes?cursor=r3")
+            .expect(200);
+        expect(response.body.recipes.length).toBe(0);
+    });
+});

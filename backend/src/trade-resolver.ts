@@ -1,9 +1,8 @@
-import { ResolveItemRequest, ResolvedMarketData, Price } from "./trade-types";
-
-import { HtmlExtractor } from "./html-extractor";
-import { TradeSearchRequest, TradeQuery, TradeStatGroup, TradeFilters } from "./trade-types";
-import { LoggerLike, NoopLogger } from "./logger";
-import { TradeClient } from "./trade-client";
+import { ResolveItemRequest, ResolvedMarketData, Price } from "trade-types";
+import { HtmlExtractor } from "html-extractor";
+import { TradeSearchRequest, TradeQuery, TradeStatGroup, TradeFilters } from "trade-types";
+import { LoggerLike, NoopLogger } from "logger";
+import { TradeClient } from "trade-client";
 
 
 export class ResolveItemError extends Error {
