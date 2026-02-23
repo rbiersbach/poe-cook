@@ -159,3 +159,26 @@ export class TradeFetchedListing {
     Object.assign(this, init);
   }
 }
+
+// Types for Recipe API
+export class RecipeItem {
+  tradeUrl?: string;
+  qty!: number;
+  fallbackPrice?: Price;
+  resolved?: ResolvedMarketData;
+  error?: string;
+  constructor(init?: Partial<RecipeItem>) {
+    Object.assign(this, init);
+  }
+}
+
+export class Recipe {
+  id!: string;
+  inputs!: RecipeItem[];
+  output!: RecipeItem;
+  createdAt!: string;
+  updatedAt!: string;
+  constructor(init?: Partial<Recipe>) {
+    Object.assign(this, init);
+  }
+}

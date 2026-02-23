@@ -6,24 +6,32 @@ import { TradeApiServer } from "../api";
 import { NoopLogger } from "../logger";
 import { TradeClient } from "trade-client";
 import { TradeResolver, ResolveItemError } from "../trade-resolver";
+import { RecipeStore } from "../recipe-store";
+import path from "path";
+import fs from "fs";
 
+const TEST_RECIPES_PATH = path.join(__dirname, "resources/recipes.test.json");
 
 let tradeClientMock: TradeClient;
 let apiServer: TradeApiServer;
 
 beforeAll(async () => {
+    // Clear test file before starting
+    fs.writeFileSync(TEST_RECIPES_PATH, "[]");
     tradeClientMock = {
         search: vi.fn(),
         fetchListings: vi.fn(),
         logger: NoopLogger,
     } as unknown as TradeClient;
-    apiServer = new TradeApiServer(tradeClientMock);
+    apiServer = new TradeApiServer(tradeClientMock, new RecipeStore(TEST_RECIPES_PATH));
     await apiServer.server.listen({ port: 0 });
 
 });
 
 afterAll(async () => {
     await apiServer.server.close();
+    // Clean up test file
+    fs.writeFileSync(TEST_RECIPES_PATH, "[]");
 });
 
 
@@ -181,5 +189,95 @@ describe("POST /api/resolve-item", () => {
             .expect(500);
         expect(response.body.error).toBe("Server error");
         spy.mockRestore();
+    });
+});
+
+describe("POST /api/recipes", () => {
+    it("creates a recipe and returns it", async () => {
+        const recipeInput = {
+            inputs: [
+                {
+                    tradeUrl: "url1",
+                    qty: 2,
+                    fallbackPrice: { amount: 10, currency: "chaos" },
+                    resolved: {
+                        iconUrl: "icon1.png",
+                        name: "Input Item 1",
+                        minPrice: { amount: 10, currency: "chaos" },
+                        originalMinPrice: { amount: 12, currency: "chaos" },
+                        medianPrice: { amount: 11, currency: "chaos" },
+                        originalMedianPrice: { amount: 13, currency: "chaos" },
+                        medianCount: 5,
+                        fetchedAt: new Date().toISOString(),
+                    }
+                },
+                {
+                    tradeUrl: "url2",
+                    qty: 1,
+                    fallbackPrice: { amount: 20, currency: "divine" },
+                    resolved: {
+                        iconUrl: "icon2.png",
+                        name: "Input Item 2",
+                        minPrice: { amount: 20, currency: "divine" },
+                        originalMinPrice: { amount: 22, currency: "divine" },
+                        medianPrice: { amount: 21, currency: "divine" },
+                        originalMedianPrice: { amount: 23, currency: "divine" },
+                        medianCount: 3,
+                        fetchedAt: new Date().toISOString(),
+                    }
+                }
+            ],
+            output: {
+                tradeUrl: "url3",
+                qty: 1,
+                fallbackPrice: { amount: 100, currency: "chaos" },
+                resolved: {
+                    iconUrl: "icon3.png",
+                    name: "Output Item",
+                    minPrice: { amount: 100, currency: "chaos" },
+                    originalMinPrice: { amount: 120, currency: "chaos" },
+                    medianPrice: { amount: 110, currency: "chaos" },
+                    originalMedianPrice: { amount: 130, currency: "chaos" },
+                    medianCount: 10,
+                    fetchedAt: new Date().toISOString(),
+                }
+            }
+        };
+        const response = await supertest(apiServer.server.server)
+            .post("/api/recipes")
+            .send(recipeInput)
+            .expect(200);
+        expect(response.body.recipe).toMatchObject({
+            inputs: recipeInput.inputs,
+            output: recipeInput.output,
+        });
+        expect(typeof response.body.recipe.id).toBe("string");
+        expect(typeof response.body.recipe.createdAt).toBe("string");
+        expect(typeof response.body.recipe.updatedAt).toBe("string");
+
+        // Check persistence
+        const store = new RecipeStore(TEST_RECIPES_PATH);
+        const persisted = store.getAll().find(r => r.id === response.body.recipe.id);
+        expect(persisted).toBeDefined();
+        expect(persisted).toMatchObject({
+            inputs: recipeInput.inputs,
+            output: recipeInput.output,
+        });
+    });
+
+    it("returns 400 for missing inputs or output", async () => {
+        const response = await supertest(apiServer.server.server)
+            .post("/api/recipes")
+            .send({})
+            .expect(400);
+        expect(response.body.error).toBe("Invalid CreateRecipeRequest");
+    });
+
+    it("returns 400 for non-array inputs", async () => {
+        const response = await supertest(apiServer.server.server)
+            .post("/api/recipes")
+            .send({ inputs: "not-an-array", output: { tradeUrl: "url", qty: 1 } })
+            .expect(400);
+        expect(response.body.error).toBe("Invalid CreateRecipeRequest");
     });
 });

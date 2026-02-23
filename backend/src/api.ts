@@ -6,13 +6,14 @@ import { TradeResolver } from "./trade-resolver";
 import { HtmlExtractor } from "./html-extractor";
 import { ResolveItemRequest } from "./trade-types";
 import { ResolveItemError } from "./trade-resolver";
-
+import { RecipeStore } from "./recipe-store";
 export class TradeApiServer {
     private fastify!: FastifyInstance;
     private tradeClient!: TradeClient;
-    
+    private recipeStore!: RecipeStore;
 
-    constructor(tradeClient?: TradeClient) {
+
+    constructor(tradeClient?: TradeClient, recipeStore?: RecipeStore) {
         this.fastify = Fastify({
             logger: {
                 transport: {
@@ -31,6 +32,7 @@ export class TradeApiServer {
             "Keepers", // TODO: make dynamic or configurable
             this.fastify.log
         );
+        this.recipeStore = recipeStore || new RecipeStore();
         this.registerRoutes();
     }
 
@@ -79,6 +81,32 @@ export class TradeApiServer {
                     return reply.status(400).send({ error: err.message });
                 }
                 this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/resolve-item");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+
+
+        this.fastify.post("/api/recipes", async (request: FastifyRequest, reply) => {
+            try {
+                const body = request.body as any;
+                const inputs = body?.inputs;
+                const output = body?.output;
+                if (!inputs || !output || !Array.isArray(inputs)) {
+                    this.fastify.log.warn({ body: request.body }, "Invalid CreateRecipeRequest: missing inputs or output");
+                    return reply.status(400).send({ error: "Invalid CreateRecipeRequest" });
+                }
+                // Generate recipe id and timestamps
+                const recipe = {
+                    id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+                    inputs,
+                    output,
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
+                };
+                this.recipeStore.add(recipe);
+                reply.send({ recipe });
+            } catch (err) {
+                this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/recipes");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
