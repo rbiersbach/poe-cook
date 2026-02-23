@@ -17,8 +17,8 @@ describe("TradeResolver", () => {
     let NoopLogger;
     let mockTradeClient;
     let mockHtmlExtractor;
-    let resolver;
-    let listingsData;
+    let resolver: TradeResolver;
+    let listingsData: any;
 
     beforeEach(async () => {
         NoopLogger = (await import("../logger")).NoopLogger;
@@ -95,9 +95,9 @@ describe("TradeResolver", () => {
     });
 
     it("should resolve item with relevant mock listings data", async () => {
-        const request = { tradeUrl: "https://www.pathofexile.com/trade" };
+        const tradeUrl = "https://www.pathofexile.com/trade";
         const poeSessid = "test-session-id";
-        const result = await resolver.resolveItem(request, poeSessid);
+        const result = await resolver.resolveItemFromUrl(tradeUrl, poeSessid);
         expect(result).toBeDefined();
         expect(result.iconUrl).toContain("InjectorBelt.png");
         expect(result.name).toBe("Mageblood");
@@ -126,10 +126,10 @@ describe("TradeResolver", () => {
 
     it("should throw ResolveItemError if no listings found", async () => {
         listingsData.result = [];
-        const request = { tradeUrl: "https://www.pathofexile.com/trade" };
+        const tradeUrl = "https://www.pathofexile.com/trade";
         const poeSessid = "test-session-id";
-        await expect(resolver.resolveItem(request, poeSessid)).rejects.toThrowError(/No listings found/);
-        await expect(resolver.resolveItem(request, poeSessid)).rejects.toThrowError(ResolveItemError);
+        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid)).rejects.toThrowError(/No listings found/);
+        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid)).rejects.toThrowError(ResolveItemError);
     });
 
     it("should throw ResolveItemError if no valid normalized prices found", async () => {
@@ -140,9 +140,9 @@ describe("TradeResolver", () => {
                 listing: { price: { amount: 1, currency: "divine" } } // missing normalized_price
             }
         ];
-        const request = { tradeUrl: "https://www.pathofexile.com/trade" };
+        const tradeUrl = "https://www.pathofexile.com/trade";
         const poeSessid = "test-session-id";
-        await expect(resolver.resolveItem(request, poeSessid)).rejects.toThrowError(/No valid normalized prices/);
-        await expect(resolver.resolveItem(request, poeSessid)).rejects.toThrowError(ResolveItemError);
+        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid)).rejects.toThrowError(/No valid normalized prices/);
+        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid)).rejects.toThrowError(ResolveItemError);
     });
 });

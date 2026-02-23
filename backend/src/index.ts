@@ -25,10 +25,10 @@ async function runResolverWithExample() {
     apiServer.server.log // logger
   );
   const resolver = new TradeResolver(NoopLogger, tradeClient, HtmlExtractor);
-  const request = { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/Z6KmYGb8CQ" };
+  const tradeUrl = "https://www.pathofexile.com/trade/search/Keepers/Z6KmYGb8CQ";
   const poeSessid = "example-session-id";
   try {
-    const result = await resolver.resolveItem(request, poeSessid);
+    const result = await resolver.resolveItemFromUrl(tradeUrl, poeSessid);
     console.log("ResolvedMarketData result:", result);
   } catch (err) {
     console.error("Error resolving item:", err);

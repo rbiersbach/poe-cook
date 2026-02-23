@@ -166,11 +166,11 @@ export class RecipeItem {
   qty!: number;
   fallbackPrice?: Price;
   resolved?: ResolvedMarketData;
-  error?: string;
   constructor(init?: Partial<RecipeItem>) {
     Object.assign(this, init);
   }
 }
+
 
 export class Recipe {
   id!: string;

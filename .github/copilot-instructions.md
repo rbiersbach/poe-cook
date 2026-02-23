@@ -14,20 +14,22 @@
 - Accept logger instance in constructor:
   `constructor(private logger: LoggerLike) {}`
 
-## Root-based Imports
+## Imports
 - Use root-based imports for local modules (e.g., `import tradeClient from "trade-client";`).
+- Use the ES module import syntax instead of require.
 
 ## Running Tests
 To run tests for a specific module, use:
 
-  npm run test -- <module>
+  npm run test --workspace <module>
 
 For example, to test the backend module:
 
-  npm run test -- backend
+  npm run test --workspace backend
 
 Replace "backend" with the desired module name to run tests for other modules.
 
 
 ## API Specification
 Always consult and adhere to the API specification (see specs/openapi.yaml) when working with API endpoints, request/response types, or contracts. Ensure all changes, implementations, and tests are consistent with the spec.
+

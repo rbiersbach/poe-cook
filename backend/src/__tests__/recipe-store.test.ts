@@ -25,7 +25,6 @@ describe("RecipeStore", () => {
             id: "abc123",
             inputs: [
                 {
-                    tradeUrl: "url1",
                     qty: 2,
                     fallbackPrice: { amount: 10, currency: "chaos" },
                     resolved: {
@@ -41,7 +40,6 @@ describe("RecipeStore", () => {
                 }
             ],
             output: {
-                tradeUrl: "url3",
                 qty: 1,
                 fallbackPrice: { amount: 100, currency: "chaos" },
                 resolved: {
@@ -77,7 +75,6 @@ describe("RecipeStore", () => {
             id: "id1",
             inputs: [
                 {
-                    tradeUrl: "url1",
                     qty: 1,
                     fallbackPrice: { amount: 5, currency: "chaos" },
                     resolved: {
@@ -93,7 +90,6 @@ describe("RecipeStore", () => {
                 }
             ],
             output: {
-                tradeUrl: "url2",
                 qty: 1,
                 fallbackPrice: { amount: 10, currency: "chaos" },
                 resolved: {

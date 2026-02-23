@@ -2,29 +2,35 @@ import { beforeEach, vi } from "vitest";
 
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import supertest from "supertest";
+
 import { TradeApiServer } from "../api";
 import { NoopLogger } from "../logger";
 import { TradeClient } from "trade-client";
 import { TradeResolver, ResolveItemError } from "../trade-resolver";
 import path from "path";
 import fs from "fs";
+import { Recipe } from "trade-types";
 
 const TEST_RECIPES_PATH = path.join(__dirname, "resources/recipes.test.json");
 
+const mockGetAllRecipes = vi.fn(() => []);
+const mockGetRecipeById = vi.fn();
 const mockAdd = vi.fn();
-const mockGetAll = vi.fn(() => []);
-const mockClear = vi.fn();
-const mockGet = vi.fn();
 
-class MockRecipeStore {
-    add = mockAdd;
-    getAll = mockGetAll;
-    clear = mockClear;
-    get = mockGet;
+class MockRecipeService {
+    private store = {};
+    private resolver = {};
+    private logger = {};
+    getAllRecipes = mockGetAllRecipes;
+    getRecipeById = mockGetRecipeById;
+    addRecipe = mockAdd;
+    refreshRecipe = vi.fn();
+    refreshItem = vi.fn();
 }
 
 let tradeClientMock: TradeClient;
 let apiServer: TradeApiServer;
+let recipeServiceMock: MockRecipeService;
 
 beforeAll(async () => {
     // Clear test file before starting
@@ -34,9 +40,9 @@ beforeAll(async () => {
         fetchListings: vi.fn(),
         logger: NoopLogger,
     } as unknown as TradeClient;
-    apiServer = new TradeApiServer(tradeClientMock, new MockRecipeStore());
+    recipeServiceMock = new MockRecipeService();
+    apiServer = new TradeApiServer(tradeClientMock, recipeServiceMock, NoopLogger);
     await apiServer.server.listen({ port: 0 });
-
 });
 
 afterAll(async () => {
@@ -156,7 +162,7 @@ describe("POST /api/resolve-item", () => {
             medianCount: 2,
             fetchedAt: new Date().toISOString(),
         };
-        const spy = vi.spyOn(TradeResolver.prototype, "resolveItem").mockResolvedValueOnce(mockResult);
+        const spy = vi.spyOn(TradeResolver.prototype, "resolveItemFromUrl").mockResolvedValueOnce(mockResult);
 
         const response = await supertest(apiServer.server.server)
             .post("/api/resolve-item")
@@ -183,7 +189,7 @@ describe("POST /api/resolve-item", () => {
     });
 
     it("returns 400 if ResolveItemError is thrown", async () => {
-        const spy = vi.spyOn(TradeResolver.prototype, "resolveItem").mockRejectedValueOnce(new ResolveItemError("No listings found"));
+        const spy = vi.spyOn(TradeResolver.prototype, "resolveItemFromUrl").mockRejectedValueOnce(new ResolveItemError("No listings found"));
         const response = await supertest(apiServer.server.server)
             .post("/api/resolve-item")
             .send({ tradeUrl: "https://www.pathofexile.com/trade" })
@@ -193,7 +199,7 @@ describe("POST /api/resolve-item", () => {
     });
 
     it("returns 500 for unexpected errors", async () => {
-        const spy = vi.spyOn(TradeResolver.prototype, "resolveItem").mockRejectedValueOnce(new Error("Unexpected failure"));
+        const spy = vi.spyOn(TradeResolver.prototype, "resolveItemFromUrl").mockRejectedValueOnce(new Error("Unexpected failure"));
         const response = await supertest(apiServer.server.server)
             .post("/api/resolve-item")
             .send({ tradeUrl: "https://www.pathofexile.com/trade" })
@@ -206,10 +212,9 @@ describe("POST /api/resolve-item", () => {
 describe("POST /api/recipes", () => {
     beforeEach(() => {
         mockAdd.mockClear();
-        mockGetAll.mockClear();
-        mockClear.mockClear();
-        mockGet.mockClear();
-        mockGetAll.mockReturnValue([]);
+        mockGetAllRecipes.mockClear();
+        mockGetRecipeById.mockClear();
+        mockGetAllRecipes.mockReturnValue([]);
     });
 
     it("creates a recipe and returns it", async () => {
@@ -262,6 +267,7 @@ describe("POST /api/recipes", () => {
                 }
             }
         };
+
         mockAdd.mockImplementation(recipe => recipe);
         const response = await supertest(apiServer.server.server)
             .post("/api/recipes")
@@ -296,12 +302,12 @@ describe("POST /api/recipes", () => {
 
 describe("GET /api/recipes/:id", () => {
     beforeEach(() => {
-        mockGet.mockClear();
+        mockGetRecipeById.mockClear();
     });
 
     it("returns the recipe for a valid id", async () => {
         const recipe = { id: "r1", inputs: [], output: {}, createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" };
-        mockGet.mockReturnValueOnce(recipe);
+        mockGetRecipeById.mockReturnValueOnce(recipe);
         const response = await supertest(apiServer.server.server)
             .get("/api/recipes/r1")
             .expect(200);
@@ -309,7 +315,7 @@ describe("GET /api/recipes/:id", () => {
     });
 
     it("returns 404 if recipe not found", async () => {
-        mockGet.mockReturnValueOnce(undefined);
+        mockGetRecipeById.mockReturnValueOnce(undefined);
         const response = await supertest(apiServer.server.server)
             .get("/api/recipes/doesnotexist")
             .expect(404);
@@ -319,11 +325,11 @@ describe("GET /api/recipes/:id", () => {
 
 describe("GET /api/recipes", () => {
     beforeEach(() => {
-        mockGetAll.mockClear();
-        mockGetAll.mockReturnValue([
-            { id: "r1", inputs: [], output: {}, createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" },
-            { id: "r2", inputs: [], output: {}, createdAt: "2024-01-02T00:00:00Z", updatedAt: "2024-01-02T00:00:00Z" },
-            { id: "r3", inputs: [], output: {}, createdAt: "2024-01-03T00:00:00Z", updatedAt: "2024-01-03T00:00:00Z" },
+        mockGetAllRecipes.mockClear();
+        mockGetAllRecipes.mockReturnValue([
+            new Recipe({ id: "r1", inputs: [], output: { qty: 1 }, createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" }),
+            new Recipe({ id: "r2", inputs: [], output: { qty: 1 }, createdAt: "2024-01-02T00:00:00Z", updatedAt: "2024-01-02T00:00:00Z" }),
+            new Recipe({ id: "r3", inputs: [], output: { qty: 1 }, createdAt: "2024-01-03T00:00:00Z", updatedAt: "2024-01-03T00:00:00Z" }),
         ]);
     });
 

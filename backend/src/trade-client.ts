@@ -8,7 +8,7 @@ import {
 import fastify from "fastify";
 
 
-import { LoggerLike, NoopLogger } from "logger";
+import { FastifyBaseLogger, NoopLogger } from "logger";
 
 export class TradeClient {
 
@@ -17,12 +17,12 @@ export class TradeClient {
   private poeSessId?: string;
   private league: LeagueName;
   private fetchImpl: typeof fetch;
-  private logger: LoggerLike;
+  private logger: FastifyBaseLogger;
 
   constructor(
     userAgent: string,
     league: LeagueName,
-    logger: LoggerLike,
+    logger: FastifyBaseLogger,
     baseUrl: string = "https://www.pathofexile.com",
     poeSessId?: string,
     fetchImpl: typeof fetch = fetch
@@ -48,7 +48,7 @@ export class TradeClient {
     try {
       await this.throwIfNotOk(res);
     } catch (err) {
-      this.logger.error({ error: err, url, body }, "TradeClient.search failed");
+      this.logger.error("TradeClient.search failed", { error: err, url, body });
       throw err;
     }
 
@@ -75,7 +75,7 @@ export class TradeClient {
     try {
       await this.throwIfNotOk(res);
     } catch (err) {
-      this.logger.error({ error: err, url, ids, queryId }, "TradeClient.fetchListings failed");
+      this.logger.error("TradeClient.fetchListings failed", { error: err, url, ids, queryId });
       throw err;
     }
     const raw = await res.json() as TradeFetchResponse;

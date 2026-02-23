@@ -1,7 +1,7 @@
 import { ResolveItemRequest, ResolvedMarketData, Price } from "trade-types";
 import { HtmlExtractor } from "html-extractor";
 import { TradeSearchRequest, TradeQuery, TradeStatGroup, TradeFilters } from "trade-types";
-import { LoggerLike, NoopLogger } from "logger";
+import { FastifyBaseLogger } from "fastify";
 import { TradeClient } from "trade-client";
 
 
@@ -13,7 +13,7 @@ export class ResolveItemError extends Error {
 }
 export class TradeResolver {
     constructor(
-        private logger: LoggerLike,
+        private logger: FastifyBaseLogger,
         private tradeClient: TradeClient,
         private htmlExtractor: typeof HtmlExtractor
     ) { }
@@ -24,13 +24,13 @@ export class TradeResolver {
      */
     async resolveTradeRequestFromUrl(url: string, poeSessid: string): Promise<TradeSearchRequest> {
         try {
-            this.logger.info("Fetching HTML from URL", { url });
+            this.logger.info({ url }, "Fetching HTML from URL");
             const html = await this.htmlExtractor.fetchHtml(url, poeSessid);
-            this.logger.info("HTML fetched, extracting JSON", { url });
+            this.logger.info({ url }, "HTML fetched, extracting JSON");
             const json = this.htmlExtractor.extractJsonFromHtml(html);
-            this.logger.info("JSON extracted, validating", { url });
+            this.logger.info({ url }, "JSON extracted, validating");
             this.htmlExtractor.validateExtractedJson(json);
-            this.logger.info("JSON validated, mapping to TradeSearchRequest", { url });
+            this.logger.info({ url }, "JSON validated, mapping to TradeSearchRequest");
 
             // Map the extracted JSON to TradeSearchRequest
             const query: TradeQuery = new TradeQuery({
@@ -41,27 +41,33 @@ export class TradeResolver {
                 filters: json.state?.filters ? new TradeFilters(json.state.filters) : undefined,
             });
 
-            this.logger.info("TradeSearchRequest created successfully", { url });
+            this.logger.info({ url }, "TradeSearchRequest created successfully");
             return new TradeSearchRequest({ query });
         } catch (error) {
-            this.logger.error({ error, url }, "Failed to resolve TradeSearchRequest");
+            this.logger.error("Failed to resolve TradeSearchRequest", { error, url });
             throw new Error(`Failed to resolve TradeSearchRequest from URL: ${url} - ${(error as Error).message}`);
         }
     }
 
     /**
-    * Resolves a trade item from a tradeUrl or fallback price, returning enriched market data.
-    * Throws on error, returns ResolvedMarketData on success.
-    */
-    async resolveItem(request: ResolveItemRequest, poeSessid: string): Promise<ResolvedMarketData> {
-        this.logger.info("Resolving item", { request });
-        const searchRequest: TradeSearchRequest = await this.resolveTradeRequestFromUrl(request.tradeUrl!, poeSessid);
+     * Resolves a trade item from a tradeUrl, returning enriched market data.
+     */
+    async resolveItemFromUrl(tradeUrl: string, poeSessid: string): Promise<ResolvedMarketData> {
+        const searchRequest = await this.resolveTradeRequestFromUrl(tradeUrl, poeSessid);
+        return this.resolveItemFromSearch(searchRequest, poeSessid);
+    }
+
+    /**
+     * Resolves a trade item from a TradeSearchRequest, returning enriched market data.
+     */
+    async resolveItemFromSearch(searchRequest: TradeSearchRequest, poeSessid: string): Promise<ResolvedMarketData> {
+        this.logger.info({ searchRequest }, "Resolving item from search");
         // Use combined search and fetch
         const { search, listings } = await this.tradeClient.searchAndFetch(searchRequest, 10);
 
         if (!listings || !listings.result || listings.result.length === 0) {
-            this.logger.warn("No listings found", { request });
-            throw new ResolveItemError("No listings found for item resolution", { request });
+            this.logger.warn({ searchRequest }, "No listings found");
+            throw new ResolveItemError("No listings found for item resolution", { searchRequest });
         }
 
         // Extract icon, name, normalized prices
@@ -79,7 +85,6 @@ export class TradeResolver {
             if (result.listing && result.listing.normalized_price && result.listing.price) {
                 const price = result.listing.price;
                 const normalized_price = result.listing.normalized_price;
-
                 prices.push({ original: price, normalized_price: normalized_price.amount });
             }
         }
@@ -97,7 +102,7 @@ export class TradeResolver {
         const fetchedAt = new Date().toISOString();
 
         if (!minPriceAmount || !medianPriceAmount) {
-            this.logger.error({ prices }, "No valid normalized prices found");
+            this.logger.error("No valid normalized prices found", { prices });
             throw new ResolveItemError("No valid normalized prices found for item resolution", { prices });
         }
 

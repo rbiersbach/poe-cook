@@ -7,15 +7,20 @@ import { HtmlExtractor } from "html-extractor";
 import { ResolveItemRequest } from "trade-types";
 import { ResolveItemError } from "trade-resolver";
 import { RecipeStore } from "recipe-store";
+import { RecipeService } from "recipe-service";
+import { FastifyBaseLogger } from "fastify";
+import { NoopLogger } from "logger";
+
 export class TradeApiServer {
     private fastify!: FastifyInstance;
     private tradeClient!: TradeClient;
-    private recipeStore!: RecipeStore;
+    private recipeService!: RecipeService;
+    private logger: FastifyBaseLogger;
 
-
-    constructor(tradeClient?: TradeClient, recipeStore?: RecipeStore) {
-        this.fastify = Fastify({
-            logger: {
+    constructor(tradeClient?: TradeClient, recipeService?: RecipeService, logger?: FastifyBaseLogger) {
+        let loggerDefinition;
+        if (!logger) {
+            loggerDefinition = {
                 transport: {
                     target: "pino-pretty",
                     options: {
@@ -24,15 +29,23 @@ export class TradeApiServer {
                         ignore: "pid,hostname",
                     },
                 },
-            },
+            };
+        }
+        this.fastify = Fastify({
+            logger: loggerDefinition,
         });
+        this.logger = logger ?? this.fastify.log;
         this.fastify.register(cors, { origin: true });
         this.tradeClient = tradeClient || new TradeClient(
             "poe-tools-api/1.0 (contact: you@example.com)",
-            "Keepers", // TODO: make dynamic or configurable
-            this.fastify.log
+            "Keepers",
+            this.logger
         );
-        this.recipeStore = recipeStore || new RecipeStore();
+        this.recipeService = recipeService || new RecipeService(
+            new RecipeStore(),
+            new TradeResolver(this.logger, this.tradeClient, HtmlExtractor),
+            this.logger
+        );
         this.registerRoutes();
     }
 
@@ -43,7 +56,7 @@ export class TradeApiServer {
                 const query = body?.query;
                 const sort = body?.sort;
                 if (!query || !sort) {
-                    this.fastify.log.warn({ body: request.body }, "Invalid TradeSearchRequest: missing query or sort");
+                    this.logger.warn({ body: request.body }, "Invalid TradeSearchRequest: missing query or sort");
                     return reply.status(400).send({ error: "Invalid TradeSearchRequest" });
                 }
 
@@ -58,7 +71,7 @@ export class TradeApiServer {
                 }));
                 reply.send({ result: simplified });
             } catch (err) {
-                this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/trade-search");
+                this.logger.error({ error: err, body: request.body }, "Unexpected error in /api/trade-search");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -69,20 +82,20 @@ export class TradeApiServer {
                 const body = request.body;
                 const tradeUrl = body?.tradeUrl;
                 if (!tradeUrl) {
-                    this.fastify.log.warn({ body: request.body }, "Invalid ResolveItemRequest: missing tradeUrl");
+                    this.logger.warn({ body: request.body }, "Invalid ResolveItemRequest: missing tradeUrl");
                     return reply.status(400).send({ error: "Invalid ResolveItemRequest" });
                 }
                 // Optionally: get POESESSID from headers/cookies
                 const poeSessid = "example-session-id";
-                const resolver = new TradeResolver(this.fastify.log, this.tradeClient, HtmlExtractor);
-                const result = await resolver.resolveItem({ tradeUrl }, poeSessid as string);
+                const resolver = new TradeResolver(this.logger, this.tradeClient, HtmlExtractor);
+                const result = await resolver.resolveItemFromUrl(tradeUrl, poeSessid as string);
                 reply.send({ resolved: result });
             } catch (err) {
                 if (err instanceof ResolveItemError) {
-                    this.fastify.log.warn({ error: err, body: request.body }, "ResolveItemError in /api/resolve-item");
+                    this.logger.warn({ error: err, body: request.body }, "ResolveItemError in /api/resolve-item");
                     return reply.status(400).send({ error: err.message });
                 }
-                this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/resolve-item");
+                this.logger.error({ error: err, body: request.body }, "Unexpected error in /api/resolve-item");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -91,10 +104,11 @@ export class TradeApiServer {
         this.fastify.get("/api/recipes", async (request: FastifyRequest, reply) => {
             try {
                 const { cursor, limit } = request.query as { cursor?: string; limit?: string };
-                let recipes = this.recipeStore.getAll();
+                const invalidateCache = request.headers["x-invalidate-cache"] === "true";
+                let recipes = await this.recipeService.getAllRecipes(invalidateCache);
                 let startIdx = 0;
                 if (cursor) {
-                    startIdx = recipes.findIndex(r => r.id === cursor) + 1;
+                    startIdx = recipes.findIndex((r: any) => r.id === cursor) + 1;
                     if (startIdx === 0) startIdx = 0; // cursor not found, start from beginning
                 }
                 let limitedRecipes = recipes.slice(startIdx, limit ? startIdx + parseInt(limit, 10) : undefined);
@@ -102,10 +116,10 @@ export class TradeApiServer {
                 if (limit && (startIdx + parseInt(limit, 10)) < recipes.length) {
                     nextCursor = recipes[startIdx + parseInt(limit, 10) - 1]?.id;
                 }
-                this.fastify.log.info({ cursor, limit, count: limitedRecipes.length }, "List recipes");
+                this.logger.info({ cursor, limit, count: limitedRecipes.length, invalidateCache }, "List recipes");
                 reply.send({ recipes: limitedRecipes, ...(nextCursor ? { nextCursor } : {}) });
             } catch (err) {
-                this.fastify.log.error({ error: err, query: request.query }, "Unexpected error in GET /api/recipes");
+                this.logger.error({ error: err, query: request.query }, "Unexpected error in GET /api/recipes");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -117,12 +131,12 @@ export class TradeApiServer {
                 const inputs = body?.inputs;
                 const output = body?.output;
                 if (!inputs || !output || !Array.isArray(inputs)) {
-                    this.fastify.log.warn({ body: request.body }, "Invalid CreateRecipeRequest: missing inputs or output");
+                    this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: missing inputs or output");
                     return reply.status(400).send({ error: "Invalid CreateRecipeRequest" });
                 }
                 // Validate all items have search
                 if (!inputs.every((item: any) => item.search) || !output.search) {
-                    this.fastify.log.warn({ body: request.body }, "Invalid CreateRecipeRequest: each item must have a search object");
+                    this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: each item must have a search object");
                     return reply.status(400).send({ error: "Each item must have a search object" });
                 }
                 // Generate recipe id and timestamps
@@ -133,10 +147,10 @@ export class TradeApiServer {
                     createdAt: new Date().toISOString(),
                     updatedAt: new Date().toISOString(),
                 };
-                this.recipeStore.add(recipe);
+                this.recipeService.addRecipe(recipe);
                 reply.send({ recipe });
             } catch (err) {
-                this.fastify.log.error({ error: err, body: request.body }, "Unexpected error in /api/recipes");
+                this.logger.error({ error: err, body: request.body }, "Unexpected error in /api/recipes");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -144,15 +158,16 @@ export class TradeApiServer {
         this.fastify.get("/api/recipes/:id", async (request: FastifyRequest, reply) => {
             try {
                 const { id } = request.params as { id: string };
-                const recipe = this.recipeStore.get(id);
+                const invalidateCache = request.headers["x-invalidate-cache"] === "true";
+                const recipe = await this.recipeService.getRecipeById(id, invalidateCache);
                 if (!recipe) {
-                    this.fastify.log.info({ id }, "Recipe not found in GET /api/recipes/:id");
+                    this.logger.info({ id }, "Recipe not found in GET /api/recipes/:id");
                     return reply.status(404).send({ error: "Recipe not found" });
                 }
-                this.fastify.log.info({ id }, "Fetched recipe by id");
+                this.logger.info({ id, invalidateCache }, "Fetched recipe by id");
                 reply.send(recipe);
             } catch (err) {
-                this.fastify.log.error({ error: err, params: request.params }, "Unexpected error in GET /api/recipes/:id");
+                this.logger.error({ error: err, params: request.params }, "Unexpected error in GET /api/recipes/:id");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
