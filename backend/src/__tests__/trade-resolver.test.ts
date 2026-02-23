@@ -14,6 +14,18 @@ vi.spyOn(HtmlExtractor, "fetchHtml").mockImplementation(async () => {
 });
 
 describe("TradeResolver", () => {
+        it("should normalize trade URL by adding https:// and www if missing", async () => {
+            const tradeUrlNoProtocol = "pathofexile.com/trade";
+            const tradeUrlNoWww = "https://pathofexile.com/trade";
+            const poeSessid = "test-session-id";
+            // Spy on fetchHtml to capture the URL used
+            const fetchHtmlSpy = vi.spyOn(mockHtmlExtractor, "fetchHtml");
+            await resolver.resolveTradeRequestFromUrl(tradeUrlNoProtocol, poeSessid);
+            expect(fetchHtmlSpy).toHaveBeenCalledWith("https://www.pathofexile.com/trade", poeSessid);
+            await resolver.resolveTradeRequestFromUrl(tradeUrlNoWww, poeSessid);
+            expect(fetchHtmlSpy).toHaveBeenCalledWith("https://www.pathofexile.com/trade", poeSessid);
+            fetchHtmlSpy.mockRestore();
+        });
     let NoopLogger;
     let mockTradeClient;
     let mockHtmlExtractor;

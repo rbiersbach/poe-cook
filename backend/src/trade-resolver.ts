@@ -24,13 +24,20 @@ export class TradeResolver {
      */
     async resolveTradeRequestFromUrl(url: string, poeSessid: string): Promise<TradeSearchRequest> {
         try {
-            this.logger.info({ url }, "Fetching HTML from URL");
-            const html = await this.htmlExtractor.fetchHtml(url, poeSessid);
-            this.logger.info({ url }, "HTML fetched, extracting JSON");
+            // Normalize URL: add https:// and www if missing
+            let normalizedUrl = url.trim();
+            if (!/^https?:\/\//i.test(normalizedUrl)) {
+                normalizedUrl = "https://" + normalizedUrl;
+            }
+            // Always ensure 'www.' after protocol
+            normalizedUrl = normalizedUrl.replace(/^(https?:\/\/)(?!www\.)/, "$1www.");
+            this.logger.info({ url: normalizedUrl }, "Fetching HTML from URL");
+            const html = await this.htmlExtractor.fetchHtml(normalizedUrl, poeSessid);
+            this.logger.info({ url: normalizedUrl }, "HTML fetched, extracting JSON");
             const json = this.htmlExtractor.extractJsonFromHtml(html);
-            this.logger.info({ url }, "JSON extracted, validating");
+            this.logger.info({ url: normalizedUrl }, "JSON extracted, validating");
             this.htmlExtractor.validateExtractedJson(json);
-            this.logger.info({ url }, "JSON validated, mapping to TradeSearchRequest");
+            this.logger.info({ url: normalizedUrl }, "JSON validated, mapping to TradeSearchRequest");
 
             // Map the extracted JSON to TradeSearchRequest
             const query: TradeQuery = new TradeQuery({
