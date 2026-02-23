@@ -209,8 +209,6 @@ components:
           $ref: "#/components/schemas/ResolvedMarketData"
         search:
           $ref: "#/components/schemas/TradeSearchRequest"
-        error:
-          type: string
 
     Price:
       type: object
@@ -258,8 +256,6 @@ components:
           $ref: "#/components/schemas/Price"
         resolved:
           $ref: "#/components/schemas/ResolvedMarketData"
-        error:
-          type: string
       required:
         - search
         - qty

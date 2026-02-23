@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { TradeSearchJsonInput } from "components/TradeSearchJsonInput";
 import { TradeSearchResults } from "components/TradeSearchResults";
 import { TradeSearchRequest, DefaultService } from "api/generated";
+import CreateRecipePage from "./pages/CreateRecipePage";
 
-function App() {
+function MainSearch() {
   const [results, setResults] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -38,6 +40,21 @@ function App() {
         <TradeSearchResults results={results} />
       )}
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <nav className="w-full bg-white shadow mb-6 py-4 px-8 flex gap-6">
+        <Link to="/" className="text-blue-700 font-semibold hover:underline">Trade Search</Link>
+        <Link to="/create" className="text-blue-700 font-semibold hover:underline">Create Recipe</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<MainSearch />} />
+        <Route path="/create" element={<CreateRecipePage />} />
+      </Routes>
+    </Router>
   );
 }
 

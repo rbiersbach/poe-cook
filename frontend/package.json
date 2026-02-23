@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-router-dom": "^7.13.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.0",

@@ -7,7 +7,16 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { CreateRecipeRequest } from './models/CreateRecipeRequest';
+export type { CreateRecipeResponse } from './models/CreateRecipeResponse';
 export type { ErrorResponse } from './models/ErrorResponse';
+export type { ListRecipesResponse } from './models/ListRecipesResponse';
+export type { Price } from './models/Price';
+export type { Recipe } from './models/Recipe';
+export type { RecipeItem } from './models/RecipeItem';
+export type { ResolvedMarketData } from './models/ResolvedMarketData';
+export type { ResolveItemRequest } from './models/ResolveItemRequest';
+export type { ResolveItemResponse } from './models/ResolveItemResponse';
 export type { SimplifiedListing } from './models/SimplifiedListing';
 export type { TradeSearchRequest } from './models/TradeSearchRequest';
 export type { TradeSearchResponse } from './models/TradeSearchResponse';

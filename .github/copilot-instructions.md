@@ -33,3 +33,6 @@ Replace "backend" with the desired module name to run tests for other modules.
 ## API Specification
 Always consult and adhere to the API specification (see specs/openapi.yaml) when working with API endpoints, request/response types, or contracts. Ensure all changes, implementations, and tests are consistent with the spec.
 
+## Frontend Testing and Accessibility
+- All interactive and testable elements (buttons, inputs, loaders, etc.) must include a unique `data-testid` attribute for reliable selection in tests.
+- Use descriptive and consistent values for `data-testid` (e.g., `data-testid="add-input-button"`, `data-testid="loader"`).
