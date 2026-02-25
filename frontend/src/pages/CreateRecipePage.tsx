@@ -46,6 +46,16 @@ export default function CreateRecipePage() {
     };
     // useEffect to auto-resolve input drafts when tradeUrl changes and matches pattern
     useEffect(() => {
+        // Always ensure at least one empty draft exists
+        setInputDrafts(drafts => {
+            if (drafts.length === 0) {
+                return [
+                    ...drafts,
+                    { tradeUrl: "", qty: 1, fallbackPrice: { amount: 0, currency: "chaos" } }
+                ];
+            }
+            return drafts;
+        });
         inputDrafts.forEach((draft, idx) => {
             if (
                 draft.tradeUrl &&
@@ -185,7 +195,13 @@ export default function CreateRecipePage() {
             {success && <SuccessMessage message={success} />}
             <div className="mb-6">
                 <SectionHeader>Inputs</SectionHeader>
-                {/* Editable drafts */}
+                {/* Resolved inputs first, then editable drafts */}
+                <RecipeItemList
+                    items={resolvedInputs}
+                    resolved
+                    onQtyChange={(idx, qty) => setResolvedInputs(inputs => inputs.map((ri, i) => i === idx ? { ...ri, qty } : ri))}
+                    onRemove={handleRemoveResolvedInput}
+                />
                 <RecipeItemList
                     items={inputDrafts}
                     draft
@@ -193,16 +209,6 @@ export default function CreateRecipePage() {
                     onChange={handleInputChange}
                     onRemove={handleRemoveInputDraft}
                     onResolve={handleResolveInput}
-                />
-                <Button color="green" className="mt-2 mb-4" onClick={handleAddInput}>
-                    Add Input
-                </Button>
-                {/* Resolved inputs */}
-                <RecipeItemList
-                    items={resolvedInputs}
-                    resolved
-                    onQtyChange={(idx, qty) => setResolvedInputs(inputs => inputs.map((ri, i) => i === idx ? { ...ri, qty } : ri))}
-                    onRemove={handleRemoveResolvedInput}
                 />
             </div>
             <div className="mb-6">

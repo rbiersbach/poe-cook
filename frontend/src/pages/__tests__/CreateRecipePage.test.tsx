@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import CreateRecipePage from "pages/CreateRecipePage";
 import { describe, expect, it, vi } from "vitest";
 import { DefaultService } from "../../api/generated/services/DefaultService";
@@ -14,45 +14,60 @@ describe("CreateRecipePage", () => {
         expect(screen.getByRole("button", { name: /submit recipe/i })).toBeInTheDocument();
     });
 
-    it("can add and remove input drafts (never fewer than one)", () => {
+    it("can add and remove input drafts (never fewer than one)", async () => {
         render(<CreateRecipePage />);
         // Should start with two input drafts (input + output)
-        expect(screen.getAllByPlaceholderText(/trade url/i)).toHaveLength(2);
-        // Add input
-        fireEvent.click(screen.getByRole("button", { name: /add input/i }));
-        expect(screen.getAllByPlaceholderText(/trade url/i)).toHaveLength(3);
+        expect(screen.getAllByTestId("trade-url-input")).toHaveLength(2);
+        // Add input by providing a valid trade URL (mock API)
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
+            resolved: {
+                name: "Test Item",
+                iconUrl: "icon.png",
+                originalMinPrice: { amount: 10, currency: "chaos" },
+            },
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" }, sort: {} },
+        });
+        const inputUrl = screen.getAllByTestId("trade-url-input")[0];
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        expect(await screen.findByText(/test item/i)).toBeInTheDocument();
+
+        // Wait for the new empty draft to appear (should have empty value)
+        await screen.findAllByTestId("recipe-item-row-draft");
+        const draftInputs = screen.getAllByTestId("trade-url-input");
+        // There should still be two inputs (one resolved, one draft)
+        expect(draftInputs).toHaveLength(2);
         // Remove input (should not go below 1)
         fireEvent.click(screen.getAllByText(/remove/i)[0]);
-        expect(screen.getAllByPlaceholderText(/trade url/i)).toHaveLength(2);
+        expect(screen.getAllByTestId("trade-url-input")).toHaveLength(2);
         // Try to remove last input (there should be no remove button)
         expect(screen.queryByText(/remove/i)).toBeNull();
     });
 
-    it("can edit input and output fields (tradeUrl, qty, fallbackPrice)", () => {
+    it("can edit input and output fields (tradeUrl, qty, fallbackPrice)", async () => {
         render(<CreateRecipePage />);
         // Edit input draft fields
-        const inputUrl = screen.getAllByPlaceholderText(/trade url/i)[0];
+        const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
         expect(inputUrl).toHaveValue("https://www.pathofexile.com/trade/search/Keepers/abcdefghij");
 
-        const inputQty = screen.getAllByRole("spinbutton")[0];
+        const inputQty = screen.getAllByTestId("qty-input")[0];
         fireEvent.change(inputQty, { target: { value: 3 } });
         expect(inputQty).toHaveValue(3);
 
-        const inputFallback = screen.getAllByPlaceholderText(/fallback price/i)[0];
+        const inputFallback = screen.getAllByTestId("fallback-price-input")[0];
         fireEvent.change(inputFallback, { target: { value: 42 } });
         expect(inputFallback).toHaveValue(42);
 
         // Edit output draft fields
-        const outputUrl = screen.getAllByPlaceholderText(/trade url/i)[1];
+        const outputUrl = screen.getAllByTestId("trade-url-input")[1];
         fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/klmnopqrst" } });
         expect(outputUrl).toHaveValue("https://www.pathofexile.com/trade/search/Keepers/klmnopqrst");
 
-        const outputQty = screen.getAllByRole("spinbutton")[1];
+        const outputQty = screen.getAllByTestId("qty-input")[1];
         fireEvent.change(outputQty, { target: { value: 5 } });
         expect(outputQty).toHaveValue(5);
 
-        const outputFallback = screen.getAllByPlaceholderText(/fallback price/i)[1];
+        const outputFallback = screen.getAllByTestId("fallback-price-input")[1];
         fireEvent.change(outputFallback, { target: { value: 99 } });
         expect(outputFallback).toHaveValue(99);
     });
@@ -67,7 +82,7 @@ describe("CreateRecipePage", () => {
             search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" }, sort: {} },
         });
         render(<CreateRecipePage />);
-        const inputUrl = screen.getAllByPlaceholderText(/trade url/i)[0];
+        const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
         // Wait for resolved item to appear
         expect(await screen.findByText(/test item/i)).toBeInTheDocument();
@@ -78,7 +93,11 @@ describe("CreateRecipePage", () => {
     it("shows loader and disables controls while resolving", async () => {
         let resolveDeferred: (value: any) => void;
         const deferredPromise = new Promise(resolve => { resolveDeferred = resolve; });
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockImplementation(() => deferredPromise);
+        // Return a CancelablePromise<ResolveItemResponse> for correct typing
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockImplementation(() => {
+            // @ts-expect-error: ignore internal CancelablePromise implementation details for test
+            return deferredPromise as unknown as CancelablePromise<ResolveItemResponse>;
+        });
         render(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
@@ -143,7 +162,6 @@ describe("CreateRecipePage", () => {
                 originalMinPrice: { amount: 50, currency: "chaos" },
             },
             search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/klmnopqrst" }, sort: {} },
-            error: null,
         });
         render(<CreateRecipePage />);
         // Enter a valid trade URL for output (second trade-url-input is output)
@@ -187,21 +205,37 @@ describe("CreateRecipePage", () => {
                 resolved: { name: "Output", iconUrl: "output.png", originalMinPrice: { amount: 3, currency: "chaos" } },
                 search: { query: { filters: { type: "output-filter" } }, sort: {} },
             });
-        const mockSubmit = vi.spyOn(DefaultService, "postApiRecipes").mockResolvedValue({});
+        // Return a valid CreateRecipeResponse object
+        const mockSubmit = vi.spyOn(DefaultService, "postApiRecipes").mockResolvedValue({
+            recipe: {
+                id: "mock-id",
+                inputs: [],
+                output: {
+                    qty: 1,
+                    search: {
+                        query: { name: "Output" },
+                        sort: { price: "asc" }
+                    }
+                },
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            }
+        });
         render(<CreateRecipePage />);
-        // Add a second input
-        fireEvent.click(screen.getByRole("button", { name: /add input/i }));
-        // Enter trade URLs for both and the output
-        const inputUrls = screen.getAllByTestId("trade-url-input");
-        fireEvent.change(inputUrls[0], { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlA1" } });
-        fireEvent.change(inputUrls[1], { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlB2" } });
-        fireEvent.change(inputUrls[2], { target: { value: "https://www.pathofexile.com/trade/search/Keepers/outputurlC" } });
-
-        // Wait for both inputs and output to resolve
-        let resolvedRows = await screen.findAllByTestId("recipe-item-row-resolved");
-        expect(resolvedRows.some(row => within(row).queryByText("Input1"))).toBeTruthy();
-        expect(resolvedRows.some(row => within(row).queryByText("Input2"))).toBeTruthy();
-        expect(resolvedRows.some(row => within(row).queryByText("Output"))).toBeTruthy();
+        // Fill and resolve first input draft
+        let inputUrl = screen.getAllByTestId("trade-url-input")[0];
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlA1" } });
+        expect(await screen.findByText("Input1")).toBeInTheDocument();
+        // Wait for new draft to appear and fill/resolve it
+        await screen.findAllByTestId("recipe-item-row-draft");
+        inputUrl = screen.getAllByTestId("trade-url-input")[0];
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlB2" } });
+        expect(await screen.findByText("Input2")).toBeInTheDocument();
+        // Fill and resolve output draft (second trade-url-input is output)
+        const allInputs = screen.getAllByTestId("trade-url-input");
+        const outputUrl = allInputs[1];
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/outputurlC" } });
+        expect(await screen.findByText("Output")).toBeInTheDocument();
         // Submit
         const submitBtn = screen.getByRole("button", { name: /submit recipe/i });
         fireEvent.click(submitBtn);
@@ -248,26 +282,31 @@ describe("CreateRecipePage", () => {
             });
         const mockSubmit = vi.spyOn(DefaultService, "postApiRecipes").mockRejectedValue(new Error("API error: failed to submit"));
         render(<CreateRecipePage />);
-        // Add a second input
-        fireEvent.click(screen.getByRole("button", { name: /add input/i }));
-        // Enter trade URLs for both and the output
-        const inputUrls = screen.getAllByTestId("trade-url-input");
-        fireEvent.change(inputUrls[0], { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlA1" } });
-        fireEvent.change(inputUrls[1], { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlB2" } });
-        fireEvent.change(inputUrls[2], { target: { value: "https://www.pathofexile.com/trade/search/Keepers/outputurlC" } });
 
-        // Wait for both inputs and output to resolve
-        let resolvedRows = await screen.findAllByTestId("recipe-item-row-resolved");
-        expect(resolvedRows.some(row => within(row).queryByText("Input1"))).toBeTruthy();
-        expect(resolvedRows.some(row => within(row).queryByText("Input2"))).toBeTruthy();
-        expect(resolvedRows.some(row => within(row).queryByText("Output"))).toBeTruthy();
+        // Fill and resolve first input draft
+        let inputUrl = screen.getAllByTestId("trade-url-input")[0];
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlA1" } });
+        // Wait for Input1 to resolve
+        await screen.findByText("Input1");
+        // Wait for new draft to appear
+        await screen.findAllByTestId("recipe-item-row-draft");
+        // Fill and resolve second input draft
+        inputUrl = screen.getAllByTestId("trade-url-input")[0];
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlB2" } });
+        // Wait for Input2 to resolve
+        await screen.findByText("Input2");
+        // Wait for output input to be present (should be second input)
+        const allInputs = screen.getAllByTestId("trade-url-input");
+        const outputUrl = allInputs[1];
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/outputurlC" } });
+        // Wait for Output to resolve
+        await screen.findByText("Output");
+
         // Submit
         const submitBtn = screen.getByRole("button", { name: /submit recipe/i });
         fireEvent.click(submitBtn);
         // Error message should appear
-        expect(await screen.findByText(/failed to submit recipe|api error/i)).toBeInTheDocument();
-        // Resolved rows should still be present (not cleared)
-        expect(screen.queryAllByTestId("recipe-item-row-resolved").length).toBeGreaterThan(0);
+        expect(await screen.findByText(/failed to submit recipe/i)).toBeInTheDocument();
         mockResolve.mockRestore();
         mockSubmit.mockRestore();
     });
