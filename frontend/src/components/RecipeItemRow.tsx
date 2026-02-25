@@ -4,6 +4,8 @@ import { PriceDisplay } from "../components/PriceDisplay";
 import { Loader } from "./Loader";
 
 interface RecipeItemRowProps {
+    error?: string | null;
+    errorAnim?: boolean;
     item: RecipeItem | any;
     draft?: boolean;
     resolved?: boolean;
@@ -25,6 +27,8 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
     onRemove,
     onResolve,
     onQtyChange,
+    error = null,
+    errorAnim = false,
 }) => {
     if (draft) {
         // Handler for Enter key on any input
@@ -34,7 +38,10 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
             }
         };
         return (
-            <div className="mb-2 p-2 border rounded flex items-center gap-4 w-full relative" data-testid="recipe-item-row-draft">
+            <div
+                className={`mb-2 p-2 border rounded flex items-center gap-4 w-full relative transition-colors duration-300 ${errorAnim ? 'bg-red-100 border-red-400' : ''}`}
+                data-testid="recipe-item-row-draft"
+            >
                 {/* Overlay when loading */}
                 {loading && (
                     <div className="absolute inset-0 bg-white bg-opacity-60 flex items-center justify-center z-10 rounded" data-testid="loader-overlay">
@@ -91,6 +98,9 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     >
                         Remove
                     </button>
+                )}
+                {error && (
+                    <span className="absolute left-2 -bottom-5 text-xs text-red-600 animate-fade-in" data-testid="draft-error-msg">{error}</span>
                 )}
             </div>
         );

@@ -1,8 +1,10 @@
 import React from "react";
-import { RecipeItemRow } from "./RecipeItemRow";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
+import { RecipeItemRow } from "./RecipeItemRow";
 
 interface RecipeItemListProps {
+  errors?: (string | null)[];
+  errorAnims?: boolean[];
   items: RecipeItem[];
   draft?: boolean;
   resolved?: boolean;
@@ -26,6 +28,8 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
   onRemove,
   onResolve,
   onQtyChange,
+  errors = [],
+  errorAnims = [],
 }) => {
   if (!items || items.length === 0) return null;
   return (
@@ -42,6 +46,8 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
           onRemove={onRemove ? () => onRemove(idx) : undefined}
           onResolve={onResolve ? () => onResolve(idx) : undefined}
           onQtyChange={onQtyChange ? qty => onQtyChange(idx, qty) : undefined}
+          error={errors[idx]}
+          errorAnim={errorAnims[idx]}
         />
       ))}
     </>

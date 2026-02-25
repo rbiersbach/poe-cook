@@ -20,6 +20,12 @@ export default function CreateRecipePage() {
     const [resolvingInputIdx, setResolvingInputIdx] = useState<number | null>(null);
     const [resolvingOutput, setResolvingOutput] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    // Per-draft error state for input drafts
+    const [inputDraftErrors, setInputDraftErrors] = useState<(string | null)[]>([]);
+    // Per-draft animation state for error highlight
+    const [inputDraftErrorAnim, setInputDraftErrorAnim] = useState<boolean[]>([]);
+    const [outputDraftError, setOutputDraftError] = useState<string | null>(null);
+    const [outputDraftErrorAnim, setOutputDraftErrorAnim] = useState<boolean>(false);
     const [success, setSuccess] = useState<string | null>(null);
 
     // Handlers for input fields
@@ -41,6 +47,17 @@ export default function CreateRecipePage() {
             } else if (field === "qty") {
                 updated[idx].qty = value;
             }
+            return updated;
+        });
+        // Clear error and animation for this draft on change
+        setInputDraftErrors(errors => {
+            const updated = [...errors];
+            updated[idx] = null;
+            return updated;
+        });
+        setInputDraftErrorAnim(anims => {
+            const updated = [...anims];
+            updated[idx] = false;
             return updated;
         });
     };
@@ -79,6 +96,8 @@ export default function CreateRecipePage() {
 
     const handleRemoveInputDraft = (idx: number) => {
         setInputDrafts(drafts => drafts.filter((_, i) => i !== idx));
+        setInputDraftErrors(errors => errors.filter((_, i) => i !== idx));
+        setInputDraftErrorAnim(anims => anims.filter((_, i) => i !== idx));
     };
 
     const handleOutputChange = (field: string, value: any) => {
@@ -91,6 +110,8 @@ export default function CreateRecipePage() {
                 return { ...draft, [field]: value };
             }
         });
+        setOutputDraftError(null);
+        setOutputDraftErrorAnim(false);
     };
     const lastResolvedOutputUrl = useRef<string>("");
     // useEffect to auto-resolve output draft when tradeUrl changes and matches pattern
@@ -119,6 +140,16 @@ export default function CreateRecipePage() {
     const handleResolveInput = async (idx: number) => {
         setResolvingInputIdx(idx);
         setError(null);
+        setInputDraftErrors(errors => {
+            const updated = [...errors];
+            updated[idx] = null;
+            return updated;
+        });
+        setInputDraftErrorAnim(anims => {
+            const updated = [...anims];
+            updated[idx] = false;
+            return updated;
+        });
         try {
             const draft = inputDrafts[idx];
             const res = await DefaultService.postApiResolveItem({ tradeUrl: draft.tradeUrl });
@@ -134,8 +165,26 @@ export default function CreateRecipePage() {
             ]);
             // Remove from drafts
             setInputDrafts(drafts => drafts.filter((_, i) => i !== idx));
+            setInputDraftErrors(errors => errors.filter((_, i) => i !== idx));
+            setInputDraftErrorAnim(anims => anims.filter((_, i) => i !== idx));
         } catch (e) {
-            setError("Failed to resolve item");
+            setInputDraftErrors(errors => {
+                const updated = [...errors];
+                updated[idx] = "Failed to resolve item";
+                return updated;
+            });
+            setInputDraftErrorAnim(anims => {
+                const updated = [...anims];
+                updated[idx] = true;
+                return updated;
+            });
+            setTimeout(() => {
+                setInputDraftErrorAnim(anims => {
+                    const updated = [...anims];
+                    updated[idx] = false;
+                    return updated;
+                });
+            }, 800);
         } finally {
             setResolvingInputIdx(null);
         }
@@ -144,6 +193,8 @@ export default function CreateRecipePage() {
     const handleResolveOutput = async () => {
         setResolvingOutput(true);
         setError(null);
+        setOutputDraftError(null);
+        setOutputDraftErrorAnim(false);
         try {
             const draft = outputDraft;
             const res = await DefaultService.postApiResolveItem({ tradeUrl: draft.tradeUrl });
@@ -157,7 +208,9 @@ export default function CreateRecipePage() {
             // Clear output draft
             setOutputDraft({ tradeUrl: "", qty: 1, fallbackPrice: { amount: 0, currency: "chaos" } });
         } catch (e) {
-            setError("Failed to resolve output item");
+            setOutputDraftError("Failed to resolve output item");
+            setOutputDraftErrorAnim(true);
+            setTimeout(() => setOutputDraftErrorAnim(false), 800);
         } finally {
             setResolvingOutput(false);
         }
@@ -209,6 +262,8 @@ export default function CreateRecipePage() {
                     onChange={handleInputChange}
                     onRemove={handleRemoveInputDraft}
                     onResolve={handleResolveInput}
+                    errors={inputDraftErrors}
+                    errorAnims={inputDraftErrorAnim}
                 />
             </div>
             <div className="mb-6">
@@ -222,6 +277,8 @@ export default function CreateRecipePage() {
                         loading={resolvingOutput}
                         onChange={handleOutputChange}
                         onResolve={handleResolveOutput}
+                        error={outputDraftError}
+                        errorAnim={outputDraftErrorAnim}
                     />
                 )}
                 {/* Resolved output */}

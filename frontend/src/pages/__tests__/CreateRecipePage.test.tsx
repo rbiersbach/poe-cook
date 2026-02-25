@@ -330,4 +330,40 @@ describe("CreateRecipePage", () => {
         expect(await screen.findByText(/manual item/i)).toBeInTheDocument();
         mockResolve.mockRestore();
     });
+
+    it("shows error and animates output draft row on failed resolve", async () => {
+        render(<CreateRecipePage />);
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
+        // Use an invalid trade URL to avoid auto-resolve
+        const outputUrl = screen.getAllByTestId("trade-url-input")[1];
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/invalidurl" } });
+        // Should not resolve automatically
+        expect(screen.queryByTestId("draft-error-msg")).toBeNull();
+        // Press Enter to trigger resolve
+        fireEvent.keyDown(outputUrl, { key: "Enter", code: "Enter" });
+        // Error message should appear near the output draft row
+        expect(await screen.findByTestId("draft-error-msg")).toHaveTextContent(/failed to resolve output item/i);
+        // Row should have error animation class
+        const row = outputUrl.closest('[data-testid="recipe-item-row-draft"]');
+        expect(row.className).toMatch(/bg-red-100/);
+        mockResolve.mockRestore();
+    });
+
+    it("shows error and animates input draft row on failed resolve", async () => {
+        render(<CreateRecipePage />);
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
+        // Use an invalid trade URL to avoid auto-resolve
+        const inputUrl = screen.getAllByTestId("trade-url-input")[0];
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/invalidurl" } });
+        // Should not resolve automatically
+        expect(screen.queryByTestId("draft-error-msg")).toBeNull();
+        // Press Enter to trigger resolve
+        fireEvent.keyDown(inputUrl, { key: "Enter", code: "Enter" });
+        // Error message should appear near the input draft row
+        expect(await screen.findByTestId("draft-error-msg")).toHaveTextContent(/failed to resolve item/i);
+        // Row should have error animation class
+        const row = inputUrl.closest('[data-testid="recipe-item-row-draft"]');
+        expect(row.className).toMatch(/bg-red-100/);
+        mockResolve.mockRestore();
+    });
 });
