@@ -257,7 +257,6 @@ components:
         resolved:
           $ref: "#/components/schemas/ResolvedMarketData"
       required:
-        - search
         - qty
 
     Recipe:

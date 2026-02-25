@@ -10,7 +10,7 @@ export type RecipeItem = {
      * The original trade URL for the item
      */
     tradeUrl?: string;
-    search: TradeSearchRequest;
+    search?: TradeSearchRequest;
     qty: number;
     fallbackPrice?: Price;
     resolved?: ResolvedMarketData;

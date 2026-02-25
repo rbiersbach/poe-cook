@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { DefaultService } from "../api/generated/services/DefaultService";
-import type { RecipeItem } from "../api/generated/models/RecipeItem";
-import { RecipeItemRow } from "../components/RecipeItemRow";
-import { SectionHeader, ErrorMessage, SuccessMessage } from "../components/SectionHeader";
 import { RecipeItemList } from "components/RecipeItemList";
+import { useEffect, useRef, useState } from "react";
+import type { RecipeItem } from "../api/generated/models/RecipeItem";
+import { DefaultService } from "../api/generated/services/DefaultService";
 import { Button } from "../components/Button";
+import { RecipeItemRow } from "../components/RecipeItemRow";
+import { ErrorMessage, SectionHeader, SuccessMessage } from "../components/SectionHeader";
 
 export default function CreateRecipePage() {
     // Editable input/output form state
@@ -25,15 +25,21 @@ export default function CreateRecipePage() {
     // Handlers for input fields
     const tradeUrlPattern = /^https:\/\/www\.pathofexile\.com\/trade\/search\/[A-Za-z]+\/[A-Za-z0-9]{10}$/;
 
-    const handleInputChange = (idx: number, field: string, value: any) => {
+    const handleInputChange = (
+        idx: number,
+        field: string,
+        value: any
+    ) => {
         setInputDrafts(drafts => {
             const updated = [...drafts];
             if (field === "fallbackPrice.amount") {
                 updated[idx].fallbackPrice = { ...updated[idx].fallbackPrice, amount: Number(value) };
             } else if (field === "fallbackPrice.currency") {
                 updated[idx].fallbackPrice = { ...updated[idx].fallbackPrice, currency: value };
-            } else {
-                updated[idx][field] = value;
+            } else if (field === "tradeUrl") {
+                updated[idx].tradeUrl = value;
+            } else if (field === "qty") {
+                updated[idx].qty = value;
             }
             return updated;
         });
@@ -114,7 +120,6 @@ export default function CreateRecipePage() {
                     qty: draft.qty,
                     fallbackPrice: draft.fallbackPrice,
                     resolved: res.resolved,
-                    error: res.error,
                 },
             ]);
             // Remove from drafts
@@ -138,7 +143,6 @@ export default function CreateRecipePage() {
                 qty: draft.qty,
                 fallbackPrice: draft.fallbackPrice,
                 resolved: res.resolved,
-                error: res.error,
             });
             // Clear output draft
             setOutputDraft({ tradeUrl: "", qty: 1, fallbackPrice: { amount: 0, currency: "chaos" } });

@@ -1,14 +1,13 @@
 import { TradeRate } from "trade-rate";
 import {
   LeagueName,
+  TradeFetchResponse,
   TradeSearchRequest,
   TradeSearchResponse,
-  TradeFetchResponse,
 } from "trade-types";
-import fastify from "fastify";
 
 
-import { FastifyBaseLogger, NoopLogger } from "logger";
+import { FastifyBaseLogger } from "fastify";
 
 export class TradeClient {
 
@@ -48,7 +47,7 @@ export class TradeClient {
     try {
       await this.throwIfNotOk(res);
     } catch (err) {
-      this.logger.error("TradeClient.search failed", { error: err, url, body });
+      this.logger.error({ error: err, url, body }, "TradeClient.search failed");
       throw err;
     }
 
@@ -75,7 +74,7 @@ export class TradeClient {
     try {
       await this.throwIfNotOk(res);
     } catch (err) {
-      this.logger.error("TradeClient.fetchListings failed", { error: err, url, ids, queryId });
+      this.logger.error({ error: err, url, ids, queryId }, "TradeClient.fetchListings failed");
       throw err;
     }
     const raw = await res.json() as TradeFetchResponse;
