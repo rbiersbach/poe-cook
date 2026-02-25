@@ -310,4 +310,24 @@ describe("CreateRecipePage", () => {
         mockResolve.mockRestore();
         mockSubmit.mockRestore();
     });
+    it("resolves input only when pressing Enter with invalid trade URL", async () => {
+        render(<CreateRecipePage />);
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
+            resolved: {
+                name: "Manual Item",
+                iconUrl: "icon.png",
+                originalMinPrice: { amount: 5, currency: "chaos" },
+            },
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/invalidurl" }, sort: {} },
+        });
+        // Use an invalid trade URL (does not match auto-resolve pattern)
+        const inputUrl = screen.getAllByTestId("trade-url-input")[0];
+        fireEvent.change(inputUrl, { target: { value: "www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        // Should not resolve automatically
+        expect(screen.queryByText(/manual item/i)).toBeNull();
+        // Now press Enter to trigger resolve
+        fireEvent.keyDown(inputUrl, { key: "Enter", code: "Enter" });
+        expect(await screen.findByText(/manual item/i)).toBeInTheDocument();
+        mockResolve.mockRestore();
+    });
 });

@@ -27,6 +27,12 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
     onQtyChange,
 }) => {
     if (draft) {
+        // Handler for Enter key on any input
+        const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement | HTMLSelectElement>) => {
+            if (e.key === "Enter" && onResolve && !loading && item.tradeUrl) {
+                onResolve();
+            }
+        };
         return (
             <div className="mb-2 p-2 border rounded flex items-center gap-4 w-full relative" data-testid="recipe-item-row-draft">
                 {/* Overlay when loading */}
@@ -41,6 +47,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     placeholder="Trade URL"
                     value={item.tradeUrl}
                     onChange={e => onChange && onChange("tradeUrl", e.target.value)}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     data-testid="trade-url-input"
                 />
@@ -50,6 +57,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     min={1}
                     value={item.qty}
                     onChange={e => onChange && onChange("qty", Number(e.target.value))}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     data-testid="qty-input"
                 />
@@ -59,6 +67,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     placeholder="Fallback Price"
                     value={item.fallbackPrice?.amount || ""}
                     onChange={e => onChange && onChange("fallbackPrice.amount", e.target.value)}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     data-testid="fallback-price-input"
                 />
@@ -66,6 +75,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     className="border px-2 py-1 rounded w-24"
                     value={item.fallbackPrice?.currency || "chaos"}
                     onChange={e => onChange && onChange("fallbackPrice.currency", e.target.value)}
+                    onKeyDown={handleKeyDown}
                     disabled={loading}
                     data-testid="currency-select"
                 >
@@ -82,14 +92,6 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                         Remove
                     </button>
                 )}
-                <button
-                    className="bg-blue-500 text-white px-3 py-1 rounded ml-2 flex-shrink-0"
-                    onClick={onResolve}
-                    disabled={loading || !item.tradeUrl}
-                    data-testid="resolve-input-button"
-                >
-                    Resolve
-                </button>
             </div>
         );
     }
