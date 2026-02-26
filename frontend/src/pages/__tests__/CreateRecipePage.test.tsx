@@ -345,7 +345,8 @@ describe("CreateRecipePage", () => {
         expect(await screen.findByTestId("draft-error-msg")).toHaveTextContent(/failed to resolve output item/i);
         // Row should have error animation class
         const row = outputUrl.closest('[data-testid="recipe-item-row-draft"]');
-        expect(row.className).toMatch(/bg-red-100/);
+        expect(row).not.toBeNull();
+        expect((row as HTMLElement).className).toMatch(/bg-red-100/);
         mockResolve.mockRestore();
     });
 
@@ -363,7 +364,31 @@ describe("CreateRecipePage", () => {
         expect(await screen.findByTestId("draft-error-msg")).toHaveTextContent(/failed to resolve item/i);
         // Row should have error animation class
         const row = inputUrl.closest('[data-testid="recipe-item-row-draft"]');
-        expect(row.className).toMatch(/bg-red-100/);
+        expect(row).not.toBeNull();
+        expect((row as HTMLElement).className).toMatch(/bg-red-100/);
+        mockResolve.mockRestore();
+    });
+
+    it("shows a link icon to the original trade URL in resolved rows (query does not contain tradeUrl)", async () => {
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
+            resolved: {
+                name: "Test Item",
+                iconUrl: "icon.png",
+                originalMinPrice: { amount: 10, currency: "chaos" },
+            },
+            search: { query: { someOtherField: "foo" }, sort: {} },
+        });
+        render(<CreateRecipePage />);
+        const inputUrl = screen.getAllByTestId("trade-url-input")[0];
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.keyDown(inputUrl, { key: "Enter", code: "Enter" });
+        // Wait for resolved item to appear
+        expect(await screen.findByText(/test item/i)).toBeInTheDocument();
+        // The link icon should be present and correct
+        const link = screen.getByTestId("trade-url-link");
+        expect(link).toHaveAttribute("href", "https://www.pathofexile.com/trade/search/Keepers/abcdefghij");
+        expect(link).toHaveAttribute("target", "_blank");
+        expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"));
         mockResolve.mockRestore();
     });
 });

@@ -2,6 +2,7 @@ import React from "react";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { PriceDisplay } from "../components/PriceDisplay";
 import { Loader } from "./Loader";
+import { TradeUrlLink } from "./TradeUrlLink";
 
 interface RecipeItemRowProps {
     error?: string | null;
@@ -134,6 +135,10 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                 <span>
                     Price: <PriceDisplay amount={item.resolved?.originalMinPrice?.amount} currency={item.resolved?.originalMinPrice?.currency} />
                 </span>
+                {/* Trade URL link */}
+                {item.tradeUrl && (
+                    <TradeUrlLink url={item.tradeUrl} />
+                )}
                 {!disableRemove && (
                     <button
                         className="text-red-600 hover:underline ml-2"
