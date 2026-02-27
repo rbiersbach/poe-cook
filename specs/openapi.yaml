@@ -10,6 +10,7 @@ servers:
 paths:
   /api/resolve-item:
     post:
+      x-method-name: postApiResolveItem
       summary: Resolve a trade item (fetch price and icon)
       requestBody:
         required: true
@@ -39,6 +40,7 @@ paths:
 
   /api/recipes:
     post:
+      x-method-name: postApiRecipes
       summary: Create a recipe
       requestBody:
         required: true
@@ -66,6 +68,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
     get:
+      x-method-name: getApiRecipes
       summary: List recipes
       parameters:
         - in: query
@@ -78,6 +81,12 @@ paths:
           schema:
             type: integer
           required: false
+        - in: header
+          name: x-invalidate-cache
+          schema:
+            type: boolean
+          required: false
+          description: If true, forces backend to invalidate cache and fetch fresh data
       responses:
         "200":
           description: List of recipes
@@ -99,6 +108,7 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
   /api/recipes/{id}:
     get:
+      x-method-name: getApiRecipeById
       summary: Get recipe details by id
       parameters:
         - in: path
@@ -106,6 +116,12 @@ paths:
           required: true
           schema:
             type: string
+        - in: header
+          name: x-invalidate-cache
+          schema:
+            type: boolean
+          required: false
+          description: If true, forces backend to invalidate cache and fetch fresh data
       responses:
         "200":
           description: Recipe details

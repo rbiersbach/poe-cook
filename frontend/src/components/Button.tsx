@@ -1,36 +1,71 @@
-import React from "react";
-
-interface ButtonProps {
+export interface ButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
-  color?: "blue" | "green" | "red" | "gray";
-  className?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+  title?: string;
+  "data-variant"?: string;
+  "data-size"?: string;
+  iconRight?: React.ReactNode;
+  iconLeft?: React.ReactNode;
+  as?: "a" | "button";
+  type?: "button" | "submit" | "reset";
+  onClick?: React.MouseEventHandler;
   disabled?: boolean;
-  onClick?: () => void;
-  type?: "button" | "submit";
+  className?: string;
 }
-
-
-const colorMap: Record<string, string> = {
-  blue: "bg-blue-600 text-white dark:bg-blue-700 dark:text-gray-100",
-  green: "bg-green-600 text-white dark:bg-green-700 dark:text-gray-100",
-  red: "bg-red-600 text-white dark:bg-red-700 dark:text-gray-100",
-  gray: "bg-gray-400 text-white dark:bg-gray-700 dark:text-gray-100",
-};
 
 export const Button: React.FC<ButtonProps> = ({
   children,
-  color = "blue",
-  className = "",
-  disabled = false,
-  onClick,
+  href,
+  target,
+  rel,
+  title,
+  "data-variant": dataVariant,
+  "data-size": dataSize,
+  iconRight,
+  iconLeft,
+  as = "a",
   type = "button",
-}) => (
-  <button
-    type={type}
-    className={`px-4 py-2 rounded ${colorMap[color]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
-    disabled={disabled}
-    onClick={onClick}
-  >
-    {children}
-  </button>
-);
+  onClick,
+  disabled,
+  className = "",
+  ...rest
+}) => {
+  const baseClass = `button ${className}`;
+
+  if (as === "button" || !href) {
+    return (
+      <button
+        type={type}
+        className={baseClass}
+        title={title}
+        data-variant={dataVariant}
+        data-size={dataSize}
+        onClick={onClick}
+        disabled={disabled}
+        {...rest}
+      >
+        {iconLeft}
+        {children}
+        {iconRight}
+      </button>
+    );
+  }
+  return (
+    <a
+      href={href}
+      target={target}
+      rel={rel}
+      className={baseClass}
+      title={title}
+      data-variant={dataVariant}
+      data-size={dataSize}
+      {...rest}
+    >
+      {iconLeft}
+      {children}
+      {iconRight}
+    </a>
+  );
+};

@@ -12,7 +12,6 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class DefaultService {
-// postApiTradeSearch removed
     /**
      * Resolve a trade item (fetch price and icon)
      * @param requestBody
@@ -57,16 +56,21 @@ export class DefaultService {
      * List recipes
      * @param cursor
      * @param limit
+     * @param xInvalidateCache If true, forces backend to invalidate cache and fetch fresh data
      * @returns ListRecipesResponse List of recipes
      * @throws ApiError
      */
     public static getApiRecipes(
         cursor?: string,
         limit?: number,
+        xInvalidateCache?: boolean,
     ): CancelablePromise<ListRecipesResponse> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/recipes',
+            headers: {
+                'x-invalidate-cache': xInvalidateCache,
+            },
             query: {
                 'cursor': cursor,
                 'limit': limit,
@@ -80,17 +84,22 @@ export class DefaultService {
     /**
      * Get recipe details by id
      * @param id
+     * @param xInvalidateCache If true, forces backend to invalidate cache and fetch fresh data
      * @returns Recipe Recipe details
      * @throws ApiError
      */
-    public static getApiRecipes1(
+    public static getApiRecipeById(
         id: string,
+        xInvalidateCache?: boolean,
     ): CancelablePromise<Recipe> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/recipes/{id}',
             path: {
                 'id': id,
+            },
+            headers: {
+                'x-invalidate-cache': xInvalidateCache,
             },
             errors: {
                 404: `Recipe not found`,
