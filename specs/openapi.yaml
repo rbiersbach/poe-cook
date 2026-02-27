@@ -8,35 +8,6 @@ servers:
   - url: http://localhost:3001
 
 paths:
-  /api/trade-search:
-    post:
-      summary: Submit a TradeSearchRequest and get simplified results
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/TradeSearchRequest"
-      responses:
-        "200":
-          description: Simplified trade search results
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TradeSearchResponse"
-        "400":
-          description: Invalid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "500":
-          description: Server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-
   /api/resolve-item:
     post:
       summary: Resolve a trade item (fetch price and icon)

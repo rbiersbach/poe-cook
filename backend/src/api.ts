@@ -1,15 +1,11 @@
-import { TradeClient } from "trade-client";
-import { FastifyRequest, FastifyInstance } from "fastify";
-import Fastify from "fastify";
 import cors from "@fastify/cors";
-import { TradeResolver } from "trade-resolver";
+import Fastify, { FastifyBaseLogger, FastifyInstance, FastifyRequest } from "fastify";
 import { HtmlExtractor } from "html-extractor";
-import { ResolveItemRequest } from "trade-types";
-import { ResolveItemError } from "trade-resolver";
-import { RecipeStore } from "recipe-store";
 import { RecipeService } from "recipe-service";
-import { FastifyBaseLogger } from "fastify";
-import { NoopLogger } from "logger";
+import { RecipeStore } from "recipe-store";
+import { TradeClient } from "trade-client";
+import { ResolveItemError, TradeResolver } from "trade-resolver";
+import { ResolveItemRequest } from "trade-types";
 
 export class TradeApiServer {
     private fastify!: FastifyInstance;
@@ -50,33 +46,6 @@ export class TradeApiServer {
     }
 
     private registerRoutes() {
-        this.fastify.post("/api/trade-search", async (request: FastifyRequest, reply) => {
-            try {
-                const body = request.body as any;
-                const query = body?.query;
-                const sort = body?.sort;
-                if (!query || !sort) {
-                    this.logger.warn({ body: request.body }, "Invalid TradeSearchRequest: missing query or sort");
-                    return reply.status(400).send({ error: "Invalid TradeSearchRequest" });
-                }
-
-                const search = await this.tradeClient.search({ query, sort });
-                const first10 = search.result.slice(0, 10);
-                const fetched = await this.tradeClient.fetchListings(first10, search.id);
-                const simplified = fetched.result.map((r) => ({
-                    id: r.id,
-                    price: r.listing.price
-                        ? `${r.listing.price.amount} ${r.listing.price.currency} (${r.listing.price.type})`
-                        : "no price",
-                }));
-                reply.send({ result: simplified });
-            } catch (err) {
-                this.logger.error({ error: err, body: request.body }, "Unexpected error in /api/trade-search");
-                return reply.status(500).send({ error: "Server error" });
-            }
-        });
-
-
         this.fastify.post("/api/resolve-item", async (request: FastifyRequest<{ Body: ResolveItemRequest }>, reply) => {
             try {
                 const body = request.body;
