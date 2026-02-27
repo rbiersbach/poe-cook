@@ -1,10 +1,10 @@
 import React from "react";
-import ItemIcon from "./ItemIcon";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { PriceDisplay } from "../components/PriceDisplay";
+import ItemIcon from "./ItemIcon";
 import { Loader } from "./Loader";
-import { TradeUrlLink } from "./TradeUrlLink";
 import { RemoveButton } from "./RemoveButton";
+import { TradeUrlLink } from "./TradeUrlLink";
 
 interface RecipeItemRowProps {
     error?: string | null;
@@ -42,12 +42,12 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
         };
         return (
             <div
-                className={`card-row border-primary${errorAnim ? ' bg-red-100 dark:bg-red-900 border-red-400 dark:border-red-500' : ''}`}
+                className={`card-row border-primary${errorAnim ? ' bg-red-100 dark:bg-red-900 border-red-400 dark:border-red-500' : ''} relative`}
                 data-testid="recipe-item-row-draft"
             >
                 {/* Overlay when loading */}
                 {loading && (
-                    <div className="absolute inset-0 bg-white dark:bg-gray-900 bg-opacity-60 flex items-center justify-center z-10 rounded" data-testid="loader-overlay">
+                    <div className="row-loader-overlay" data-testid="loader-overlay">
                         <Loader size={28} />
                     </div>
                 )}
@@ -100,7 +100,15 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     />
                 )}
                 {error && (
-                    <span className="absolute left-2 -bottom-5 text-xs text-error dark:text-red-400 animate-fade-in" data-testid="draft-error-msg">{error}</span>
+                    <span
+                        className="form-error-msg"
+                        data-testid="draft-error-msg"
+                        style={{
+                            animation: 'fade-in 0.3s ease',
+                        }}
+                    >
+                        {error}
+                    </span>
                 )}
             </div>
         );
@@ -114,7 +122,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                 <span className="flex items-center gap-1">
                     Qty:
                     <button
-                        className="px-1 text-lg border rounded bg-gray-200 hover:bg-gray-300"
+                        className="qty-btn"
                         onClick={() => onQtyChange && onQtyChange(Math.max(1, item.qty - 1))}
                         aria-label="Decrease quantity"
                         type="button"
@@ -123,7 +131,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     </button>
                     <span className="mx-1">{item.qty}</span>
                     <button
-                        className="px-1 text-lg border rounded bg-gray-200 hover:bg-gray-300"
+                        className="qty-btn"
                         onClick={() => onQtyChange && onQtyChange(item.qty + 1)}
                         aria-label="Increase quantity"
                         type="button"
