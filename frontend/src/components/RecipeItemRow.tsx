@@ -1,4 +1,5 @@
 import React from "react";
+import ItemIcon from "./ItemIcon";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { PriceDisplay } from "../components/PriceDisplay";
 import { Loader } from "./Loader";
@@ -108,7 +109,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
     if (resolved) {
         return (
             <div className="card-row border-primary flex items-center" data-testid="recipe-item-row-resolved">
-                <img src={item.resolved?.iconUrl} alt="icon" className="w-8 h-8" />
+                <ItemIcon src={item.resolved?.iconUrl} alt="icon" className="w-8 h-8" />
                 <span>{item.resolved?.name || "Unknown Item"}</span>
                 <span className="flex items-center gap-1">
                     Qty:
