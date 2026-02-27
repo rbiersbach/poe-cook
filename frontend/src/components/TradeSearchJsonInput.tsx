@@ -15,14 +15,14 @@ export function TradeSearchJsonInput({ onSubmit }: { onSubmit: (json: any) => vo
     };
 
     return (
-        <div className="w-full max-w-xl bg-white rounded shadow p-6 flex flex-col" data-testid="trade-json-input">
-            <label htmlFor="trade-json" className="block text-lg font-semibold mb-2">
+        <div className="w-full max-w-xl bg-surface rounded shadow p-6 flex flex-col" data-testid="trade-json-input">
+            <label htmlFor="trade-json" className="block text-lg font-semibold mb-2 header">
                 TradeSearchRequest JSON
             </label>
             <textarea
                 id="trade-json"
                 data-testid="trade-json-textarea"
-                className="w-full border border-gray-300 rounded p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full border border-gray-300 dark:border-gray-700 rounded p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-900 dark:text-gray-100"
                 rows={8}
                 value={input}
                 onChange={e => setInput(e.target.value)}
@@ -36,7 +36,7 @@ export function TradeSearchJsonInput({ onSubmit }: { onSubmit: (json: any) => vo
                 >
                     Submit
                 </button>
-                {error && <div data-testid="trade-json-error" className="text-red-600 font-medium">{error}</div>}
+                {error && <div data-testid="trade-json-error" className="text-error dark:text-red-400 font-medium">{error}</div>}
             </div>
         </div>
     );

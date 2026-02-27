@@ -3,6 +3,7 @@ import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { PriceDisplay } from "../components/PriceDisplay";
 import { Loader } from "./Loader";
 import { TradeUrlLink } from "./TradeUrlLink";
+import { RemoveButton } from "./RemoveButton";
 
 interface RecipeItemRowProps {
     error?: string | null;
@@ -40,18 +41,18 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
         };
         return (
             <div
-                className={`mb-2 p-2 border rounded flex items-center gap-4 w-full relative transition-colors duration-300 ${errorAnim ? 'bg-red-100 border-red-400' : ''}`}
+                className={`card-row border-primary${errorAnim ? ' bg-red-100 dark:bg-red-900 border-red-400 dark:border-red-500' : ''}`}
                 data-testid="recipe-item-row-draft"
             >
                 {/* Overlay when loading */}
                 {loading && (
-                    <div className="absolute inset-0 bg-white bg-opacity-60 flex items-center justify-center z-10 rounded" data-testid="loader-overlay">
+                    <div className="absolute inset-0 bg-white dark:bg-gray-900 bg-opacity-60 flex items-center justify-center z-10 rounded" data-testid="loader-overlay">
                         <Loader size={28} />
                     </div>
                 )}
                 <input
                     type="text"
-                    className="border px-2 py-1 rounded w-64"
+                    className="input"
                     placeholder="Trade URL"
                     value={item.tradeUrl}
                     onChange={e => onChange && onChange("tradeUrl", e.target.value)}
@@ -61,7 +62,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                 />
                 <input
                     type="number"
-                    className="border px-2 py-1 rounded w-20"
+                    className="input w-20"
                     min={1}
                     value={item.qty}
                     onChange={e => onChange && onChange("qty", Number(e.target.value))}
@@ -71,7 +72,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                 />
                 <input
                     type="number"
-                    className="border px-2 py-1 rounded w-24"
+                    className="input w-24"
                     placeholder="Fallback Price"
                     value={item.fallbackPrice?.amount || ""}
                     onChange={e => onChange && onChange("fallbackPrice.amount", e.target.value)}
@@ -80,7 +81,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     data-testid="fallback-price-input"
                 />
                 <select
-                    className="border px-2 py-1 rounded w-24"
+                    className="input w-24"
                     value={item.fallbackPrice?.currency || "chaos"}
                     onChange={e => onChange && onChange("fallbackPrice.currency", e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -91,17 +92,14 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     <option value="divine">divine</option>
                 </select>
                 {!disableRemove && (
-                    <button
-                        className="text-red-600 hover:underline ml-2"
+                    <RemoveButton
                         onClick={onRemove}
                         disabled={loading}
                         data-testid="remove-input-button"
-                    >
-                        Remove
-                    </button>
+                    />
                 )}
                 {error && (
-                    <span className="absolute left-2 -bottom-5 text-xs text-red-600 animate-fade-in" data-testid="draft-error-msg">{error}</span>
+                    <span className="absolute left-2 -bottom-5 text-xs text-error dark:text-red-400 animate-fade-in" data-testid="draft-error-msg">{error}</span>
                 )}
             </div>
         );
@@ -109,7 +107,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
 
     if (resolved) {
         return (
-            <div className="flex items-center gap-4 mb-2 p-2 border rounded bg-gray-50" data-testid="recipe-item-row-resolved">
+            <div className="card-row border-primary flex items-center" data-testid="recipe-item-row-resolved">
                 <img src={item.resolved?.iconUrl} alt="icon" className="w-8 h-8" />
                 <span>{item.resolved?.name || "Unknown Item"}</span>
                 <span className="flex items-center gap-1">
@@ -140,12 +138,10 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     <TradeUrlLink url={item.tradeUrl} />
                 )}
                 {!disableRemove && (
-                    <button
-                        className="text-red-600 hover:underline ml-2"
+                    <RemoveButton
                         onClick={onRemove}
-                    >
-                        Remove
-                    </button>
+                        data-testid="remove-input-button"
+                    />
                 )}
             </div>
         );

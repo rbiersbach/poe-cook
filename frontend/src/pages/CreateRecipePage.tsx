@@ -242,8 +242,8 @@ export default function CreateRecipePage() {
     };
 
     return (
-        <div className="max-w-2xl mx-auto p-6">
-            <h1 className="text-2xl font-bold mb-4">Create Recipe</h1>
+        <div className="max-w-2xl mx-auto p-6 container rounded shadow">
+            <h1 className="text-2xl font-bold mb-4 header">Create Recipe</h1>
             {error && <ErrorMessage message={error} />}
             {success && <SuccessMessage message={success} />}
             <div className="mb-6">

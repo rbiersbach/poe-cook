@@ -2,7 +2,7 @@ import React from "react";
 
 export const Loader: React.FC<{ size?: number }> = ({ size = 20 }) => (
   <svg
-    className="animate-spin"
+    className="animate-spin text-primary"
     width={size}
     height={size}
     viewBox="0 0 24 24"

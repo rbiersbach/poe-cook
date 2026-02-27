@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 :root {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
@@ -7,6 +8,7 @@
   color-scheme: light;
   color: #111;
   background-color: #f6f6f6;
+  @apply dark:bg-gray-900 dark:text-gray-100;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -18,4 +20,50 @@
 
 body {
   margin: 0;
+}
+
+/* Utility classes for light/dark mode */
+
+.bg-surface {
+  @apply bg-white dark:bg-gray-900;
+}
+
+.header {
+  @apply text-gray-900 dark:text-gray-100;
+}
+
+.container {
+  @apply bg-white dark:bg-gray-900;
+}
+
+.card-row {
+  @apply mb-2 p-2 border border-gray-300 dark:border-gray-700 rounded flex items-center gap-4 w-full relative transition-colors duration-300 bg-gray-50 dark:bg-gray-800;
+}
+
+.border-primary {
+  @apply border-gray-300 dark:border-gray-700;
+}
+
+.nav-bar {
+  @apply w-full bg-white dark:bg-gray-800 shadow mb-6 py-4 px-8 flex gap-6;
+}
+
+.text-primary {
+  @apply text-gray-900 dark:text-gray-100;
+}
+
+.link {
+  @apply text-blue-700 dark:text-blue-300 font-semibold hover:underline;
+}
+
+.input {
+  @apply border px-2 py-1 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100;
+}
+
+.text-error {
+  @apply text-red-600 font-medium;
+}
+
+.card-row {
+  @apply mb-2 p-2 border rounded flex items-center gap-4 w-full relative transition-colors duration-300;
 }

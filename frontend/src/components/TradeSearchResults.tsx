@@ -8,13 +8,13 @@ interface TradeSearchResult {
 export function TradeSearchResults({ results }: { results: TradeSearchResult[] }) {
   if (!results.length) {
     return (
-      <div className="text-gray-500 text-center">No results to display.</div>
+      <div className="text-gray-500 dark:text-gray-400 text-center">No results to display.</div>
     );
   }
 
   return (
-    <section className="mt-8 w-full max-w-xl bg-white rounded shadow p-6">
-      <h2 className="text-xl font-semibold mb-4">Results</h2>
+    <section className="mt-8 w-full max-w-xl container rounded shadow p-6">
+      <h2 className="text-xl font-semibold mb-4 text-primary">Results</h2>
       <ul>
         {results.map((r, i) => (
           <li key={i} className="mb-2">

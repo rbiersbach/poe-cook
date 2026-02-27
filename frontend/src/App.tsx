@@ -24,10 +24,10 @@ function MainSearch() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-start py-10">
+    <div className="min-h-screen bg-surface flex flex-col items-center justify-start py-10">
       <TradeSearchJsonInput onSubmit={handleJsonSubmit} />
       {error && (
-        <div data-testid="app-error" className="text-red-600 font-medium mt-4">
+        <div data-testid="app-error" className="text-error mt-4">
           {error}
         </div>
       )}
@@ -46,9 +46,9 @@ function MainSearch() {
 function App() {
   return (
     <Router>
-      <nav className="w-full bg-white shadow mb-6 py-4 px-8 flex gap-6">
-        <Link to="/" className="text-blue-700 font-semibold hover:underline">Trade Search</Link>
-        <Link to="/create" className="text-blue-700 font-semibold hover:underline">Create Recipe</Link>
+      <nav className="nav-bar">
+        <Link to="/" className="link">Trade Search</Link>
+        <Link to="/create" className="link">Create Recipe</Link>
       </nav>
       <Routes>
         <Route path="/" element={<MainSearch />} />

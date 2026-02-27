@@ -9,11 +9,12 @@ interface ButtonProps {
   type?: "button" | "submit";
 }
 
+
 const colorMap: Record<string, string> = {
-  blue: "bg-blue-600 text-white",
-  green: "bg-green-600 text-white",
-  red: "bg-red-600 text-white",
-  gray: "bg-gray-400 text-white",
+  blue: "bg-blue-600 text-white dark:bg-blue-700 dark:text-gray-100",
+  green: "bg-green-600 text-white dark:bg-green-700 dark:text-gray-100",
+  red: "bg-red-600 text-white dark:bg-red-700 dark:text-gray-100",
+  gray: "bg-gray-400 text-white dark:bg-gray-700 dark:text-gray-100",
 };
 
 export const Button: React.FC<ButtonProps> = ({

@@ -12,7 +12,7 @@ export const TradeUrlLink: React.FC<TradeUrlLinkProps> = ({ url, className }) =>
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center text-blue-500 hover:underline ${className || ""}`}
+            className={`inline-flex items-center link ${className || ""}`}
             aria-label="Open trade URL in new tab"
             data-testid="trade-url-link"
         >
