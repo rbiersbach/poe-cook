@@ -58,7 +58,7 @@ const RecipesListPage: React.FC = () => {
     };
 
     return (
-        <div className="recipes-list-page container mx-auto max-w-2xl py-8 px-4">
+        <div className="recipes-list-page container mx-auto w-full md:min-w-[36rem] md:max-w-6xl py-8 px-4">
             <h1 className="text-2xl font-bold mb-6">Recipes</h1>
             {loading && <div data-testid="page-loader" className="text-muted">Loading...</div>}
             {error && <div data-testid="page-error" className="text-error">Error: {error}</div>}
