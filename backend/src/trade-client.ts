@@ -1,3 +1,8 @@
+export interface ITradeClient {
+  search(body: TradeSearchRequest): Promise<TradeSearchResponse>;
+  fetchListings(ids: string[], queryId: string): Promise<TradeFetchResponse>;
+  searchAndFetch(body: TradeSearchRequest, maxResults?: number): Promise<{ search: TradeSearchResponse; listings: TradeFetchResponse; }>;
+}
 import { TradeRate } from "trade-rate";
 import {
   LeagueName,
@@ -9,7 +14,7 @@ import {
 
 import { FastifyBaseLogger } from "fastify";
 
-export class TradeClient {
+export class TradeClient implements ITradeClient {
 
   private baseUrl: string;
   private userAgent: string;

@@ -10,7 +10,7 @@ servers:
 paths:
   /api/resolve-item:
     post:
-      x-method-name: postApiResolveItem
+      operationId: postApiResolveItem
       summary: Resolve a trade item (fetch price and icon)
       requestBody:
         required: true
@@ -40,7 +40,7 @@ paths:
 
   /api/recipes:
     post:
-      x-method-name: postApiRecipes
+      operationId: postApiRecipes
       summary: Create a recipe
       requestBody:
         required: true
@@ -68,7 +68,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
     get:
-      x-method-name: getApiRecipes
+      operationId: getApiRecipes
       summary: List recipes
       parameters:
         - in: query
@@ -108,7 +108,7 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
   /api/recipes/{id}:
     get:
-      x-method-name: getApiRecipeById
+      operationId: getApiRecipeById
       summary: Get recipe details by id
       parameters:
         - in: path
@@ -238,9 +238,9 @@ components:
         search:
           $ref: "#/components/schemas/TradeSearchRequest"
         qty:
-          type: integer
-        fallbackPrice:
-          $ref: "#/components/schemas/Price"
+          type: number
+          format: float
+          description: Quantity or rate (can be decimal, e.g. 0.2 for 20% chance)
         resolved:
           $ref: "#/components/schemas/ResolvedMarketData"
       required:
@@ -251,35 +251,47 @@ components:
       properties:
         id:
           type: string
+        name:
+          type: string
+          description: Name of the recipe (prefilled from first output's name)
         inputs:
           type: array
           items:
             $ref: "#/components/schemas/RecipeItem"
-        output:
-          $ref: "#/components/schemas/RecipeItem"
+        outputs:
+          type: array
+          items:
+            $ref: "#/components/schemas/RecipeItem"
         createdAt:
           type: string
         updatedAt:
           type: string
       required:
         - id
+        - name
         - inputs
-        - output
+        - outputs
         - createdAt
         - updatedAt
 
     CreateRecipeRequest:
       type: object
       properties:
+        name:
+          type: string
+          description: Name of the recipe (required)
         inputs:
           type: array
           items:
             $ref: "#/components/schemas/RecipeItem"
-        output:
-          $ref: "#/components/schemas/RecipeItem"
+        outputs:
+          type: array
+          items:
+            $ref: "#/components/schemas/RecipeItem"
       required:
+        - name
         - inputs
-        - output
+        - outputs
 
     CreateRecipeResponse:
       type: object

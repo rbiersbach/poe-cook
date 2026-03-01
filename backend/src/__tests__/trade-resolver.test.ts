@@ -1,34 +1,40 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import fs from "fs";
 import path from "path";
-import { TradeResolver } from "../trade-resolver";
+import { ITradeClient } from "../trade-client";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { HtmlExtractor } from "../html-extractor";
+import { ResolveItemError, TradeResolver } from "../trade-resolver";
 import { TradeSearchRequest } from "../trade-types";
-import { ResolveItemError } from "../trade-resolver";
 
 const exampleHtmlPath = path.join(__dirname, "./resources/trade_page.html");
 
-// Mock HtmlExtractor.fetchHtml to return the example HTML
+
 vi.spyOn(HtmlExtractor, "fetchHtml").mockImplementation(async () => {
     return fs.readFileSync(exampleHtmlPath, "utf8");
 });
 
+// Mock extractJsonFromHtml to return all required fields for validation
+vi.spyOn(HtmlExtractor, "extractJsonFromHtml").mockImplementation(() => ({
+    tab: {},
+    realm: "pc",
+    realms: {},
+    leagues: [],
+    news: [],
+    basePath: "/",
+    league: "Sanctum",
+    state: {
+        name: "Mageblood",
+        type: "Heavy Belt",
+        status: "securable",
+        stats: [{ type: "and" }],
+        filters: undefined,
+    },
+}));
+
 describe("TradeResolver", () => {
-        it("should normalize trade URL by adding https:// and www if missing", async () => {
-            const tradeUrlNoProtocol = "pathofexile.com/trade";
-            const tradeUrlNoWww = "https://pathofexile.com/trade";
-            const poeSessid = "test-session-id";
-            // Spy on fetchHtml to capture the URL used
-            const fetchHtmlSpy = vi.spyOn(mockHtmlExtractor, "fetchHtml");
-            await resolver.resolveTradeRequestFromUrl(tradeUrlNoProtocol, poeSessid);
-            expect(fetchHtmlSpy).toHaveBeenCalledWith("https://www.pathofexile.com/trade", poeSessid);
-            await resolver.resolveTradeRequestFromUrl(tradeUrlNoWww, poeSessid);
-            expect(fetchHtmlSpy).toHaveBeenCalledWith("https://www.pathofexile.com/trade", poeSessid);
-            fetchHtmlSpy.mockRestore();
-        });
     let NoopLogger;
-    let mockTradeClient;
-    let mockHtmlExtractor;
+    let mockTradeClient: ITradeClient;
+    let mockHtmlExtractor: HtmlExtractor;
     let resolver: TradeResolver;
     let listingsData: any;
 
@@ -94,16 +100,26 @@ describe("TradeResolver", () => {
             ]
         };
         mockTradeClient = {
-            searchAndFetch: vi.fn(async () => ({ search: {}, listings: listingsData })),
-            search: vi.fn(async () => ({ result: [], id: "mock-id" })),
+            searchAndFetch: vi.fn(async () => ({
+                search: { id: "mock-id", result: [], total: 0 },
+                listings: listingsData
+            })),
+            search: vi.fn(async () => ({ id: "mock-id", result: [], total: 0 })),
             fetchListings: vi.fn(async () => ({ result: [] }))
         };
-        mockHtmlExtractor = {
-            fetchHtml: vi.fn(async () => "<html></html>"),
-            extractJsonFromHtml: vi.fn(() => ({ state: { name: "Mageblood", type: "Heavy Belt", status: "securable", stats: [{ type: "and" }] } })),
-            validateExtractedJson: vi.fn(() => { }),
-        };
-        resolver = new TradeResolver(NoopLogger, mockTradeClient, mockHtmlExtractor);
+        resolver = new TradeResolver(NoopLogger, mockTradeClient, HtmlExtractor);
+    });
+    it("should normalize trade URL by adding https:// and www if missing", async () => {
+        const tradeUrlNoProtocol = "pathofexile.com/trade";
+        const tradeUrlNoWww = "https://pathofexile.com/trade";
+        const poeSessid = "test-session-id";
+        // Spy on fetchHtml to capture the URL used
+        const fetchHtmlSpy = vi.spyOn(HtmlExtractor, "fetchHtml");
+        await resolver.resolveTradeRequestFromUrl(tradeUrlNoProtocol, poeSessid);
+        expect(fetchHtmlSpy).toHaveBeenCalledWith("https://www.pathofexile.com/trade", poeSessid);
+        await resolver.resolveTradeRequestFromUrl(tradeUrlNoWww, poeSessid);
+        expect(fetchHtmlSpy).toHaveBeenCalledWith("https://www.pathofexile.com/trade", poeSessid);
+        fetchHtmlSpy.mockRestore();
     });
 
     it("should resolve item with relevant mock listings data", async () => {

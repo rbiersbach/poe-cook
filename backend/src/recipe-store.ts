@@ -1,13 +1,19 @@
+export interface IRecipeStore {
+    getAll(): Recipe[];
+    add(recipe: Recipe): Recipe;
+    clear(): void;
+    get(id: string): Recipe | undefined;
+}
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 import { Recipe } from "trade-types";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DEFAULT_RECIPES_PATH = path.join(__dirname, "../data/recipes.json");
 
-export class RecipeStore {
+export class RecipeStore implements IRecipeStore {
     private recipes: Map<string, Recipe> = new Map();
     private filePath: string;
 

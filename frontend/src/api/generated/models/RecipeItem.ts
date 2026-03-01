@@ -11,8 +11,10 @@ export type RecipeItem = {
      */
     tradeUrl?: string;
     search?: TradeSearchRequest;
+    /**
+     * Quantity or rate (can be decimal, e.g. 0.2 for 20% chance)
+     */
     qty: number;
-    fallbackPrice?: Price;
     resolved?: ResolvedMarketData;
 };
 

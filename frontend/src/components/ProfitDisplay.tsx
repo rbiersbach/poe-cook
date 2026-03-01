@@ -7,12 +7,15 @@ interface ProfitDisplayProps {
 }
 
 function computeProfit(recipe: Recipe): [number, number] | null {
-    if (!recipe.inputs.every(i => i.resolved && i.resolved.minPrice) || !recipe.output.resolved || !recipe.output.resolved.minPrice) {
+    if (!recipe.inputs.every(i => i.resolved && i.resolved.minPrice)) {
         return null;
     }
+    // Sum all outputs' value
+    const allOutputsHavePrice = recipe.outputs.every(o => o.resolved && o.resolved.minPrice);
+    if (!allOutputsHavePrice) return null;
     const costChaos = recipe.inputs.reduce((sum, item) => sum + (item.qty * (item.resolved?.minPrice?.amount ?? 0)), 0);
-    const revenueChaos = recipe.output.qty * (recipe.output.resolved.minPrice.amount ?? 0);
-    const conservativeRevenue = revenueChaos * 0.9; // Assume we only get 90% of the listed price on average
+    const revenueChaos = recipe.outputs.reduce((sum, out) => sum + (out.qty * (out.resolved?.minPrice?.amount ?? 0)), 0);
+    const conservativeRevenue = revenueChaos * 0.9;
     return [conservativeRevenue - costChaos, revenueChaos - costChaos];
 }
 

@@ -8,29 +8,30 @@ import path from "path";
 import { TradeClient } from "trade-client";
 import { Recipe } from "trade-types";
 import { TradeApiServer } from "../api";
+import type { IRecipeService } from "../recipe-service";
 import { NoopLogger } from "../logger";
 import { ResolveItemError, TradeResolver } from "../trade-resolver";
 
 const TEST_RECIPES_PATH = path.join(__dirname, "resources/recipes.test.json");
 
-const mockGetAllRecipes = vi.fn(() => []);
-const mockGetRecipeById = vi.fn();
-const mockAdd = vi.fn();
 
-class MockRecipeService {
-    private store = {};
-    private resolver = {};
-    private logger = {};
-    getAllRecipes = mockGetAllRecipes;
-    getRecipeById = mockGetRecipeById;
-    addRecipe = mockAdd;
-    refreshRecipe = vi.fn();
-    refreshItem = vi.fn();
-}
+const mockGetAllRecipes = vi.fn(async (_invalidateCache?: boolean) => [] as Recipe[]);
+const mockGetRecipeById = vi.fn(async (_id: string, _invalidateCache?: boolean) => undefined as Recipe | undefined);
+const mockAdd = vi.fn(async (_recipe: Recipe) => {});
+const mockRefreshRecipe = vi.fn(async (recipe: Recipe) => recipe);
+const mockRefreshItem = vi.fn(async (item: any) => item);
+
+const recipeServiceMock: IRecipeService = {
+    getAllRecipes: mockGetAllRecipes,
+    getRecipeById: mockGetRecipeById,
+    addRecipe: mockAdd,
+    refreshRecipe: mockRefreshRecipe,
+    refreshItem: mockRefreshItem,
+};
+
 
 let tradeClientMock: TradeClient;
 let apiServer: TradeApiServer;
-let recipeServiceMock: MockRecipeService;
 
 beforeAll(async () => {
     // Clear test file before starting
@@ -40,7 +41,6 @@ beforeAll(async () => {
         fetchListings: vi.fn(),
         logger: NoopLogger,
     } as unknown as TradeClient;
-    recipeServiceMock = new MockRecipeService();
     apiServer = new TradeApiServer(tradeClientMock, recipeServiceMock, NoopLogger);
     await apiServer.server.listen({ port: 0 });
 });
@@ -123,16 +123,16 @@ describe("POST /api/recipes", () => {
         mockAdd.mockClear();
         mockGetAllRecipes.mockClear();
         mockGetRecipeById.mockClear();
-        mockGetAllRecipes.mockReturnValue([]);
+        mockGetAllRecipes.mockResolvedValue([]);
     });
 
     it("creates a recipe and returns it", async () => {
         const recipeInput = {
+            name: "Test Recipe",
             inputs: [
                 {
                     search: { query: { url: "url1" }, sort: { price: "asc" } },
                     qty: 2,
-                    fallbackPrice: { amount: 10, currency: "chaos" },
                     resolved: {
                         iconUrl: "icon1.png",
                         name: "Input Item 1",
@@ -147,7 +147,6 @@ describe("POST /api/recipes", () => {
                 {
                     search: { query: { url: "url2" }, sort: { price: "asc" } },
                     qty: 1,
-                    fallbackPrice: { amount: 20, currency: "divine" },
                     resolved: {
                         iconUrl: "icon2.png",
                         name: "Input Item 2",
@@ -160,24 +159,39 @@ describe("POST /api/recipes", () => {
                     }
                 }
             ],
-            output: {
-                search: { query: { url: "url3" }, sort: { price: "asc" } },
-                qty: 1,
-                fallbackPrice: { amount: 100, currency: "chaos" },
-                resolved: {
-                    iconUrl: "icon3.png",
-                    name: "Output Item",
-                    minPrice: { amount: 100, currency: "chaos" },
-                    originalMinPrice: { amount: 120, currency: "chaos" },
-                    medianPrice: { amount: 110, currency: "chaos" },
-                    originalMedianPrice: { amount: 130, currency: "chaos" },
-                    medianCount: 10,
-                    fetchedAt: new Date().toISOString(),
+            outputs: [
+                {
+                    search: { query: { url: "url3" }, sort: { price: "asc" } },
+                    qty: 1,
+                    resolved: {
+                        iconUrl: "icon3.png",
+                        name: "Output Item",
+                        minPrice: { amount: 100, currency: "chaos" },
+                        originalMinPrice: { amount: 120, currency: "chaos" },
+                        medianPrice: { amount: 110, currency: "chaos" },
+                        originalMedianPrice: { amount: 130, currency: "chaos" },
+                        medianCount: 10,
+                        fetchedAt: new Date().toISOString(),
+                    }
+                },
+                {
+                    search: { query: { url: "url4" }, sort: { price: "asc" } },
+                    qty: 0.5,
+                    resolved: {
+                        iconUrl: "icon4.png",
+                        name: "Output Item 2",
+                        minPrice: { amount: 50, currency: "divine" },
+                        originalMinPrice: { amount: 60, currency: "divine" },
+                        medianPrice: { amount: 55, currency: "divine" },
+                        originalMedianPrice: { amount: 65, currency: "divine" },
+                        medianCount: 7,
+                        fetchedAt: new Date().toISOString(),
+                    }
                 }
-            }
+            ]
         };
 
-        mockAdd.mockImplementation(recipe => recipe);
+        mockAdd.mockImplementation(async recipe => {});
         const response = await supertest(apiServer.server.server)
             .post("/api/recipes")
             .send(recipeInput)
@@ -186,13 +200,15 @@ describe("POST /api/recipes", () => {
         // All items should have search, not tradeUrl
         expect(response.body.recipe.inputs[0].search).toBeDefined();
         expect(response.body.recipe.inputs[1].search).toBeDefined();
-        expect(response.body.recipe.output.search).toBeDefined();
+        expect(response.body.recipe.outputs[0].search).toBeDefined();
+        expect(response.body.recipe.outputs[1].search).toBeDefined();
+        expect(response.body.recipe.outputs.length).toBe(2);
         expect(typeof response.body.recipe.id).toBe("string");
         expect(typeof response.body.recipe.createdAt).toBe("string");
         expect(typeof response.body.recipe.updatedAt).toBe("string");
     });
 
-    it("returns 400 for missing inputs or output", async () => {
+    it("returns 400 for missing inputs, outputs, or name", async () => {
         const response = await supertest(apiServer.server.server)
             .post("/api/recipes")
             .send({})
@@ -203,7 +219,7 @@ describe("POST /api/recipes", () => {
     it("returns 400 for non-array inputs", async () => {
         const response = await supertest(apiServer.server.server)
             .post("/api/recipes")
-            .send({ inputs: "not-an-array", output: { tradeUrl: "url", qty: 1 } })
+            .send({ name: "Test", inputs: "not-an-array", outputs: [{ tradeUrl: "url", qty: 1 }] })
             .expect(400);
         expect(response.body.error).toBe("Invalid CreateRecipeRequest");
     });
@@ -215,8 +231,8 @@ describe("GET /api/recipes/:id", () => {
     });
 
     it("returns the recipe for a valid id", async () => {
-        const recipe = { id: "r1", inputs: [], output: {}, createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" };
-        mockGetRecipeById.mockReturnValueOnce(recipe);
+        const recipe = { id: "r1", name: "Test Recipe", inputs: [], outputs: [], createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" };
+        mockGetRecipeById.mockResolvedValueOnce(recipe);
         const response = await supertest(apiServer.server.server)
             .get("/api/recipes/r1")
             .expect(200);
@@ -224,7 +240,7 @@ describe("GET /api/recipes/:id", () => {
     });
 
     it("returns 404 if recipe not found", async () => {
-        mockGetRecipeById.mockReturnValueOnce(undefined);
+        mockGetRecipeById.mockResolvedValueOnce(undefined);
         const response = await supertest(apiServer.server.server)
             .get("/api/recipes/doesnotexist")
             .expect(404);
@@ -235,10 +251,10 @@ describe("GET /api/recipes/:id", () => {
 describe("GET /api/recipes", () => {
     beforeEach(() => {
         mockGetAllRecipes.mockClear();
-        mockGetAllRecipes.mockReturnValue([
-            new Recipe({ id: "r1", inputs: [], output: { qty: 1 }, createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" }),
-            new Recipe({ id: "r2", inputs: [], output: { qty: 1 }, createdAt: "2024-01-02T00:00:00Z", updatedAt: "2024-01-02T00:00:00Z" }),
-            new Recipe({ id: "r3", inputs: [], output: { qty: 1 }, createdAt: "2024-01-03T00:00:00Z", updatedAt: "2024-01-03T00:00:00Z" }),
+        mockGetAllRecipes.mockResolvedValue([
+            { id: "r1", name: "Recipe 1", inputs: [], outputs: [], createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" },
+            { id: "r2", name: "Recipe 2", inputs: [], outputs: [], createdAt: "2024-01-02T00:00:00Z", updatedAt: "2024-01-02T00:00:00Z" },
+            { id: "r3", name: "Recipe 3", inputs: [], outputs: [], createdAt: "2024-01-03T00:00:00Z", updatedAt: "2024-01-03T00:00:00Z" },
         ]);
     });
 

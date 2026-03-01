@@ -1,6 +1,7 @@
 [
   {
     "id": "1771877701526-0b04f21d98a22",
+    "name": "Transcendent Flesh Crimson Jewel",
     "inputs": [
       {
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/opV2bEWZsl",
@@ -24,10 +25,6 @@
           }
         },
         "qty": 1,
-        "fallbackPrice": {
-          "amount": 0,
-          "currency": "chaos"
-        },
         "resolved": {
           "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL1RlbXBlcmVkUmVkIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/66e750a720/TemperedRed.png",
           "name": "Tempered Flesh Crimson Jewel",
@@ -42,15 +39,15 @@
           },
           "originalMedianPrice": {
             "type": "~b/o",
-            "amount": 4,
-            "currency": "vaal"
-          },
-          "medianPrice": {
-            "amount": 4,
+            "amount": 3,
             "currency": "chaos"
           },
-          "medianCount": 9,
-          "fetchedAt": "2026-02-27T21:01:07.168Z"
+          "medianPrice": {
+            "amount": 3,
+            "currency": "chaos"
+          },
+          "medianCount": 6,
+          "fetchedAt": "2026-02-28T22:07:40.486Z"
         }
       },
       {
@@ -74,20 +71,16 @@
           }
         },
         "qty": 1,
-        "fallbackPrice": {
-          "amount": 0,
-          "currency": "chaos"
-        },
         "resolved": {
           "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVmlhbFRlbXBlcmVkRmxlc2giLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/ff6f1f931e/VialTemperedFlesh.png",
           "name": "Vial of Transcendence",
           "originalMinPrice": {
             "type": "~b/o",
-            "amount": 50,
+            "amount": 1,
             "currency": "chaos"
           },
           "minPrice": {
-            "amount": 50,
+            "amount": 1,
             "currency": "chaos"
           },
           "originalMedianPrice": {
@@ -100,7 +93,7 @@
             "currency": "chaos"
           },
           "medianCount": 10,
-          "fetchedAt": "2026-02-27T21:01:07.156Z"
+          "fetchedAt": "2026-02-28T22:07:40.468Z"
         }
       },
       {
@@ -138,10 +131,6 @@
           }
         },
         "qty": 1,
-        "fallbackPrice": {
-          "amount": 0,
-          "currency": "chaos"
-        },
         "resolved": {
           "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9UZW1wbGVNYXAiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/9be10cc6b3/TempleMap.png",
           "name": "Chronicle of Atzoatl",
@@ -164,66 +153,65 @@
             "currency": "chaos"
           },
           "medianCount": 10,
-          "fetchedAt": "2026-02-27T21:01:07.234Z"
+          "fetchedAt": "2026-02-28T22:07:40.523Z"
         }
       }
     ],
-    "output": {
-      "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/6zoE0w82hG",
-      "search": {
-        "query": {
-          "status": {
-            "option": "securable"
+    "outputs": [
+      {
+        "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/6zoE0w82hG",
+        "search": {
+          "query": {
+            "status": {
+              "option": "securable"
+            },
+            "name": "Transcendent Flesh",
+            "type": "Crimson Jewel",
+            "stats": [
+              {
+                "type": "and",
+                "filters": [],
+                "disabled": false
+              }
+            ]
           },
-          "name": "Transcendent Flesh",
-          "type": "Crimson Jewel",
-          "stats": [
-            {
-              "type": "and",
-              "filters": [],
-              "disabled": false
-            }
-          ]
+          "sort": {
+            "price": "asc"
+          }
         },
-        "sort": {
-          "price": "asc"
+        "qty": 1,
+        "resolved": {
+          "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL1RyYW5zY2VuZGVudFJlZCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/7dcf8933ad/TranscendentRed.png",
+          "name": "Transcendent Flesh Crimson Jewel",
+          "originalMinPrice": {
+            "type": "~b/o",
+            "amount": 170,
+            "currency": "chaos"
+          },
+          "minPrice": {
+            "amount": 170,
+            "currency": "chaos"
+          },
+          "originalMedianPrice": {
+            "type": "~b/o",
+            "amount": 1,
+            "currency": "divine"
+          },
+          "medianPrice": {
+            "amount": 180,
+            "currency": "chaos"
+          },
+          "medianCount": 10,
+          "fetchedAt": "2026-02-28T22:07:40.975Z"
         }
-      },
-      "qty": 1,
-      "fallbackPrice": {
-        "amount": 0,
-        "currency": "chaos"
-      },
-      "resolved": {
-        "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL1RyYW5zY2VuZGVudFJlZCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/7dcf8933ad/TranscendentRed.png",
-        "name": "Transcendent Flesh Crimson Jewel",
-        "originalMinPrice": {
-          "type": "~b/o",
-          "amount": 100,
-          "currency": "chaos"
-        },
-        "minPrice": {
-          "amount": 100,
-          "currency": "chaos"
-        },
-        "originalMedianPrice": {
-          "type": "~b/o",
-          "amount": 1,
-          "currency": "divine"
-        },
-        "medianPrice": {
-          "amount": 180,
-          "currency": "chaos"
-        },
-        "medianCount": 10,
-        "fetchedAt": "2026-02-27T21:01:07.849Z"
       }
-    },
+    ],
     "createdAt": "2026-02-23T20:15:01.526Z",
-    "updatedAt": "2026-02-27T21:01:07.849Z"
+    "updatedAt": "2026-02-28T22:07:40.975Z"
   },
   {
     "id": "1772226028950-9b0ffa526a0a8",
+    "name": "Mask of the Stitched Demon Magistrate Crown",
     "inputs": [
       {
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/WvQb4QYVCm",
@@ -247,33 +235,29 @@
           }
         },
         "qty": 1,
-        "fallbackPrice": {
-          "amount": 0,
-          "currency": "chaos"
-        },
         "resolved": {
           "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVNwaXJpdERyaW5rZXIiLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/7a9bcf5886/MaskoftheSpiritDrinker.png",
           "name": "Mask of the Spirit Drinker Magistrate Crown",
           "originalMinPrice": {
             "type": "~b/o",
-            "amount": 70,
+            "amount": 75,
             "currency": "chaos"
           },
           "minPrice": {
-            "amount": 70,
+            "amount": 75,
             "currency": "chaos"
           },
           "originalMedianPrice": {
             "type": "~b/o",
-            "amount": 70,
+            "amount": 75,
             "currency": "chaos"
           },
           "medianPrice": {
-            "amount": 70,
+            "amount": 75,
             "currency": "chaos"
           },
-          "medianCount": 10,
-          "fetchedAt": "2026-02-27T20:59:27.404Z"
+          "medianCount": 6,
+          "fetchedAt": "2026-02-28T22:07:45.135Z"
         }
       },
       {
@@ -297,10 +281,6 @@
           }
         },
         "qty": 1,
-        "fallbackPrice": {
-          "amount": 0,
-          "currency": "chaos"
-        },
         "resolved": {
           "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVmlhbFNwaXJpdERyaW5rZXIiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/b4c71ef906/VialSpiritDrinker.png",
           "name": "Vial of Summoning",
@@ -361,10 +341,6 @@
           }
         },
         "qty": 1,
-        "fallbackPrice": {
-          "amount": 0,
-          "currency": "chaos"
-        },
         "resolved": {
           "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9UZW1wbGVNYXAiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/9be10cc6b3/TempleMap.png",
           "name": "Chronicle of Atzoatl",
@@ -391,58 +367,56 @@
         }
       }
     ],
-    "output": {
-      "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/Bg327P9wF8",
-      "search": {
-        "query": {
-          "status": {
-            "option": "securable"
+    "outputs": [
+      {
+        "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/Bg327P9wF8",
+        "search": {
+          "query": {
+            "status": {
+              "option": "securable"
+            },
+            "name": "Mask of the Stitched Demon",
+            "type": "Magistrate Crown",
+            "stats": [
+              {
+                "type": "and",
+                "filters": [],
+                "disabled": false
+              }
+            ]
           },
-          "name": "Mask of the Stitched Demon",
-          "type": "Magistrate Crown",
-          "stats": [
-            {
-              "type": "and",
-              "filters": [],
-              "disabled": false
-            }
-          ]
+          "sort": {
+            "price": "asc"
+          }
         },
-        "sort": {
-          "price": "asc"
+        "qty": 1,
+        "resolved": {
+          "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/0e24c9f156/MaskoftheStitchedDemon.png",
+          "name": "Mask of the Stitched Demon Magistrate Crown",
+          "originalMinPrice": {
+            "type": "~b/o",
+            "amount": 9,
+            "currency": "divine"
+          },
+          "minPrice": {
+            "amount": 1620,
+            "currency": "chaos"
+          },
+          "originalMedianPrice": {
+            "type": "~b/o",
+            "amount": 9,
+            "currency": "divine"
+          },
+          "medianPrice": {
+            "amount": 1620,
+            "currency": "chaos"
+          },
+          "medianCount": 9,
+          "fetchedAt": "2026-02-27T20:59:20.500Z"
         }
-      },
-      "qty": 1,
-      "fallbackPrice": {
-        "amount": 0,
-        "currency": "chaos"
-      },
-      "resolved": {
-        "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/0e24c9f156/MaskoftheStitchedDemon.png",
-        "name": "Mask of the Stitched Demon Magistrate Crown",
-        "originalMinPrice": {
-          "type": "~b/o",
-          "amount": 9,
-          "currency": "divine"
-        },
-        "minPrice": {
-          "amount": 1620,
-          "currency": "chaos"
-        },
-        "originalMedianPrice": {
-          "type": "~b/o",
-          "amount": 9,
-          "currency": "divine"
-        },
-        "medianPrice": {
-          "amount": 1620,
-          "currency": "chaos"
-        },
-        "medianCount": 9,
-        "fetchedAt": "2026-02-27T20:59:20.500Z"
       }
-    },
+    ],
     "createdAt": "2026-02-27T21:00:28.950Z",
-    "updatedAt": "2026-02-27T21:00:28.950Z"
+    "updatedAt": "2026-02-28T22:07:45.348Z"
   }
 ]

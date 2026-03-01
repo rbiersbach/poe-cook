@@ -5,7 +5,7 @@ import { RecipeCard } from "../components/RecipeCard";
 
 const PAGE_SIZE = 20;
 
-const RecipesListPage: React.FC = () => {
+const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void> }> = ({ refetchRef }) => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [nextCursor, setNextCursor] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ const RecipesListPage: React.FC = () => {
     const [refreshErrors, setRefreshErrors] = useState<{ [id: string]: string | null }>({});
     const [loadMoreLoading, setLoadMoreLoading] = useState(false);
 
-    useEffect(() => {
+    const fetchRecipes = () => {
         setLoading(true);
         setError(null);
         DefaultService.getApiRecipes("", PAGE_SIZE)
@@ -27,6 +27,12 @@ const RecipesListPage: React.FC = () => {
                 setError(err?.message || "Failed to load recipes");
                 setLoading(false);
             });
+    };
+    useEffect(() => {
+        fetchRecipes();
+        if (refetchRef) {
+            refetchRef.current = fetchRecipes;
+        }
     }, []);
 
     const handleLoadMore = () => {

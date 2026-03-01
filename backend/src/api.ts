@@ -1,19 +1,20 @@
 import cors from "@fastify/cors";
 import Fastify, { FastifyBaseLogger, FastifyInstance, FastifyRequest } from "fastify";
 import { HtmlExtractor } from "html-extractor";
-import { RecipeService } from "recipe-service";
+import { IRecipeService, RecipeService } from "recipe-service";
 import { RecipeStore } from "recipe-store";
+import type { ITradeClient } from "trade-client";
 import { TradeClient } from "trade-client";
 import { ResolveItemError, TradeResolver } from "trade-resolver";
 import { ResolveItemRequest } from "trade-types";
 
 export class TradeApiServer {
     private fastify!: FastifyInstance;
-    private tradeClient!: TradeClient;
-    private recipeService!: RecipeService;
+    private tradeClient!: ITradeClient;
+    private recipeService!: IRecipeService;
     private logger: FastifyBaseLogger;
 
-    constructor(tradeClient?: TradeClient, recipeService?: RecipeService, logger?: FastifyBaseLogger) {
+    constructor(tradeClient?: ITradeClient, recipeService?: IRecipeService, logger?: FastifyBaseLogger) {
         let loggerDefinition;
         if (!logger) {
             loggerDefinition = {
@@ -98,21 +99,22 @@ export class TradeApiServer {
             try {
                 const body = request.body as any;
                 const inputs = body?.inputs;
-                const output = body?.output;
-                if (!inputs || !output || !Array.isArray(inputs)) {
-                    this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: missing inputs or output");
+                const outputs = body?.outputs;
+                const name = body?.name;
+                if (!inputs || !outputs || !name || !Array.isArray(inputs) || !Array.isArray(outputs) || outputs.length === 0) {
+                    this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: missing inputs, outputs, or name");
                     return reply.status(400).send({ error: "Invalid CreateRecipeRequest" });
                 }
                 // Validate all items have search
-                if (!inputs.every((item: any) => item.search) || !output.search) {
+                if (!inputs.every((item: any) => item.search) || !outputs.every((item: any) => item.search)) {
                     this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: each item must have a search object");
                     return reply.status(400).send({ error: "Each item must have a search object" });
                 }
-
                 const recipe = {
                     id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+                    name,
                     inputs,
-                    output,
+                    outputs,
                     createdAt: new Date().toISOString(),
                     updatedAt: new Date().toISOString(),
                 };

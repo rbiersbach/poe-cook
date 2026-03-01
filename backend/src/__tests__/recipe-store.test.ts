@@ -1,9 +1,9 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import fs from "fs";
-import path from "path";
 import os from "os";
-import { RecipeStore } from "../recipe-store";
+import path from "path";
 import { Recipe } from "trade-types";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { RecipeStore } from "../recipe-store";
 
 let testFilePath: string;
 
@@ -23,10 +23,11 @@ describe("RecipeStore", () => {
         const now = new Date().toISOString();
         const recipe: Recipe = {
             id: "abc123",
+            name: "Test Recipe",
             inputs: [
                 {
                     qty: 2,
-                    fallbackPrice: { amount: 10, currency: "chaos" },
+                    search: { query: { url: "url1" }, sort: { price: "asc" as const } },
                     resolved: {
                         iconUrl: "icon1.png",
                         name: "Input Item 1",
@@ -39,20 +40,22 @@ describe("RecipeStore", () => {
                     }
                 }
             ],
-            output: {
-                qty: 1,
-                fallbackPrice: { amount: 100, currency: "chaos" },
-                resolved: {
-                    iconUrl: "icon3.png",
-                    name: "Output Item",
-                    minPrice: { amount: 100, currency: "chaos" },
-                    originalMinPrice: { amount: 120, currency: "chaos" },
-                    medianPrice: { amount: 110, currency: "chaos" },
-                    originalMedianPrice: { amount: 130, currency: "chaos" },
-                    medianCount: 10,
-                    fetchedAt: now,
+            outputs: [
+                {
+                    qty: 1,
+                    search: { query: { url: "url3" }, sort: { price: "asc" as const } },
+                    resolved: {
+                        iconUrl: "icon3.png",
+                        name: "Output Item",
+                        minPrice: { amount: 100, currency: "chaos" },
+                        originalMinPrice: { amount: 120, currency: "chaos" },
+                        medianPrice: { amount: 110, currency: "chaos" },
+                        originalMedianPrice: { amount: 130, currency: "chaos" },
+                        medianCount: 10,
+                        fetchedAt: now,
+                    }
                 }
-            },
+            ],
             createdAt: now,
             updatedAt: now,
         };
@@ -62,10 +65,10 @@ describe("RecipeStore", () => {
         expect(store.get("abc123")).toMatchObject(recipe);
 
         // Add duplicate id
-        const recipe2 = { ...recipe, output: { ...recipe.output, qty: 2 } };
+        const recipe2 = { ...recipe, outputs: [{ ...recipe.outputs[0], qty: 2, search: { query: { url: "url3" }, sort: { price: "asc" as const } } }] };
         store.add(recipe2);
         expect(store.getAll().length).toBe(1);
-        expect(store.get("abc123")?.output).toMatchObject({ ...recipe.output, qty: 2 });
+        expect(store.get("abc123")?.outputs[0]).toMatchObject({ ...recipe.outputs[0], qty: 2 });
     });
 
     it("clears all recipes", () => {
@@ -73,10 +76,11 @@ describe("RecipeStore", () => {
         const store = new RecipeStore(testFilePath);
         store.add({
             id: "id1",
+            name: "Test Recipe",
             inputs: [
                 {
                     qty: 1,
-                    fallbackPrice: { amount: 5, currency: "chaos" },
+                    search: { query: { url: "url1" }, sort: { price: "asc" as const } },
                     resolved: {
                         iconUrl: "icon1.png",
                         name: "Input",
@@ -89,20 +93,22 @@ describe("RecipeStore", () => {
                     }
                 }
             ],
-            output: {
-                qty: 1,
-                fallbackPrice: { amount: 10, currency: "chaos" },
-                resolved: {
-                    iconUrl: "icon2.png",
-                    name: "Output",
-                    minPrice: { amount: 10, currency: "chaos" },
-                    originalMinPrice: { amount: 12, currency: "chaos" },
-                    medianPrice: { amount: 11, currency: "chaos" },
-                    originalMedianPrice: { amount: 13, currency: "chaos" },
-                    medianCount: 4,
-                    fetchedAt: now,
+            outputs: [
+                {
+                    qty: 1,
+                    search: { query: { url: "url2" }, sort: { price: "asc" as const } },
+                    resolved: {
+                        iconUrl: "icon2.png",
+                        name: "Output",
+                        minPrice: { amount: 10, currency: "chaos" },
+                        originalMinPrice: { amount: 12, currency: "chaos" },
+                        medianPrice: { amount: 11, currency: "chaos" },
+                        originalMedianPrice: { amount: 13, currency: "chaos" },
+                        medianCount: 4,
+                        fetchedAt: now,
+                    }
                 }
-            },
+            ],
             createdAt: now,
             updatedAt: now,
         });

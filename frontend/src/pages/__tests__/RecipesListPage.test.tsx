@@ -6,13 +6,16 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const defaultRecipe = {
     id: "test1",
+    name: "Test Recipe",
     inputs: [],
-    output: {
-        qty: 1,
-        resolved: {
-            minPrice: { amount: 10, currency: "chaos" }
+    outputs: [
+        {
+            qty: 1,
+            resolved: {
+                minPrice: { amount: 10, currency: "chaos" }
+            }
         }
-    },
+    ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
 };
@@ -81,8 +84,11 @@ describe("RecipesListPage", () => {
     it("handles missing price data gracefully", async () => {
         const missingPriceRecipe = {
             id: "test2",
+            name: "Missing Price Recipe",
             inputs: [],
-            output: { qty: 1, resolved: null },
+            outputs: [
+                { qty: 1, resolved: null }
+            ],
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
         };

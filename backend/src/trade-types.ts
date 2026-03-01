@@ -161,11 +161,11 @@ export class TradeFetchedListing {
 }
 
 // Types for Recipe API
+
 export class RecipeItem {
   tradeUrl?: string;
   search!: TradeSearchRequest;
-  qty!: number;
-  fallbackPrice?: Price;
+  qty!: number; // now supports decimals/rates
   resolved?: ResolvedMarketData;
   constructor(init?: Partial<RecipeItem>) {
     Object.assign(this, init);
@@ -173,10 +173,12 @@ export class RecipeItem {
 }
 
 
+
 export class Recipe {
   id!: string;
+  name!: string;
   inputs!: RecipeItem[];
-  output!: RecipeItem;
+  outputs!: RecipeItem[];
   createdAt!: string;
   updatedAt!: string;
   constructor(init?: Partial<Recipe>) {

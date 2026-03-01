@@ -71,27 +71,6 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     disabled={loading}
                     data-testid="qty-input"
                 />
-                <input
-                    type="number"
-                    className="input w-24"
-                    placeholder="Fallback Price"
-                    value={item.fallbackPrice?.amount || ""}
-                    onChange={e => onChange && onChange("fallbackPrice.amount", e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    disabled={loading}
-                    data-testid="fallback-price-input"
-                />
-                <select
-                    className="input w-24"
-                    value={item.fallbackPrice?.currency || "chaos"}
-                    onChange={e => onChange && onChange("fallbackPrice.currency", e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    disabled={loading}
-                    data-testid="currency-select"
-                >
-                    <option value="chaos">chaos</option>
-                    <option value="divine">divine</option>
-                </select>
                 {!disableRemove && (
                     <RemoveButton
                         onClick={onRemove}

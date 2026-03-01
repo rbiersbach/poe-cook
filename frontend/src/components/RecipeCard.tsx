@@ -12,14 +12,8 @@ interface RecipeCardProps {
     refreshError?: string | null;
 }
 
-function computeProfit(recipe: Recipe): number | null {
-    if (!recipe.inputs.every(i => i.resolved && i.resolved.minPrice) || !recipe.output.resolved || !recipe.output.resolved.minPrice) {
-        return null;
-    }
-    const costChaos = recipe.inputs.reduce((sum, item) => sum + (item.qty * (item.resolved?.minPrice?.amount ?? 0)), 0);
-    const revenueChaos = recipe.output.qty * (recipe.output.resolved.minPrice.amount ?? 0);
-    return revenueChaos - costChaos;
-}
+
+// Deprecated: use ProfitDisplay for profit calculation
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refreshing, refreshError }) => {
     return (
@@ -29,7 +23,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refre
                     <ItemChip key={idx} item={item} />
                 ))}
                 <span className="arrow mx-2">→</span>
-                <ItemChip item={recipe.output} />
+                {recipe.outputs.map((item, idx) => (
+                    <ItemChip key={"out-" + idx} item={item} />
+                ))}
             </div>
             <div className="flex items-center gap-4 mt-2">
                 <div className="profit flex items-center gap-2">

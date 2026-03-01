@@ -4,7 +4,11 @@
 /* eslint-disable */
 import type { RecipeItem } from './RecipeItem';
 export type CreateRecipeRequest = {
+    /**
+     * Name of the recipe (required)
+     */
+    name: string;
     inputs: Array<RecipeItem>;
-    output: RecipeItem;
+    outputs: Array<RecipeItem>;
 };
 

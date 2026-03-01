@@ -43,7 +43,7 @@ describe("CreateRecipePage", () => {
         expect(screen.queryByText(/remove/i)).toBeNull();
     });
 
-    it("can edit input and output fields (tradeUrl, qty, fallbackPrice)", async () => {
+    it("can edit input and output fields (tradeUrl, qty)", async () => {
         render(<CreateRecipePage />);
         // Edit input draft fields
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
@@ -54,22 +54,14 @@ describe("CreateRecipePage", () => {
         fireEvent.change(inputQty, { target: { value: 3 } });
         expect(inputQty).toHaveValue(3);
 
-        const inputFallback = screen.getAllByTestId("fallback-price-input")[0];
-        fireEvent.change(inputFallback, { target: { value: 42 } });
-        expect(inputFallback).toHaveValue(42);
-
         // Edit output draft fields
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
         fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/klmnopqrst" } });
         expect(outputUrl).toHaveValue("https://www.pathofexile.com/trade/search/Keepers/klmnopqrst");
 
         const outputQty = screen.getAllByTestId("qty-input")[1];
-        fireEvent.change(outputQty, { target: { value: 5 } });
-        expect(outputQty).toHaveValue(5);
-
-        const outputFallback = screen.getAllByTestId("fallback-price-input")[1];
-        fireEvent.change(outputFallback, { target: { value: 99 } });
-        expect(outputFallback).toHaveValue(99);
+        fireEvent.change(outputQty, { target: { value: 2 } });
+        expect(outputQty).toHaveValue(2);
     });
 
     it("triggers resolve when a valid trade URL is entered (mock API)", async () => {
@@ -186,7 +178,7 @@ describe("CreateRecipePage", () => {
         const allInputs = screen.getAllByTestId("trade-url-input");
         const outputUrl = allInputs[1];
         fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/klmnopqrst" } });
-        expect(await screen.findByText(/failed to resolve output item/i)).toBeInTheDocument();
+        expect(await screen.findByText(/failed to resolve item/i)).toBeInTheDocument();
         mockResolve.mockRestore();
     });
 
@@ -209,14 +201,17 @@ describe("CreateRecipePage", () => {
         const mockSubmit = vi.spyOn(DefaultService, "postApiRecipes").mockResolvedValue({
             recipe: {
                 id: "mock-id",
+                name: "Output",
                 inputs: [],
-                output: {
-                    qty: 1,
-                    search: {
-                        query: { name: "Output" },
-                        sort: { price: "asc" }
+                outputs: [
+                    {
+                        qty: 1,
+                        search: {
+                            query: { name: "Output" },
+                            sort: { price: "asc" }
+                        }
                     }
-                },
+                ],
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString()
             }
@@ -244,6 +239,7 @@ describe("CreateRecipePage", () => {
         expect(screen.queryAllByTestId("recipe-item-row-resolved").length).toBe(0);
         // Assert submit API was called with correct payload and search property
         expect(mockSubmit).toHaveBeenCalledWith({
+            name: "Output",
             inputs: [
                 expect.objectContaining({
                     tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/inputurlA1",
@@ -256,11 +252,13 @@ describe("CreateRecipePage", () => {
                     search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "input2-filter" }) }) })
                 })
             ],
-            output: expect.objectContaining({
-                tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/outputurlC",
-                resolved: expect.objectContaining({ name: "Output" }),
-                search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "output-filter" }) }) })
-            })
+            outputs: [
+                expect.objectContaining({
+                    tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/outputurlC",
+                    resolved: expect.objectContaining({ name: "Output" }),
+                    search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "output-filter" }) }) })
+                })
+            ]
         });
         mockResolve.mockRestore();
         mockSubmit.mockRestore();
@@ -342,7 +340,7 @@ describe("CreateRecipePage", () => {
         // Press Enter to trigger resolve
         fireEvent.keyDown(outputUrl, { key: "Enter", code: "Enter" });
         // Error message should appear near the output draft row
-        expect(await screen.findByTestId("draft-error-msg")).toHaveTextContent(/failed to resolve output item/i);
+        expect(await screen.findByTestId("draft-error-msg")).toHaveTextContent(/failed to resolve item/i);
         // Row should have error animation class
         const row = outputUrl.closest('[data-testid="recipe-item-row-draft"]');
         expect(row).not.toBeNull();
