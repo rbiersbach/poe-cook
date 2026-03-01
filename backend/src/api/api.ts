@@ -13,8 +13,9 @@ export class TradeApiServer {
     private tradeClient!: ITradeClientService;
     private recipeService!: IRecipeService;
     private logger: FastifyBaseLogger;
+    private ninjaItemStore;
 
-    constructor(tradeClient?: ITradeClientService, recipeService?: IRecipeService, logger?: FastifyBaseLogger) {
+    constructor(tradeClient?: ITradeClientService, recipeService?: IRecipeService, logger?: FastifyBaseLogger, ninjaItemStore?: any) {
         let loggerDefinition;
         if (!logger) {
             loggerDefinition = {
@@ -43,6 +44,7 @@ export class TradeApiServer {
             new TradeResolverService(this.logger, this.tradeClient, HtmlExtractorService),
             this.logger
         );
+        this.ninjaItemStore = ninjaItemStore;
         this.registerRoutes();
     }
 
@@ -139,6 +141,32 @@ export class TradeApiServer {
                 reply.send(recipe);
             } catch (err) {
                 this.logger.error({ error: err, params: request.params }, "Unexpected error in GET /api/recipes/:id");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+
+        // GET /api/ninja-items - Paginated, searchable list of ninja items
+        this.fastify.get("/api/ninja-items", async (request: FastifyRequest, reply) => {
+            try {
+                // Query params: search, key, cursor, limit
+                const { search = "", key = "name", cursor, limit } = request.query as { search?: string, key?: string, cursor?: string, limit?: string };
+
+                let items = this.ninjaItemStore.findByText(key, search);
+                // Pagination
+                let startIdx = 0;
+                if (cursor) {
+                    startIdx = items.findIndex((i: any) => i.id === cursor) + 1;
+                    if (startIdx === 0) startIdx = 0;
+                }
+                const pageLimit = limit ? parseInt(limit, 10) : 20;
+                const paged = items.slice(startIdx, startIdx + pageLimit);
+                let nextCursor = undefined;
+                if ((startIdx + pageLimit) < items.length) {
+                    nextCursor = items[startIdx + pageLimit - 1]?.id;
+                }
+                reply.send({ items: paged, nextCursor });
+            } catch (err) {
+                this.logger.error({ error: err, query: request.query }, "Unexpected error in GET /api/ninja-items");
                 return reply.status(500).send({ error: "Server error" });
             }
         });

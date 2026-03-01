@@ -8,6 +8,59 @@ servers:
   - url: http://localhost:3001
 
 paths:
+  /api/ninja-items:
+    get:
+      operationId: getApiNinjaItems
+      summary: List ninja items (paginated, searchable)
+      parameters:
+        - in: query
+          name: search
+          schema:
+            type: string
+          required: false
+          description: Text to search for in the specified key (e.g., name)
+        - in: query
+          name: key
+          schema:
+            type: string
+            default: name
+          required: false
+          description: Field to search in (e.g., name)
+        - in: query
+          name: cursor
+          schema:
+            type: string
+          required: false
+          description: ID of the last item from the previous page (for pagination)
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 20
+          required: false
+          description: Maximum number of items to return
+      responses:
+        "200":
+          description: Paginated list of ninja items
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/NinjaItem"
+                  nextCursor:
+                    type: string
+                    nullable: true
+                    description: Cursor for the next page, or null if no more items
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
   /api/resolve-item:
     post:
       operationId: postApiResolveItem
@@ -143,6 +196,60 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
+    NinjaItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+        category:
+          type: string
+          enum:
+            - Currency
+            - Fragment
+            - Runegraft
+            - AllflameEmber
+            - Tattoo
+            - Omen
+            - DivinationCard
+            - Artifact
+            - Oil
+            - Scarab
+            - Fossil
+            - Resonator
+            - Essence
+        detailsId:
+          type: string
+        price:
+          type: number
+        priceHistory:
+          type: array
+          items:
+            type: number
+        volume:
+          type: number
+        maxVolumeCurrency:
+          type: string
+        maxVolumeRate:
+          type: number
+        fetchedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - icon
+        - category
+        - detailsId
+        - price
+        - priceHistory
+        - volume
+        - maxVolumeCurrency
+        - maxVolumeRate
+        - fetchedAt
     TradeSearchRequest:
       type: object
       properties:

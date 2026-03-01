@@ -1,10 +1,10 @@
-// GenericStore<T>: A generic persistent store for any type with an id field
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 export interface Identifiable {
     id: string;
@@ -17,6 +17,7 @@ export interface IGenericStore<T extends Identifiable> {
     delete(id: string): boolean;
     clear(): void;
     get(id: string): T | undefined;
+    findByText(key: string, text: string): T[];
 }
 
 
@@ -78,5 +79,17 @@ export class GenericStore<T extends Identifiable> implements IGenericStore<T> {
 
     get(id: string): T | undefined {
         return this.items.get(id);
+    }
+
+    findByText(key: string, text: string): T[] {
+        if (!text) return this.getAll();
+        const lowerText = text.toLowerCase();
+        const getValue = (obj: any, path: string): any => {
+            return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+        };
+        return this.getAll().filter(item => {
+            const value = getValue(item, key);
+            return typeof value === 'string' && value.toLowerCase().includes(lowerText);
+        });
     }
 }

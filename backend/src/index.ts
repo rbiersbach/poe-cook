@@ -5,12 +5,13 @@ import { NinjaItemStore } from "stores/ninja-item-store";
 
 
 
-const apiServer = new TradeApiServer();
+const ninjaItemStore = new NinjaItemStore();
+const apiServer = new TradeApiServer(undefined, undefined, undefined, ninjaItemStore);
 const league = "Keepers";
 
 // Instantiate and refresh all ninja items on server start
 const ninjaClient = new NinjaClientService(apiServer.server.log);
-const ninjaItemStore = new NinjaItemStore();
+
 const ninjaDataService = new NinjaDataService(apiServer.server.log, ninjaClient, ninjaItemStore);
 ninjaDataService.refreshAll(league).then(() => {
   apiServer.server.log.info("Ninja items refreshed on startup");

@@ -19,6 +19,65 @@ describe("RecipeStore", () => {
         }
     });
 
+    it("finds recipes by text in name and input fields", () => {
+        const now = new Date().toISOString();
+        const store = new RecipeStore(testFilePath);
+        store.add({
+            id: "id1",
+            name: "Chaos Recipe",
+            inputs: [
+                {
+                    qty: 1,
+                    search: { query: { url: "url1" }, sort: { price: "asc" as const } },
+                    resolved: {
+                        iconUrl: "icon1.png",
+                        name: "Chaos Orb",
+                        minPrice: { amount: 5, currency: "chaos" },
+                        originalMinPrice: { amount: 6, currency: "chaos" },
+                        medianPrice: { amount: 5.5, currency: "chaos" },
+                        originalMedianPrice: { amount: 6.5, currency: "chaos" },
+                        medianCount: 2,
+                        fetchedAt: now,
+                    }
+                }
+            ],
+            outputs: [],
+            createdAt: now,
+            updatedAt: now,
+        });
+        store.add({
+            id: "id2",
+            name: "Divine Recipe",
+            inputs: [
+                {
+                    qty: 1,
+                    search: { query: { url: "url2" }, sort: { price: "asc" as const } },
+                    resolved: {
+                        iconUrl: "icon2.png",
+                        name: "Divine Orb",
+                        minPrice: { amount: 10, currency: "divine" },
+                        originalMinPrice: { amount: 12, currency: "divine" },
+                        medianPrice: { amount: 11, currency: "divine" },
+                        originalMedianPrice: { amount: 13, currency: "divine" },
+                        medianCount: 4,
+                        fetchedAt: now,
+                    }
+                }
+            ],
+            outputs: [],
+            createdAt: now,
+            updatedAt: now,
+        });
+        // Search by name
+        expect(store.findByText("name", "chaos").length).toBe(1);
+        expect(store.findByText("name", "chaos")[0].id).toBe("id1");
+        // Search by input resolved name
+        expect(store.findByText("inputs.0.resolved.name", "divine").length).toBe(1);
+        expect(store.findByText("inputs.0.resolved.name", "divine")[0].id).toBe("id2");
+        // No match
+        expect(store.findByText("name", "notfound").length).toBe(0);
+    });
+
     it("adds and retrieves recipes, avoids duplicates", () => {
         const now = new Date().toISOString();
         const recipe: Recipe = {

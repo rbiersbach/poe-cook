@@ -7,6 +7,7 @@ import fs from "fs";
 import { Recipe } from "models/trade-types";
 import path from "path";
 import { TradeClientService } from "services/trade-client-service";
+import { INinjaItemStore } from "stores/ninja-item-store";
 import { TradeApiServer } from "../../api/api";
 import { NoopLogger } from "../../logger";
 import type { IRecipeService } from "../../services/recipe-service";
@@ -33,6 +34,10 @@ const recipeServiceMock: IRecipeService = {
 let tradeClientMock: TradeClientService;
 let apiServer: TradeApiServer;
 
+const mockFindByText = vi.fn(() => [] as any[]);
+
+let ninjaItemStoreMock: INinjaItemStore
+
 beforeAll(async () => {
     // Clear test file before starting
     fs.writeFileSync(TEST_RECIPES_PATH, "[]");
@@ -41,7 +46,8 @@ beforeAll(async () => {
         fetchListings: vi.fn(),
         logger: NoopLogger,
     } as unknown as TradeClientService;
-    apiServer = new TradeApiServer(tradeClientMock, recipeServiceMock, NoopLogger);
+    ninjaItemStoreMock = { findByText: mockFindByText } as unknown as INinjaItemStore;
+    apiServer = new TradeApiServer(tradeClientMock, recipeServiceMock, NoopLogger, ninjaItemStoreMock);
     await apiServer.server.listen({ port: 0 });
 });
 
@@ -287,5 +293,50 @@ describe("GET /api/recipes", () => {
             .get("/api/recipes?cursor=r3")
             .expect(200);
         expect(response.body.recipes.length).toBe(0);
+    });
+});
+describe("GET /api/ninja-items", () => {
+    it("calls store with all query parameters and returns real items", async () => {
+        const realItems = [
+            {
+                id: "0",
+                name: "Item0",
+                icon: "icon.png",
+                category: "Currency",
+                detailsId: "details0",
+                price: 0,
+                priceHistory: [0, 1],
+                volume: 100,
+                maxVolumeCurrency: "chaos",
+                maxVolumeRate: 1,
+                fetchedAt: "2026-03-01T17:35:42.993Z"
+            },
+            {
+                id: "1",
+                name: "Item1",
+                icon: "icon.png",
+                category: "Currency",
+                detailsId: "details1",
+                price: 1,
+                priceHistory: [1, 2],
+                volume: 100,
+                maxVolumeCurrency: "chaos",
+                maxVolumeRate: 1,
+                fetchedAt: "2026-03-01T17:35:42.994Z"
+            }
+        ];
+        mockFindByText.mockReturnValue(realItems);
+        const params = {
+            search: "chaos",
+            key: "name",
+            limit: "2"
+        };
+        const response = await supertest(apiServer.server.server)
+            .get(`/api/ninja-items?search=${params.search}&key=${params.key}&limit=${params.limit}`)
+            .expect(200);
+        expect(ninjaItemStoreMock.findByText).toHaveBeenCalledWith(params.key, params.search);
+        expect(response.body.items.length).toBeGreaterThanOrEqual(2);
+        expect(response.body.items[0].id).toBe("0");
+        expect(response.body.items[1].id).toBe("1");
     });
 });
