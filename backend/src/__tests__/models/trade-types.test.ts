@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { TradeSearchRequest } from "../trade-types";
+import { describe, expect, it } from "vitest";
+import { TradeSearchRequest } from "../../models/trade-types";
 
 
 describe("TradeSearchRequest serialization", () => {

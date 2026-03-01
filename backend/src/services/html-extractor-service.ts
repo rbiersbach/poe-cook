@@ -1,7 +1,7 @@
 import axios from "axios";
 import { JSDOM } from "jsdom";
 
-export class HtmlExtractor {
+export class HtmlExtractorService {
     /**
      * Fetches HTML from a URL and returns the HTML string.
      */

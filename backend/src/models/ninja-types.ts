@@ -1,9 +1,22 @@
+export interface NinjaItem {
+    id: string;
+    name: string;
+    icon: string;
+    category: string;
+    detailsId: string;
+    price: number;
+    priceHistory: number[];
+    volume: number;
+    maxVolumeCurrency: string;
+    maxVolumeRate: number;
+}
+
 // Types for the ninja currency API response
 
 export interface NinjaCurrencyOverviewResponse {
     core: NinjaCore;
     lines: NinjaCurrencyLine[];
-    items: NinjaCoreItem[]; // convenience field for easy access to item data by id
+    items: NinjaCoreItem[];
 }
 
 export interface NinjaCore {
@@ -32,3 +45,4 @@ export interface NinjaCurrencyLine {
         data: number[];
     };
 }
+

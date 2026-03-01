@@ -10,7 +10,17 @@ export interface Identifiable {
     id: string;
 }
 
-export class GenericStore<T extends Identifiable> {
+export interface IGenericStore<T extends Identifiable> {
+    getAll(): T[];
+    add(item: T): T;
+    addMany(items: T[]): T[];
+    delete(id: string): boolean;
+    clear(): void;
+    get(id: string): T | undefined;
+}
+
+
+export class GenericStore<T extends Identifiable> implements IGenericStore<T> {
     private items: Map<string, T> = new Map();
     private filePath: string;
 

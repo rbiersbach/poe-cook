@@ -1,12 +1,12 @@
-export interface ITradeResolver {
+export interface ITradeResolverService {
     resolveTradeRequestFromUrl(url: string, poeSessid: string): Promise<TradeSearchRequest>;
     resolveItemFromUrl(url: string, poeSessid: string): Promise<{ resolved: ResolvedMarketData; search: TradeSearchRequest; }>;
     resolveItemFromSearch(search: TradeSearchRequest, poeSessid: string): Promise<ResolvedMarketData>;
 }
 import { FastifyBaseLogger } from "fastify";
-import { HtmlExtractor } from "html-extractor";
-import type { ITradeClient } from "trade-client";
-import { Price, ResolvedMarketData, TradeFilters, TradeQuery, TradeSearchRequest } from "trade-types";
+import { Price, ResolvedMarketData, TradeFilters, TradeQuery, TradeSearchRequest } from "models/trade-types";
+import { HtmlExtractorService } from "services/html-extractor-service";
+import type { ITradeClientService } from "services/trade-client-service";
 
 
 
@@ -17,11 +17,11 @@ export class ResolveItemError extends Error {
     }
 }
 
-export class TradeResolver implements ITradeResolver {
+export class TradeResolverService implements ITradeResolverService {
     constructor(
         private logger: FastifyBaseLogger,
-        private tradeClient: ITradeClient,
-        private htmlExtractor: typeof HtmlExtractor
+        private tradeClient: ITradeClientService,
+        private htmlExtractor: typeof HtmlExtractorService
     ) { }
 
     /**

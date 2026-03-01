@@ -1,8 +1,8 @@
-import { TradeApiServer } from "api";
-import { HtmlExtractor } from "html-extractor";
+import { TradeApiServer } from "api/api";
 import { NoopLogger } from "logger";
-import { TradeClient } from "trade-client";
-import { TradeResolver } from "trade-resolver";
+import { HtmlExtractorService } from "services/html-extractor-service";
+import { TradeClientService } from "services/trade-client-service";
+import { TradeResolverService } from "services/trade-resolver-service";
 
 
 
@@ -19,12 +19,12 @@ apiServer.server.listen({ port: 3001 }, (err, address) => {
 
 async function runResolverWithExample() {
   // Use real TradeClient and HtmlExtractor
-  const tradeClient = new TradeClient(
+  const tradeClient = new TradeClientService(
     "poe-tools-api/1.0 (contact: support@example.com)", // userAgent
     "Keepers", // league
     apiServer.server.log // logger
   );
-  const resolver = new TradeResolver(NoopLogger, tradeClient, HtmlExtractor);
+  const resolver = new TradeResolverService(NoopLogger, tradeClient, HtmlExtractorService);
   const tradeUrl = "https://www.pathofexile.com/trade/search/Keepers/Z6KmYGb8CQ";
   const poeSessid = "example-session-id";
   try {

@@ -1,12 +1,15 @@
 import axios from "axios";
 import type { FastifyBaseLogger } from "fastify";
-import type { BulkItem } from "../models/bulk-item-types";
-import type { NinjaCoreItem, NinjaCurrencyLine, NinjaCurrencyOverviewResponse } from "../models/ninja-currency-response";
+import type { NinjaCoreItem, NinjaCurrencyLine, NinjaCurrencyOverviewResponse } from "models/ninja-types";
+import type { NinjaItem } from "../models/ninja-types";
 
 const BASE_URL = "https://poe.ninja/poe1/api/economy/exchange/current/overview";
 
+export interface INinjaClientService {
+    fetchBulkItems(league: string, type: string): Promise<NinjaItem[]>;
+}
 
-export class NinjaService {
+export class NinjaClientService implements INinjaClientService {
     constructor(private logger: FastifyBaseLogger) { }
 
     private async fetchNinjaCurrencyOverview(league: string = "Standard", type: string = "Currency"): Promise<NinjaCurrencyOverviewResponse> {
@@ -22,7 +25,7 @@ export class NinjaService {
         return res.data;
     }
 
-    private mergeToBulkItem(item: NinjaCoreItem, line: NinjaCurrencyLine): BulkItem {
+    private mergeToBulkItem(item: NinjaCoreItem, line: NinjaCurrencyLine): NinjaItem {
         return {
             id: item.id,
             name: item.name,
@@ -37,7 +40,7 @@ export class NinjaService {
         };
     }
 
-    async fetchBulkItems(league: string = "Standard", type: string = "Currency"): Promise<BulkItem[]> {
+    async fetchBulkItems(league: string = "Standard", type: string = "Currency"): Promise<NinjaItem[]> {
         const data = await this.fetchNinjaCurrencyOverview(league, type);
         const itemMap = new Map<string, NinjaCoreItem>(data.items.map((i: NinjaCoreItem) => [i.id, i]));
         return data.lines.map((line: NinjaCurrencyLine) => {

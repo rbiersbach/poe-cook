@@ -4,20 +4,20 @@ import supertest from "supertest";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
 import fs from "fs";
+import { Recipe } from "models/trade-types";
 import path from "path";
-import { TradeClient } from "trade-client";
-import { Recipe } from "trade-types";
-import { TradeApiServer } from "../api";
-import type { IRecipeService } from "../recipe-service";
-import { NoopLogger } from "../logger";
-import { ResolveItemError, TradeResolver } from "../trade-resolver";
+import { TradeClientService } from "services/trade-client-service";
+import { TradeApiServer } from "../../api/api";
+import { NoopLogger } from "../../logger";
+import type { IRecipeService } from "../../services/recipe-service";
+import { ResolveItemError, TradeResolverService } from "../../services/trade-resolver-service";
 
-const TEST_RECIPES_PATH = path.join(__dirname, "resources/recipes.test.json");
+const TEST_RECIPES_PATH = path.join(__dirname, "../resources/recipes.test.json");
 
 
 const mockGetAllRecipes = vi.fn(async (_invalidateCache?: boolean) => [] as Recipe[]);
 const mockGetRecipeById = vi.fn(async (_id: string, _invalidateCache?: boolean) => undefined as Recipe | undefined);
-const mockAdd = vi.fn(async (_recipe: Recipe) => {});
+const mockAdd = vi.fn(async (_recipe: Recipe) => { });
 const mockRefreshRecipe = vi.fn(async (recipe: Recipe) => recipe);
 const mockRefreshItem = vi.fn(async (item: any) => item);
 
@@ -30,7 +30,7 @@ const recipeServiceMock: IRecipeService = {
 };
 
 
-let tradeClientMock: TradeClient;
+let tradeClientMock: TradeClientService;
 let apiServer: TradeApiServer;
 
 beforeAll(async () => {
@@ -40,7 +40,7 @@ beforeAll(async () => {
         search: vi.fn(),
         fetchListings: vi.fn(),
         logger: NoopLogger,
-    } as unknown as TradeClient;
+    } as unknown as TradeClientService;
     apiServer = new TradeApiServer(tradeClientMock, recipeServiceMock, NoopLogger);
     await apiServer.server.listen({ port: 0 });
 });
@@ -70,7 +70,7 @@ describe("POST /api/resolve-item", () => {
             },
             search: { query: { name: "Test Item" } },
         };
-        const spy = vi.spyOn(TradeResolver.prototype, "resolveItemFromUrl").mockResolvedValueOnce(mockResult);
+        const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockResolvedValueOnce(mockResult);
 
         const response = await supertest(apiServer.server.server)
             .post("/api/resolve-item")
@@ -98,7 +98,7 @@ describe("POST /api/resolve-item", () => {
     });
 
     it("returns 400 if ResolveItemError is thrown", async () => {
-        const spy = vi.spyOn(TradeResolver.prototype, "resolveItemFromUrl").mockRejectedValueOnce(new ResolveItemError("No listings found"));
+        const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockRejectedValueOnce(new ResolveItemError("No listings found"));
         const response = await supertest(apiServer.server.server)
             .post("/api/resolve-item")
             .send({ tradeUrl: "https://www.pathofexile.com/trade" })
@@ -108,7 +108,7 @@ describe("POST /api/resolve-item", () => {
     });
 
     it("returns 500 for unexpected errors", async () => {
-        const spy = vi.spyOn(TradeResolver.prototype, "resolveItemFromUrl").mockRejectedValueOnce(new Error("Unexpected failure"));
+        const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockRejectedValueOnce(new Error("Unexpected failure"));
         const response = await supertest(apiServer.server.server)
             .post("/api/resolve-item")
             .send({ tradeUrl: "https://www.pathofexile.com/trade" })
@@ -191,7 +191,7 @@ describe("POST /api/recipes", () => {
             ]
         };
 
-        mockAdd.mockImplementation(async recipe => {});
+        mockAdd.mockImplementation(async recipe => { });
         const response = await supertest(apiServer.server.server)
             .post("/api/recipes")
             .send(recipeInput)

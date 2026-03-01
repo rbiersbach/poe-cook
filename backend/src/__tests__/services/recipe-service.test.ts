@@ -1,7 +1,5 @@
-import { RecipeService } from "recipe-service";
-import { IRecipeStore } from "../recipe-store";
-import { ITradeResolver } from "../trade-resolver";
-import { Recipe, RecipeItem } from "trade-types";
+import { Recipe, RecipeItem } from "models/trade-types";
+import { RecipeService } from "services/recipe-service";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockStore = {

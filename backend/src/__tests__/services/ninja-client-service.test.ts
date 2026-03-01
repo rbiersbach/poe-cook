@@ -1,12 +1,12 @@
 import axios from "axios";
 import { describe, expect, it, vi } from "vitest";
-import { NoopLogger } from "../logger";
-import { NinjaService } from "../services/ninja-service";
+import { NoopLogger } from "../../logger";
+import { NinjaClientService } from "../../services/ninja-client-service";
 
 
 vi.mock("axios");
 const mockedAxios = axios as unknown as { get: ReturnType<typeof vi.fn> };
-const service = new NinjaService(NoopLogger);
+const service = new NinjaClientService(NoopLogger);
 const exampleData = {
   core: {
     items: [

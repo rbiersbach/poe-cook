@@ -1,9 +1,9 @@
 import fs from "fs";
+import { Recipe } from "models/trade-types";
 import os from "os";
 import path from "path";
-import { Recipe } from "trade-types";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { RecipeStore } from "../recipe-store";
+import { RecipeStore } from "../../stores/recipe-store";
 
 let testFilePath: string;
 

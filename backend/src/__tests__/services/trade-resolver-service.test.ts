@@ -1,20 +1,20 @@
 import fs from "fs";
 import path from "path";
-import { ITradeClient } from "../trade-client";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { HtmlExtractor } from "../html-extractor";
-import { ResolveItemError, TradeResolver } from "../trade-resolver";
-import { TradeSearchRequest } from "../trade-types";
+import { TradeSearchRequest } from "../../models/trade-types";
+import { HtmlExtractorService } from "../../services/html-extractor-service";
+import { ITradeClientService } from "../../services/trade-client-service";
+import { ResolveItemError, TradeResolverService } from "../../services/trade-resolver-service";
 
-const exampleHtmlPath = path.join(__dirname, "./resources/trade_page.html");
+const exampleHtmlPath = path.join(__dirname, "../resources/trade_page.html");
 
 
-vi.spyOn(HtmlExtractor, "fetchHtml").mockImplementation(async () => {
+vi.spyOn(HtmlExtractorService, "fetchHtml").mockImplementation(async () => {
     return fs.readFileSync(exampleHtmlPath, "utf8");
 });
 
 // Mock extractJsonFromHtml to return all required fields for validation
-vi.spyOn(HtmlExtractor, "extractJsonFromHtml").mockImplementation(() => ({
+vi.spyOn(HtmlExtractorService, "extractJsonFromHtml").mockImplementation(() => ({
     tab: {},
     realm: "pc",
     realms: {},
@@ -33,13 +33,13 @@ vi.spyOn(HtmlExtractor, "extractJsonFromHtml").mockImplementation(() => ({
 
 describe("TradeResolver", () => {
     let NoopLogger;
-    let mockTradeClient: ITradeClient;
-    let mockHtmlExtractor: HtmlExtractor;
-    let resolver: TradeResolver;
+    let mockTradeClient: ITradeClientService;
+    let mockHtmlExtractor: HtmlExtractorService;
+    let resolver: TradeResolverService;
     let listingsData: any;
 
     beforeEach(async () => {
-        NoopLogger = (await import("../logger")).NoopLogger;
+        NoopLogger = (await import("../../logger")).NoopLogger;
         listingsData = {
             result: [
                 {
@@ -107,14 +107,14 @@ describe("TradeResolver", () => {
             search: vi.fn(async () => ({ id: "mock-id", result: [], total: 0 })),
             fetchListings: vi.fn(async () => ({ result: [] }))
         };
-        resolver = new TradeResolver(NoopLogger, mockTradeClient, HtmlExtractor);
+        resolver = new TradeResolverService(NoopLogger, mockTradeClient, HtmlExtractorService);
     });
     it("should normalize trade URL by adding https:// and www if missing", async () => {
         const tradeUrlNoProtocol = "pathofexile.com/trade";
         const tradeUrlNoWww = "https://pathofexile.com/trade";
         const poeSessid = "test-session-id";
         // Spy on fetchHtml to capture the URL used
-        const fetchHtmlSpy = vi.spyOn(HtmlExtractor, "fetchHtml");
+        const fetchHtmlSpy = vi.spyOn(HtmlExtractorService, "fetchHtml");
         await resolver.resolveTradeRequestFromUrl(tradeUrlNoProtocol, poeSessid);
         expect(fetchHtmlSpy).toHaveBeenCalledWith("https://www.pathofexile.com/trade", poeSessid);
         await resolver.resolveTradeRequestFromUrl(tradeUrlNoWww, poeSessid);

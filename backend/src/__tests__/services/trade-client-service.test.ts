@@ -1,17 +1,17 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { TradeClient } from "trade-client";
 import { NoopLogger } from "logger";
-import type { TradeSearchRequest, TradeSearchResponse, TradeFetchResponse } from "trade-types";
+import type { TradeFetchResponse, TradeSearchRequest, TradeSearchResponse } from "models/trade-types";
+import { TradeClientService } from "services/trade-client-service";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 
 
 describe("TradeClient", () => {
   let fetchImpl: ReturnType<typeof vi.fn>;
-  let client: TradeClient;
+  let client: TradeClientService;
 
   beforeEach(() => {
     fetchImpl = vi.fn();
-    client = new TradeClient("test-agent", "TestLeague", NoopLogger, "https://www.pathofexile.com", undefined, fetchImpl as any);
+    client = new TradeClientService("test-agent", "TestLeague", NoopLogger, "https://www.pathofexile.com", undefined, fetchImpl as any);
   });
 
   describe("search", () => {
@@ -112,7 +112,7 @@ describe("TradeClient", () => {
       expect(h["Accept"]).toBe("application/json");
     });
     it("includes POESESSID cookie if set", () => {
-      const c = new TradeClient("test-agent", "TestLeague", NoopLogger, "https://www.pathofexile.com", "abc", fetchImpl as any);
+      const c = new TradeClientService("test-agent", "TestLeague", NoopLogger, "https://www.pathofexile.com", "abc", fetchImpl as any);
       const h = (c as any).headers();
       expect(h["Cookie"]).toMatch(/POESESSID=abc/);
     });

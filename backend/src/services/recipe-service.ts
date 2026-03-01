@@ -6,15 +6,14 @@ export interface IRecipeService {
     refreshItem(item: RecipeItem): Promise<RecipeItem>;
 }
 import { FastifyBaseLogger } from "fastify";
-import { RecipeStore } from "recipe-store";
-import type { ITradeResolver } from "trade-resolver";
-import type { IRecipeStore } from "recipe-store";
-import { Recipe, RecipeItem } from "trade-types";
+import { Recipe, RecipeItem } from "models/trade-types";
+import type { ITradeResolverService } from "services/trade-resolver-service";
+import type { IRecipeStore } from "stores/recipe-store";
 
-export class RecipeService  implements IRecipeService {
+export class RecipeService implements IRecipeService {
     constructor(
         private store: IRecipeStore,
-        private resolver: ITradeResolver,
+        private resolver: ITradeResolverService,
         private logger: FastifyBaseLogger
     ) { }
 

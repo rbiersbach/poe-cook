@@ -1,20 +1,20 @@
 import cors from "@fastify/cors";
 import Fastify, { FastifyBaseLogger, FastifyInstance, FastifyRequest } from "fastify";
-import { HtmlExtractor } from "html-extractor";
-import { IRecipeService, RecipeService } from "recipe-service";
-import { RecipeStore } from "recipe-store";
-import type { ITradeClient } from "trade-client";
-import { TradeClient } from "trade-client";
-import { ResolveItemError, TradeResolver } from "trade-resolver";
-import { ResolveItemRequest } from "trade-types";
+import { ResolveItemRequest } from "models/trade-types";
+import { HtmlExtractorService } from "services/html-extractor-service";
+import { IRecipeService, RecipeService } from "services/recipe-service";
+import type { ITradeClientService } from "services/trade-client-service";
+import { TradeClientService } from "services/trade-client-service";
+import { ResolveItemError, TradeResolverService } from "services/trade-resolver-service";
+import { RecipeStore } from "stores/recipe-store";
 
 export class TradeApiServer {
     private fastify!: FastifyInstance;
-    private tradeClient!: ITradeClient;
+    private tradeClient!: ITradeClientService;
     private recipeService!: IRecipeService;
     private logger: FastifyBaseLogger;
 
-    constructor(tradeClient?: ITradeClient, recipeService?: IRecipeService, logger?: FastifyBaseLogger) {
+    constructor(tradeClient?: ITradeClientService, recipeService?: IRecipeService, logger?: FastifyBaseLogger) {
         let loggerDefinition;
         if (!logger) {
             loggerDefinition = {
@@ -33,14 +33,14 @@ export class TradeApiServer {
         });
         this.logger = logger ?? this.fastify.log;
         this.fastify.register(cors, { origin: true });
-        this.tradeClient = tradeClient || new TradeClient(
+        this.tradeClient = tradeClient || new TradeClientService(
             "poe-tools-api/1.0 (contact: you@example.com)",
             "Keepers",
             this.logger
         );
         this.recipeService = recipeService || new RecipeService(
             new RecipeStore(),
-            new TradeResolver(this.logger, this.tradeClient, HtmlExtractor),
+            new TradeResolverService(this.logger, this.tradeClient, HtmlExtractorService),
             this.logger
         );
         this.registerRoutes();
@@ -57,7 +57,7 @@ export class TradeApiServer {
                 }
                 // Optionally: get POESESSID from headers/cookies
                 const poeSessid = "example-session-id";
-                const resolver = new TradeResolver(this.logger, this.tradeClient, HtmlExtractor);
+                const resolver = new TradeResolverService(this.logger, this.tradeClient, HtmlExtractorService);
                 const result = await resolver.resolveItemFromUrl(tradeUrl, poeSessid as string);
                 reply.send(result);
             } catch (err) {
