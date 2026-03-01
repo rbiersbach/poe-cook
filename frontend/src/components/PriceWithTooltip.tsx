@@ -1,5 +1,6 @@
 import { ResolvedMarketData } from "api/generated/models/ResolvedMarketData";
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { PriceDisplay } from "./PriceDisplay";
 
 interface PriceWithTooltipProps {
@@ -35,6 +36,20 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
     const showMinChaos = resolved.originalMinPrice?.currency !== "chaos" && resolved.minPrice;
     const showMedianChaos = resolved.originalMedianPrice?.currency !== "chaos" && resolved.medianPrice;
 
+    // Ref for the price element to position the tooltip
+    const priceRef = React.useRef<HTMLSpanElement>(null);
+    // Calculate tooltip position
+    const [tooltipPos, setTooltipPos] = useState<{left: number, top: number} | null>(null);
+    React.useEffect(() => {
+        if (showPopup && priceRef.current) {
+            const rect = priceRef.current.getBoundingClientRect();
+            setTooltipPos({
+                left: rect.left + rect.width / 2,
+                top: rect.bottom + 4 // 4px margin
+            });
+        }
+    }, [showPopup]);
+
     return (
         <span
             className="price-text relative"
@@ -43,12 +58,13 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
             onMouseLeave={() => setHover(false)}
             tabIndex={0}
             aria-label="Show price details"
+            ref={priceRef}
         >
             <PriceDisplay amount={resolved.originalMinPrice?.amount} currency={resolved.originalMinPrice?.currency} />
-            {showPopup && (
+            {showPopup && tooltipPos && createPortal(
                 <div
-                    className={`tooltip hover-tooltip absolute transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
-                    style={{ left: "50%", top: "100%", transform: "translateX(-50%)", marginTop: "0.25rem", whiteSpace: "nowrap" }}
+                    className={`tooltip hover-tooltip fixed transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
+                    style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", whiteSpace: "nowrap", zIndex: 50 }}
                 >
                     <div>Min: <PriceDisplay amount={resolved.originalMinPrice?.amount} currency={resolved.originalMinPrice?.currency} /></div>
                     {showMinChaos && (
@@ -59,7 +75,8 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
                         <div>Normalized Median: <PriceDisplay amount={medianChaos} currency="chaos" /></div>
                     )}
                     <div>Median Listings: {resolved.medianCount ?? "?"}</div>
-                </div>
+                </div>,
+                document.body
             )}
         </span>
     );

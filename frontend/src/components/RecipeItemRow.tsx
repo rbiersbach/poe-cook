@@ -1,6 +1,7 @@
 import React from "react";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { PriceDisplay } from "../components/PriceDisplay";
+import { PriceWithTooltip } from "./PriceWithTooltip";
 import ItemIcon from "./ItemIcon";
 import { Loader } from "./Loader";
 import { RemoveButton } from "./RemoveButton";
@@ -61,16 +62,17 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
                     disabled={loading}
                     data-testid="trade-url-input"
                 />
-                <input
-                    type="number"
-                    className="input w-20"
-                    min={1}
-                    value={item.qty}
-                    onChange={e => onChange && onChange("qty", Number(e.target.value))}
-                    onKeyDown={handleKeyDown}
-                    disabled={loading}
-                    data-testid="qty-input"
-                />
+                <span className="flex items-center">
+                    <input
+                        type="number"
+                        className="input w-22 min-w-0 max-w-22 text-center shrink-0"
+                        value={item.qty ?? ''}
+                        onChange={e => onChange && onChange("qty", e.target.value === '' ? '' : Number(e.target.value))}
+                        onKeyDown={handleKeyDown}
+                        disabled={loading}
+                        data-testid="qty-input"
+                    />
+                </span>
                 {!disableRemove && (
                     <RemoveButton
                         onClick={onRemove}
@@ -95,42 +97,34 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
 
     if (resolved) {
         return (
-            <div className="card-row border-primary flex items-center" data-testid="recipe-item-row-resolved">
-                <ItemIcon src={item.resolved?.iconUrl} alt="icon" className="w-8 h-8" />
-                <span>{item.resolved?.name || "Unknown Item"}</span>
-                <span className="flex items-center gap-1">
-                    Qty:
-                    <button
-                        className="qty-btn"
-                        onClick={() => onQtyChange && onQtyChange(Math.max(1, item.qty - 1))}
-                        aria-label="Decrease quantity"
-                        type="button"
-                    >
-                        &#8595;
-                    </button>
-                    <span className="mx-1">{item.qty}</span>
-                    <button
-                        className="qty-btn"
-                        onClick={() => onQtyChange && onQtyChange(item.qty + 1)}
-                        aria-label="Increase quantity"
-                        type="button"
-                    >
-                        &#8593;
-                    </button>
-                </span>
-                <span>
-                    Price: <PriceDisplay amount={item.resolved?.originalMinPrice?.amount} currency={item.resolved?.originalMinPrice?.currency} />
-                </span>
-                {/* Trade URL link */}
-                {item.tradeUrl && (
-                    <TradeUrlLink url={item.tradeUrl} />
-                )}
-                {!disableRemove && (
-                    <RemoveButton
-                        onClick={onRemove}
-                        data-testid="remove-input-button"
+            <div className="card-row border-primary flex items-center gap-0 min-h-11 max-h-13" style={{ overflow: 'hidden' }} data-testid="recipe-item-row-resolved">
+                <ItemIcon src={item.resolved?.iconUrl} alt="icon" className="w-7 h-7 shrink-0" />
+                <span className="truncate flex-1 min-w-0">{item.resolved?.name || "Unknown Item"}</span>
+                <span className="flex items-center">
+                    <input
+                        type="number"
+                        className="input w-22 min-w-0 max-w-22 text-center h-7 shrink-0"
+                        value={item.qty ?? ''}
+                        onChange={e => onQtyChange && onQtyChange(e.target.value === '' ? 0 : Number(e.target.value))}
+                        data-testid="qty-input"
                     />
-                )}
+                </span>
+                <div className="flex items-center gap-0.5 ml-auto">
+                    <span className="min-w-[2.2rem] text-right">
+                        {item.resolved ? (
+                            <PriceWithTooltip resolved={item.resolved} />
+                        ) : (
+                            <PriceDisplay amount={item.resolved?.originalMinPrice?.amount} currency={item.resolved?.originalMinPrice?.currency} />
+                        )}
+                    </span>
+                    {/* Trade URL link */}
+                    {item.tradeUrl && (
+                        <span className="shrink-0"><TradeUrlLink url={item.tradeUrl} className="p-1" /></span>
+                    )}
+                    {!disableRemove && (
+                        <span className="shrink-0"><RemoveButton onClick={onRemove} data-testid="remove-input-button" className="p-1" /></span>
+                    )}
+                </div>
             </div>
         );
     }
