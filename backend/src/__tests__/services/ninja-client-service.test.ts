@@ -1,4 +1,5 @@
 import axios from "axios";
+import { NinjaCategory } from "models/ninja-types";
 import { describe, expect, it, vi } from "vitest";
 import { NoopLogger } from "../../logger";
 import { NinjaClientService } from "../../services/ninja-client-service";
@@ -68,7 +69,7 @@ const exampleData = {
 describe("ninja-service", () => {
   it("maps ninja data to BulkItem[] correctly", async () => {
     mockedAxios.get = vi.fn().mockResolvedValue({ data: exampleData });
-    const result = await service.fetchBulkItems("Standard", "Currency");
+    const result = await service.fetchBulkItems("Standard", NinjaCategory.Currency);
     expect(Array.isArray(result)).toBe(true);
     expect(result.length).toBe(2);
     // Check a known item
