@@ -37,6 +37,7 @@ export class NinjaClientService implements INinjaClientService {
             volume: line.volumePrimaryValue,
             maxVolumeCurrency: line.maxVolumeCurrency,
             maxVolumeRate: line.maxVolumeRate,
+            fetchedAt: new Date().toISOString(),
         };
     }
 

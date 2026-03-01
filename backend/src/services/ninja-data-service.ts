@@ -4,8 +4,8 @@ import type { INinjaItemStore } from "../stores/ninja-item-store";
 import type { INinjaClientService } from "./ninja-client-service";
 
 export interface INinjaDataService {
-    refresh(categories: NinjaCategory[], league?: string): Promise<NinjaItem[]>;
-    refreshAll(league?: string): Promise<NinjaItem[]>;
+    refresh(categories: NinjaCategory[], league: string): Promise<NinjaItem[]>;
+    refreshAll(league: string, force?: boolean): Promise<NinjaItem[]>;
 }
 
 export class NinjaDataService implements INinjaDataService {
@@ -19,7 +19,7 @@ export class NinjaDataService implements INinjaDataService {
      * Refreshes ninja items for the given categories/types (e.g., ["Currency", "Fragment"]).
      * Fetches items from poe.ninja and persists them in the store.
      */
-    async refresh(categories: NinjaCategory[], league: string = "Standard"): Promise<NinjaItem[]> {
+    async refresh(categories: NinjaCategory[], league: string): Promise<NinjaItem[]> {
         this.logger.info({ categories, league }, "Refreshing ninja items for categories");
         let allItems: NinjaItem[] = [];
         for (const category of categories) {
@@ -40,8 +40,29 @@ export class NinjaDataService implements INinjaDataService {
     /**
      * Refreshes ninja items for all categories defined in NinjaCategory.
      */
-    async refreshAll(league: string = "Standard"): Promise<NinjaItem[]> {
+    /**
+     * Refreshes ninja items for all categories defined in NinjaCategory.
+     * Only refetches if any item is older than 1 hour, or if force is true.
+     */
+    async refreshAll(league: string, force = false): Promise<NinjaItem[]> {
         const categories = Object.values(NinjaCategory) as NinjaCategory[];
-        return this.refresh(categories, league);
+        const items = this.ninjaItemStore.getAll();
+        const now = Date.now();
+        const oneHour = 60 * 60 * 1000;
+        let needsRefresh = force;
+        if (!force) {
+            needsRefresh = items.length === 0 || items.some(item => {
+                if (!item.fetchedAt) return true;
+                const fetched = Date.parse(item.fetchedAt);
+                return isNaN(fetched) || (now - fetched > oneHour);
+            });
+        }
+        if (needsRefresh) {
+            this.logger.info({ force }, "Refreshing ninja items due to staleness or force");
+            return this.refresh(categories, league);
+        } else {
+            this.logger.info("Ninja items are fresh; skipping refresh");
+            return items;
+        }
     }
 }

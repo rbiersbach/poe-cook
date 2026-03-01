@@ -24,6 +24,7 @@ export interface NinjaItem {
     volume: number;
     maxVolumeCurrency: string;
     maxVolumeRate: number;
+    fetchedAt: string; // ISO date string
 }
 
 // Types for the ninja currency API response
