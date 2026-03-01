@@ -6,6 +6,7 @@ import { IRecipeService, RecipeService } from "services/recipe-service";
 import type { ITradeClientService } from "services/trade-client-service";
 import { TradeClientService } from "services/trade-client-service";
 import { ResolveItemError, TradeResolverService } from "services/trade-resolver-service";
+import { INinjaItemStore, NinjaItemStore } from "stores/ninja-item-store";
 import { RecipeStore } from "stores/recipe-store";
 
 export class TradeApiServer {
@@ -13,9 +14,9 @@ export class TradeApiServer {
     private tradeClient!: ITradeClientService;
     private recipeService!: IRecipeService;
     private logger: FastifyBaseLogger;
-    private ninjaItemStore;
+    private ninjaItemStore: INinjaItemStore;
 
-    constructor(tradeClient?: ITradeClientService, recipeService?: IRecipeService, logger?: FastifyBaseLogger, ninjaItemStore?: any) {
+    constructor(tradeClient?: ITradeClientService, recipeService?: IRecipeService, logger?: FastifyBaseLogger, ninjaItemStore?: INinjaItemStore) {
         let loggerDefinition;
         if (!logger) {
             loggerDefinition = {
@@ -39,12 +40,13 @@ export class TradeApiServer {
             "Keepers",
             this.logger
         );
+        this.ninjaItemStore = ninjaItemStore || new NinjaItemStore();
         this.recipeService = recipeService || new RecipeService(
             new RecipeStore(),
             new TradeResolverService(this.logger, this.tradeClient, HtmlExtractorService),
-            this.logger
+            this.logger,
+            this.ninjaItemStore
         );
-        this.ninjaItemStore = ninjaItemStore;
         this.registerRoutes();
     }
 

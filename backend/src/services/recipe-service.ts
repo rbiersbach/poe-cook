@@ -9,13 +9,15 @@ import { FastifyBaseLogger } from "fastify";
 import { Recipe, RecipeItem } from "models/trade-types";
 import type { ITradeResolverService } from "services/trade-resolver-service";
 import type { IRecipeStore } from "stores/recipe-store";
+import type { INinjaItemStore } from "stores/ninja-item-store";
 
 export class RecipeService implements IRecipeService {
     constructor(
         private store: IRecipeStore,
         private resolver: ITradeResolverService,
-        private logger: FastifyBaseLogger
-    ) { }
+        private logger: FastifyBaseLogger,
+        private ninjaItemStore: INinjaItemStore
+        ) {}
 
     /**
      * Adds a recipe to the store.
@@ -70,8 +72,14 @@ export class RecipeService implements IRecipeService {
                 const resolved = await this.resolver.resolveItemFromSearch(item.search, "example-session-id");
                 return { ...item, resolved, tradeUrl };
             } else if (item.type === 'ninja') {
-                // For NinjaItem, resolved is not updated here (could add logic if needed)
-                return item;
+                // Refresh ninja item by fetching latest from store by id
+                const latest = this.ninjaItemStore.get(item.id);
+                if (latest) {
+                    return latest;
+                } else {
+                    this.logger.warn({ id: item.id }, "Ninja item not found in store during refresh");
+                    return item;
+                }
             } else {
                 return item;
             }

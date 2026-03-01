@@ -1,3 +1,4 @@
+import { NinjaItem } from "models/ninja-types";
 import { isTradeItem, Recipe, TradeItem } from "models/trade-types";
 import { RecipeService } from "services/recipe-service";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -14,11 +15,13 @@ const mockResolver = {
     resolveItemFromSearch: vi.fn(),
 };
 const mockLogger = { info: vi.fn(), warn: vi.fn(), error: vi.fn() };
+const mockNinjaItemStore = { get: vi.fn() };
 
 const service = new RecipeService(
     mockStore as any,
     mockResolver as any,
-    mockLogger as any
+    mockLogger as any,
+    mockNinjaItemStore as any
 );
 
 describe("RecipeService", () => {
@@ -59,4 +62,37 @@ describe("RecipeService", () => {
         expect(mockStore.add).toHaveBeenCalledWith(expect.objectContaining({ id: "r3" }));
     });
 
+    it("refreshRecipe updates ninja items from store", async () => {
+        const ninjaItem = {
+            type: 'ninja',
+            id: 'ninja1',
+            name: 'Ninja Orb',
+            icon: 'icon.png',
+            category: 'Currency',
+            detailsId: 'orb-1',
+            price: 123,
+            priceHistory: [100, 110, 120, 123],
+            volume: 1000,
+            maxVolumeCurrency: 'chaos',
+            maxVolumeRate: 1,
+            fetchedAt: '2026-03-01T00:00:00Z',
+        } as NinjaItem;
+
+        const recipe: Recipe = {
+            id: "r4",
+            name: "Ninja Recipe",
+            inputs: [ninjaItem],
+            outputs: [ninjaItem],
+            createdAt: "2024-01-01T00:00:00Z",
+            updatedAt: "2024-01-01T00:00:00Z",
+        };
+        const updatedNinjaItem = { ...ninjaItem, price: 130 };
+
+        mockNinjaItemStore.get.mockReturnValue(updatedNinjaItem); // Updated price
+        // Act
+        const refreshed = await service.refreshRecipe(recipe);
+        // Assert
+        expect(refreshed.inputs[0]).toEqual(updatedNinjaItem);
+        expect(refreshed.outputs[0]).toEqual(updatedNinjaItem);
+    });
 });
