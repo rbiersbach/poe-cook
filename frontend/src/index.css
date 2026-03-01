@@ -1,6 +1,3 @@
-.card-section {
-  @apply bg-gray-100 dark:bg-gray-800 rounded px-2 py-1;
-}
 @import "tailwindcss";
 
 @theme {
@@ -169,4 +166,20 @@ body {
   @apply bg-white border border-gray-200 text-gray-900;
   @apply dark:bg-gray-950 dark:border-gray-700 dark:text-gray-50;
   @apply shadow-lg rounded p-2 text-xs min-w-max z-10;
+}
+
+/* =========================
+   Profit Text Colors
+==========================*/
+
+.profit-green {
+  @apply text-green-600 dark:text-green-400;
+}
+
+.profit-red {
+  @apply text-red-600 dark:text-red-400;
+}
+
+.card-section {
+  @apply bg-gray-100 dark:bg-gray-800 rounded px-2 py-1;
 }

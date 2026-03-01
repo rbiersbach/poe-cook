@@ -1,9 +1,9 @@
 import { Recipe } from "api/generated/models/Recipe";
 import React from "react";
 import { Button } from "./Button";
+import { ItemChip } from "./ItemChip";
 import { ProfitDisplay } from "./ProfitDisplay";
 import { TimeAgo } from "./TimeAgo";
-import { ItemChip } from "./ItemChip";
 
 interface RecipeCardProps {
     recipe: Recipe;
@@ -55,12 +55,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refre
                 </div>
             </div>
             <div className="flex w-full gap-2">
-                    <div className="card-section flex flex-wrap gap-2 items-center flex-1 min-w-0">
+                <div className="card-section flex flex-wrap gap-2 items-center flex-1 min-w-0">
                     {recipe.inputs.map((item, idx) => (
                         <ItemChip key={idx} item={item} />
                     ))}
                 </div>
-                    <div className="card-section flex flex-wrap gap-2 items-center flex-1 min-w-0 justify-end">
+                <div className="card-section flex flex-wrap gap-2 items-center flex-1 min-w-0 justify-end">
                     {recipe.outputs.map((item, idx) => (
                         <ItemChip key={"out-" + idx} item={item} />
                     ))}

@@ -1,12 +1,6 @@
 import React from "react";
 
-import chaosIcon from "../../resources/assets/chaos.png";
-import divineIcon from "../../resources/assets/divine.png";
-
-const currencyIcons: Record<string, string> = {
-    chaos: chaosIcon,
-    divine: divineIcon,
-};
+import CurrencyIcon from "./CurrencyIcon";
 
 export interface PriceRangeDisplayProps {
     min: number;
@@ -18,7 +12,7 @@ export interface PriceRangeDisplayProps {
 
 export const PriceRangeDisplay: React.FC<PriceRangeDisplayProps> = ({ min, max, currency, className }) => {
     if (min == null || max == null || currency == null) return null;
-    const icon = currencyIcons[currency.toLowerCase()];
+        const icon = currency?.toLowerCase();
 
     // Define colors for min and max values based on profitability, each on their own
     const minColor = min > 0 ? "text-green-600" : (min < 0 ? "text-red-600" : "text-neutral-600");
@@ -32,10 +26,7 @@ export const PriceRangeDisplay: React.FC<PriceRangeDisplayProps> = ({ min, max, 
             <span className="mx-1">–</span>
             <span className={maxColor}>{maxStr}</span>
             <span style={{ display: 'inline-block', width: 6 }} />
-            {icon && (
-                <img src={icon} alt={currency} className="inline w-5 h-5 align-middle" />
-            )}
-            {!icon && currency}
+                {icon ? <CurrencyIcon currency={icon} className="inline w-5 h-5 align-middle" /> : currency}
         </span>
     );
 };

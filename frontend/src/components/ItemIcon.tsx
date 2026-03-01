@@ -4,18 +4,20 @@ interface ItemIconProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt?: string;
   className?: string;
+  width?: string | number;
+  height?: string | number;
 }
 
 /**
  * ItemIcon ensures icons are always contained, square, and padded consistently.
  * Uses a container div and an img styled to handle icons of any aspect ratio.
  */
-const ItemIcon: React.FC<ItemIconProps> = ({ src, alt = "icon", className = "", ...props }) => (
+const ItemIcon: React.FC<ItemIconProps> = ({ src, alt = "icon", className = "", width = "2.5rem", height = "2.5rem", ...props }) => (
   <div
     style={{
       aspectRatio: "1 / 1",
-      width: "2.5rem",
-      height: "2.5rem",
+      width,
+      height,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
