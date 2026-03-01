@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { TextInput } from "../components/TextInput";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { DefaultService } from "../api/generated/services/DefaultService";
 import { RecipesListRefetchContext } from "../App";
@@ -87,12 +88,12 @@ export default function CreateRecipePage() {
             {success && <SuccessMessage message={success} />}
             <div className="mb-4">
                 <label htmlFor="recipe-name" className="block font-semibold mb-1">Recipe Name <span className="text-red-500">*</span></label>
-                <input
+                <TextInput
                     id="recipe-name"
-                    className="input w-full"
-                    type="text"
                     value={name}
                     onChange={e => setName(e.target.value)}
+                    showClear={true}
+                    onClear={() => setName("")}
                     placeholder="Recipe name"
                     data-testid="recipe-name-input"
                     required
