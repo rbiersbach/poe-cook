@@ -55,7 +55,7 @@ export const RecipeItemDraftManager: React.FC<RecipeItemDraftManagerProps> = ({
             }
         });
         // Clean up removed drafts
-        lastResolvedUrls.current = drafts.map(d => d.tradeUrl);
+        lastResolvedUrls.current = drafts.map(d => d.tradeUrl ?? "");
     }, [drafts]);
 
     useEffect(() => {

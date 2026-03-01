@@ -1,9 +1,52 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import CreateRecipePage from "pages/CreateRecipePage";
 import { describe, expect, it, vi } from "vitest";
 import { DefaultService } from "../../api/generated/services/DefaultService";
+import CreateRecipePage from "../CreateRecipePage";
 
 describe("CreateRecipePage", () => {
+
+    it("autofills the name field with the resolved output name when only output is filled", async () => {
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
+            resolved: {
+                name: "Resolved Output Name",
+                iconUrl: "icon.png",
+                originalMinPrice: { amount: 10, currency: "chaos" },
+            },
+            search: { query: {}, sort: {} },
+        });
+        render(<CreateRecipePage />);
+        // Only fill the output draft (second trade-url-input)
+        const outputUrl = screen.getAllByTestId("trade-url-input")[1];
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        // Wait for output to resolve and autofill
+        expect(await screen.findByText(/resolved output name/i)).toBeInTheDocument();
+        // Name field should be autofilled
+        const nameInput = await screen.findByDisplayValue("Resolved Output Name");
+        expect(nameInput).toHaveValue("Resolved Output Name");
+        mockResolve.mockRestore();
+    });
+
+    it("autofills the name field with the first output's resolved name if empty", async () => {
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
+            resolved: {
+                name: "Autofill Output Name",
+                iconUrl: "icon.png",
+                originalMinPrice: { amount: 10, currency: "chaos" },
+            },
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" }, sort: {} },
+        }) as unknown as import("../../api/generated/core/CancelablePromise").CancelablePromise<any>;
+        render(<CreateRecipePage />);
+        // Output draft is the second trade-url-input
+        const outputUrl = screen.getAllByTestId("trade-url-input")[1];
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        // Wait for output to resolve and autofill
+        await screen.findByText(/autofill output name/i);
+        // Wait for the name field to be autofilled
+        await screen.findByDisplayValue("Autofill Output Name");
+        const nameInput = screen.getByTestId("recipe-name-input");
+        expect(nameInput).toHaveValue("Autofill Output Name");
+        mockResolve.mockRestore();
+    });
     it("renders all main sections (inputs, output, submit button)", () => {
         render(<CreateRecipePage />);
         // Inputs section
@@ -281,6 +324,9 @@ describe("CreateRecipePage", () => {
         const mockSubmit = vi.spyOn(DefaultService, "postApiRecipes").mockRejectedValue(new Error("API error: failed to submit"));
         render(<CreateRecipePage />);
 
+        // Fill out name
+        const nameInput = screen.getByTestId("recipe-name-input");
+        fireEvent.change(nameInput, { target: { value: "My Custom Recipe" } });
         // Fill and resolve first input draft
         let inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlA1" } });

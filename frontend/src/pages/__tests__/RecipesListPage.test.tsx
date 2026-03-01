@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { DefaultService } from "api/generated/services/DefaultService";
-import RecipesListPage from "pages/RecipesListPage";
+import { DefaultService } from "../../api/generated/services/DefaultService";
+import RecipesListPage from "../RecipesListPage";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const defaultRecipe = {

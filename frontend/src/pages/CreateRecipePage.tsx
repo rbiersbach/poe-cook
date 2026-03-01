@@ -1,12 +1,14 @@
-import { useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { DefaultService } from "../api/generated/services/DefaultService";
+import { RecipesListRefetchContext } from "../App";
 import { Button } from "../components/Button";
 import { RecipeItemDraftManager } from "../components/RecipeItemDraftManager";
 import { ErrorMessage, SuccessMessage } from "../components/SectionHeader";
-import { RecipesListRefetchContext } from "../App";
 
 export default function CreateRecipePage() {
+    const [name, setName] = useState("");
+    const [hasAutofilled, setHasAutofilled] = useState(false);
     const refetchRecipes = useContext(RecipesListRefetchContext);
     const [resolvedInputs, setResolvedInputs] = useState<RecipeItem[]>([]);
     const [resolvedOutputs, setResolvedOutputs] = useState<RecipeItem[]>([]);
@@ -32,17 +34,31 @@ export default function CreateRecipePage() {
         setError(null);
         setSuccess(null);
         try {
+            let recipeName = name.trim();
+            // Autofill name if empty and possible
+            if (!recipeName && resolvedOutputs.length > 0 && resolvedOutputs[0]?.resolved?.name) {
+                recipeName = resolvedOutputs[0].resolved.name;
+                setName(recipeName);
+                setHasAutofilled(true);
+            }
+            if (!recipeName) {
+                setError("Recipe name is required.");
+                setLoading(false);
+                return;
+            }
             if (resolvedOutputs.length === 0 || resolvedInputs.length === 0) {
                 setError("Please resolve at least one input and one output item.");
                 setLoading(false);
                 return;
             }
             await DefaultService.postApiRecipes({
-                name: resolvedOutputs[0]?.resolved?.name || "Recipe",
+                name: recipeName,
                 inputs: resolvedInputs,
                 outputs: resolvedOutputs,
             });
             setSuccess("Recipe submitted successfully!");
+            setName("");
+            setHasAutofilled(false);
             setResolvedInputs([]);
             setResolvedOutputs([]);
             setResetKey(k => k + 1);
@@ -54,11 +70,34 @@ export default function CreateRecipePage() {
         }
     };
 
+    // Autofill name if first output is resolved and name is empty
+    // Autofill name only once if first output is resolved and name is empty
+    useEffect(() => {
+        // Autofill name as soon as first output is resolved and name is empty
+        if (!hasAutofilled && !name && resolvedOutputs.length > 0 && resolvedOutputs[0]?.resolved?.name) {
+            setName(resolvedOutputs[0].resolved.name);
+            setHasAutofilled(true);
+        }
+    }, [resolvedOutputs]);
+
     return (
         <div className="max-w-2xl mx-auto p-6 container rounded shadow">
             <h1 className="text-2xl font-bold mb-4 header">Create Recipe</h1>
             {error && <ErrorMessage message={error} />}
             {success && <SuccessMessage message={success} />}
+            <div className="mb-4">
+                <label htmlFor="recipe-name" className="block font-semibold mb-1">Recipe Name <span className="text-red-500">*</span></label>
+                <input
+                    id="recipe-name"
+                    className="input w-full"
+                    type="text"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    placeholder="Recipe name"
+                    data-testid="recipe-name-input"
+                    required
+                />
+            </div>
             <RecipeItemDraftManager
                 key={`inputs-${resetKey}`}
                 label="Inputs"
