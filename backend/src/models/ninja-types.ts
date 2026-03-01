@@ -14,6 +14,7 @@ export enum NinjaCategory {
     Essence = "Essence",
 }
 export interface NinjaItem {
+    type: 'ninja';
     id: string;
     name: string;
     icon: string;

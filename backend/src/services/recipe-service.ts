@@ -65,13 +65,19 @@ export class RecipeService implements IRecipeService {
      */
     async refreshItem(item: RecipeItem): Promise<RecipeItem> {
         try {
-            // Use tradeUrl from item if present, otherwise try to extract from search
-            const tradeUrl = item.tradeUrl;
-            const resolved = await this.resolver.resolveItemFromSearch(item.search, "example-session-id");
-            return { ...item, resolved, tradeUrl };
+            if (item.type === 'trade') {
+                const tradeUrl = item.tradeUrl;
+                const resolved = await this.resolver.resolveItemFromSearch(item.search, "example-session-id");
+                return { ...item, resolved, tradeUrl };
+            } else if (item.type === 'ninja') {
+                // For NinjaItem, resolved is not updated here (could add logic if needed)
+                return item;
+            } else {
+                return item;
+            }
         } catch (err) {
             this.logger.warn({ error: err, item }, "Failed to refresh item");
-            return { ...item };
+            return item;
         }
     }
 }

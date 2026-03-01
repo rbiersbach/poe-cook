@@ -27,6 +27,7 @@ describe("RecipeStore", () => {
             name: "Chaos Recipe",
             inputs: [
                 {
+                    type: 'trade',
                     qty: 1,
                     search: { query: { url: "url1" }, sort: { price: "asc" as const } },
                     resolved: {
@@ -38,7 +39,8 @@ describe("RecipeStore", () => {
                         originalMedianPrice: { amount: 6.5, currency: "chaos" },
                         medianCount: 2,
                         fetchedAt: now,
-                    }
+                    },
+                    tradeUrl: "url1",
                 }
             ],
             outputs: [],
@@ -50,6 +52,7 @@ describe("RecipeStore", () => {
             name: "Divine Recipe",
             inputs: [
                 {
+                    type: 'trade',
                     qty: 1,
                     search: { query: { url: "url2" }, sort: { price: "asc" as const } },
                     resolved: {
@@ -61,7 +64,8 @@ describe("RecipeStore", () => {
                         originalMedianPrice: { amount: 13, currency: "divine" },
                         medianCount: 4,
                         fetchedAt: now,
-                    }
+                    },
+                    tradeUrl: "url2",
                 }
             ],
             outputs: [],
@@ -85,6 +89,7 @@ describe("RecipeStore", () => {
             name: "Test Recipe",
             inputs: [
                 {
+                    type: 'trade',
                     qty: 2,
                     search: { query: { url: "url1" }, sort: { price: "asc" as const } },
                     resolved: {
@@ -96,11 +101,13 @@ describe("RecipeStore", () => {
                         originalMedianPrice: { amount: 13, currency: "chaos" },
                         medianCount: 5,
                         fetchedAt: now,
-                    }
+                    },
+                    tradeUrl: "url1",
                 }
             ],
             outputs: [
                 {
+                    type: 'trade',
                     qty: 1,
                     search: { query: { url: "url3" }, sort: { price: "asc" as const } },
                     resolved: {
@@ -112,7 +119,8 @@ describe("RecipeStore", () => {
                         originalMedianPrice: { amount: 130, currency: "chaos" },
                         medianCount: 10,
                         fetchedAt: now,
-                    }
+                    },
+                    tradeUrl: "url3",
                 }
             ],
             createdAt: now,
@@ -138,6 +146,7 @@ describe("RecipeStore", () => {
             name: "Test Recipe",
             inputs: [
                 {
+                    type: 'trade',
                     qty: 1,
                     search: { query: { url: "url1" }, sort: { price: "asc" as const } },
                     resolved: {
@@ -149,11 +158,13 @@ describe("RecipeStore", () => {
                         originalMedianPrice: { amount: 6.5, currency: "chaos" },
                         medianCount: 2,
                         fetchedAt: now,
-                    }
+                    },
+                    tradeUrl: "url1",
                 }
             ],
             outputs: [
                 {
+                    type: 'trade',
                     qty: 1,
                     search: { query: { url: "url2" }, sort: { price: "asc" as const } },
                     resolved: {
@@ -165,7 +176,8 @@ describe("RecipeStore", () => {
                         originalMedianPrice: { amount: 13, currency: "chaos" },
                         medianCount: 4,
                         fetchedAt: now,
-                    }
+                    },
+                    tradeUrl: "url2",
                 }
             ],
             createdAt: now,

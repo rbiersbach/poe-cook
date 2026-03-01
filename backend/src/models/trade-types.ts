@@ -1,4 +1,24 @@
 // Types for resolve-item API
+import type { NinjaItem } from './ninja-types';
+
+// Discriminated union type for recipe/trade/ninja items
+export type RecipeItem = TradeItem | NinjaItem;
+
+export type TradeItem = {
+  type: 'trade';
+  tradeUrl: string;
+  search: TradeSearchRequest;
+  qty: number;
+  resolved?: ResolvedMarketData;
+};
+
+// Type guards
+export function isTradeItem(item: RecipeItem): item is TradeItem {
+  return item.type === 'trade';
+}
+export function isNinjaItem(item: RecipeItem): item is NinjaItem {
+  return item.type === 'ninja';
+}
 export class ResolveItemRequest {
   tradeUrl?: string;
   constructor(init?: Partial<ResolveItemRequest>) {
@@ -161,18 +181,6 @@ export class TradeFetchedListing {
 }
 
 // Types for Recipe API
-
-export class RecipeItem {
-  tradeUrl?: string;
-  search!: TradeSearchRequest;
-  qty!: number; // now supports decimals/rates
-  resolved?: ResolvedMarketData;
-  constructor(init?: Partial<RecipeItem>) {
-    Object.assign(this, init);
-  }
-}
-
-
 
 export class Recipe {
   id!: string;

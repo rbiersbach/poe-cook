@@ -4,6 +4,7 @@
     "name": "Transcendent Flesh Crimson Jewel",
     "inputs": [
       {
+        "type": "trade",
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/opV2bEWZsl",
         "search": {
           "query": {
@@ -51,6 +52,7 @@
         }
       },
       {
+        "type": "trade",
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/X3mM3qokhP",
         "search": {
           "query": {
@@ -97,6 +99,7 @@
         }
       },
       {
+        "type": "trade",
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/4mM8MQMgh9",
         "search": {
           "query": {
@@ -159,6 +162,7 @@
     ],
     "outputs": [
       {
+        "type": "trade",
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/6zoE0w82hG",
         "search": {
           "query": {
@@ -214,6 +218,7 @@
     "name": "Mask of the Stitched Demon Magistrate Crown",
     "inputs": [
       {
+        "type": "trade",
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/WvQb4QYVCm",
         "search": {
           "query": {
@@ -261,6 +266,7 @@
         }
       },
       {
+        "type": "trade",
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/3qj2DE7ZC5",
         "search": {
           "query": {
@@ -307,6 +313,7 @@
         }
       },
       {
+        "type": "trade",
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/4mM8MQMgh9",
         "search": {
           "query": {
@@ -369,6 +376,7 @@
     ],
     "outputs": [
       {
+        "type": "trade",
         "tradeUrl": "https://www.pathofexile.com/trade/search/Keepers/Bg327P9wF8",
         "search": {
           "query": {
