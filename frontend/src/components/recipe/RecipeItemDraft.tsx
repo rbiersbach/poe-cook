@@ -57,7 +57,7 @@ export const RecipeItemDraft: React.FC<RecipeItemDraftProps> = ({
                     data-testid="trade-url-input"
                 />
             </span>
-            <span className={`text-sm text-gray-400 shrink-0${focusedField ? ' hidden' : ''}`}>or</span>
+            <span className={`text-sm text-gray-400 shrink-0${focusedField ? ' hidden' : ''}`} data-testid="draft-separator-or">or</span>
             <span className={`flex-1 min-w-0 transition-all duration-200${hideSearch ? ' hidden' : ''}`} data-testid="ninja-item-search">
                 <ItemSearchInput
                     onSelect={item => onSelectNinja && onSelectNinja(item)}

@@ -27,9 +27,9 @@ export const PriceRangeDisplay: React.FC<PriceRangeDisplayProps> = ({ min, max, 
     const maxStr = (max < 0 ? `-${maxFmt}` : maxFmt);
     return (
         <span className={className || "inline-flex items-center gap-1 text-primary"}>
-            <span className={minColor}>{minApproxZero ? `~${minStr}` : minStr}</span>
+            <span className={minColor} data-testid="price-min">{minApproxZero ? `~${minStr}` : minStr}</span>
             <span className="mx-1">–</span>
-            <span className={maxColor}>{maxApproxZero ? `~${maxStr}` : maxStr}</span>
+            <span className={maxColor} data-testid="price-max">{maxApproxZero ? `~${maxStr}` : maxStr}</span>
             <span style={{ display: 'inline-block', width: 6 }} />
                 {icon ? <CurrencyIcon currency={icon} className="inline w-5 h-5 align-middle" /> : currency}
         </span>

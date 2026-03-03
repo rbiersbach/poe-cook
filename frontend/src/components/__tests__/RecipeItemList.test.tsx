@@ -63,7 +63,7 @@ describe("RecipeItemList", () => {
                 resolveItem={mockResolveItem}
             />
         );
-        expect(screen.getByText("Inputs")).toBeInTheDocument();
+        expect(screen.getByTestId("recipe-item-list-inputs")).toBeInTheDocument();
         expect(screen.getByTestId("ninja-item-search")).toBeInTheDocument();
         expect(screen.getByTestId("item-search-field")).toBeInTheDocument();
     });
@@ -118,7 +118,7 @@ describe("RecipeItemList", () => {
         });
 
         await waitFor(() =>
-            expect(screen.getByText("Mirror of Kalandra")).toBeInTheDocument()
+            expect(screen.getByTestId("item-name")).toHaveTextContent("Mirror of Kalandra")
         );
         expect(onResolvedChange).toHaveBeenCalledWith(
             expect.arrayContaining([
@@ -146,7 +146,7 @@ describe("RecipeItemList", () => {
         );
 
         // Initially Mirror of Kalandra should be in the resolved list
-        expect(screen.getByText("Mirror of Kalandra")).toBeInTheDocument();
+        expect(screen.getByTestId("item-name")).toHaveTextContent("Mirror of Kalandra");
 
         // Click the remove button for the resolved item (testid from RecipeItemRow)
         const removeBtn = screen.getByTestId("remove-input-button");

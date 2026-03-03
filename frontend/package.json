@@ -13,7 +13,8 @@
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
-    "react-router-dom": "^7.13.1"
+    "react-router-dom": "^7.13.1",
+    "tailwindcss": "^4.2.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.0",
@@ -26,7 +27,6 @@
     "@vitejs/plugin-react": "latest",
     "jsdom": "^28.1.0",
     "openapi-typescript-codegen": "^0.30.0",
-    "tailwindcss": "^4.2.0",
     "typescript": "latest",
     "vite": "latest",
     "vite-tsconfig-paths": "^6.1.1",

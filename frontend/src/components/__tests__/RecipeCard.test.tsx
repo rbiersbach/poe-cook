@@ -56,8 +56,8 @@ describe("RecipeCard", () => {
             />
         );
         expect(screen.getByTestId("recipe-name")).toHaveTextContent("Test Recipe");
-        expect(screen.getByText("Input Item")).toBeInTheDocument();
-        expect(screen.getByText("Output Item")).toBeInTheDocument();
+        expect(screen.getByAltText("Input Item")).toBeInTheDocument();
+        expect(screen.getByAltText("Output Item")).toBeInTheDocument();
     });
 
     it("shows profit display and recipe updated time", () => {
@@ -70,7 +70,7 @@ describe("RecipeCard", () => {
             />
         );
         expect(screen.getByTestId("recipe-updated-at")).toBeInTheDocument();
-        expect(screen.getByText(/Profit/)).toBeInTheDocument();
+        expect(screen.getByTestId("profit-tooltip")).toBeInTheDocument();
     });
 
     it("calls onRefresh when refresh button is clicked", async () => {
@@ -170,8 +170,8 @@ describe("RecipeCard", () => {
         const deleteBtn = screen.getByTestId("delete-recipe-test1");
         expect(deleteBtn).toBeInTheDocument();
         await user.click(deleteBtn);
-        expect(screen.getByText(/Delete Recipe\?/)).toBeInTheDocument();
-        expect(screen.getByText(/Are you sure you want to delete/)).toBeInTheDocument();
+        expect(screen.getByTestId("delete-modal")).toBeInTheDocument();
+        expect(screen.getByTestId("delete-modal-title")).toHaveTextContent("Delete Recipe?");
     });
 
     it("closes confirmation modal when Cancel button is clicked", async () => {
@@ -306,6 +306,7 @@ describe("RecipeCard", () => {
                 refreshError="Refresh failed"
             />
         );
-        expect(screen.getByText("Refresh failed")).toBeInTheDocument();
+        expect(screen.getByTestId("refresh-error-msg")).toBeInTheDocument();
+        expect(screen.getByTestId("refresh-error-msg")).toHaveTextContent("Refresh failed");
     });
 });

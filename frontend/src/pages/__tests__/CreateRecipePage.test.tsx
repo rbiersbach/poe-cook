@@ -51,9 +51,9 @@ describe("CreateRecipePage", () => {
     it("renders all main sections (inputs, output, submit button)", () => {
         render(<CreateRecipePage />);
         // Inputs section
-        expect(screen.getByText(/inputs/i)).toBeInTheDocument();
+        expect(screen.getByTestId("recipe-item-list-inputs")).toBeInTheDocument();
         // Output section
-        expect(screen.getByText(/output/i)).toBeInTheDocument();
+        expect(screen.getByTestId("recipe-item-list-outputs")).toBeInTheDocument();
         // Submit button
         expect(screen.getByRole("button", { name: /submit recipe/i })).toBeInTheDocument();
     });
@@ -81,10 +81,11 @@ describe("CreateRecipePage", () => {
         // There should still be two inputs (one resolved, one draft)
         expect(draftInputs).toHaveLength(2);
         // Remove input (should not go below 1)
-        fireEvent.click(screen.getAllByText(/remove/i)[0]);
+        const removeButtons = screen.getAllByTestId("remove-input-button");
+        fireEvent.click(removeButtons[0]);
         expect(screen.getAllByTestId("trade-url-input")).toHaveLength(2);
-        // Try to remove last input (there should be no remove button)
-        expect(screen.queryByText(/remove/i)).toBeNull();
+        // Try to remove last input (there should be no remove button for draft inputs)
+        expect(screen.queryAllByTestId("remove-input-button")).toHaveLength(0);
     });
 
     it("can edit input and output fields (tradeUrl, qty)", async () => {
@@ -188,7 +189,7 @@ describe("CreateRecipePage", () => {
             expect(input).not.toHaveValue("https://www.pathofexile.com/trade/search/Standard/abcdefghij");
         });
         // The resolved item should be in the resolved list (look for Remove button in resolved row)
-        expect(screen.getByText(/remove/i)).toBeInTheDocument();
+        expect(screen.getByTestId("remove-input-button")).toBeInTheDocument();
         mockResolve.mockRestore();
     });
 
@@ -213,7 +214,7 @@ describe("CreateRecipePage", () => {
             expect(input).not.toHaveValue("https://www.pathofexile.com/trade/search/Standard/klmnopqrst");
         });
         // The resolved output should be in the resolved row (look for Remove button)
-        expect(screen.getByText(/remove/i)).toBeInTheDocument();
+        expect(screen.getByTestId("remove-input-button")).toBeInTheDocument();
         mockResolve.mockRestore();
     });
 

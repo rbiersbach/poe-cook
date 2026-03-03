@@ -87,7 +87,7 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
 
     return (
         <div className="mb-6">
-            <h3 className="font-semibold mb-2">{label}</h3>
+            <h3 className="font-semibold mb-2" data-testid={`recipe-item-list-${label.toLowerCase()}`}>{label}</h3>
             {resolved.map((item, idx) => (
                 <RecipeItemRow
                     key={"resolved-" + idx}

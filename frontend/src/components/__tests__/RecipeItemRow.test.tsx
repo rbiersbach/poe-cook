@@ -18,14 +18,14 @@ describe("RecipeItemDraft — focus hide behaviour", () => {
         render(<RecipeItemDraft item={draftItem} />);
         expect(screen.getByTestId("trade-url-input").closest("span")).not.toHaveClass("hidden");
         expect(screen.getByTestId("ninja-item-search")).not.toHaveClass("hidden");
-        expect(screen.getByText("or")).not.toHaveClass("hidden");
+        expect(screen.getByTestId("draft-separator-or")).not.toHaveClass("hidden");
     });
 
     it("hides the search input and 'or' when trade URL input is focused", () => {
         render(<RecipeItemDraft item={draftItem} />);
         fireEvent.focus(screen.getByTestId("trade-url-input"));
         expect(screen.getByTestId("trade-url-input").closest("span")).not.toHaveClass("hidden");
-        expect(screen.getByText("or")).toHaveClass("hidden");
+        expect(screen.getByTestId("draft-separator-or")).toHaveClass("hidden");
         expect(screen.getByTestId("ninja-item-search")).toHaveClass("hidden");
     });
 
@@ -33,7 +33,7 @@ describe("RecipeItemDraft — focus hide behaviour", () => {
         render(<RecipeItemDraft item={draftItem} />);
         fireEvent.focus(screen.getByTestId("item-search-field"));
         expect(screen.getByTestId("ninja-item-search")).not.toHaveClass("hidden");
-        expect(screen.getByText("or")).toHaveClass("hidden");
+        expect(screen.getByTestId("draft-separator-or")).toHaveClass("hidden");
         expect(screen.getByTestId("trade-url-input").closest("span")).toHaveClass("hidden");
     });
 
@@ -42,7 +42,7 @@ describe("RecipeItemDraft — focus hide behaviour", () => {
         fireEvent.focus(screen.getByTestId("trade-url-input"));
         fireEvent.blur(screen.getByTestId("trade-url-input"));
         expect(screen.getByTestId("trade-url-input").closest("span")).not.toHaveClass("hidden");
-        expect(screen.getByText("or")).not.toHaveClass("hidden");
+        expect(screen.getByTestId("draft-separator-or")).not.toHaveClass("hidden");
         expect(screen.getByTestId("ninja-item-search")).not.toHaveClass("hidden");
     });
 });

@@ -29,7 +29,7 @@ export const RecipeItemRow: React.FC<RecipeItemRowProps> = ({
     return (
         <div className="card-row border-primary flex items-center gap-1 min-h-11 max-h-13" style={{ overflow: 'hidden' }} data-testid="recipe-item-row-resolved">
             <ItemIcon src={itemIcon} alt="icon" className="w-7 h-7 shrink-0" />
-            <span className="truncate flex-1 min-w-0">{itemName}</span>
+            <span className="truncate flex-1 min-w-0" data-testid="item-name">{itemName}</span>
             <span className="flex items-center">
                 <input
                     type="number"

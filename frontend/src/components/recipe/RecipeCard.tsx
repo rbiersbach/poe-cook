@@ -99,22 +99,24 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refre
                                 children={undefined}
                             />
                             {showDeleteConfirm && (
-                                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" data-testid="delete-modal">
                                     <div className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg max-w-sm">
-                                        <h2 className="text-lg font-bold mb-4">Delete Recipe?</h2>
-                                        <p className="text-gray-700 dark:text-gray-300 mb-6">
+                                        <h2 className="text-lg font-bold mb-4" data-testid="delete-modal-title">Delete Recipe?</h2>
+                                        <p className="text-gray-700 dark:text-gray-300 mb-6" data-testid="delete-modal-message">
                                             Are you sure you want to delete "{recipe.name}"? This action cannot be undone.
                                         </p>
-                                        {deleteError && <p className="text-red-500 mb-4 text-sm">{deleteError}</p>}
+                                        {deleteError && <p className="text-red-500 mb-4 text-sm" data-testid="delete-error-msg">{deleteError}</p>}
                                         <div className="flex gap-3 justify-end">
                                             <Button
                                                 onClick={() => setShowDeleteConfirm(false)}
                                                 disabled={deleting}
+                                                data-testid="delete-modal-cancel-btn"
                                                 children="Cancel"
                                             />
                                             <Button
                                                 onClick={handleDeleteConfirm}
                                                 disabled={deleting}
+                                                data-testid="delete-modal-confirm-btn"
                                                 children={deleting ? "Deleting..." : "Delete"}
                                             />
                                         </div>
@@ -123,7 +125,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refre
                             )}
                         </>
                     )}
-                    {refreshError && <span className="refresh-error text-red-500">{refreshError}</span>}
+                    {refreshError && <span className="refresh-error text-red-500" data-testid="refresh-error-msg">{refreshError}</span>}
                 </div>
             </div>
             <div className="flex w-full gap-2">

@@ -37,7 +37,7 @@ describe("RecipesListPage", () => {
         vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
         vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
         render(<RecipesListPage />);
-        expect(screen.getByText("Recipes")).toBeInTheDocument();
+        expect(screen.getByTestId("recipes-page-title")).toBeInTheDocument();
         expect(screen.getByTestId("page-loader")).toBeInTheDocument();
         await waitFor(() => expect(screen.queryByTestId("page-loader")).not.toBeInTheDocument());
         expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument();
@@ -57,7 +57,7 @@ describe("RecipesListPage", () => {
         vi.spyOn(DefaultService, "getApiRecipes").mockRejectedValueOnce(new Error("API fail"));
         render(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("page-error")).toBeInTheDocument());
-        expect(screen.getByText(/API fail/)).toBeInTheDocument();
+        expect(screen.getByTestId("page-error")).toHaveTextContent("API fail");
     });
 
     it("displays each recipe’s profit range and last updated time", async () => {
@@ -65,7 +65,7 @@ describe("RecipesListPage", () => {
         vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
         render(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
-        expect(screen.getByText(/Profit/)).toBeInTheDocument();
+        expect(screen.getByTestId("profit-tooltip")).toBeInTheDocument();
         expect(screen.getByTestId("recipe-updated-at")).toBeInTheDocument();
     });
 
@@ -106,7 +106,7 @@ describe("RecipesListPage", () => {
         vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(missingPriceRecipe);
         render(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test2")).toBeInTheDocument());
-        expect(screen.getByText(/Missing price/)).toBeInTheDocument();
+        expect(screen.getByTestId("missing-price")).toBeInTheDocument();
     });
 
     it("calls onEdit handler when edit button is clicked", async () => {
@@ -130,8 +130,8 @@ describe("RecipesListPage", () => {
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const deleteBtn = screen.getByTestId("delete-recipe-test1");
         await user.click(deleteBtn);
-        expect(screen.getByText(/Are you sure you want to delete/)).toBeInTheDocument();
-        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        expect(screen.getByTestId("delete-modal-message")).toBeInTheDocument();
+        const confirmDeleteBtn = screen.getByTestId("delete-modal-confirm-btn");
         await user.click(confirmDeleteBtn);
         await waitFor(() => {
             expect(deleteApiSpy).toHaveBeenCalledWith("test1");
@@ -147,7 +147,7 @@ describe("RecipesListPage", () => {
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const deleteBtn = screen.getByTestId("delete-recipe-test1");
         await user.click(deleteBtn);
-        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        const confirmDeleteBtn = screen.getByTestId("delete-modal-confirm-btn");
         await user.click(confirmDeleteBtn);
         await waitFor(() => {
             expect(screen.queryByTestId("recipe-card-test1")).not.toBeInTheDocument();
@@ -163,10 +163,10 @@ describe("RecipesListPage", () => {
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const deleteBtn = screen.getByTestId("delete-recipe-test1");
         await user.click(deleteBtn);
-        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        const confirmDeleteBtn = screen.getByTestId("delete-modal-confirm-btn");
         await user.click(confirmDeleteBtn);
         await waitFor(() => {
-            expect(screen.getByText("Delete failed")).toBeInTheDocument();
+            expect(screen.getByTestId("delete-error-msg")).toBeInTheDocument();
         });
     });
 
@@ -179,10 +179,10 @@ describe("RecipesListPage", () => {
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const deleteBtn = screen.getByTestId("delete-recipe-test1");
         await user.click(deleteBtn);
-        const cancelBtn = screen.getByRole("button", { name: "Cancel" });
+        const cancelBtn = screen.getByTestId("delete-modal-cancel-btn");
         await user.click(cancelBtn);
         await waitFor(() => {
-            expect(screen.queryByText(/Are you sure you want to delete/)).not.toBeInTheDocument();
+            expect(screen.queryByTestId("delete-modal")).not.toBeInTheDocument();
         });
         expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument();
     });

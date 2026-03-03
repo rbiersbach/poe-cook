@@ -40,7 +40,7 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
     }, [hover, showPopup]);
 
     if (minProfit == null || maxProfit == null) {
-        return <span className="missing-price text-red-500">Missing price</span>;
+        return <span className="missing-price text-red-500" data-testid="missing-price">Missing price</span>;
     }
 
     // Helper for formatting chaos values in the tooltip — always show exact value
@@ -61,6 +61,7 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
             onMouseLeave={() => setHover(false)}
             tabIndex={0}
             aria-label="Show profit calculation details"
+            data-testid="profit-tooltip"
         >
             <span className="font-semibold mr-1">Profit: </span>
             <PriceRangeDisplay min={minProfit} max={maxProfit} currency="chaos" />
