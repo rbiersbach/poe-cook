@@ -2,19 +2,34 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Price } from './Price';
-import type { ResolvedMarketData } from './ResolvedMarketData';
-import type { TradeSearchRequest } from './TradeSearchRequest';
+import type { NinjaItem } from './NinjaItem';
+import type { TradeItem } from './TradeItem';
 export type RecipeItem = {
     /**
-     * The original trade URL for the item
-     */
-    tradeUrl?: string;
-    search?: TradeSearchRequest;
-    /**
-     * Quantity or rate (can be decimal, e.g. 0.2 for 20% chance)
+     * Quantity of this item in the recipe
      */
     qty: number;
-    resolved?: ResolvedMarketData;
+    /**
+     * Discriminator copied from the item sub-object for convenient top-level access
+     */
+    type: RecipeItem.type;
+    /**
+     * Display name (from resolved.name for trade, or ninja.name)
+     */
+    name: string;
+    /**
+     * Icon URL (from resolved.iconUrl for trade, or ninja.icon)
+     */
+    icon: string;
+    item: (TradeItem | NinjaItem);
 };
+export namespace RecipeItem {
+    /**
+     * Discriminator copied from the item sub-object for convenient top-level access
+     */
+    export enum type {
+        TRADE = 'trade',
+        NINJA = 'ninja',
+    }
+}
 

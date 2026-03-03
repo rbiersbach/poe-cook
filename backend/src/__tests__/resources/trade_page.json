@@ -17,24 +17,24 @@
     ],
     "leagues": [
         {
-            "id": "Keepers",
+            "id": "Standard",
             "realm": "pc",
-            "text": "Keepers"
+            "text": "Standard"
         },
         {
-            "id": "Hardcore Keepers",
+            "id": "Hardcore Standard",
             "realm": "pc",
-            "text": "Hardcore Keepers"
+            "text": "Hardcore Standard"
         },
         {
-            "id": "Ruthless Keepers",
+            "id": "Ruthless Standard",
             "realm": "pc",
-            "text": "Ruthless Keepers"
+            "text": "Ruthless Standard"
         },
         {
-            "id": "HC Ruthless Keepers",
+            "id": "HC Ruthless Standard",
             "realm": "pc",
-            "text": "HC Ruthless Keepers"
+            "text": "HC Ruthless Standard"
         },
         {
             "id": "Standard",
@@ -57,24 +57,24 @@
             "text": "Hardcore Ruthless"
         },
         {
-            "id": "Keepers",
+            "id": "Standard",
             "realm": "xbox",
-            "text": "Keepers"
+            "text": "Standard"
         },
         {
-            "id": "Hardcore Keepers",
+            "id": "Hardcore Standard",
             "realm": "xbox",
-            "text": "Hardcore Keepers"
+            "text": "Hardcore Standard"
         },
         {
-            "id": "Ruthless Keepers",
+            "id": "Ruthless Standard",
             "realm": "xbox",
-            "text": "Ruthless Keepers"
+            "text": "Ruthless Standard"
         },
         {
-            "id": "HC Ruthless Keepers",
+            "id": "HC Ruthless Standard",
             "realm": "xbox",
-            "text": "HC Ruthless Keepers"
+            "text": "HC Ruthless Standard"
         },
         {
             "id": "Standard",
@@ -97,24 +97,24 @@
             "text": "Hardcore Ruthless"
         },
         {
-            "id": "Keepers",
+            "id": "Standard",
             "realm": "sony",
-            "text": "Keepers"
+            "text": "Standard"
         },
         {
-            "id": "Hardcore Keepers",
+            "id": "Hardcore Standard",
             "realm": "sony",
-            "text": "Hardcore Keepers"
+            "text": "Hardcore Standard"
         },
         {
-            "id": "Ruthless Keepers",
+            "id": "Ruthless Standard",
             "realm": "sony",
-            "text": "Ruthless Keepers"
+            "text": "Ruthless Standard"
         },
         {
-            "id": "HC Ruthless Keepers",
+            "id": "HC Ruthless Standard",
             "realm": "sony",
-            "text": "HC Ruthless Keepers"
+            "text": "HC Ruthless Standard"
         },
         {
             "id": "Standard",
@@ -145,7 +145,7 @@
         }
     },
     "basePath": "/trade",
-    "league": "Keepers",
+    "league": "Standard",
     "state": {
         "name": "Mageblood",
         "type": "Heavy Belt",

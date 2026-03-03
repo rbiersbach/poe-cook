@@ -1,18 +1,26 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Recipe, RecipeItem } from "api/generated";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { DefaultService } from "../../api/generated/services/DefaultService";
 import RecipesListPage from "../RecipesListPage";
-import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const defaultRecipe = {
+const defaultRecipe: Recipe = {
     id: "test1",
     name: "Test Recipe",
     inputs: [],
     outputs: [
         {
             qty: 1,
-            resolved: {
-                minPrice: { amount: 10, currency: "chaos" }
+            type: RecipeItem.type.TRADE,
+            name: 'Output Item',
+            icon: '',
+            item: {
+                tradeUrl: '',
+                search: { query: {} },
+                resolved: {
+                    minPrice: { amount: 10, currency: "chaos" }
+                }
             }
         }
     ],
@@ -37,10 +45,12 @@ describe("RecipesListPage", () => {
     });
 
     it("displays loading state while fetching recipes", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
+        let resolveRecipes: (v: any) => void;
+        vi.spyOn(DefaultService, "getApiRecipes").mockImplementation(() => new Promise(r => { resolveRecipes = r; }) as any);
         vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
         render(<RecipesListPage />);
         expect(screen.getByTestId("page-loader")).toBeInTheDocument();
+        await act(async () => { resolveRecipes!({ recipes: [], nextCursor: null }); });
     });
 
     it("shows error message if API call fails", async () => {
@@ -70,29 +80,29 @@ describe("RecipesListPage", () => {
     });
 
     it("shows loading indicator on refresh button when refreshing", async () => {
-        let resolveRefresh: (() => void) | undefined;
+        let resolveRefresh: ((v: any) => void) | undefined;
         vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
-        vi.spyOn(DefaultService, "getApiRecipeById").mockImplementationOnce(() => new Promise<void>(res => { resolveRefresh = res; })).mockResolvedValue(defaultRecipe);
+        vi.spyOn(DefaultService, "getApiRecipeById").mockImplementationOnce(() => new Promise(r => { resolveRefresh = r; }) as any).mockResolvedValue(defaultRecipe);
         render(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const refreshBtn = screen.getByTestId("refresh-recipe-test1");
         await userEvent.click(refreshBtn);
         expect(screen.getByTestId("refresh-spinner")).toBeInTheDocument();
-        if (resolveRefresh) resolveRefresh();
+        await act(async () => { if (resolveRefresh) resolveRefresh(defaultRecipe); });
     });
 
     it("handles missing price data gracefully", async () => {
-        const missingPriceRecipe = {
+        const missingPriceRecipe: Recipe = {
             id: "test2",
             name: "Missing Price Recipe",
             inputs: [],
             outputs: [
-                { qty: 1, resolved: null }
+                { qty: 1, type: RecipeItem.type.TRADE, name: 'Missing', icon: '', item: { tradeUrl: '', search: { query: {} } } }
             ],
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
         };
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [missingPriceRecipe], nextCursor: null });
+        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [missingPriceRecipe], nextCursor: undefined });
         vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(missingPriceRecipe);
         render(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test2")).toBeInTheDocument());

@@ -199,7 +199,6 @@ components:
     NinjaItem:
       type: object
       required:
-        - type
         - id
         - name
         - icon
@@ -212,9 +211,6 @@ components:
         - maxVolumeRate
         - fetchedAt
       properties:
-        type:
-          type: string
-          enum: [ninja]
         id:
           type: string
         name:
@@ -343,30 +339,44 @@ components:
     TradeItem:
       type: object
       required:
-        - type
         - tradeUrl
         - search
-        - qty
       properties:
-        type:
-          type: string
-          enum: [trade]
         tradeUrl:
           type: string
           description: The original trade URL for the item
         search:
           $ref: "#/components/schemas/TradeSearchRequest"
-        qty:
-          type: number
-          format: float
-          description: Quantity or rate (can be decimal, e.g. 0.2 for 20% chance)
         resolved:
           $ref: "#/components/schemas/ResolvedMarketData"
 
     RecipeItem:
-      oneOf:
-        - $ref: "#/components/schemas/TradeItem"
-        - $ref: "#/components/schemas/NinjaItem"
+      type: object
+      required:
+        - qty
+        - type
+        - name
+        - icon
+        - item
+      properties:
+        qty:
+          type: number
+          format: float
+          description: Quantity of this item in the recipe
+        type:
+          type: string
+          enum: [trade, ninja]
+          description: Discriminator copied from the item sub-object for convenient top-level access
+        name:
+          type: string
+          description: Display name (from resolved.name for trade, or ninja.name)
+        icon:
+          type: string
+          description: Icon URL (from resolved.iconUrl for trade, or ninja.icon)
+        item:
+          oneOf:
+            - $ref: "#/components/schemas/TradeItem"
+            - $ref: "#/components/schemas/NinjaItem"
 
     Recipe:
       type: object

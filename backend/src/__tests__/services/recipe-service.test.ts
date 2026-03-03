@@ -1,5 +1,5 @@
 import { NinjaItem } from "models/ninja-types";
-import { isTradeItem, Recipe, TradeItem } from "models/trade-types";
+import { isTradeItem, Recipe, RecipeItem, TradeItem } from "models/trade-types";
 import { RecipeService } from "services/recipe-service";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -42,33 +42,32 @@ describe("RecipeService", () => {
     });
 
     it("refreshRecipe updates resolved items and persists", async () => {
-        mockResolver.resolveItemFromSearch.mockResolvedValue({ name: "resolved" });
+        mockResolver.resolveItemFromSearch.mockResolvedValue({ name: "resolved", iconUrl: "icon.png" });
         const recipe: Recipe = {
             id: "r3",
             name: "Test Recipe",
-            inputs: [{ type: 'trade', tradeUrl: 'url1', search: { query: {} }, qty: 1 } as TradeItem],
-            outputs: [{ type: 'trade', tradeUrl: 'url2', search: { query: {} }, qty: 1 } as TradeItem],
+            inputs: [{ qty: 1, type: 'trade', name: 'Item1', icon: 'i1.png', item: { tradeUrl: 'url1', search: { query: {} } } } as RecipeItem],
+            outputs: [{ qty: 1, type: 'trade', name: 'Item2', icon: 'i2.png', item: { tradeUrl: 'url2', search: { query: {} } } } as RecipeItem],
             createdAt: "2024-01-01T00:00:00Z",
             updatedAt: "2024-01-01T00:00:00Z",
         };
         const refreshed = await service.refreshRecipe(recipe);
 
         if (isTradeItem(refreshed.inputs[0])) {
-            expect(refreshed.inputs[0].resolved).toEqual({ name: "resolved" });
+            expect((refreshed.inputs[0].item as TradeItem).resolved).toEqual({ name: "resolved", iconUrl: "icon.png" });
         }
         if (isTradeItem(refreshed.outputs[0])) {
-            expect(refreshed.outputs[0].resolved).toEqual({ name: "resolved" });
+            expect((refreshed.outputs[0].item as TradeItem).resolved).toEqual({ name: "resolved", iconUrl: "icon.png" });
         }
         expect(mockStore.add).toHaveBeenCalledWith(expect.objectContaining({ id: "r3" }));
     });
 
     it("refreshRecipe updates ninja items from store", async () => {
-        const ninjaItem = {
-            type: 'ninja',
+        const ninjaItemData: NinjaItem = {
             id: 'ninja1',
             name: 'Ninja Orb',
             icon: 'icon.png',
-            category: 'Currency',
+            category: 'Currency' as any,
             detailsId: 'orb-1',
             price: 123,
             priceHistory: [100, 110, 120, 123],
@@ -76,23 +75,30 @@ describe("RecipeService", () => {
             maxVolumeCurrency: 'chaos',
             maxVolumeRate: 1,
             fetchedAt: '2026-03-01T00:00:00Z',
-        } as NinjaItem;
+        };
+
+        const ninjaRecipeItem: RecipeItem = {
+            qty: 1,
+            type: 'ninja',
+            name: ninjaItemData.name,
+            icon: ninjaItemData.icon,
+            item: ninjaItemData,
+        };
 
         const recipe: Recipe = {
             id: "r4",
             name: "Ninja Recipe",
-            inputs: [ninjaItem],
-            outputs: [ninjaItem],
+            inputs: [ninjaRecipeItem],
+            outputs: [ninjaRecipeItem],
             createdAt: "2024-01-01T00:00:00Z",
             updatedAt: "2024-01-01T00:00:00Z",
         };
-        const updatedNinjaItem = { ...ninjaItem, price: 130 };
+        const updatedNinjaItemData = { ...ninjaItemData, price: 130 };
 
-        mockNinjaItemStore.get.mockReturnValue(updatedNinjaItem); // Updated price
-        // Act
+        mockNinjaItemStore.get.mockReturnValue(updatedNinjaItemData);
         const refreshed = await service.refreshRecipe(recipe);
-        // Assert
-        expect(refreshed.inputs[0]).toEqual(updatedNinjaItem);
-        expect(refreshed.outputs[0]).toEqual(updatedNinjaItem);
+        expect((refreshed.inputs[0].item as NinjaItem).price).toBe(130);
+        expect((refreshed.outputs[0].item as NinjaItem).price).toBe(130);
+        expect(refreshed.inputs[0].name).toBe(ninjaItemData.name);
     });
 });

@@ -17,14 +17,19 @@ export const PriceRangeDisplay: React.FC<PriceRangeDisplayProps> = ({ min, max, 
     // Define colors for min and max values based on profitability, each on their own
     const minColor = min > 0 ? "text-green-600" : (min < 0 ? "text-red-600" : "text-neutral-600");
     const maxColor = max > 0 ? "text-green-600" : (max < 0 ? "text-red-600" : "text-neutral-600");
-    // Show minus sign for negative values
-    const minStr = min < 0 ? `-${Math.abs(min)}` : min.toString();
-    const maxStr = max < 0 ? `-${Math.abs(max)}` : max.toString();
+    // Show minus sign for negative values, max 1 decimal
+    const fmt = (n: number) => parseFloat(Math.abs(n).toFixed(1)).toString();
+    const minFmt = fmt(min);
+    const maxFmt = fmt(max);
+    const minApproxZero = minFmt === "0" && min !== 0;
+    const maxApproxZero = maxFmt === "0" && max !== 0;
+    const minStr = (min < 0 ? `-${minFmt}` : minFmt);
+    const maxStr = (max < 0 ? `-${maxFmt}` : maxFmt);
     return (
         <span className={className || "inline-flex items-center gap-1 text-primary"}>
-            <span className={minColor}>{minStr}</span>
+            <span className={minColor}>{minApproxZero ? `~${minStr}` : minStr}</span>
             <span className="mx-1">–</span>
-            <span className={maxColor}>{maxStr}</span>
+            <span className={maxColor}>{maxApproxZero ? `~${maxStr}` : maxStr}</span>
             <span style={{ display: 'inline-block', width: 6 }} />
                 {icon ? <CurrencyIcon currency={icon} className="inline w-5 h-5 align-middle" /> : currency}
         </span>

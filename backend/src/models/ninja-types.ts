@@ -14,7 +14,6 @@ export enum NinjaCategory {
     Essence = "Essence",
 }
 export interface NinjaItem {
-    type: 'ninja';
     id: string;
     name: string;
     icon: string;
@@ -46,7 +45,7 @@ export interface NinjaCore {
 export interface NinjaCoreItem {
     id: string;
     name: string;
-    image: string;
+    image?: string;
     category: string;
     detailsId: string;
 }

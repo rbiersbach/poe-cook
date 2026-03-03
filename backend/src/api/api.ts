@@ -37,7 +37,7 @@ export class TradeApiServer {
         this.fastify.register(cors, { origin: true });
         this.tradeClient = tradeClient || new TradeClientService(
             "poe-tools-api/1.0 (contact: you@example.com)",
-            "Keepers",
+            "Standard",
             this.logger
         );
         this.ninjaItemStore = ninjaItemStore || new NinjaItemStore();
@@ -109,8 +109,9 @@ export class TradeApiServer {
                     this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: missing inputs, outputs, or name");
                     return reply.status(400).send({ error: "Invalid CreateRecipeRequest" });
                 }
-                // Validate all items have search
-                if (!inputs.every((item: any) => item.search) || !outputs.every((item: any) => item.search)) {
+                // Validate that trade items have a search object in their sub-item; ninja items do not require one
+                const requiresSearch = (item: any) => item.type === 'trade' ? !!item.item?.search : true;
+                if (!inputs.every(requiresSearch) || !outputs.every(requiresSearch)) {
                     this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: each item must have a search object");
                     return reply.status(400).send({ error: "Each item must have a search object" });
                 }

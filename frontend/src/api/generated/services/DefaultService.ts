@@ -5,6 +5,7 @@
 import type { CreateRecipeRequest } from '../models/CreateRecipeRequest';
 import type { CreateRecipeResponse } from '../models/CreateRecipeResponse';
 import type { ListRecipesResponse } from '../models/ListRecipesResponse';
+import type { NinjaItem } from '../models/NinjaItem';
 import type { Recipe } from '../models/Recipe';
 import type { ResolveItemRequest } from '../models/ResolveItemRequest';
 import type { ResolveItemResponse } from '../models/ResolveItemResponse';
@@ -12,6 +13,41 @@ import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class DefaultService {
+    /**
+     * List ninja items (paginated, searchable)
+     * @param search Text to search for in the specified key (e.g., name)
+     * @param key Field to search in (e.g., name)
+     * @param cursor ID of the last item from the previous page (for pagination)
+     * @param limit Maximum number of items to return
+     * @returns any Paginated list of ninja items
+     * @throws ApiError
+     */
+    public static getApiNinjaItems(
+        search?: string,
+        key: string = 'name',
+        cursor?: string,
+        limit: number = 20,
+    ): CancelablePromise<{
+        items?: Array<NinjaItem>;
+        /**
+         * Cursor for the next page, or null if no more items
+         */
+        nextCursor?: string | null;
+    }> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/ninja-items',
+            query: {
+                'search': search,
+                'key': key,
+                'cursor': cursor,
+                'limit': limit,
+            },
+            errors: {
+                500: `Server error`,
+            },
+        });
+    }
     /**
      * Resolve a trade item (fetch price and icon)
      * @param requestBody

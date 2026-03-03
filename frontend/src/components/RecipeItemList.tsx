@@ -1,5 +1,6 @@
 import React from "react";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
+import type { NinjaItem } from "../api/generated/models/NinjaItem";
 import { RecipeItemRow } from "./RecipeItemRow";
 
 interface RecipeItemListProps {
@@ -15,6 +16,7 @@ interface RecipeItemListProps {
   onRemove?: (idx: number) => void;
   onResolve?: (idx: number) => void;
   onQtyChange?: (idx: number, qty: number) => void;
+  onSelectNinja?: (item: NinjaItem) => void;
 }
 
 export const RecipeItemList: React.FC<RecipeItemListProps> = ({
@@ -28,6 +30,7 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
   onRemove,
   onResolve,
   onQtyChange,
+  onSelectNinja,
   errors = [],
   errorAnims = [],
 }) => {
@@ -46,6 +49,7 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
           onRemove={onRemove ? () => onRemove(idx) : undefined}
           onResolve={onResolve ? () => onResolve(idx) : undefined}
           onQtyChange={onQtyChange ? qty => onQtyChange(idx, qty) : undefined}
+          onSelectNinja={onSelectNinja}
           error={errors[idx]}
           errorAnim={errorAnims[idx]}
         />

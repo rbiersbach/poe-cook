@@ -1,5 +1,6 @@
 import { Recipe } from "api/generated/models/Recipe";
 import React, { useState } from "react";
+import { getItemPriceChaos } from "../utils/itemHelpers";
 import CurrencyIcon from "./CurrencyIcon";
 import ItemIcon from "./ItemIcon";
 import { PriceRangeDisplay } from "./PriceRangeDisplay";
@@ -9,14 +10,10 @@ interface ProfitDisplayProps {
 }
 
 function computeProfit(recipe: Recipe): [number, number] | null {
-    if (!recipe.inputs.every(i => i.resolved && i.resolved.minPrice)) {
-        return null;
-    }
-    // Sum all outputs' value
-    const allOutputsHavePrice = recipe.outputs.every(o => o.resolved && o.resolved.minPrice);
-    if (!allOutputsHavePrice) return null;
-    const costChaos = recipe.inputs.reduce((sum, item) => sum + (item.qty * (item.resolved?.minPrice?.amount ?? 0)), 0);
-    const revenueChaos = recipe.outputs.reduce((sum, out) => sum + (out.qty * (out.resolved?.minPrice?.amount ?? 0)), 0);
+    if (!recipe.inputs.every(i => getItemPriceChaos(i) != null)) return null;
+    if (!recipe.outputs.every(o => getItemPriceChaos(o) != null)) return null;
+    const costChaos = recipe.inputs.reduce((sum, item) => sum + (item.qty * (getItemPriceChaos(item) ?? 0)), 0);
+    const revenueChaos = recipe.outputs.reduce((sum, out) => sum + (out.qty * (getItemPriceChaos(out) ?? 0)), 0);
     const conservativeRevenue = revenueChaos * 0.9;
     return [conservativeRevenue - costChaos, revenueChaos - costChaos];
 }
@@ -46,10 +43,15 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
         return <span className="missing-price text-red-500">Missing price</span>;
     }
 
-    // Helper for formatting chaos values
+    // Helper for formatting chaos values in the tooltip — always show exact value
     function formatChaos(amount: number | undefined): string {
         if (amount == null) return "?";
-        return amount.toLocaleString();
+        return amount.toString();
+    }
+    // Helper for the Range summary line — 1 decimal to match PriceRangeDisplay
+    function formatChaosRounded(amount: number | undefined): string {
+        if (amount == null) return "?";
+        return parseFloat(amount.toFixed(1)).toString();
     }
 
     return (
@@ -72,12 +74,12 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                         {recipe.inputs.map((item, idx) => (
                             <div key={"input-" + idx} className="flex items-center justify-between text-xs gap-2 py-0.5">
                                 <span className="flex items-center gap-1 min-w-0">
-                                    <ItemIcon src={item.resolved?.iconUrl || ''} alt={item.resolved?.name || ''} width="1.35rem" height="1.35rem" />
+                                    <ItemIcon src={item.icon} alt={item.name} width="1.35rem" height="1.35rem" />
                                 </span>
                                 <span className="flex items-center gap-1 profit-red ml-2">
-                                    {formatChaos(item.resolved?.minPrice?.amount)}
+                                    {formatChaos(getItemPriceChaos(item))}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
-                                    <span className="text-white">×</span> <span className="text-white">{item.qty}</span> = {formatChaos((item.resolved?.minPrice?.amount ?? 0) * item.qty)}
+                                    <span className="text-white">×</span> <span className="text-white">{item.qty}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
                                 </span>
                             </div>
@@ -85,12 +87,12 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                         {recipe.outputs.map((item, idx) => (
                             <div key={"output-" + idx} className="flex items-center justify-between text-xs gap-2 py-0.5">
                                 <span className="flex items-center gap-1 min-w-0">
-                                    <ItemIcon src={item.resolved?.iconUrl || ''} alt={item.resolved?.name || ''} width="1.35rem" height="1.35rem" />
+                                    <ItemIcon src={item.icon} alt={item.name} width="1.35rem" height="1.35rem" />
                                 </span>
                                 <span className="flex items-center gap-1 profit-green ml-2">
-                                    {formatChaos(item.resolved?.minPrice?.amount)}
+                                    {formatChaos(getItemPriceChaos(item))}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
-                                    <span className="text-white">×</span> <span className="text-white">{item.qty}</span> = {formatChaos((item.resolved?.minPrice?.amount ?? 0) * item.qty)}
+                                    <span className="text-white">×</span> <span className="text-white">{item.qty}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
                                 </span>
                             </div>
@@ -101,7 +103,7 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                         <span className={
                             `${(conservativeProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} font-semibold flex items-center gap-1`}
                         >
-                            {conservativeProfit}
+                            {formatChaosRounded(conservativeProfit ?? undefined)}
                             <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
                         </span>
                         <span className="text-gray-400">(-10%)</span>
@@ -109,7 +111,7 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                         <span className={
                             `${(maxProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} font-semibold flex items-center gap-1`}
                         >
-                            {maxProfit}
+                            {formatChaosRounded(maxProfit ?? undefined)}
                             <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
                         </span>
                     </div>

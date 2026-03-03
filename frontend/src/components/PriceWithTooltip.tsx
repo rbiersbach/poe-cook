@@ -66,13 +66,13 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
                     className={`tooltip hover-tooltip fixed transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
                     style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", whiteSpace: "nowrap", zIndex: 50 }}
                 >
-                    <div>Min: <PriceDisplay amount={resolved.originalMinPrice?.amount} currency={resolved.originalMinPrice?.currency} /></div>
+                    <div>Min: <PriceDisplay amount={resolved.originalMinPrice?.amount} currency={resolved.originalMinPrice?.currency} exact /></div>
                     {showMinChaos && (
-                        <div>Normalized Min: <PriceDisplay amount={minChaos} currency="chaos" /></div>
+                        <div>Normalized Min: <PriceDisplay amount={minChaos} currency="chaos" exact /></div>
                     )}
-                    <div>Median: <PriceDisplay amount={resolved.originalMedianPrice?.amount} currency={resolved.originalMedianPrice?.currency} /></div>
+                    <div>Median: <PriceDisplay amount={resolved.originalMedianPrice?.amount} currency={resolved.originalMedianPrice?.currency} exact /></div>
                     {showMedianChaos && (
-                        <div>Normalized Median: <PriceDisplay amount={medianChaos} currency="chaos" /></div>
+                        <div>Normalized Median: <PriceDisplay amount={medianChaos} currency="chaos" exact /></div>
                     )}
                     <div>Median Listings: {resolved.medianCount ?? "?"}</div>
                 </div>,

@@ -76,7 +76,7 @@ describe("ninja-service", () => {
     const chaos = result.find((i: any) => i.id === "chaos");
     expect(chaos).toBeDefined();
     expect(chaos?.name).toBe("Chaos Orb");
-    expect(chaos?.icon).toBe("/img/chaos.png");
+    expect(chaos?.icon).toBe("https://web.poecdn.com/img/chaos.png");
     expect(chaos?.category).toBe("Currency");
     expect(chaos?.detailsId).toBe("chaos-orb");
     expect(chaos?.price).toBe(1);
@@ -87,7 +87,7 @@ describe("ninja-service", () => {
     const divine = result.find((i: any) => i.id === "divine");
     expect(divine).toBeDefined();
     expect(divine?.name).toBe("Divine Orb");
-    expect(divine?.icon).toBe("/img/divine.png");
+    expect(divine?.icon).toBe("https://web.poecdn.com/img/divine.png");
     expect(divine?.category).toBe("Currency");
     expect(divine?.detailsId).toBe("divine-orb");
     expect(divine?.price).toBe(200);
@@ -95,5 +95,25 @@ describe("ninja-service", () => {
     expect(divine?.volume).toBe(5000);
     expect(divine?.maxVolumeCurrency).toBe("chaos");
     expect(divine?.maxVolumeRate).toBe(500);
+  });
+
+  it("uses category default icon for divination cards with no image", async () => {
+    const cardData = {
+      items: [{ id: "the-doctor", name: "The Doctor", image: undefined, category: "DivinationCard", detailsId: "the-doctor" }],
+      lines: [{ id: "the-doctor", primaryValue: 5000, volumePrimaryValue: 100, maxVolumeCurrency: "chaos", maxVolumeRate: 5000, sparkline: { data: [] } }],
+    };
+    mockedAxios.get = vi.fn().mockResolvedValue({ data: cardData });
+    const result = await service.fetchBulkItems("Standard", NinjaCategory.DivinationCard);
+    expect(result[0].icon).toBe("https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png");
+  });
+
+  it("uses absolute icon URL as-is when it already has a scheme", async () => {
+    const absData = {
+      items: [{ id: "chaos", name: "Chaos Orb", image: "https://cdn.example.com/chaos.png", category: "Currency", detailsId: "chaos-orb" }],
+      lines: [{ id: "chaos", primaryValue: 1, volumePrimaryValue: 1, maxVolumeCurrency: "divine", maxVolumeRate: 0.002, sparkline: { data: [] } }],
+    };
+    mockedAxios.get = vi.fn().mockResolvedValue({ data: absData });
+    const result = await service.fetchBulkItems("Standard", NinjaCategory.Currency);
+    expect(result[0].icon).toBe("https://cdn.example.com/chaos.png");
   });
 });

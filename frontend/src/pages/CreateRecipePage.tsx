@@ -7,6 +7,8 @@ import { Button } from "../components/Button";
 import { RecipeItemDraftManager } from "../components/RecipeItemDraftManager";
 import { ErrorMessage, SuccessMessage } from "../components/SectionHeader";
 
+type TradeDraft = { tradeUrl: string; qty: number };
+
 export default function CreateRecipePage() {
     const [name, setName] = useState("");
     const [hasAutofilled, setHasAutofilled] = useState(false);
@@ -20,13 +22,18 @@ export default function CreateRecipePage() {
     const tradeUrlPattern = /^https:\/\/www\.pathofexile\.com\/trade\/search\/[A-Za-z]+\/[A-Za-z0-9]{10}$/;
 
     // Real resolve logic for RecipeItemDraftManager
-    const resolveItem = async (draft: RecipeItem) => {
+    const resolveItem = async (draft: TradeDraft): Promise<RecipeItem> => {
         const res = await DefaultService.postApiResolveItem({ tradeUrl: draft.tradeUrl! });
         return {
-            tradeUrl: draft.tradeUrl,
-            search: res.search || { query: { tradeUrl: draft.tradeUrl }, sort: {} },
             qty: draft.qty,
-            resolved: res.resolved,
+            type: 'trade' as any,
+            name: res.resolved?.name ?? '',
+            icon: res.resolved?.iconUrl ?? '',
+            item: {
+                tradeUrl: draft.tradeUrl,
+                search: res.search || { query: { tradeUrl: draft.tradeUrl }, sort: {} },
+                resolved: res.resolved,
+            },
         } as RecipeItem;
     };
 
@@ -37,10 +44,14 @@ export default function CreateRecipePage() {
         try {
             let recipeName = name.trim();
             // Autofill name if empty and possible
-            if (!recipeName && resolvedOutputs.length > 0 && resolvedOutputs[0]?.resolved?.name) {
-                recipeName = resolvedOutputs[0].resolved.name;
-                setName(recipeName);
-                setHasAutofilled(true);
+            if (!recipeName && resolvedOutputs.length > 0) {
+                const firstOutput = resolvedOutputs[0];
+                const outputName = firstOutput.name;
+                if (outputName && outputName !== 'Unknown Item') {
+                    recipeName = outputName;
+                    setName(recipeName);
+                    setHasAutofilled(true);
+                }
             }
             if (!recipeName) {
                 setError("Recipe name is required.");
@@ -75,9 +86,13 @@ export default function CreateRecipePage() {
     // Autofill name only once if first output is resolved and name is empty
     useEffect(() => {
         // Autofill name as soon as first output is resolved and name is empty
-        if (!hasAutofilled && !name && resolvedOutputs.length > 0 && resolvedOutputs[0]?.resolved?.name) {
-            setName(resolvedOutputs[0].resolved.name);
-            setHasAutofilled(true);
+        if (!hasAutofilled && !name && resolvedOutputs.length > 0) {
+            const firstOutput = resolvedOutputs[0];
+            const outputName = firstOutput.name;
+            if (outputName && outputName !== 'Unknown Item') {
+                setName(outputName);
+                setHasAutofilled(true);
+            }
         }
     }, [resolvedOutputs]);
 

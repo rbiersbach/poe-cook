@@ -2,8 +2,19 @@ import axios from "axios";
 import type { FastifyBaseLogger } from "fastify";
 import { NinjaCategory, NinjaCoreItem, NinjaCurrencyLine, NinjaCurrencyOverviewResponse, NinjaItem } from "models/ninja-types";
 
+const CDN = "https://web.poecdn.com";
 const BASE_URL = "https://poe.ninja/poe1/api/economy/exchange/current/overview";
 
+const CATEGORY_DEFAULT_ICONS: Partial<Record<NinjaCategory, string>> = {
+    [NinjaCategory.DivinationCard]: `${CDN}/image/Art/2DItems/Divination/InventoryIcon.png`,
+};
+
+function resolveIcon(image: string | undefined | null, category: NinjaCategory): string {
+    if (image) {
+        return image.startsWith('/') ? `${CDN}${image}` : image;
+    }
+    return CATEGORY_DEFAULT_ICONS[category] ?? '';
+}
 
 export interface INinjaClientService {
     fetchBulkItems(league: string, category: NinjaCategory): Promise<NinjaItem[]>;
@@ -29,7 +40,7 @@ export class NinjaClientService implements INinjaClientService {
         return {
             id: item.id,
             name: item.name,
-            icon: item.image,
+            icon: resolveIcon(item.image, category),
             category,
             detailsId: item.detailsId,
             price: line.primaryValue,

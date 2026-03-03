@@ -1,15 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import type { NinjaItem } from "../api/generated/models/NinjaItem";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { RecipeItemList } from "./RecipeItemList";
+
+/** Partial trade item used while the user is entering a trade URL before resolution */
+type TradeDraft = { tradeUrl: string; qty: number; };
 
 interface RecipeItemDraftManagerProps {
     label: string;
     tradeUrlPattern: RegExp;
     onResolvedChange: (resolved: RecipeItem[]) => void;
-    initialDrafts?: RecipeItem[];
+    initialDrafts?: TradeDraft[];
     initialResolved?: RecipeItem[];
     allowRemoveResolved?: boolean;
-    resolveItem: (draft: RecipeItem) => Promise<RecipeItem>;
+    resolveItem: (draft: TradeDraft) => Promise<RecipeItem>;
 }
 
 export const RecipeItemDraftManager: React.FC<RecipeItemDraftManagerProps> = ({
@@ -17,13 +21,13 @@ export const RecipeItemDraftManager: React.FC<RecipeItemDraftManagerProps> = ({
     tradeUrlPattern,
     onResolvedChange,
     initialDrafts = [
-        { tradeUrl: "", qty: 1 }
+        { tradeUrl: "", qty: 1 } as TradeDraft
     ],
     initialResolved = [],
     allowRemoveResolved = true,
     resolveItem,
 }) => {
-    const [drafts, setDrafts] = useState<RecipeItem[]>(initialDrafts);
+    const [drafts, setDrafts] = useState<TradeDraft[]>(initialDrafts);
     const [resolved, setResolved] = useState<RecipeItem[]>(initialResolved);
     const [resolvingIdx, setResolvingIdx] = useState<number | null>(null);
     const [draftErrors, setDraftErrors] = useState<(string | null)[]>([]);
@@ -66,9 +70,9 @@ export const RecipeItemDraftManager: React.FC<RecipeItemDraftManagerProps> = ({
         setDrafts(drafts => {
             const updated = [...drafts];
             if (field === "tradeUrl") {
-                updated[idx].tradeUrl = value;
+                updated[idx] = { ...updated[idx], tradeUrl: value };
             } else if (field === "qty") {
-                updated[idx].qty = value;
+                updated[idx] = { ...updated[idx], qty: value };
             }
             return updated;
         });
@@ -97,6 +101,17 @@ export const RecipeItemDraftManager: React.FC<RecipeItemDraftManagerProps> = ({
     const handleQtyChange = (idx: number, qty: number) => {
         setResolved(items => items.map((ri, i) => i === idx ? { ...ri, qty } : ri));
     };
+
+    const handleSelectNinja = useCallback((item: NinjaItem) => {
+        const recipeItem: RecipeItem = {
+            qty: 1,
+            type: 'ninja' as any,
+            name: item.name,
+            icon: item.icon,
+            item: item,
+        };
+        setResolved(items => [...items, recipeItem]);
+    }, []);
 
     const handleResolve = async (idx: number) => {
         setResolvingIdx(idx);
@@ -157,12 +172,13 @@ export const RecipeItemDraftManager: React.FC<RecipeItemDraftManagerProps> = ({
                 onRemove={allowRemoveResolved ? handleRemoveResolved : undefined}
             />
             <RecipeItemList
-                items={drafts}
+                items={drafts as any}
                 draft
                 loadingIdx={resolvingIdx}
                 onChange={handleChange}
                 onRemove={handleRemoveDraft}
                 onResolve={handleResolve}
+                onSelectNinja={handleSelectNinja}
                 errors={draftErrors}
                 errorAnims={draftErrorAnims}
             />

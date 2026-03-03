@@ -1,22 +1,26 @@
 // Types for resolve-item API
 import type { NinjaItem } from './ninja-types';
 
-// Discriminated union type for recipe/trade/ninja items
-export type RecipeItem = TradeItem | NinjaItem;
-
 export type TradeItem = {
-  type: 'trade';
   tradeUrl: string;
   search: TradeSearchRequest;
-  qty: number;
   resolved?: ResolvedMarketData;
 };
 
+// RecipeItem is the canonical wrapper used in recipes
+export type RecipeItem = {
+  qty: number;
+  type: 'trade' | 'ninja';
+  name: string;
+  icon: string;
+  item: TradeItem | NinjaItem;
+};
+
 // Type guards
-export function isTradeItem(item: RecipeItem): item is TradeItem {
+export function isTradeItem(item: RecipeItem): item is RecipeItem & { item: TradeItem } {
   return item.type === 'trade';
 }
-export function isNinjaItem(item: RecipeItem): item is NinjaItem {
+export function isNinjaItem(item: RecipeItem): item is RecipeItem & { item: NinjaItem } {
   return item.type === 'ninja';
 }
 export class ResolveItemRequest {

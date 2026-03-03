@@ -134,64 +134,88 @@ describe("POST /api/recipes", () => {
 
     it("creates a recipe and returns it", async () => {
         const recipeInput = {
-            name: "Test Recipe",
+                    name: "Test Recipe",
             inputs: [
                 {
-                    search: { query: { url: "url1" }, sort: { price: "asc" } },
                     qty: 2,
-                    resolved: {
-                        iconUrl: "icon1.png",
-                        name: "Input Item 1",
-                        minPrice: { amount: 10, currency: "chaos" },
-                        originalMinPrice: { amount: 12, currency: "chaos" },
-                        medianPrice: { amount: 11, currency: "chaos" },
-                        originalMedianPrice: { amount: 13, currency: "chaos" },
-                        medianCount: 5,
-                        fetchedAt: new Date().toISOString(),
+                    type: "trade",
+                    name: "Input Item 1",
+                    icon: "icon1.png",
+                    item: {
+                        tradeUrl: "url1",
+                        search: { query: { url: "url1" }, sort: { price: "asc" } },
+                        resolved: {
+                            iconUrl: "icon1.png",
+                            name: "Input Item 1",
+                            minPrice: { amount: 10, currency: "chaos" },
+                            originalMinPrice: { amount: 12, currency: "chaos" },
+                            medianPrice: { amount: 11, currency: "chaos" },
+                            originalMedianPrice: { amount: 13, currency: "chaos" },
+                            medianCount: 5,
+                            fetchedAt: new Date().toISOString(),
+                        }
                     }
                 },
                 {
-                    search: { query: { url: "url2" }, sort: { price: "asc" } },
                     qty: 1,
-                    resolved: {
-                        iconUrl: "icon2.png",
-                        name: "Input Item 2",
-                        minPrice: { amount: 20, currency: "divine" },
-                        originalMinPrice: { amount: 22, currency: "divine" },
-                        medianPrice: { amount: 21, currency: "divine" },
-                        originalMedianPrice: { amount: 23, currency: "divine" },
-                        medianCount: 3,
-                        fetchedAt: new Date().toISOString(),
+                    type: "trade",
+                    name: "Input Item 2",
+                    icon: "icon2.png",
+                    item: {
+                        tradeUrl: "url2",
+                        search: { query: { url: "url2" }, sort: { price: "asc" } },
+                        resolved: {
+                            iconUrl: "icon2.png",
+                            name: "Input Item 2",
+                            minPrice: { amount: 20, currency: "divine" },
+                            originalMinPrice: { amount: 22, currency: "divine" },
+                            medianPrice: { amount: 21, currency: "divine" },
+                            originalMedianPrice: { amount: 23, currency: "divine" },
+                            medianCount: 3,
+                            fetchedAt: new Date().toISOString(),
+                        }
                     }
                 }
             ],
             outputs: [
                 {
-                    search: { query: { url: "url3" }, sort: { price: "asc" } },
                     qty: 1,
-                    resolved: {
-                        iconUrl: "icon3.png",
-                        name: "Output Item",
-                        minPrice: { amount: 100, currency: "chaos" },
-                        originalMinPrice: { amount: 120, currency: "chaos" },
-                        medianPrice: { amount: 110, currency: "chaos" },
-                        originalMedianPrice: { amount: 130, currency: "chaos" },
-                        medianCount: 10,
-                        fetchedAt: new Date().toISOString(),
+                    type: "trade",
+                    name: "Output Item",
+                    icon: "icon3.png",
+                    item: {
+                        tradeUrl: "url3",
+                        search: { query: { url: "url3" }, sort: { price: "asc" } },
+                        resolved: {
+                            iconUrl: "icon3.png",
+                            name: "Output Item",
+                            minPrice: { amount: 100, currency: "chaos" },
+                            originalMinPrice: { amount: 120, currency: "chaos" },
+                            medianPrice: { amount: 110, currency: "chaos" },
+                            originalMedianPrice: { amount: 130, currency: "chaos" },
+                            medianCount: 10,
+                            fetchedAt: new Date().toISOString(),
+                        }
                     }
                 },
                 {
-                    search: { query: { url: "url4" }, sort: { price: "asc" } },
                     qty: 0.5,
-                    resolved: {
-                        iconUrl: "icon4.png",
-                        name: "Output Item 2",
-                        minPrice: { amount: 50, currency: "divine" },
-                        originalMinPrice: { amount: 60, currency: "divine" },
-                        medianPrice: { amount: 55, currency: "divine" },
-                        originalMedianPrice: { amount: 65, currency: "divine" },
-                        medianCount: 7,
-                        fetchedAt: new Date().toISOString(),
+                    type: "trade",
+                    name: "Output Item 2",
+                    icon: "icon4.png",
+                    item: {
+                        tradeUrl: "url4",
+                        search: { query: { url: "url4" }, sort: { price: "asc" } },
+                        resolved: {
+                            iconUrl: "icon4.png",
+                            name: "Output Item 2",
+                            minPrice: { amount: 50, currency: "divine" },
+                            originalMinPrice: { amount: 60, currency: "divine" },
+                            medianPrice: { amount: 55, currency: "divine" },
+                            originalMedianPrice: { amount: 65, currency: "divine" },
+                            medianCount: 7,
+                            fetchedAt: new Date().toISOString(),
+                        }
                     }
                 }
             ]
@@ -203,11 +227,11 @@ describe("POST /api/recipes", () => {
             .send(recipeInput)
             .expect(200);
         expect(mockAdd).toHaveBeenCalled();
-        // All items should have search, not tradeUrl
-        expect(response.body.recipe.inputs[0].search).toBeDefined();
-        expect(response.body.recipe.inputs[1].search).toBeDefined();
-        expect(response.body.recipe.outputs[0].search).toBeDefined();
-        expect(response.body.recipe.outputs[1].search).toBeDefined();
+        // All items should have item.search in the sub-object
+        expect(response.body.recipe.inputs[0].item.search).toBeDefined();
+        expect(response.body.recipe.inputs[1].item.search).toBeDefined();
+        expect(response.body.recipe.outputs[0].item.search).toBeDefined();
+        expect(response.body.recipe.outputs[1].item.search).toBeDefined();
         expect(response.body.recipe.outputs.length).toBe(2);
         expect(typeof response.body.recipe.id).toBe("string");
         expect(typeof response.body.recipe.createdAt).toBe("string");
@@ -228,6 +252,46 @@ describe("POST /api/recipes", () => {
             .send({ name: "Test", inputs: "not-an-array", outputs: [{ tradeUrl: "url", qty: 1 }] })
             .expect(400);
         expect(response.body.error).toBe("Invalid CreateRecipeRequest");
+    });
+
+    it("creates a recipe with ninja items (no search required)", async () => {
+        const ninjaItem = {
+            qty: 5,
+            type: "ninja",
+            name: "Chaos Orb",
+            icon: "https://web.poecdn.com/img/chaos.png",
+            item: {
+                id: "chaos-orb",
+                name: "Chaos Orb",
+                icon: "https://web.poecdn.com/img/chaos.png",
+                category: "Currency",
+                detailsId: "chaos-orb",
+                price: 1,
+                priceHistory: [],
+                volume: 1000,
+                maxVolumeCurrency: "divine",
+                maxVolumeRate: 0.002,
+                fetchedAt: new Date().toISOString(),
+            },
+        };
+        const tradeItem = {
+            qty: 1,
+            type: "trade",
+            name: "Unknown",
+            icon: "",
+            item: {
+                tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/abc",
+                search: { query: {}, sort: {} },
+            },
+        };
+        mockAdd.mockImplementation(async () => { });
+        const response = await supertest(apiServer.server.server)
+            .post("/api/recipes")
+            .send({ name: "Ninja Recipe", inputs: [ninjaItem], outputs: [tradeItem] })
+            .expect(200);
+        expect(mockAdd).toHaveBeenCalled();
+        expect(response.body.recipe.inputs[0].type).toBe("ninja");
+        expect(response.body.recipe.outputs[0].type).toBe("trade");
     });
 });
 

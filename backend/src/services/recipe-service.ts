@@ -68,16 +68,26 @@ export class RecipeService implements IRecipeService {
     async refreshItem(item: RecipeItem): Promise<RecipeItem> {
         try {
             if (item.type === 'trade') {
-                const tradeUrl = item.tradeUrl;
-                const resolved = await this.resolver.resolveItemFromSearch(item.search, "example-session-id");
-                return { ...item, resolved, tradeUrl };
+                const tradeData = item.item as import('models/trade-types').TradeItem;
+                const resolved = await this.resolver.resolveItemFromSearch(tradeData.search, "example-session-id");
+                return {
+                    ...item,
+                    name: resolved?.name ?? item.name,
+                    icon: resolved?.iconUrl ?? item.icon,
+                    item: { ...tradeData, resolved },
+                };
             } else if (item.type === 'ninja') {
-                // Refresh ninja item by fetching latest from store by id
-                const latest = this.ninjaItemStore.get(item.id);
+                const ninjaData = item.item as import('models/ninja-types').NinjaItem;
+                const latest = this.ninjaItemStore.get(ninjaData.id);
                 if (latest) {
-                    return latest;
+                    return {
+                        ...item,
+                        name: latest.name,
+                        icon: latest.icon,
+                        item: latest,
+                    };
                 } else {
-                    this.logger.warn({ id: item.id }, "Ninja item not found in store during refresh");
+                    this.logger.warn({ id: ninjaData.id }, "Ninja item not found in store during refresh");
                     return item;
                 }
             } else {

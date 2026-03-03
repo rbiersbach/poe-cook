@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { RecipeItem } from "../../api/generated/models/RecipeItem";
 import { DefaultService } from "../../api/generated/services/DefaultService";
 import CreateRecipePage from "../CreateRecipePage";
 
@@ -17,7 +18,7 @@ describe("CreateRecipePage", () => {
         render(<CreateRecipePage />);
         // Only fill the output draft (second trade-url-input)
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
         // Wait for output to resolve and autofill
         expect(await screen.findByText(/resolved output name/i)).toBeInTheDocument();
         // Name field should be autofilled
@@ -33,12 +34,12 @@ describe("CreateRecipePage", () => {
                 iconUrl: "icon.png",
                 originalMinPrice: { amount: 10, currency: "chaos" },
             },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" }, sort: {} },
-        }) as unknown as import("../../api/generated/core/CancelablePromise").CancelablePromise<any>;
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
+        });
         render(<CreateRecipePage />);
         // Output draft is the second trade-url-input
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
         // Wait for output to resolve and autofill
         await screen.findByText(/autofill output name/i);
         // Wait for the name field to be autofilled
@@ -68,10 +69,10 @@ describe("CreateRecipePage", () => {
                 iconUrl: "icon.png",
                 originalMinPrice: { amount: 10, currency: "chaos" },
             },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" }, sort: {} },
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
         });
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
         expect(await screen.findByText(/test item/i)).toBeInTheDocument();
 
         // Wait for the new empty draft to appear (should have empty value)
@@ -87,11 +88,12 @@ describe("CreateRecipePage", () => {
     });
 
     it("can edit input and output fields (tradeUrl, qty)", async () => {
+        vi.spyOn(DefaultService, "postApiResolveItem").mockImplementation(() => new Promise(() => {}) as any);
         render(<CreateRecipePage />);
         // Edit input draft fields
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
-        expect(inputUrl).toHaveValue("https://www.pathofexile.com/trade/search/Keepers/abcdefghij");
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
+        expect(inputUrl).toHaveValue("https://www.pathofexile.com/trade/search/Standard/abcdefghij");
 
         const inputQty = screen.getAllByTestId("qty-input")[0];
         fireEvent.change(inputQty, { target: { value: 3 } });
@@ -99,12 +101,13 @@ describe("CreateRecipePage", () => {
 
         // Edit output draft fields
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/klmnopqrst" } });
-        expect(outputUrl).toHaveValue("https://www.pathofexile.com/trade/search/Keepers/klmnopqrst");
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/klmnopqrst" } });
+        expect(outputUrl).toHaveValue("https://www.pathofexile.com/trade/search/Standard/klmnopqrst");
 
         const outputQty = screen.getAllByTestId("qty-input")[1];
         fireEvent.change(outputQty, { target: { value: 2 } });
         expect(outputQty).toHaveValue(2);
+        vi.restoreAllMocks();
     });
 
     it("triggers resolve when a valid trade URL is entered (mock API)", async () => {
@@ -114,11 +117,11 @@ describe("CreateRecipePage", () => {
                 iconUrl: "icon.png",
                 originalMinPrice: { amount: 10, currency: "chaos" },
             },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" }, sort: {} },
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
         });
         render(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
         // Wait for resolved item to appear
         expect(await screen.findByText(/test item/i)).toBeInTheDocument();
         expect(screen.getByText(/10/)).toBeInTheDocument(); // price
@@ -135,7 +138,7 @@ describe("CreateRecipePage", () => {
         });
         render(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
         // Loader should appear while promise is unresolved
         expect(await screen.findByTestId("loader")).toBeInTheDocument();
         expect(inputUrl).toBeDisabled();
@@ -146,7 +149,7 @@ describe("CreateRecipePage", () => {
                 iconUrl: "icon.png",
                 originalMinPrice: { amount: 10, currency: "chaos" },
             },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" }, sort: {} },
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
             error: null,
         });
         // Wait for loader to disappear and item to show
@@ -159,7 +162,7 @@ describe("CreateRecipePage", () => {
         const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
         render(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
         expect(await screen.findByText(/failed to resolve item/i)).toBeInTheDocument();
         mockResolve.mockRestore();
     });
@@ -171,18 +174,18 @@ describe("CreateRecipePage", () => {
                 iconUrl: "icon.png",
                 originalMinPrice: { amount: 10, currency: "chaos" },
             },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" }, sort: {} },
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
         });
         render(<CreateRecipePage />);
         // Enter a valid trade URL
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
         // Wait for resolved item to appear
         expect(await screen.findByText(/test item/i)).toBeInTheDocument();
         // The draft input should NOT contain the resolved trade URL
         const draftInputs = screen.getAllByTestId("trade-url-input");
         draftInputs.forEach(input => {
-            expect(input).not.toHaveValue("https://www.pathofexile.com/trade/search/Keepers/abcdefghij");
+            expect(input).not.toHaveValue("https://www.pathofexile.com/trade/search/Standard/abcdefghij");
         });
         // The resolved item should be in the resolved list (look for Remove button in resolved row)
         expect(screen.getByText(/remove/i)).toBeInTheDocument();
@@ -196,18 +199,18 @@ describe("CreateRecipePage", () => {
                 iconUrl: "output.png",
                 originalMinPrice: { amount: 50, currency: "chaos" },
             },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/klmnopqrst" }, sort: {} },
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/klmnopqrst" }, sort: {} },
         });
         render(<CreateRecipePage />);
         // Enter a valid trade URL for output (second trade-url-input is output)
         const allInputs = screen.getAllByTestId("trade-url-input");
         const outputUrl = allInputs[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/klmnopqrst" } });
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/klmnopqrst" } });
         // Wait for resolved output to appear
         expect(await screen.findByText(/output item/i)).toBeInTheDocument();
         // None of the draft inputs should have the resolved trade URL
         screen.getAllByTestId("trade-url-input").forEach(input => {
-            expect(input).not.toHaveValue("https://www.pathofexile.com/trade/search/Keepers/klmnopqrst");
+            expect(input).not.toHaveValue("https://www.pathofexile.com/trade/search/Standard/klmnopqrst");
         });
         // The resolved output should be in the resolved row (look for Remove button)
         expect(screen.getByText(/remove/i)).toBeInTheDocument();
@@ -220,7 +223,7 @@ describe("CreateRecipePage", () => {
         // Output draft is the second trade-url-input
         const allInputs = screen.getAllByTestId("trade-url-input");
         const outputUrl = allInputs[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/klmnopqrst" } });
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/klmnopqrst" } });
         expect(await screen.findByText(/failed to resolve item/i)).toBeInTheDocument();
         mockResolve.mockRestore();
     });
@@ -249,10 +252,13 @@ describe("CreateRecipePage", () => {
                 outputs: [
                     {
                         qty: 1,
-                        search: {
-                            query: { name: "Output" },
-                            sort: { price: "asc" }
-                        }
+                        type: RecipeItem.type.TRADE,
+                        name: "Output",
+                        icon: "",
+                        item: {
+                            tradeUrl: 'https://www.pathofexile.com/trade/search/Standard/outputurl1',
+                            search: { query: { name: "Output" } },
+                        },
                     }
                 ],
                 createdAt: new Date().toISOString(),
@@ -262,17 +268,17 @@ describe("CreateRecipePage", () => {
         render(<CreateRecipePage />);
         // Fill and resolve first input draft
         let inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlA1" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/inputurlA1" } });
         expect(await screen.findByText("Input1")).toBeInTheDocument();
         // Wait for new draft to appear and fill/resolve it
         await screen.findAllByTestId("recipe-item-row-draft");
         inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlB2" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/inputurlB2" } });
         expect(await screen.findByText("Input2")).toBeInTheDocument();
         // Fill and resolve output draft (second trade-url-input is output)
         const allInputs = screen.getAllByTestId("trade-url-input");
         const outputUrl = allInputs[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/outputurlC" } });
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/outputurlC" } });
         expect(await screen.findByText("Output")).toBeInTheDocument();
         // Submit
         const submitBtn = screen.getByRole("button", { name: /submit recipe/i });
@@ -285,21 +291,33 @@ describe("CreateRecipePage", () => {
             name: "Output",
             inputs: [
                 expect.objectContaining({
-                    tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/inputurlA1",
-                    resolved: expect.objectContaining({ name: "Input1" }),
-                    search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "input1-filter" }) }) })
+                    type: RecipeItem.type.TRADE,
+                    name: 'Input1',
+                    item: expect.objectContaining({
+                        tradeUrl: "https://www.pathofexile.com/trade/search/Standard/inputurlA1",
+                        resolved: expect.objectContaining({ name: "Input1" }),
+                        search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "input1-filter" }) }) })
+                    })
                 }),
                 expect.objectContaining({
-                    tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/inputurlB2",
-                    resolved: expect.objectContaining({ name: "Input2" }),
-                    search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "input2-filter" }) }) })
+                    type: RecipeItem.type.TRADE,
+                    name: 'Input2',
+                    item: expect.objectContaining({
+                        tradeUrl: "https://www.pathofexile.com/trade/search/Standard/inputurlB2",
+                        resolved: expect.objectContaining({ name: "Input2" }),
+                        search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "input2-filter" }) }) })
+                    })
                 })
             ],
             outputs: [
                 expect.objectContaining({
-                    tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/outputurlC",
-                    resolved: expect.objectContaining({ name: "Output" }),
-                    search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "output-filter" }) }) })
+                    type: RecipeItem.type.TRADE,
+                    name: 'Output',
+                    item: expect.objectContaining({
+                        tradeUrl: "https://www.pathofexile.com/trade/search/Standard/outputurlC",
+                        resolved: expect.objectContaining({ name: "Output" }),
+                        search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "output-filter" }) }) })
+                    })
                 })
             ]
         });
@@ -329,20 +347,20 @@ describe("CreateRecipePage", () => {
         fireEvent.change(nameInput, { target: { value: "My Custom Recipe" } });
         // Fill and resolve first input draft
         let inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlA1" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/inputurlA1" } });
         // Wait for Input1 to resolve
         await screen.findByText("Input1");
         // Wait for new draft to appear
         await screen.findAllByTestId("recipe-item-row-draft");
         // Fill and resolve second input draft
         inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/inputurlB2" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/inputurlB2" } });
         // Wait for Input2 to resolve
         await screen.findByText("Input2");
         // Wait for output input to be present (should be second input)
         const allInputs = screen.getAllByTestId("trade-url-input");
         const outputUrl = allInputs[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/outputurlC" } });
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/outputurlC" } });
         // Wait for Output to resolve
         await screen.findByText("Output");
 
@@ -362,11 +380,11 @@ describe("CreateRecipePage", () => {
                 iconUrl: "icon.png",
                 originalMinPrice: { amount: 5, currency: "chaos" },
             },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Keepers/invalidurl" }, sort: {} },
+            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/invalidurl" }, sort: {} },
         });
         // Use an invalid trade URL (does not match auto-resolve pattern)
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: "www.pathofexile.com/trade/search/Standard/abcdefghij" } });
         // Should not resolve automatically
         expect(screen.queryByText(/manual item/i)).toBeNull();
         // Now press Enter to trigger resolve
@@ -380,7 +398,7 @@ describe("CreateRecipePage", () => {
         const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
         // Use an invalid trade URL to avoid auto-resolve
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/invalidurl" } });
+        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/invalidurl" } });
         // Should not resolve automatically
         expect(screen.queryByTestId("draft-error-msg")).toBeNull();
         // Press Enter to trigger resolve
@@ -399,7 +417,7 @@ describe("CreateRecipePage", () => {
         const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
         // Use an invalid trade URL to avoid auto-resolve
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/invalidurl" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/invalidurl" } });
         // Should not resolve automatically
         expect(screen.queryByTestId("draft-error-msg")).toBeNull();
         // Press Enter to trigger resolve
@@ -424,13 +442,13 @@ describe("CreateRecipePage", () => {
         });
         render(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Keepers/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
         fireEvent.keyDown(inputUrl, { key: "Enter", code: "Enter" });
         // Wait for resolved item to appear
         expect(await screen.findByText(/test item/i)).toBeInTheDocument();
         // The link icon should be present and correct
         const link = screen.getByTestId("trade-url-link");
-        expect(link).toHaveAttribute("href", "https://www.pathofexile.com/trade/search/Keepers/abcdefghij");
+        expect(link).toHaveAttribute("href", "https://www.pathofexile.com/trade/search/Standard/abcdefghij");
         expect(link).toHaveAttribute("target", "_blank");
         expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"));
         mockResolve.mockRestore();
