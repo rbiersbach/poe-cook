@@ -1,32 +1,12 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Recipe, RecipeItem } from "api/generated";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { DefaultService } from "../../api/generated/services/DefaultService";
+import { makeRecipe } from "../../__tests__/fixtures";
 import RecipesListPage from "../RecipesListPage";
+import { Recipe, RecipeItem } from "api/generated";
 
-const defaultRecipe: Recipe = {
-    id: "test1",
-    name: "Test Recipe",
-    inputs: [],
-    outputs: [
-        {
-            qty: 1,
-            type: RecipeItem.type.TRADE,
-            name: 'Output Item',
-            icon: '',
-            item: {
-                tradeUrl: '',
-                search: { query: {} },
-                resolved: {
-                    minPrice: { amount: 10, currency: "chaos" }
-                }
-            }
-        }
-    ],
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-};
+const defaultRecipe = makeRecipe({ inputs: [] });
 
 describe("RecipesListPage", () => {
     beforeEach(() => {

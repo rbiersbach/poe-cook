@@ -2,6 +2,7 @@ import { NinjaItem } from "models/ninja-types";
 import { isTradeItem, Recipe, RecipeItem, TradeItem } from "models/trade-types";
 import { RecipeService } from "services/recipe-service";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { makeNinjaItem } from "../fixtures";
 
 const mockStore = {
     getAll: vi.fn(() => []),
@@ -63,19 +64,15 @@ describe("RecipeService", () => {
     });
 
     it("refreshRecipe updates ninja items from store", async () => {
-        const ninjaItemData: NinjaItem = {
+        const ninjaItemData: NinjaItem = makeNinjaItem({
             id: 'ninja1',
             name: 'Ninja Orb',
             icon: 'icon.png',
-            category: 'Currency' as any,
             detailsId: 'orb-1',
             price: 123,
             priceHistory: [100, 110, 120, 123],
-            volume: 1000,
-            maxVolumeCurrency: 'chaos',
-            maxVolumeRate: 1,
             fetchedAt: '2026-03-01T00:00:00Z',
-        };
+        });
 
         const ninjaRecipeItem: RecipeItem = {
             qty: 1,

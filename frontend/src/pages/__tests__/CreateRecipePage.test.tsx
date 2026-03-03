@@ -1,24 +1,34 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { makeRecipe, makeResolveItemResponse } from "../../__tests__/fixtures";
 import { RecipeItem } from "../../api/generated/models/RecipeItem";
 import { DefaultService } from "../../api/generated/services/DefaultService";
 import CreateRecipePage from "../CreateRecipePage";
 
+const VALID_URL = "https://www.pathofexile.com/trade/search/Standard/abcdefghij";
+const ALT_URL = "https://www.pathofexile.com/trade/search/Standard/klmnopqrst";
+const INVALID_URL = "https://www.pathofexile.com/trade/search/Standard/invalidurl";
+const INPUT_URL_A = "https://www.pathofexile.com/trade/search/Standard/inputurlA1";
+const INPUT_URL_B = "https://www.pathofexile.com/trade/search/Standard/inputurlB2";
+const OUTPUT_URL_C = "https://www.pathofexile.com/trade/search/Standard/outputurlC";
+
+function mockThreeResolves() {
+    return vi.spyOn(DefaultService, "postApiResolveItem")
+        .mockResolvedValueOnce(makeResolveItemResponse({ name: "Input1", iconUrl: "input1.png", amount: 1, search: { query: { filters: { type: "input1-filter" } }, sort: {} } }))
+        .mockResolvedValueOnce(makeResolveItemResponse({ name: "Input2", iconUrl: "input2.png", amount: 2, search: { query: { filters: { type: "input2-filter" } }, sort: {} } }))
+        .mockResolvedValueOnce(makeResolveItemResponse({ name: "Output", iconUrl: "output.png", amount: 3, search: { query: { filters: { type: "output-filter" } }, sort: {} } }));
+}
+
 describe("CreateRecipePage", () => {
 
     it("autofills the name field with the resolved output name when only output is filled", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
-            resolved: {
-                name: "Resolved Output Name",
-                iconUrl: "icon.png",
-                originalMinPrice: { amount: 10, currency: "chaos" },
-            },
-            search: { query: {}, sort: {} },
-        });
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+            makeResolveItemResponse({ name: "Resolved Output Name" })
+        );
         render(<CreateRecipePage />);
         // Only fill the output draft (second trade-url-input)
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
+        fireEvent.change(outputUrl, { target: { value: VALID_URL } });
         // Wait for output to resolve and autofill
         expect(await screen.findByText(/resolved output name/i)).toBeInTheDocument();
         // Name field should be autofilled
@@ -28,18 +38,13 @@ describe("CreateRecipePage", () => {
     });
 
     it("autofills the name field with the first output's resolved name if empty", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
-            resolved: {
-                name: "Autofill Output Name",
-                iconUrl: "icon.png",
-                originalMinPrice: { amount: 10, currency: "chaos" },
-            },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
-        });
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+            makeResolveItemResponse({ name: "Autofill Output Name", search: { query: { tradeUrl: VALID_URL }, sort: {} } })
+        );
         render(<CreateRecipePage />);
         // Output draft is the second trade-url-input
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
+        fireEvent.change(outputUrl, { target: { value: VALID_URL } });
         // Wait for output to resolve and autofill
         await screen.findByText(/autofill output name/i);
         // Wait for the name field to be autofilled
@@ -63,16 +68,11 @@ describe("CreateRecipePage", () => {
         // Should start with two input drafts (input + output)
         expect(screen.getAllByTestId("trade-url-input")).toHaveLength(2);
         // Add input by providing a valid trade URL (mock API)
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
-            resolved: {
-                name: "Test Item",
-                iconUrl: "icon.png",
-                originalMinPrice: { amount: 10, currency: "chaos" },
-            },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
-        });
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+            makeResolveItemResponse({ search: { query: { tradeUrl: VALID_URL }, sort: {} } })
+        );
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         expect(await screen.findByText(/test item/i)).toBeInTheDocument();
 
         // Wait for the new empty draft to appear (should have empty value)
@@ -93,8 +93,8 @@ describe("CreateRecipePage", () => {
         render(<CreateRecipePage />);
         // Edit input draft fields
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
-        expect(inputUrl).toHaveValue("https://www.pathofexile.com/trade/search/Standard/abcdefghij");
+        fireEvent.change(inputUrl, { target: { value: VALID_URL } });
+        expect(inputUrl).toHaveValue(VALID_URL);
 
         const inputQty = screen.getAllByTestId("qty-input")[0];
         fireEvent.change(inputQty, { target: { value: 3 } });
@@ -102,8 +102,8 @@ describe("CreateRecipePage", () => {
 
         // Edit output draft fields
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/klmnopqrst" } });
-        expect(outputUrl).toHaveValue("https://www.pathofexile.com/trade/search/Standard/klmnopqrst");
+        fireEvent.change(outputUrl, { target: { value: ALT_URL } });
+        expect(outputUrl).toHaveValue(ALT_URL);
 
         const outputQty = screen.getAllByTestId("qty-input")[1];
         fireEvent.change(outputQty, { target: { value: 2 } });
@@ -112,17 +112,12 @@ describe("CreateRecipePage", () => {
     });
 
     it("triggers resolve when a valid trade URL is entered (mock API)", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
-            resolved: {
-                name: "Test Item",
-                iconUrl: "icon.png",
-                originalMinPrice: { amount: 10, currency: "chaos" },
-            },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
-        });
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+            makeResolveItemResponse({ search: { query: { tradeUrl: VALID_URL }, sort: {} } })
+        );
         render(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         // Wait for resolved item to appear
         expect(await screen.findByText(/test item/i)).toBeInTheDocument();
         expect(screen.getByText(/10/)).toBeInTheDocument(); // price
@@ -139,18 +134,13 @@ describe("CreateRecipePage", () => {
         });
         render(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         // Loader should appear while promise is unresolved
         expect(await screen.findByTestId("loader")).toBeInTheDocument();
         expect(inputUrl).toBeDisabled();
         // Now resolve the promise
         resolveDeferred!({
-            resolved: {
-                name: "Test Item",
-                iconUrl: "icon.png",
-                originalMinPrice: { amount: 10, currency: "chaos" },
-            },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
+            ...makeResolveItemResponse({ search: { query: { tradeUrl: VALID_URL }, sort: {} } }),
             error: null,
         });
         // Wait for loader to disappear and item to show
@@ -163,30 +153,24 @@ describe("CreateRecipePage", () => {
         const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
         render(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         expect(await screen.findByText(/failed to resolve item/i)).toBeInTheDocument();
         mockResolve.mockRestore();
     });
 
     it("moves resolved items to the resolved list", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
-            resolved: {
-                name: "Test Item",
-                iconUrl: "icon.png",
-                originalMinPrice: { amount: 10, currency: "chaos" },
-            },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" }, sort: {} },
-        });
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+            makeResolveItemResponse({ search: { query: { tradeUrl: VALID_URL }, sort: {} } })
+        );
         render(<CreateRecipePage />);
         // Enter a valid trade URL
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         // Wait for resolved item to appear
         expect(await screen.findByText(/test item/i)).toBeInTheDocument();
         // The draft input should NOT contain the resolved trade URL
-        const draftInputs = screen.getAllByTestId("trade-url-input");
-        draftInputs.forEach(input => {
-            expect(input).not.toHaveValue("https://www.pathofexile.com/trade/search/Standard/abcdefghij");
+        screen.getAllByTestId("trade-url-input").forEach(input => {
+            expect(input).not.toHaveValue(VALID_URL);
         });
         // The resolved item should be in the resolved list (look for Remove button in resolved row)
         expect(screen.getByTestId("remove-input-button")).toBeInTheDocument();
@@ -194,24 +178,18 @@ describe("CreateRecipePage", () => {
     });
 
     it("moves resolved output to the resolved output row", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
-            resolved: {
-                name: "Output Item",
-                iconUrl: "output.png",
-                originalMinPrice: { amount: 50, currency: "chaos" },
-            },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/klmnopqrst" }, sort: {} },
-        });
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+            makeResolveItemResponse({ name: "Output Item", iconUrl: "output.png", amount: 50, search: { query: { tradeUrl: ALT_URL }, sort: {} } })
+        );
         render(<CreateRecipePage />);
         // Enter a valid trade URL for output (second trade-url-input is output)
-        const allInputs = screen.getAllByTestId("trade-url-input");
-        const outputUrl = allInputs[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/klmnopqrst" } });
+        const outputUrl = screen.getAllByTestId("trade-url-input")[1];
+        fireEvent.change(outputUrl, { target: { value: ALT_URL } });
         // Wait for resolved output to appear
         expect(await screen.findByText(/output item/i)).toBeInTheDocument();
         // None of the draft inputs should have the resolved trade URL
         screen.getAllByTestId("trade-url-input").forEach(input => {
-            expect(input).not.toHaveValue("https://www.pathofexile.com/trade/search/Standard/klmnopqrst");
+            expect(input).not.toHaveValue(ALT_URL);
         });
         // The resolved output should be in the resolved row (look for Remove button)
         expect(screen.getByTestId("remove-input-button")).toBeInTheDocument();
@@ -221,65 +199,30 @@ describe("CreateRecipePage", () => {
     it("shows an error message if resolving the output fails", async () => {
         const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
         render(<CreateRecipePage />);
-        // Output draft is the second trade-url-input
-        const allInputs = screen.getAllByTestId("trade-url-input");
-        const outputUrl = allInputs[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/klmnopqrst" } });
+        const outputUrl = screen.getAllByTestId("trade-url-input")[1];
+        fireEvent.change(outputUrl, { target: { value: ALT_URL } });
         expect(await screen.findByText(/failed to resolve item/i)).toBeInTheDocument();
         mockResolve.mockRestore();
     });
 
     it("submits successfully with two inputs and one output", async () => {
-        // Mock resolve for each item
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem")
-            .mockResolvedValueOnce({
-                resolved: { name: "Input1", iconUrl: "input1.png", originalMinPrice: { amount: 1, currency: "chaos" } },
-                search: { query: { filters: { type: "input1-filter" } }, sort: {} },
-            })
-            .mockResolvedValueOnce({
-                resolved: { name: "Input2", iconUrl: "input2.png", originalMinPrice: { amount: 2, currency: "chaos" } },
-                search: { query: { filters: { type: "input2-filter" } }, sort: {} },
-            })
-            .mockResolvedValueOnce({
-                resolved: { name: "Output", iconUrl: "output.png", originalMinPrice: { amount: 3, currency: "chaos" } },
-                search: { query: { filters: { type: "output-filter" } }, sort: {} },
-            });
-        // Return a valid CreateRecipeResponse object
+        const mockResolve = mockThreeResolves();
         const mockSubmit = vi.spyOn(DefaultService, "postApiRecipes").mockResolvedValue({
-            recipe: {
-                id: "mock-id",
-                name: "Output",
-                inputs: [],
-                outputs: [
-                    {
-                        qty: 1,
-                        type: RecipeItem.type.TRADE,
-                        name: "Output",
-                        icon: "",
-                        item: {
-                            tradeUrl: 'https://www.pathofexile.com/trade/search/Standard/outputurl1',
-                            search: { query: { name: "Output" } },
-                        },
-                    }
-                ],
-                createdAt: new Date().toISOString(),
-                updatedAt: new Date().toISOString()
-            }
+            recipe: makeRecipe({ id: "mock-id", name: "Output" }),
         });
         render(<CreateRecipePage />);
         // Fill and resolve first input draft
         let inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/inputurlA1" } });
+        fireEvent.change(inputUrl, { target: { value: INPUT_URL_A } });
         expect(await screen.findByText("Input1")).toBeInTheDocument();
         // Wait for new draft to appear and fill/resolve it
         await screen.findAllByTestId("recipe-item-row-draft");
         inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/inputurlB2" } });
+        fireEvent.change(inputUrl, { target: { value: INPUT_URL_B } });
         expect(await screen.findByText("Input2")).toBeInTheDocument();
         // Fill and resolve output draft (second trade-url-input is output)
-        const allInputs = screen.getAllByTestId("trade-url-input");
-        const outputUrl = allInputs[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/outputurlC" } });
+        const outputUrl = screen.getAllByTestId("trade-url-input")[1];
+        fireEvent.change(outputUrl, { target: { value: OUTPUT_URL_C } });
         expect(await screen.findByText("Output")).toBeInTheDocument();
         // Submit — wait for state to propagate up via onResolvedChange before clicking
         const submitBtn = screen.getByRole("button", { name: /submit recipe/i });
@@ -296,7 +239,7 @@ describe("CreateRecipePage", () => {
                     type: RecipeItem.type.TRADE,
                     name: 'Input1',
                     item: expect.objectContaining({
-                        tradeUrl: "https://www.pathofexile.com/trade/search/Standard/inputurlA1",
+                        tradeUrl: INPUT_URL_A,
                         resolved: expect.objectContaining({ name: "Input1" }),
                         search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "input1-filter" }) }) })
                     })
@@ -305,7 +248,7 @@ describe("CreateRecipePage", () => {
                     type: RecipeItem.type.TRADE,
                     name: 'Input2',
                     item: expect.objectContaining({
-                        tradeUrl: "https://www.pathofexile.com/trade/search/Standard/inputurlB2",
+                        tradeUrl: INPUT_URL_B,
                         resolved: expect.objectContaining({ name: "Input2" }),
                         search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "input2-filter" }) }) })
                     })
@@ -316,7 +259,7 @@ describe("CreateRecipePage", () => {
                     type: RecipeItem.type.TRADE,
                     name: 'Output',
                     item: expect.objectContaining({
-                        tradeUrl: "https://www.pathofexile.com/trade/search/Standard/outputurlC",
+                        tradeUrl: OUTPUT_URL_C,
                         resolved: expect.objectContaining({ name: "Output" }),
                         search: expect.objectContaining({ query: expect.objectContaining({ filters: expect.objectContaining({ type: "output-filter" }) }) })
                     })
@@ -327,20 +270,7 @@ describe("CreateRecipePage", () => {
         mockSubmit.mockRestore();
     });
     it("shows an error message if recipe submit fails", async () => {
-        // Mock resolve for each item
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem")
-            .mockResolvedValueOnce({
-                resolved: { name: "Input1", iconUrl: "input1.png", originalMinPrice: { amount: 1, currency: "chaos" } },
-                search: { query: { filters: { type: "input1-filter" } }, sort: {} },
-            })
-            .mockResolvedValueOnce({
-                resolved: { name: "Input2", iconUrl: "input2.png", originalMinPrice: { amount: 2, currency: "chaos" } },
-                search: { query: { filters: { type: "input2-filter" } }, sort: {} },
-            })
-            .mockResolvedValueOnce({
-                resolved: { name: "Output", iconUrl: "output.png", originalMinPrice: { amount: 3, currency: "chaos" } },
-                search: { query: { filters: { type: "output-filter" } }, sort: {} },
-            });
+        const mockResolve = mockThreeResolves();
         const mockSubmit = vi.spyOn(DefaultService, "postApiRecipes").mockRejectedValue(new Error("API error: failed to submit"));
         render(<CreateRecipePage />);
 
@@ -349,20 +279,19 @@ describe("CreateRecipePage", () => {
         fireEvent.change(nameInput, { target: { value: "My Custom Recipe" } });
         // Fill and resolve first input draft
         let inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/inputurlA1" } });
+        fireEvent.change(inputUrl, { target: { value: INPUT_URL_A } });
         // Wait for Input1 to resolve
         await screen.findByText("Input1");
         // Wait for new draft to appear
         await screen.findAllByTestId("recipe-item-row-draft");
         // Fill and resolve second input draft
         inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/inputurlB2" } });
+        fireEvent.change(inputUrl, { target: { value: INPUT_URL_B } });
         // Wait for Input2 to resolve
         await screen.findByText("Input2");
-        // Wait for output input to be present (should be second input)
-        const allInputs = screen.getAllByTestId("trade-url-input");
-        const outputUrl = allInputs[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/outputurlC" } });
+        // Fill and resolve output draft
+        const outputUrl = screen.getAllByTestId("trade-url-input")[1];
+        fireEvent.change(outputUrl, { target: { value: OUTPUT_URL_C } });
         // Wait for Output to resolve
         await screen.findByText("Output");
 
@@ -377,14 +306,9 @@ describe("CreateRecipePage", () => {
     });
     it("resolves input only when pressing Enter with invalid trade URL", async () => {
         render(<CreateRecipePage />);
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
-            resolved: {
-                name: "Manual Item",
-                iconUrl: "icon.png",
-                originalMinPrice: { amount: 5, currency: "chaos" },
-            },
-            search: { query: { tradeUrl: "https://www.pathofexile.com/trade/search/Standard/invalidurl" }, sort: {} },
-        });
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+            makeResolveItemResponse({ name: "Manual Item", amount: 5, search: { query: { tradeUrl: INVALID_URL }, sort: {} } })
+        );
         // Use an invalid trade URL (does not match auto-resolve pattern)
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: "www.pathofexile.com/trade/search/Standard/abcdefghij" } });
@@ -401,7 +325,7 @@ describe("CreateRecipePage", () => {
         const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
         // Use an invalid trade URL to avoid auto-resolve
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
-        fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/invalidurl" } });
+        fireEvent.change(outputUrl, { target: { value: INVALID_URL } });
         // Should not resolve automatically
         expect(screen.queryByTestId("draft-error-msg")).toBeNull();
         // Press Enter to trigger resolve
@@ -420,7 +344,7 @@ describe("CreateRecipePage", () => {
         const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
         // Use an invalid trade URL to avoid auto-resolve
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/invalidurl" } });
+        fireEvent.change(inputUrl, { target: { value: INVALID_URL } });
         // Should not resolve automatically
         expect(screen.queryByTestId("draft-error-msg")).toBeNull();
         // Press Enter to trigger resolve
@@ -435,23 +359,18 @@ describe("CreateRecipePage", () => {
     });
 
     it("shows a link icon to the original trade URL in resolved rows (query does not contain tradeUrl)", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue({
-            resolved: {
-                name: "Test Item",
-                iconUrl: "icon.png",
-                originalMinPrice: { amount: 10, currency: "chaos" },
-            },
-            search: { query: { someOtherField: "foo" }, sort: {} },
-        });
+        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+            makeResolveItemResponse({ search: { query: { someOtherField: "foo" }, sort: {} } })
+        );
         render(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
-        fireEvent.change(inputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/abcdefghij" } });
+        fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         fireEvent.keyDown(inputUrl, { key: "Enter", code: "Enter" });
         // Wait for resolved item to appear
         expect(await screen.findByText(/test item/i)).toBeInTheDocument();
         // The link icon should be present and correct
         const link = screen.getByTestId("trade-url-link");
-        expect(link).toHaveAttribute("href", "https://www.pathofexile.com/trade/search/Standard/abcdefghij");
+        expect(link).toHaveAttribute("href", VALID_URL);
         expect(link).toHaveAttribute("target", "_blank");
         expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"));
         mockResolve.mockRestore();

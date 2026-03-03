@@ -1,8 +1,8 @@
 import { Recipe } from "api/generated/models/Recipe";
 import { DefaultService } from "api/generated/services/DefaultService";
 import React, { useContext, useEffect, useState } from "react";
-import { RecipeCard } from "../components/recipe/RecipeCard";
 import { RecipeEditContext } from "../App";
+import { RecipeCard } from "../components/recipe/RecipeCard";
 
 const PAGE_SIZE = 20;
 
@@ -15,7 +15,7 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
     const [refreshErrors, setRefreshErrors] = useState<{ [id: string]: string | null }>({});
     const [loadMoreLoading, setLoadMoreLoading] = useState(false);
     const editContext = useContext(RecipeEditContext);
-    const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => {});
+    const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => { });
 
     const fetchRecipes = () => {
         setLoading(true);
@@ -90,7 +90,7 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
                     {recipes.length === 0 ? (
                         <div className="text-muted">No recipes found.</div>
                     ) : (
-                        <div className="recipe-list flex flex-col gap-4">
+                        <div className="recipe-list flex flex-col gap-2">
                             {recipes.map(recipe => (
                                 <RecipeCard
                                     key={recipe.id}

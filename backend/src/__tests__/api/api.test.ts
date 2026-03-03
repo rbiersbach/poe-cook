@@ -12,6 +12,7 @@ import { TradeApiServer } from "../../api/api";
 import { NoopLogger } from "../../logger";
 import type { IRecipeService } from "../../services/recipe-service";
 import { ResolveItemError, TradeResolverService } from "../../services/trade-resolver-service";
+import { makeNinjaItem, makeRecipe, makeResolvedMarketData } from "../fixtures";
 
 const TEST_RECIPES_PATH = path.join(__dirname, "../resources/recipes.test.json");
 
@@ -107,16 +108,7 @@ describe("POST /api/resolve-item", () => {
 
     it("normalizes a URL missing the https:// scheme", async () => {
         const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockResolvedValueOnce({
-            resolved: {
-                iconUrl: "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png",
-                name: "Chaos Orb",
-                minPrice: { amount: 1, currency: "chaos" },
-                originalMinPrice: { amount: 1, currency: "chaos" },
-                medianPrice: { amount: 1, currency: "chaos" },
-                originalMedianPrice: { amount: 1, currency: "chaos" },
-                medianCount: 42,
-                fetchedAt: new Date().toISOString(),
-            },
+            resolved: makeResolvedMarketData({ medianCount: 42 }),
             search: { query: { name: "Chaos Orb" }, sort: { price: "asc" } },
         });
         await supertest(apiServer.server.server)
@@ -132,16 +124,7 @@ describe("POST /api/resolve-item", () => {
 
     it("normalizes a URL missing both scheme and www", async () => {
         const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockResolvedValueOnce({
-            resolved: {
-                iconUrl: "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png",
-                name: "Chaos Orb",
-                minPrice: { amount: 1, currency: "chaos" },
-                originalMinPrice: { amount: 1, currency: "chaos" },
-                medianPrice: { amount: 1, currency: "chaos" },
-                originalMedianPrice: { amount: 1, currency: "chaos" },
-                medianCount: 42,
-                fetchedAt: new Date().toISOString(),
-            },
+            resolved: makeResolvedMarketData({ medianCount: 42 }),
             search: { query: { name: "Chaos Orb" }, sort: { price: "asc" } },
         });
         await supertest(apiServer.server.server)
@@ -312,19 +295,13 @@ describe("POST /api/recipes", () => {
             type: "ninja",
             name: "Chaos Orb",
             icon: "https://web.poecdn.com/img/chaos.png",
-            item: {
-                id: "chaos-orb",
-                name: "Chaos Orb",
+            item: makeNinjaItem({
                 icon: "https://web.poecdn.com/img/chaos.png",
-                category: "Currency",
-                detailsId: "chaos-orb",
-                price: 1,
                 priceHistory: [],
-                volume: 1000,
                 maxVolumeCurrency: "divine",
                 maxVolumeRate: 0.002,
                 fetchedAt: new Date().toISOString(),
-            },
+            }),
         };
         const tradeItem = {
             qty: 1,
@@ -591,9 +568,9 @@ describe("GET /api/recipes", () => {
     beforeEach(() => {
         mockGetAllRecipes.mockClear();
         mockGetAllRecipes.mockResolvedValue([
-            { id: "r1", name: "Recipe 1", inputs: [], outputs: [], createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" },
-            { id: "r2", name: "Recipe 2", inputs: [], outputs: [], createdAt: "2024-01-02T00:00:00Z", updatedAt: "2024-01-02T00:00:00Z" },
-            { id: "r3", name: "Recipe 3", inputs: [], outputs: [], createdAt: "2024-01-03T00:00:00Z", updatedAt: "2024-01-03T00:00:00Z" },
+            makeRecipe({ id: "r1", name: "Recipe 1" }),
+            makeRecipe({ id: "r2", name: "Recipe 2", createdAt: "2024-01-02T00:00:00.000Z", updatedAt: "2024-01-02T00:00:00.000Z" }),
+            makeRecipe({ id: "r3", name: "Recipe 3", createdAt: "2024-01-03T00:00:00.000Z", updatedAt: "2024-01-03T00:00:00.000Z" }),
         ]);
     });
 

@@ -1,45 +1,10 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Recipe, RecipeItem } from "api/generated";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { makeRecipe } from "../../__tests__/fixtures";
 import { RecipeCard } from "../recipe/RecipeCard";
 
-const defaultRecipe: Recipe = {
-    id: "test1",
-    name: "Test Recipe",
-    inputs: [
-        {
-            qty: 1,
-            type: RecipeItem.type.TRADE,
-            name: "Input Item",
-            icon: "",
-            item: {
-                tradeUrl: "",
-                search: { query: {} },
-                resolved: {
-                    minPrice: { amount: 5, currency: "chaos" }
-                }
-            }
-        }
-    ],
-    outputs: [
-        {
-            qty: 1,
-            type: RecipeItem.type.TRADE,
-            name: "Output Item",
-            icon: "",
-            item: {
-                tradeUrl: "",
-                search: { query: {} },
-                resolved: {
-                    minPrice: { amount: 10, currency: "chaos" }
-                }
-            }
-        }
-    ],
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-};
+const defaultRecipe = makeRecipe();
 
 describe("RecipeCard", () => {
     beforeEach(() => {
@@ -56,8 +21,8 @@ describe("RecipeCard", () => {
             />
         );
         expect(screen.getByTestId("recipe-name")).toHaveTextContent("Test Recipe");
-        expect(screen.getByAltText("Input Item")).toBeInTheDocument();
-        expect(screen.getByAltText("Output Item")).toBeInTheDocument();
+        expect(screen.getByAltText("Input Trade Item")).toBeInTheDocument();
+        expect(screen.getByAltText("Output Trade Item")).toBeInTheDocument();
     });
 
     it("shows profit display and recipe updated time", () => {

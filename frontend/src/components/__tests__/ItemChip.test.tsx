@@ -1,26 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { RecipeItem } from "../../api/generated/models/RecipeItem";
-import { TradeItem } from "../../api/generated/models/TradeItem";
+import { makeTradeItem, makeTradeRecipeItem } from "../../__tests__/fixtures";
 import { ItemChip } from "../item/ItemChip";
 
 describe("ItemChip", () => {
-    const baseTradeItem: TradeItem = {
-        tradeUrl: "https://example.com",
-        search: { query: {} },
-        resolved: {
-            name: "Test Item",
-            iconUrl: "icon.png",
-            originalMinPrice: { amount: 10, currency: "chaos" },
-        },
-    };
-    const baseItem: RecipeItem = {
-        qty: 1,
-        type: RecipeItem.type.TRADE,
-        name: "Test Item",
-        icon: "icon.png",
-        item: baseTradeItem,
-    };
+    const baseItem = makeTradeRecipeItem();
+    const baseTradeItem = makeTradeItem();
 
     it("renders icon and price for qty=1, but hides quantity", () => {
         render(<ItemChip item={baseItem} />);
@@ -40,7 +25,7 @@ describe("ItemChip", () => {
     });
 
     it("renders nothing if resolved is missing", () => {
-        const noResolved: RecipeItem = { ...baseItem, item: { ...baseTradeItem, resolved: undefined } };
+        const noResolved = { ...baseItem, item: { ...baseTradeItem, resolved: undefined } };
         const { container } = render(<ItemChip item={noResolved} />);
         expect(container).toBeEmptyDOMElement();
     });

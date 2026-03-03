@@ -1,40 +1,24 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { RecipeItem } from "api/generated";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { NinjaItem } from "../../api/generated/models/NinjaItem";
-import { RecipeItem } from "../../api/generated/models/RecipeItem";
-import type { TradeItem } from "../../api/generated/models/TradeItem";
+import { makeNinjaItem, makeTradeItem, makeTradeRecipeItem } from "../../__tests__/fixtures";
 import { DefaultService } from "../../api/generated/services/DefaultService";
 import { RecipeItemList } from "../recipe/RecipeItemList";
 
-const mockNinjaItem: NinjaItem = {
-    id: "orb-of-alteration",
-    name: "Orb of Alteration",
-    icon: "https://example.com/alt.png",
-    category: NinjaItem.category.CURRENCY,
-    detailsId: "orb-of-alteration",
-    price: 1.5,
-    priceHistory: [1.2, 1.4, 1.5],
-    volume: 1000,
-    maxVolumeCurrency: "chaos",
-    maxVolumeRate: 0.5,
-    fetchedAt: new Date().toISOString(),
-};
+const mockNinjaItem = makeNinjaItem();
 
-const mockTradeItem: RecipeItem = {
+const mockTradeItem = makeTradeRecipeItem({
     qty: 2,
-    type: RecipeItem.type.TRADE,
     name: "Mirror of Kalandra",
     icon: "https://example.com/mirror.png",
-    item: {
-        tradeUrl: "https://www.pathofexile.com/trade/search/Standard/abcdefghij",
-        search: {} as TradeItem['search'],
+    item: makeTradeItem({
         resolved: {
             name: "Mirror of Kalandra",
             iconUrl: "https://example.com/mirror.png",
             originalMinPrice: { amount: 1500, currency: "chaos" },
         },
-    } as TradeItem,
-};
+    }),
+});
 
 const mockResolveItem = vi.fn().mockResolvedValue(mockTradeItem);
 
