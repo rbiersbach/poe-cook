@@ -20,14 +20,13 @@ export const ItemChip: React.FC<ItemChipProps> = ({ item }) => {
         const tradeData = item.item as TradeItem;
         if (!tradeData.resolved) return null;
         return (
-            <div className="item-chip flex items-center gap-2 rounded px-2 py-1">
-                {qty !== 1 && <span className="item-qty font-bold">{qty}x</span>}
+            <div className="flex items-center gap-2 rounded px-2 py-1">
+                {qty !== 1 && <span className="font-bold">{qty}x</span>}
                 <ItemIconWithHover
                     iconUrl={iconUrl}
                     name={name}
                     tradeUrl={tradeData.tradeUrl}
                     alt={name}
-                    className="item-icon"
                 />
                 <PriceWithTooltip resolved={tradeData.resolved} />
             </div>
@@ -36,14 +35,13 @@ export const ItemChip: React.FC<ItemChipProps> = ({ item }) => {
 
     if (isNinjaItem(item)) {
         return (
-            <div className="item-chip flex items-center gap-2 rounded px-2 py-1">
-                {qty !== 1 && <span className="item-qty font-bold">{qty}x</span>}
+            <div className="flex items-center gap-2 rounded px-2 py-1">
+                {qty !== 1 && <span className="font-bold">{qty}x</span>}
                 <ItemIconWithHover
                     iconUrl={iconUrl}
                     name={name}
                     tradeUrl={undefined}
                     alt={name}
-                    className="item-icon"
                 />
                 <NinjaPriceTooltip item={item.item as NinjaItem} />
             </div>

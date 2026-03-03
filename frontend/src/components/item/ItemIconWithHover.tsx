@@ -31,16 +31,16 @@ export const ItemIconWithHover: React.FC<ItemIconWithHoverProps> = ({ iconUrl, n
 
   return (
     <span
-      className={"item-icon-wrapper relative " + (className || "")}
+      className={"relative " + (className || "")}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       tabIndex={0}
       aria-label="Show item name"
     >
-      <ItemIcon src={iconUrl} alt={alt} className="item-icon" />
+      <ItemIcon src={iconUrl} alt={alt} />
       {showPopup && name && (
         <div
-          className={`item-name-popup hover-tooltip absolute transition-opacity duration-300 flex items-center gap-2 ${fade ? "opacity-0" : "opacity-100"}`}
+          className={`hover-tooltip absolute transition-opacity duration-300 flex items-center gap-2 ${fade ? "opacity-0" : "opacity-100"}`}
           style={{ left: "50%", top: "100%", transform: "translateX(-50%)", marginTop: "0.25rem", whiteSpace: "nowrap" }}
         >
           <span>{name}</span>

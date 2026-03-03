@@ -118,7 +118,7 @@ export const ItemSearchInput: React.FC<ItemSearchInputProps> = ({
                     {suggestions.map((item, idx) => (
                         <li
                             key={item.id}
-                            className={`flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 ${activeIdx === idx ? 'bg-gray-100 dark:bg-gray-700' : ''}`}
+                            className={`search-item${activeIdx === idx ? ' search-item-active' : ''}`}
                             onMouseDown={() => handleSelect(item)}
                             data-testid={`item-suggestion-${item.id}`}
                         >

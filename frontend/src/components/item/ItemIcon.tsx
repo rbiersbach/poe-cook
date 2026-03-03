@@ -14,28 +14,14 @@ interface ItemIconProps extends React.ImgHTMLAttributes<HTMLImageElement> {
  */
 const ItemIcon: React.FC<ItemIconProps> = ({ src, alt = "icon", className = "", width = "2.5rem", height = "2.5rem", ...props }) => (
   <div
-    style={{
-      aspectRatio: "1 / 1",
-      width,
-      height,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      background: "none",
-    }}
-    className={className}
+    style={{ width, height }}
+    className={`aspect-square flex items-center justify-center ${className}`}
     data-testid="item-icon-wrapper"
   >
     <img
       src={src}
       alt={alt}
-      style={{
-        maxHeight: "100%",
-        width: "100%",
-        objectFit: "contain",
-        paddingBlock: "var(--s1)",
-        display: "block",
-      }}
+      className="max-h-full w-full object-contain block"
       data-testid="item-icon-img"
       {...props}
     />

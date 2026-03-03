@@ -19,16 +19,16 @@ describe("ProfitDisplay", () => {
         render(<ProfitDisplay recipe={makeRecipe(100)} />);
         const min = screen.getByText("90");
         const max = screen.getByText("100");
-        expect(min).toHaveClass("text-green-600");
-        expect(max).toHaveClass("text-green-600");
+        expect(min).toHaveClass("price-positive");
+        expect(max).toHaveClass("price-positive");
     });
 
     it("shows both values red when both are negative", () => {
         render(<ProfitDisplay recipe={makeRecipe(-100)} />);
         const min = screen.getByText("-90");
         const max = screen.getByText("-100");
-        expect(min).toHaveClass("text-red-600");
-        expect(max).toHaveClass("text-red-600");
+        expect(min).toHaveClass("price-negative");
+        expect(max).toHaveClass("price-negative");
     });
 
     it("shows min red and max green when min is negative and max is positive", () => {
@@ -43,7 +43,7 @@ describe("ProfitDisplay", () => {
         render(<ProfitDisplay recipe={recipe} />);
         const min = screen.getByText("30");
         const max = screen.getByText("-70");
-        expect(min).toHaveClass("text-green-600");
-        expect(max).toHaveClass("text-red-600");
+        expect(min).toHaveClass("price-positive");
+        expect(max).toHaveClass("price-negative");
     });
 });

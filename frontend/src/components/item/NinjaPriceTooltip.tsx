@@ -53,7 +53,7 @@ export const NinjaPriceTooltip: React.FC<NinjaPriceTooltipProps> = ({ item }) =>
 
     return (
         <span
-            className="price-text relative"
+            className="relative"
             data-testid="ninja-price-tooltip"
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
@@ -67,7 +67,7 @@ export const NinjaPriceTooltip: React.FC<NinjaPriceTooltipProps> = ({ item }) =>
             </span>
             {showPopup && tooltipPos && createPortal(
                 <div
-                    className={`tooltip hover-tooltip fixed transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
+                    className={`hover-tooltip fixed transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
                     style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", whiteSpace: "nowrap", zIndex: 50 }}
                 >
                     <div className="flex items-center gap-1">

@@ -15,8 +15,8 @@ export const PriceRangeDisplay: React.FC<PriceRangeDisplayProps> = ({ min, max, 
         const icon = currency?.toLowerCase();
 
     // Define colors for min and max values based on profitability, each on their own
-    const minColor = min > 0 ? "text-green-600" : (min < 0 ? "text-red-600" : "text-neutral-600");
-    const maxColor = max > 0 ? "text-green-600" : (max < 0 ? "text-red-600" : "text-neutral-600");
+    const minColor = min > 0 ? "price-positive" : (min < 0 ? "price-negative" : "price-neutral");
+    const maxColor = max > 0 ? "price-positive" : (max < 0 ? "price-negative" : "price-neutral");
     // Show minus sign for negative values, max 1 decimal
     const fmt = (n: number) => parseFloat(Math.abs(n).toFixed(1)).toString();
     const minFmt = fmt(min);

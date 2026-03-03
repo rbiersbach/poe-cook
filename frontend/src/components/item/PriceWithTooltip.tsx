@@ -52,7 +52,7 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
 
     return (
         <span
-            className="price-text relative"
+            className="relative"
             data-testid="price-tooltip"
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
@@ -63,7 +63,7 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
             <PriceDisplay amount={resolved.originalMinPrice?.amount} currency={resolved.originalMinPrice?.currency} />
             {showPopup && tooltipPos && createPortal(
                 <div
-                    className={`tooltip hover-tooltip fixed transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
+                    className={`hover-tooltip fixed transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
                     style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", whiteSpace: "nowrap", zIndex: 50 }}
                 >
                     <div>Min: <PriceDisplay amount={resolved.originalMinPrice?.amount} currency={resolved.originalMinPrice?.currency} exact /></div>
