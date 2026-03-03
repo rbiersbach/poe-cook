@@ -1,6 +1,6 @@
 import cors from "@fastify/cors";
 import Fastify, { FastifyBaseLogger, FastifyInstance, FastifyRequest } from "fastify";
-import { ResolveItemRequest } from "models/trade-types";
+import { ResolveItemRequest, Recipe } from "models/trade-types";
 import { HtmlExtractorService } from "services/html-extractor-service";
 import { IRecipeService, RecipeService } from "services/recipe-service";
 import type { ITradeClientService } from "services/trade-client-service";
@@ -8,6 +8,12 @@ import { TradeClientService } from "services/trade-client-service";
 import { ResolveItemError, TradeResolverService } from "services/trade-resolver-service";
 import { INinjaItemStore, NinjaItemStore } from "stores/ninja-item-store";
 import { RecipeStore } from "stores/recipe-store";
+import {
+    ResolveItemRequestSchema,
+    CreateRecipeRequestSchema,
+    UpdateRecipeRequestSchema,
+    ListRecipesQuerySchema,
+} from "validation";
 
 export class TradeApiServer {
     private fastify!: FastifyInstance;
@@ -57,12 +63,14 @@ export class TradeApiServer {
     private registerRoutes() {
         this.fastify.post("/api/resolve-item", async (request: FastifyRequest<{ Body: ResolveItemRequest }>, reply) => {
             try {
-                const body = request.body;
-                const tradeUrl = body?.tradeUrl;
-                if (!tradeUrl) {
-                    this.logger.warn({ body: request.body }, "Invalid ResolveItemRequest: missing tradeUrl");
+                const validation = ResolveItemRequestSchema.safeParse(request.body);
+                if (!validation.success) {
+                    const errors = validation.error.flatten();
+                    this.logger.warn({ errors }, "Invalid ResolveItemRequest");
                     return reply.status(400).send({ error: "Invalid ResolveItemRequest" });
                 }
+
+                const { tradeUrl } = validation.data;
                 // Optionally: get POESESSID from headers/cookies
                 const poeSessid = "example-session-id";
                 const resolver = new TradeResolverService(this.logger, this.tradeClient, HtmlExtractorService);
@@ -81,20 +89,28 @@ export class TradeApiServer {
         // GET /api/recipes - List recipes
         this.fastify.get("/api/recipes", async (request: FastifyRequest, reply) => {
             try {
-                const { cursor, limit } = request.query as { cursor?: string; limit?: string };
-                const invalidateCache = request.headers["x-invalidate-cache"] === "true";
+                const validation = ListRecipesQuerySchema.safeParse(request.query);
+                if (!validation.success) {
+                    const errors = validation.error.flatten();
+                    this.logger.warn({ errors }, "Invalid ListRecipesQuery");
+                    return reply.status(400).send({ error: "Invalid request", details: errors });
+                }
+
+                const { cursor, limit = "20", "x-invalidate-cache": invalidateCacheHeader } = validation.data;
+                const invalidateCache = invalidateCacheHeader === "true";
                 let recipes = await this.recipeService.getAllRecipes(invalidateCache);
                 let startIdx = 0;
                 if (cursor) {
                     startIdx = recipes.findIndex((r: any) => r.id === cursor) + 1;
                     if (startIdx === 0) startIdx = 0; // cursor not found, start from beginning
                 }
-                let limitedRecipes = recipes.slice(startIdx, limit ? startIdx + parseInt(limit, 10) : undefined);
+                const pageLimit = parseInt(String(limit), 10);
+                let limitedRecipes = recipes.slice(startIdx, startIdx + pageLimit);
                 let nextCursor = undefined;
-                if (limit && (startIdx + parseInt(limit, 10)) < recipes.length) {
-                    nextCursor = recipes[startIdx + parseInt(limit, 10) - 1]?.id;
+                if ((startIdx + pageLimit) < recipes.length) {
+                    nextCursor = recipes[startIdx + pageLimit - 1]?.id;
                 }
-                this.logger.info({ cursor, limit, count: limitedRecipes.length, invalidateCache }, "List recipes");
+                this.logger.info({ cursor, limit: pageLimit, count: limitedRecipes.length, invalidateCache }, "List recipes");
                 reply.send({ recipes: limitedRecipes, ...(nextCursor ? { nextCursor } : {}) });
             } catch (err) {
                 this.logger.error({ error: err, query: request.query }, "Unexpected error in GET /api/recipes");
@@ -105,20 +121,21 @@ export class TradeApiServer {
 
         this.fastify.post("/api/recipes", async (request: FastifyRequest, reply) => {
             try {
-                const body = request.body as any;
-                const inputs = body?.inputs;
-                const outputs = body?.outputs;
-                const name = body?.name;
-                if (!inputs || !outputs || !name || !Array.isArray(inputs) || !Array.isArray(outputs) || outputs.length === 0) {
-                    this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: missing inputs, outputs, or name");
+                const validation = CreateRecipeRequestSchema.safeParse(request.body);
+                if (!validation.success) {
+                    const errors = validation.error.flatten();
+                    this.logger.warn({ errors }, "Invalid CreateRecipeRequest");
                     return reply.status(400).send({ error: "Invalid CreateRecipeRequest" });
                 }
-                // Validate that trade items have a search object in their sub-item; ninja items do not require one
+
+                const { name, inputs, outputs } = validation.data;
+                // Validate that trade items have a search object
                 const requiresSearch = (item: any) => item.type === 'trade' ? !!item.item?.search : true;
                 if (!inputs.every(requiresSearch) || !outputs.every(requiresSearch)) {
                     this.logger.warn({ body: request.body }, "Invalid CreateRecipeRequest: each item must have a search object");
                     return reply.status(400).send({ error: "Each item must have a search object" });
                 }
+
                 const recipe = {
                     id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
                     name,
@@ -126,7 +143,7 @@ export class TradeApiServer {
                     outputs,
                     createdAt: new Date().toISOString(),
                     updatedAt: new Date().toISOString(),
-                };
+                } as unknown as Recipe;
                 this.recipeService.addRecipe(recipe);
                 reply.send({ recipe });
             } catch (err) {
@@ -156,17 +173,21 @@ export class TradeApiServer {
         this.fastify.put("/api/recipes/:id", async (request: FastifyRequest, reply) => {
             try {
                 const { id } = request.params as { id: string };
-                const body = request.body as any;
-                const { name, inputs, outputs } = body;
-                if (!name || !inputs || !outputs || !Array.isArray(inputs) || !Array.isArray(outputs) || outputs.length === 0) {
-                    this.logger.warn({ id, body }, "Invalid UpdateRecipeRequest: missing or invalid fields");
+                const validation = UpdateRecipeRequestSchema.safeParse(request.body);
+                if (!validation.success) {
+                    const errors = validation.error.flatten();
+                    this.logger.warn({ id, errors }, "Invalid UpdateRecipeRequest");
                     return reply.status(400).send({ error: "Invalid UpdateRecipeRequest" });
                 }
+
+                const { name, inputs, outputs } = validation.data;
+                // Validate that trade items have a search object
                 const requiresSearch = (item: any) => item.type === 'trade' ? !!item.item?.search : true;
                 if (!inputs.every(requiresSearch) || !outputs.every(requiresSearch)) {
-                    this.logger.warn({ body }, "Invalid UpdateRecipeRequest: each item must have a search object");
+                    this.logger.warn({ body: request.body }, "Invalid UpdateRecipeRequest: each item must have a search object");
                     return reply.status(400).send({ error: "Each item must have a search object" });
                 }
+
                 const recipe = {
                     id,
                     name,
@@ -174,7 +195,7 @@ export class TradeApiServer {
                     outputs,
                     createdAt: new Date().toISOString(),
                     updatedAt: new Date().toISOString(),
-                };
+                }  as Recipe;
                 const updated = await this.recipeService.updateRecipe(id, recipe);
                 reply.send(updated);
             } catch (err: any) {

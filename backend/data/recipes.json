@@ -153,24 +153,24 @@
             "name": "Chronicle of Atzoatl",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 10,
+              "amount": 1,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 10,
+              "amount": 1,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 10,
+              "amount": 3,
               "currency": "chaos"
             },
             "medianPrice": {
-              "amount": 10,
+              "amount": 3,
               "currency": "chaos"
             },
-            "medianCount": 10,
-            "fetchedAt": "2026-03-03T18:49:52.326Z"
+            "medianCount": 6,
+            "fetchedAt": "2026-03-03T21:43:09.010Z"
           }
         }
       }
@@ -231,7 +231,7 @@
       }
     ],
     "createdAt": "2026-03-03T18:50:09.473Z",
-    "updatedAt": "2026-03-03T18:50:09.473Z"
+    "updatedAt": "2026-03-03T21:43:09.311Z"
   },
   {
     "id": "1772226028950-9b0ffa526a0a8",
@@ -286,7 +286,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-03T17:12:15.896Z"
+            "fetchedAt": "2026-03-03T21:43:06.967Z"
           }
         }
       },
@@ -321,11 +321,11 @@
             "name": "Vial of Summoning",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 23,
+              "amount": 179,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 23,
+              "amount": 179,
               "currency": "chaos"
             },
             "originalMedianPrice": {
@@ -337,8 +337,8 @@
               "amount": 180,
               "currency": "chaos"
             },
-            "medianCount": 10,
-            "fetchedAt": "2026-03-03T17:12:15.895Z"
+            "medianCount": 8,
+            "fetchedAt": "2026-03-03T21:43:06.965Z"
           }
         }
       },
@@ -387,24 +387,24 @@
             "name": "Chronicle of Atzoatl",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 5,
+              "amount": 1,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 5,
+              "amount": 1,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 10,
+              "amount": 3,
               "currency": "chaos"
             },
             "medianPrice": {
-              "amount": 10,
+              "amount": 3,
               "currency": "chaos"
             },
-            "medianCount": 10,
-            "fetchedAt": "2026-03-03T17:12:15.897Z"
+            "medianCount": 6,
+            "fetchedAt": "2026-03-03T21:43:06.968Z"
           }
         }
       }
@@ -442,11 +442,11 @@
             "name": "Mask of the Stitched Demon Magistrate Crown",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 10,
+              "amount": 9,
               "currency": "divine"
             },
             "minPrice": {
-              "amount": 1800,
+              "amount": 1620,
               "currency": "chaos"
             },
             "originalMedianPrice": {
@@ -459,13 +459,13 @@
               "currency": "chaos"
             },
             "medianCount": 6,
-            "fetchedAt": "2026-03-03T17:12:16.570Z"
+            "fetchedAt": "2026-03-03T21:43:07.677Z"
           }
         }
       }
     ],
     "createdAt": "2026-02-27T21:00:28.950Z",
-    "updatedAt": "2026-03-03T17:12:16.570Z"
+    "updatedAt": "2026-03-03T21:43:07.677Z"
   },
   {
     "id": "1772558477495-738dce7755d86",
@@ -512,25 +512,25 @@
           "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
           "category": "Currency",
           "detailsId": "divine-orb",
-          "price": 797.2,
+          "price": 772.9,
           "priceHistory": [
-            2.29,
-            1.94,
-            13.91,
-            17.52,
-            24.55,
-            32.37,
-            73.19
+            5.92,
+            4.87,
+            18.07,
+            20.98,
+            28.36,
+            41.88,
+            72.78
           ],
-          "volume": 444297,
+          "volume": 419287,
           "maxVolumeCurrency": "chaos",
-          "maxVolumeRate": 0.001254,
-          "fetchedAt": "2026-03-03T18:43:02.107Z"
+          "maxVolumeRate": 0.001294,
+          "fetchedAt": "2026-03-03T21:40:56.131Z"
         }
       }
     ],
     "createdAt": "2026-03-03T17:21:17.495Z",
-    "updatedAt": "2026-03-03T18:43:51.121Z"
+    "updatedAt": "2026-03-03T21:42:35.737Z"
   },
   {
     "id": "1772558673902-c64714142d1e7",
@@ -547,20 +547,20 @@
           "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
           "category": "DivinationCard",
           "detailsId": "i-see-brothers",
-          "price": 3202,
+          "price": 2834,
           "priceHistory": [
-            1.11,
-            0,
-            -2.67,
-            4.81,
-            6.67,
-            0.32,
-            -46.67
+            -2.22,
+            10,
+            -1.33,
+            -1.67,
+            4.44,
+            -4.13,
+            -51.11
           ],
-          "volume": 1067,
+          "volume": 1417,
           "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 0.25,
-          "fetchedAt": "2026-03-03T18:43:02.405Z"
+          "maxVolumeRate": 0.2727,
+          "fetchedAt": "2026-03-03T21:40:56.461Z"
         }
       }
     ],
@@ -576,24 +576,88 @@
           "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRnJhY3R1cmluZ09yYkNvbWJpbmVkIiwic2NhbGUiOjF9XQ/3fb18e8a5b/FracturingOrbCombined.png",
           "category": "Currency",
           "detailsId": "fracturing-orb",
-          "price": 3726,
+          "price": 3563,
           "priceHistory": [
-            0.65,
-            2.89,
-            3.81,
-            5.26,
-            10.89,
-            -7.65,
-            -44.5
+            0.88,
+            1.93,
+            3.97,
+            6.56,
+            10.37,
+            -9.36,
+            -45.21
           ],
-          "volume": 589251,
+          "volume": 512419,
           "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 0.214,
-          "fetchedAt": "2026-03-03T18:43:02.107Z"
+          "maxVolumeRate": 0.2169,
+          "fetchedAt": "2026-03-03T21:40:56.131Z"
         }
       }
     ],
     "createdAt": "2026-03-03T17:24:33.902Z",
-    "updatedAt": "2026-03-03T18:43:56.441Z"
+    "updatedAt": "2026-03-03T21:42:31.894Z"
+  },
+  {
+    "id": "1772574135098-f4efa23060b21",
+    "name": "Chaotic Disposition",
+    "inputs": [
+      {
+        "qty": 1,
+        "type": "ninja",
+        "name": "Chaotic Disposition",
+        "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
+        "item": {
+          "id": "chaotic-disposition",
+          "name": "Chaotic Disposition",
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
+          "category": "DivinationCard",
+          "detailsId": "chaotic-disposition",
+          "price": 3,
+          "priceHistory": [
+            null,
+            null,
+            null,
+            null,
+            -25,
+            -25,
+            -25
+          ],
+          "volume": 250,
+          "maxVolumeCurrency": "chaos",
+          "maxVolumeRate": 0.3333,
+          "fetchedAt": "2026-03-03T21:40:56.461Z"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "qty": 5,
+        "type": "ninja",
+        "name": "Chaos Orb",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxSYXJlIiwic2NhbGUiOjF9XQ/46a2347805/CurrencyRerollRare.png",
+        "item": {
+          "id": "chaos",
+          "name": "Chaos Orb",
+          "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxSYXJlIiwic2NhbGUiOjF9XQ/46a2347805/CurrencyRerollRare.png",
+          "category": "Currency",
+          "detailsId": "chaos-orb",
+          "price": 1,
+          "priceHistory": [
+            -5.57,
+            -4.62,
+            -15.21,
+            -17.29,
+            -22.01,
+            -28.84,
+            -42.13
+          ],
+          "volume": 419287,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 772.9,
+          "fetchedAt": "2026-03-03T21:40:56.131Z"
+        }
+      }
+    ],
+    "createdAt": "2026-03-03T21:42:15.098Z",
+    "updatedAt": "2026-03-03T21:42:15.098Z"
   }
 ]

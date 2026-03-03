@@ -484,8 +484,30 @@ describe("PUT /api/recipes/:id", () => {
             .put("/api/recipes/doesnotexist")
             .send({
                 name: "Updated Recipe",
-                inputs: [],
-                outputs: [{ qty: 1, type: "ninja", name: "Item", icon: "icon.png", item: {} }]
+                inputs: [
+                    {
+                        qty: 1,
+                        type: "trade",
+                        name: "Input Item",
+                        icon: "icon.png",
+                        item: {
+                            tradeUrl: "url1",
+                            search: { query: { url: "url1" }, sort: { price: "asc" } },
+                        }
+                    }
+                ],
+                outputs: [
+                    {
+                        qty: 1,
+                        type: "trade",
+                        name: "Output Item",
+                        icon: "icon2.png",
+                        item: {
+                            tradeUrl: "url2",
+                            search: { query: { url: "url2" }, sort: { price: "asc" } },
+                        }
+                    }
+                ]
             })
             .expect(404);
         expect(response.body.error).toBe("Recipe not found");
