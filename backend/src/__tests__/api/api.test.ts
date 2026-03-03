@@ -107,8 +107,17 @@ describe("POST /api/resolve-item", () => {
 
     it("normalizes a URL missing the https:// scheme", async () => {
         const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockResolvedValueOnce({
-            resolved: undefined,
-            search: { query: {}, sort: {} },
+            resolved: {
+                iconUrl: "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png",
+                name: "Chaos Orb",
+                minPrice: { amount: 1, currency: "chaos" },
+                originalMinPrice: { amount: 1, currency: "chaos" },
+                medianPrice: { amount: 1, currency: "chaos" },
+                originalMedianPrice: { amount: 1, currency: "chaos" },
+                medianCount: 42,
+                fetchedAt: new Date().toISOString(),
+            },
+            search: { query: { name: "Chaos Orb" }, sort: { price: "asc" } },
         });
         await supertest(apiServer.server.server)
             .post("/api/resolve-item")
@@ -123,8 +132,17 @@ describe("POST /api/resolve-item", () => {
 
     it("normalizes a URL missing both scheme and www", async () => {
         const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockResolvedValueOnce({
-            resolved: undefined,
-            search: { query: {}, sort: {} },
+            resolved: {
+                iconUrl: "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png",
+                name: "Chaos Orb",
+                minPrice: { amount: 1, currency: "chaos" },
+                originalMinPrice: { amount: 1, currency: "chaos" },
+                medianPrice: { amount: 1, currency: "chaos" },
+                originalMedianPrice: { amount: 1, currency: "chaos" },
+                medianCount: 42,
+                fetchedAt: new Date().toISOString(),
+            },
+            search: { query: { name: "Chaos Orb" }, sort: { price: "asc" } },
         });
         await supertest(apiServer.server.server)
             .post("/api/resolve-item")

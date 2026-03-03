@@ -13,9 +13,13 @@ function trendIndicator(history: number[]): { symbol: string; color: string } {
     if (history.length < 2) return { symbol: "→", color: "text-gray-400" };
     const first = history[0];
     const last = history[history.length - 1];
-    if (last > first * 1.02) return { symbol: "▲", color: "text-green-500" };
-    if (last < first * 0.98) return { symbol: "▼", color: "text-red-500" };
+    if (last > first * 1.02) return { symbol: "▲", color: "text-green-600 dark:text-green-400" };
+    if (last < first * 0.98) return { symbol: "▼", color: "text-red-500 dark:text-red-400" };
     return { symbol: "→", color: "text-gray-400" };
+}
+
+function isLowVolume(item: NinjaItem): boolean {
+    return item.volume != null && item.price != null && item.volume < item.price * 10;
 }
 
 export const NinjaPriceTooltip: React.FC<NinjaPriceTooltipProps> = ({ item }) => {
@@ -71,7 +75,7 @@ export const NinjaPriceTooltip: React.FC<NinjaPriceTooltipProps> = ({ item }) =>
                     style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", whiteSpace: "nowrap", zIndex: 50 }}
                 >
                     <div className="flex items-center gap-1">
-                        Rate:
+                        Price:
                         <PriceDisplay amount={item.price} currency="chaos" exact />
                     </div>
                     {item.maxVolumeRate != null && item.maxVolumeCurrency && (() => {
@@ -92,6 +96,12 @@ export const NinjaPriceTooltip: React.FC<NinjaPriceTooltipProps> = ({ item }) =>
                     <div className="flex items-center gap-1 mt-0.5">
                         Volume: <VolumeDisplay volume={item.volume} />
                     </div>
+                    {isLowVolume(item) && (
+                        <div className="flex items-center gap-1 mt-0.5 text-yellow-500 dark:text-yellow-400">
+                            <span>⚠</span>
+                            <span>Low volume</span>
+                        </div>
+                    )}
                     <div className={`flex items-center gap-1 mt-0.5 ${trend.color}`}>
                         Trend: {trend.symbol}
                     </div>

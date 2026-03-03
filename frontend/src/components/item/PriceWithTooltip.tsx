@@ -7,11 +7,6 @@ interface PriceWithTooltipProps {
     resolved: ResolvedMarketData;
 }
 
-function formatChaos(amount: number | undefined): string {
-    if (amount == null) return "?";
-    return amount.toLocaleString();
-}
-
 export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) => {
     const [hover, setHover] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
@@ -30,22 +25,18 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
             return () => clearTimeout(timeout);
         }
     }, [hover, showPopup]);
-    const minChaos = resolved.minPrice?.amount;
-    const medianChaos = resolved.medianPrice?.amount;
 
     const showMinChaos = resolved.originalMinPrice?.currency !== "chaos" && resolved.minPrice;
     const showMedianChaos = resolved.originalMedianPrice?.currency !== "chaos" && resolved.medianPrice;
 
-    // Ref for the price element to position the tooltip
     const priceRef = React.useRef<HTMLSpanElement>(null);
-    // Calculate tooltip position
-    const [tooltipPos, setTooltipPos] = useState<{left: number, top: number} | null>(null);
+    const [tooltipPos, setTooltipPos] = useState<{ left: number; top: number } | null>(null);
     React.useEffect(() => {
         if (showPopup && priceRef.current) {
             const rect = priceRef.current.getBoundingClientRect();
             setTooltipPos({
                 left: rect.left + rect.width / 2,
-                top: rect.bottom + 4 // 4px margin
+                top: rect.bottom + 4,
             });
         }
     }, [showPopup]);
@@ -66,15 +57,25 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
                     className={`hover-tooltip fixed transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
                     style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", whiteSpace: "nowrap", zIndex: 50 }}
                 >
-                    <div>Min: <PriceDisplay amount={resolved.originalMinPrice?.amount} currency={resolved.originalMinPrice?.currency} exact /></div>
-                    {showMinChaos && (
-                        <div>Normalized Min: <PriceDisplay amount={minChaos} currency="chaos" exact /></div>
-                    )}
-                    <div>Median: <PriceDisplay amount={resolved.originalMedianPrice?.amount} currency={resolved.originalMedianPrice?.currency} exact /></div>
-                    {showMedianChaos && (
-                        <div>Normalized Median: <PriceDisplay amount={medianChaos} currency="chaos" exact /></div>
-                    )}
-                    <div>Median Listings: {resolved.medianCount ?? "?"}</div>
+                    <div className="flex items-center gap-1">
+                        <span>Price:</span>
+                        <PriceDisplay amount={resolved.originalMinPrice?.amount} currency={resolved.originalMinPrice?.currency} exact />
+                        {showMinChaos && (
+                            <span className="text-muted">(
+                                <PriceDisplay amount={resolved.minPrice?.amount} currency="chaos" exact />
+                            )</span>
+                        )}
+                    </div>
+                    <div className="flex items-center gap-1 mt-0.5">
+                        <span>Median:</span>
+                        <PriceDisplay amount={resolved.originalMedianPrice?.amount} currency={resolved.originalMedianPrice?.currency} exact />
+                        {showMedianChaos && (
+                            <span className="text-muted">(
+                                <PriceDisplay amount={resolved.medianPrice?.amount} currency="chaos" exact />
+                            )</span>
+                        )}
+                    </div>
+                    <div className="mt-0.5 text-muted text-xs">Listings: {resolved.medianCount ?? "?"}</div>
                 </div>,
                 document.body
             )}
