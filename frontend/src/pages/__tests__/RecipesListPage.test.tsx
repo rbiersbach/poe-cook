@@ -139,7 +139,7 @@ describe("RecipesListPage", () => {
     });
 
     it("removes recipe from list after successful delete", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: null });
+        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
         vi.spyOn(DefaultService, "deleteApiRecipeById").mockResolvedValue(undefined as any);
         vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
         const user = userEvent.setup();
@@ -155,7 +155,7 @@ describe("RecipesListPage", () => {
     });
 
     it("displays error message if delete fails", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: null });
+        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
         vi.spyOn(DefaultService, "deleteApiRecipeById").mockRejectedValueOnce(new Error("Delete failed"));
         vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
         const user = userEvent.setup();
@@ -171,7 +171,7 @@ describe("RecipesListPage", () => {
     });
 
     it("keeps recipe in list if delete is cancelled", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: null });
+        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
         vi.spyOn(DefaultService, "deleteApiRecipeById").mockResolvedValue(undefined as any);
         vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
         const user = userEvent.setup();
