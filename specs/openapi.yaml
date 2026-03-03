@@ -194,6 +194,70 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+    put:
+      operationId: putApiRecipeById
+      summary: Update a recipe
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateRecipeRequest"
+      responses:
+        "200":
+          description: Updated recipe
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recipe"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Recipe not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteApiRecipeById
+      summary: Delete a recipe
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Recipe deleted successfully
+        "404":
+          description: Recipe not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     NinjaItem:
@@ -407,6 +471,25 @@ components:
         - updatedAt
 
     CreateRecipeRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the recipe (required)
+        inputs:
+          type: array
+          items:
+            $ref: "#/components/schemas/RecipeItem"
+        outputs:
+          type: array
+          items:
+            $ref: "#/components/schemas/RecipeItem"
+      required:
+        - name
+        - inputs
+        - outputs
+
+    UpdateRecipeRequest:
       type: object
       properties:
         name:

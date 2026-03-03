@@ -1,7 +1,8 @@
 import { Recipe } from "api/generated/models/Recipe";
 import { DefaultService } from "api/generated/services/DefaultService";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RecipeCard } from "../components/recipe/RecipeCard";
+import { RecipeEditContext } from "../App";
 
 const PAGE_SIZE = 20;
 
@@ -13,6 +14,8 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
     const [refreshingIds, setRefreshingIds] = useState<{ [id: string]: boolean }>({});
     const [refreshErrors, setRefreshErrors] = useState<{ [id: string]: string | null }>({});
     const [loadMoreLoading, setLoadMoreLoading] = useState(false);
+    const editContext = useContext(RecipeEditContext);
+    const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => {});
 
     const fetchRecipes = () => {
         setLoading(true);
@@ -63,6 +66,20 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
         }
     };
 
+    const handleEdit = (recipe: Recipe) => {
+        setSelectedRecipe(recipe);
+    };
+
+    const handleDelete = async (id: string) => {
+        try {
+            await DefaultService.deleteApiRecipeById(id);
+            setRecipes((prev) => prev.filter(r => r.id !== id));
+            setSelectedRecipe(null);
+        } catch (err: any) {
+            throw err;
+        }
+    };
+
     return (
         <div className="recipes-list-page card mx-auto w-full md:min-w-xl md:max-w-6xl py-8 px-4">
             <h1 className="text-2xl font-bold mb-6">Recipes</h1>
@@ -81,6 +98,8 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
                                     onRefresh={refreshRecipe}
                                     refreshing={!!refreshingIds[recipe.id]}
                                     refreshError={refreshErrors[recipe.id] || null}
+                                    onEdit={handleEdit}
+                                    onDelete={handleDelete}
                                 />
                             ))}
                         </div>

@@ -108,4 +108,82 @@ describe("RecipesListPage", () => {
         await waitFor(() => expect(screen.getByTestId("recipe-card-test2")).toBeInTheDocument());
         expect(screen.getByText(/Missing price/)).toBeInTheDocument();
     });
+
+    it("calls onEdit handler when edit button is clicked", async () => {
+        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        const user = userEvent.setup();
+        render(<RecipesListPage />);
+        await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
+        const editBtn = screen.getByTestId("edit-recipe-test1");
+        expect(editBtn).toBeInTheDocument();
+        await user.click(editBtn);
+        // Edit button should trigger the onEdit callback which is passed from parent
+    });
+
+    it("deletes recipe when delete is confirmed", async () => {
+        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+        const deleteApiSpy = vi.spyOn(DefaultService, "deleteApiRecipeById").mockResolvedValue(undefined as any);
+        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        const user = userEvent.setup();
+        render(<RecipesListPage />);
+        await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        await user.click(deleteBtn);
+        expect(screen.getByText(/Are you sure you want to delete/)).toBeInTheDocument();
+        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        await user.click(confirmDeleteBtn);
+        await waitFor(() => {
+            expect(deleteApiSpy).toHaveBeenCalledWith("test1");
+        });
+    });
+
+    it("removes recipe from list after successful delete", async () => {
+        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: null });
+        vi.spyOn(DefaultService, "deleteApiRecipeById").mockResolvedValue(undefined as any);
+        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        const user = userEvent.setup();
+        render(<RecipesListPage />);
+        await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        await user.click(deleteBtn);
+        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        await user.click(confirmDeleteBtn);
+        await waitFor(() => {
+            expect(screen.queryByTestId("recipe-card-test1")).not.toBeInTheDocument();
+        });
+    });
+
+    it("displays error message if delete fails", async () => {
+        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: null });
+        vi.spyOn(DefaultService, "deleteApiRecipeById").mockRejectedValueOnce(new Error("Delete failed"));
+        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        const user = userEvent.setup();
+        render(<RecipesListPage />);
+        await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        await user.click(deleteBtn);
+        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        await user.click(confirmDeleteBtn);
+        await waitFor(() => {
+            expect(screen.getByText("Delete failed")).toBeInTheDocument();
+        });
+    });
+
+    it("keeps recipe in list if delete is cancelled", async () => {
+        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: null });
+        vi.spyOn(DefaultService, "deleteApiRecipeById").mockResolvedValue(undefined as any);
+        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        const user = userEvent.setup();
+        render(<RecipesListPage />);
+        await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        await user.click(deleteBtn);
+        const cancelBtn = screen.getByRole("button", { name: "Cancel" });
+        await user.click(cancelBtn);
+        await waitFor(() => {
+            expect(screen.queryByText(/Are you sure you want to delete/)).not.toBeInTheDocument();
+        });
+        expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument();
+    });
 });

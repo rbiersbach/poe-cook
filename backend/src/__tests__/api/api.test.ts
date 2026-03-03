@@ -28,6 +28,8 @@ const recipeServiceMock: IRecipeService = {
     addRecipe: mockAdd,
     refreshRecipe: mockRefreshRecipe,
     refreshItem: mockRefreshItem,
+    deleteRecipe: vi.fn(() => true),
+    updateRecipe: vi.fn(async (id: string, recipe: Recipe) => ({ ...recipe, id })),
 };
 
 
@@ -134,7 +136,7 @@ describe("POST /api/recipes", () => {
 
     it("creates a recipe and returns it", async () => {
         const recipeInput = {
-                    name: "Test Recipe",
+            name: "Test Recipe",
             inputs: [
                 {
                     qty: 2,
@@ -313,6 +315,201 @@ describe("GET /api/recipes/:id", () => {
         mockGetRecipeById.mockResolvedValueOnce(undefined);
         const response = await supertest(apiServer.server.server)
             .get("/api/recipes/doesnotexist")
+            .expect(404);
+        expect(response.body.error).toBe("Recipe not found");
+    });
+});
+
+describe("GET /api/recipes/:id", () => {
+    beforeEach(() => {
+        mockGetRecipeById.mockClear();
+    });
+
+    it("returns the recipe for a valid id", async () => {
+        const recipe = { id: "r1", name: "Test Recipe", inputs: [], outputs: [], createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" };
+        mockGetRecipeById.mockResolvedValueOnce(recipe);
+        const response = await supertest(apiServer.server.server)
+            .get("/api/recipes/r1")
+            .expect(200);
+        expect(response.body.id).toBe("r1");
+    });
+
+    it("returns 404 if recipe not found", async () => {
+        mockGetRecipeById.mockResolvedValueOnce(undefined);
+        const response = await supertest(apiServer.server.server)
+            .get("/api/recipes/doesnotexist")
+            .expect(404);
+        expect(response.body.error).toBe("Recipe not found");
+    });
+});
+
+describe("PUT /api/recipes/:id", () => {
+    beforeEach(() => {
+        (recipeServiceMock.updateRecipe as any).mockClear();
+    });
+
+    it("updates a recipe successfully with valid request", async () => {
+        const updateRequest = {
+            name: "Updated Recipe",
+            inputs: [
+                {
+                    qty: 2,
+                    type: "trade",
+                    name: "Input Item",
+                    icon: "icon.png",
+                    item: {
+                        tradeUrl: "url1",
+                        search: { query: { url: "url1" } },
+                        resolved: {
+                            iconUrl: "icon.png",
+                            name: "Input Item",
+                            minPrice: { amount: 10, currency: "chaos" },
+                            originalMinPrice: { amount: 5, currency: "chaos" },
+                            medianPrice: { amount: 12, currency: "chaos" },
+                            originalMedianPrice: { amount: 6, currency: "chaos" },
+                            medianCount: 5,
+                            fetchedAt: new Date().toISOString(),
+                        }
+                    }
+                }
+            ],
+            outputs: [
+                {
+                    qty: 1,
+                    type: "trade",
+                    name: "Output Item",
+                    icon: "icon2.png",
+                    item: {
+                        tradeUrl: "url2",
+                        search: { query: { url: "url2" } },
+                        resolved: {
+                            iconUrl: "icon2.png",
+                            name: "Output Item",
+                            minPrice: { amount: 20, currency: "chaos" },
+                            originalMinPrice: { amount: 15, currency: "chaos" },
+                            medianPrice: { amount: 22, currency: "chaos" },
+                            originalMedianPrice: { amount: 17, currency: "chaos" },
+                            medianCount: 10,
+                            fetchedAt: new Date().toISOString(),
+                        }
+                    }
+                }
+            ]
+        };
+        const updatedRecipe = {
+            id: "r1",
+            ...updateRequest,
+            createdAt: "2024-01-01T00:00:00Z",
+            updatedAt: new Date().toISOString(),
+        };
+        (recipeServiceMock.updateRecipe as any).mockResolvedValueOnce(updatedRecipe);
+        const response = await supertest(apiServer.server.server)
+            .put("/api/recipes/r1")
+            .send(updateRequest)
+            .expect(200);
+        expect(response.body.id).toBe("r1");
+        expect(response.body.name).toBe("Updated Recipe");
+        expect((recipeServiceMock.updateRecipe as any)).toHaveBeenCalledWith("r1", expect.objectContaining({
+            id: "r1",
+            name: "Updated Recipe",
+        }));
+    });
+
+    it("returns 400 for missing required fields", async () => {
+        const response = await supertest(apiServer.server.server)
+            .put("/api/recipes/r1")
+            .send({ name: "Updated Recipe" })
+            .expect(400);
+        expect(response.body.error).toBe("Invalid UpdateRecipeRequest");
+    });
+
+    it("returns 400 if outputs is empty", async () => {
+        const response = await supertest(apiServer.server.server)
+            .put("/api/recipes/r1")
+            .send({
+                name: "Updated Recipe",
+                inputs: [],
+                outputs: []
+            })
+            .expect(400);
+        expect(response.body.error).toBe("Invalid UpdateRecipeRequest");
+    });
+
+    it("returns 400 if inputs or outputs are not arrays", async () => {
+        const response = await supertest(apiServer.server.server)
+            .put("/api/recipes/r1")
+            .send({
+                name: "Updated Recipe",
+                inputs: "not an array",
+                outputs: []
+            })
+            .expect(400);
+        expect(response.body.error).toBe("Invalid UpdateRecipeRequest");
+    });
+
+    it("returns 400 if trade items missing search object", async () => {
+        const response = await supertest(apiServer.server.server)
+            .put("/api/recipes/r1")
+            .send({
+                name: "Updated Recipe",
+                inputs: [
+                    {
+                        qty: 1,
+                        type: "trade",
+                        name: "Item",
+                        icon: "icon.png",
+                        item: { tradeUrl: "url" }
+                    }
+                ],
+                outputs: [
+                    {
+                        qty: 1,
+                        type: "trade",
+                        name: "Item",
+                        icon: "icon.png",
+                        item: {
+                            tradeUrl: "url",
+                            search: { query: {} }
+                        }
+                    }
+                ]
+            })
+            .expect(400);
+        expect(response.body.error).toBe("Each item must have a search object");
+    });
+
+    it("returns 404 if recipe not found", async () => {
+        (recipeServiceMock.updateRecipe as any).mockRejectedValueOnce(new Error("Recipe not found"));
+        const response = await supertest(apiServer.server.server)
+            .put("/api/recipes/doesnotexist")
+            .send({
+                name: "Updated Recipe",
+                inputs: [],
+                outputs: [{ qty: 1, type: "ninja", name: "Item", icon: "icon.png", item: {} }]
+            })
+            .expect(404);
+        expect(response.body.error).toBe("Recipe not found");
+    });
+});
+
+describe("DELETE /api/recipes/:id", () => {
+    beforeEach(() => {
+        (recipeServiceMock.deleteRecipe as any).mockClear();
+    });
+
+    it("deletes a recipe successfully", async () => {
+        (recipeServiceMock.deleteRecipe as any).mockReturnValueOnce(true);
+        const response = await supertest(apiServer.server.server)
+            .delete("/api/recipes/r1")
+            .expect(204);
+        expect((recipeServiceMock.deleteRecipe as any)).toHaveBeenCalledWith("r1");
+        expect(response.body).toEqual({});
+    });
+
+    it("returns 404 if recipe not found", async () => {
+        (recipeServiceMock.deleteRecipe as any).mockReturnValueOnce(false);
+        const response = await supertest(apiServer.server.server)
+            .delete("/api/recipes/doesnotexist")
             .expect(404);
         expect(response.body.error).toBe("Recipe not found");
     });

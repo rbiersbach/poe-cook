@@ -9,6 +9,7 @@ import type { NinjaItem } from '../models/NinjaItem';
 import type { Recipe } from '../models/Recipe';
 import type { ResolveItemRequest } from '../models/ResolveItemRequest';
 import type { ResolveItemResponse } from '../models/ResolveItemResponse';
+import type { UpdateRecipeRequest } from '../models/UpdateRecipeRequest';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -136,6 +137,53 @@ export class DefaultService {
             },
             headers: {
                 'x-invalidate-cache': xInvalidateCache,
+            },
+            errors: {
+                404: `Recipe not found`,
+                500: `Server error`,
+            },
+        });
+    }
+    /**
+     * Update a recipe
+     * @param id
+     * @param requestBody
+     * @returns Recipe Updated recipe
+     * @throws ApiError
+     */
+    public static putApiRecipeById(
+        id: string,
+        requestBody: UpdateRecipeRequest,
+    ): CancelablePromise<Recipe> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/recipes/{id}',
+            path: {
+                'id': id,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Invalid request`,
+                404: `Recipe not found`,
+                500: `Server error`,
+            },
+        });
+    }
+    /**
+     * Delete a recipe
+     * @param id
+     * @returns void
+     * @throws ApiError
+     */
+    public static deleteApiRecipeById(
+        id: string,
+    ): CancelablePromise<void> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/recipes/{id}',
+            path: {
+                'id': id,
             },
             errors: {
                 404: `Recipe not found`,

@@ -22,5 +22,6 @@ export type { SimplifiedListing } from './models/SimplifiedListing';
 export type { TradeItem } from './models/TradeItem';
 export type { TradeSearchRequest } from './models/TradeSearchRequest';
 export type { TradeSearchResponse } from './models/TradeSearchResponse';
+export type { UpdateRecipeRequest } from './models/UpdateRecipeRequest';
 
 export { DefaultService } from './services/DefaultService';

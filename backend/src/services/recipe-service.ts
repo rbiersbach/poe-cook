@@ -2,6 +2,8 @@ export interface IRecipeService {
     addRecipe(recipe: Recipe): Promise<void>;
     getAllRecipes(invalidateCache?: boolean): Promise<Recipe[]>;
     getRecipeById(id: string, invalidateCache?: boolean): Promise<Recipe | undefined>;
+    deleteRecipe(id: string): boolean;
+    updateRecipe(id: string, recipe: Recipe): Promise<Recipe>;
     refreshRecipe(recipe: Recipe): Promise<Recipe>;
     refreshItem(item: RecipeItem): Promise<RecipeItem>;
 }
@@ -43,6 +45,38 @@ export class RecipeService implements IRecipeService {
         if (!recipe) return undefined;
         if (!invalidateCache) return recipe;
         return await this.refreshRecipe(recipe);
+    }
+
+    /**
+     * Deletes a recipe by id.
+     */
+    deleteRecipe(id: string): boolean {
+        const deleted = this.store.delete(id);
+        if (deleted) {
+            this.logger.info({ id }, "Deleted recipe");
+        } else {
+            this.logger.info({ id }, "Recipe not found for deletion");
+        }
+        return deleted;
+    }
+
+    /**
+     * Updates a recipe by id with new data (full replacement).
+     */
+    async updateRecipe(id: string, recipe: Recipe): Promise<Recipe> {
+        const existing = this.store.get(id);
+        if (!existing) {
+            this.logger.warn({ id }, "Attempted to update non-existent recipe");
+            throw new Error("Recipe not found");
+        }
+        const updatedRecipe = {
+            ...recipe,
+            id, // Ensure id is preserved
+            updatedAt: new Date().toISOString(),
+        };
+        this.store.add(updatedRecipe);
+        this.logger.info({ id }, "Updated recipe");
+        return updatedRecipe;
     }
 
     /**

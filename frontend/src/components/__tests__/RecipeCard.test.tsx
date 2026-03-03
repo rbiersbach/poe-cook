@@ -1,0 +1,311 @@
+import { act, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Recipe, RecipeItem } from "api/generated";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { RecipeCard } from "../recipe/RecipeCard";
+
+const defaultRecipe: Recipe = {
+    id: "test1",
+    name: "Test Recipe",
+    inputs: [
+        {
+            qty: 1,
+            type: RecipeItem.type.TRADE,
+            name: "Input Item",
+            icon: "",
+            item: {
+                tradeUrl: "",
+                search: { query: {} },
+                resolved: {
+                    minPrice: { amount: 5, currency: "chaos" }
+                }
+            }
+        }
+    ],
+    outputs: [
+        {
+            qty: 1,
+            type: RecipeItem.type.TRADE,
+            name: "Output Item",
+            icon: "",
+            item: {
+                tradeUrl: "",
+                search: { query: {} },
+                resolved: {
+                    minPrice: { amount: 10, currency: "chaos" }
+                }
+            }
+        }
+    ],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+};
+
+describe("RecipeCard", () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
+
+    it("renders recipe name, inputs, and outputs", () => {
+        const mockOnRefresh = vi.fn();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+            />
+        );
+        expect(screen.getByTestId("recipe-name")).toHaveTextContent("Test Recipe");
+        expect(screen.getByText("Input Item")).toBeInTheDocument();
+        expect(screen.getByText("Output Item")).toBeInTheDocument();
+    });
+
+    it("shows profit display and recipe updated time", () => {
+        const mockOnRefresh = vi.fn();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+            />
+        );
+        expect(screen.getByTestId("recipe-updated-at")).toBeInTheDocument();
+        expect(screen.getByText(/Profit/)).toBeInTheDocument();
+    });
+
+    it("calls onRefresh when refresh button is clicked", async () => {
+        const mockOnRefresh = vi.fn();
+        const user = userEvent.setup();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+            />
+        );
+        const refreshBtn = screen.getByTestId("refresh-recipe-test1");
+        await user.click(refreshBtn);
+        expect(mockOnRefresh).toHaveBeenCalledWith("test1");
+    });
+
+    it("disables refresh button when refreshing", () => {
+        const mockOnRefresh = vi.fn();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={true}
+            />
+        );
+        const refreshBtn = screen.getByTestId("refresh-recipe-test1") as HTMLButtonElement;
+        expect(refreshBtn.disabled).toBe(true);
+    });
+
+    it("displays refresh spinner when refreshing", () => {
+        const mockOnRefresh = vi.fn();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={true}
+            />
+        );
+        expect(screen.getByTestId("refresh-spinner")).toBeInTheDocument();
+    });
+
+    it("hides edit button when onEdit is not provided", () => {
+        const mockOnRefresh = vi.fn();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+            />
+        );
+        expect(screen.queryByTestId("edit-recipe-test1")).not.toBeInTheDocument();
+    });
+
+    it("shows edit button and calls onEdit when clicked", async () => {
+        const mockOnRefresh = vi.fn();
+        const mockOnEdit = vi.fn();
+        const user = userEvent.setup();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+                onEdit={mockOnEdit}
+            />
+        );
+        const editBtn = screen.getByTestId("edit-recipe-test1");
+        expect(editBtn).toBeInTheDocument();
+        await user.click(editBtn);
+        expect(mockOnEdit).toHaveBeenCalledWith(defaultRecipe);
+    });
+
+    it("hides delete button when onDelete is not provided", () => {
+        const mockOnRefresh = vi.fn();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+            />
+        );
+        expect(screen.queryByTestId("delete-recipe-test1")).not.toBeInTheDocument();
+    });
+
+    it("shows delete button and opens confirmation modal when clicked", async () => {
+        const mockOnRefresh = vi.fn();
+        const mockOnDelete = vi.fn();
+        const user = userEvent.setup();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+                onDelete={mockOnDelete}
+            />
+        );
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        expect(deleteBtn).toBeInTheDocument();
+        await user.click(deleteBtn);
+        expect(screen.getByText(/Delete Recipe\?/)).toBeInTheDocument();
+        expect(screen.getByText(/Are you sure you want to delete/)).toBeInTheDocument();
+    });
+
+    it("closes confirmation modal when Cancel button is clicked", async () => {
+        const mockOnRefresh = vi.fn();
+        const mockOnDelete = vi.fn();
+        const user = userEvent.setup();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+                onDelete={mockOnDelete}
+            />
+        );
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        await user.click(deleteBtn);
+        expect(screen.getByText(/Delete Recipe\?/)).toBeInTheDocument();
+        const cancelBtn = screen.getByRole("button", { name: "Cancel" });
+        await user.click(cancelBtn);
+        await waitFor(() => {
+            expect(screen.queryByText(/Delete Recipe\?/)).not.toBeInTheDocument();
+        });
+    });
+
+    it("calls onDelete when Delete button is clicked in confirmation modal", async () => {
+        const mockOnRefresh = vi.fn();
+        const mockOnDelete = vi.fn().mockResolvedValue(undefined);
+        const user = userEvent.setup();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+                onDelete={mockOnDelete}
+            />
+        );
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        await user.click(deleteBtn);
+        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        await user.click(confirmDeleteBtn);
+        await waitFor(() => {
+            expect(mockOnDelete).toHaveBeenCalledWith("test1");
+        });
+    });
+
+    it("disables buttons and shows Deleting state during delete", async () => {
+        const mockOnRefresh = vi.fn();
+        let resolveDelete: ((v: any) => void) | undefined;
+        const mockOnDelete = vi.fn(
+            () => new Promise(r => { resolveDelete = r; }) as any
+        );
+        const user = userEvent.setup();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+                onDelete={mockOnDelete}
+            />
+        );
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        await user.click(deleteBtn);
+        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        await user.click(confirmDeleteBtn);
+        await waitFor(() => {
+            expect(screen.getByText("Deleting...")).toBeInTheDocument();
+        });
+        const cancelBtn = screen.getByRole("button", { name: "Cancel" }) as HTMLButtonElement;
+        expect(cancelBtn.disabled).toBe(true);
+        await act(async () => {
+            if (resolveDelete) resolveDelete(undefined);
+        });
+    });
+
+    it("shows delete spinner during delete operation", async () => {
+        const mockOnRefresh = vi.fn();
+        let resolveDelete: ((v: any) => void) | undefined;
+        const mockOnDelete = vi.fn(
+            () => new Promise(r => { resolveDelete = r; }) as any
+        );
+        const user = userEvent.setup();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+                onDelete={mockOnDelete}
+            />
+        );
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        await user.click(deleteBtn);
+        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        await user.click(confirmDeleteBtn);
+        await waitFor(() => {
+            expect(screen.getByTestId("delete-spinner")).toBeInTheDocument();
+        });
+        await act(async () => {
+            if (resolveDelete) resolveDelete(undefined);
+        });
+    });
+
+    it("displays error message if delete fails", async () => {
+        const mockOnRefresh = vi.fn();
+        const mockOnDelete = vi.fn().mockRejectedValueOnce(
+            new Error("Delete failed")
+        );
+        const user = userEvent.setup();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+                onDelete={mockOnDelete}
+            />
+        );
+        const deleteBtn = screen.getByTestId("delete-recipe-test1");
+        await user.click(deleteBtn);
+        const confirmDeleteBtn = screen.getByRole("button", { name: /^Delete$/ });
+        await user.click(confirmDeleteBtn);
+        await waitFor(() => {
+            expect(screen.getByText("Delete failed")).toBeInTheDocument();
+        });
+    });
+
+    it("displays refresh error if provided", () => {
+        const mockOnRefresh = vi.fn();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+                refreshError="Refresh failed"
+            />
+        );
+        expect(screen.getByText("Refresh failed")).toBeInTheDocument();
+    });
+});

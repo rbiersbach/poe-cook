@@ -34,7 +34,11 @@ export class TradeApiServer {
             logger: loggerDefinition,
         });
         this.logger = logger ?? this.fastify.log;
-        this.fastify.register(cors, { origin: true });
+        this.fastify.register(cors, { 
+            origin: true,
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+            credentials: true
+        });
         this.tradeClient = tradeClient || new TradeClientService(
             "poe-tools-api/1.0 (contact: you@example.com)",
             "Standard",
@@ -144,6 +148,57 @@ export class TradeApiServer {
                 reply.send(recipe);
             } catch (err) {
                 this.logger.error({ error: err, params: request.params }, "Unexpected error in GET /api/recipes/:id");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+
+        // PUT /api/recipes/:id - Update a recipe
+        this.fastify.put("/api/recipes/:id", async (request: FastifyRequest, reply) => {
+            try {
+                const { id } = request.params as { id: string };
+                const body = request.body as any;
+                const { name, inputs, outputs } = body;
+                if (!name || !inputs || !outputs || !Array.isArray(inputs) || !Array.isArray(outputs) || outputs.length === 0) {
+                    this.logger.warn({ id, body }, "Invalid UpdateRecipeRequest: missing or invalid fields");
+                    return reply.status(400).send({ error: "Invalid UpdateRecipeRequest" });
+                }
+                const requiresSearch = (item: any) => item.type === 'trade' ? !!item.item?.search : true;
+                if (!inputs.every(requiresSearch) || !outputs.every(requiresSearch)) {
+                    this.logger.warn({ body }, "Invalid UpdateRecipeRequest: each item must have a search object");
+                    return reply.status(400).send({ error: "Each item must have a search object" });
+                }
+                const recipe = {
+                    id,
+                    name,
+                    inputs,
+                    outputs,
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
+                };
+                const updated = await this.recipeService.updateRecipe(id, recipe);
+                reply.send(updated);
+            } catch (err: any) {
+                if (err.message === "Recipe not found") {
+                    this.logger.info({ params: request.params }, "Recipe not found in PUT /api/recipes/:id");
+                    return reply.status(404).send({ error: "Recipe not found" });
+                }
+                this.logger.error({ error: err, params: request.params, body: request.body }, "Unexpected error in PUT /api/recipes/:id");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+
+        // DELETE /api/recipes/:id - Delete a recipe
+        this.fastify.delete("/api/recipes/:id", async (request: FastifyRequest, reply) => {
+            try {
+                const { id } = request.params as { id: string };
+                const deleted = this.recipeService.deleteRecipe(id);
+                if (!deleted) {
+                    this.logger.info({ id }, "Recipe not found in DELETE /api/recipes/:id");
+                    return reply.status(404).send({ error: "Recipe not found" });
+                }
+                reply.status(204).send();
+            } catch (err) {
+                this.logger.error({ error: err, params: request.params }, "Unexpected error in DELETE /api/recipes/:id");
                 return reply.status(500).send({ error: "Server error" });
             }
         });

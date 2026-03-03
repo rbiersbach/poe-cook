@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { TextInput } from "../components/ui/TextInput";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { DefaultService } from "../api/generated/services/DefaultService";
-import { RecipesListRefetchContext } from "../App";
+import { RecipesListRefetchContext, RecipeEditContext } from "../App";
 import { Button } from "../components/ui/Button";
 import { RecipeItemList } from "../components/recipe/RecipeItemList";
 import { ErrorMessage, SuccessMessage } from "../components/ui/SectionHeader";
@@ -13,6 +13,10 @@ export default function CreateRecipePage() {
     const [name, setName] = useState("");
     const [hasAutofilled, setHasAutofilled] = useState(false);
     const refetchRecipes = useContext(RecipesListRefetchContext);
+    const editContext = useContext(RecipeEditContext);
+    const selectedRecipe = editContext?.selectedRecipe ?? null;
+    const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => {});
+    
     const [resolvedInputs, setResolvedInputs] = useState<RecipeItem[]>([]);
     const [resolvedOutputs, setResolvedOutputs] = useState<RecipeItem[]>([]);
     const [resetKey, setResetKey] = useState(0);
@@ -20,6 +24,17 @@ export default function CreateRecipePage() {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
     const tradeUrlPattern = /^https:\/\/www\.pathofexile\.com\/trade\/search\/[A-Za-z]+\/[A-Za-z0-9]{10}$/;
+
+    // Prefill form when editing
+    useEffect(() => {
+        if (selectedRecipe) {
+            setName(selectedRecipe.name);
+            setResolvedInputs(selectedRecipe.inputs);
+            setResolvedOutputs(selectedRecipe.outputs);
+            setHasAutofilled(true);
+            setResetKey(k => k + 1); // Remount form when editing
+        }
+    }, [selectedRecipe]);
 
     const resolveItem = async (draft: TradeDraft): Promise<RecipeItem> => {
         const res = await DefaultService.postApiResolveItem({ tradeUrl: draft.tradeUrl! });
@@ -62,20 +77,34 @@ export default function CreateRecipePage() {
                 setLoading(false);
                 return;
             }
-            await DefaultService.postApiRecipes({
-                name: recipeName,
-                inputs: resolvedInputs,
-                outputs: resolvedOutputs,
-            });
-            setSuccess("Recipe submitted successfully!");
+
+            if (selectedRecipe) {
+                // Update existing recipe
+                await DefaultService.putApiRecipeById(selectedRecipe.id, {
+                    name: recipeName,
+                    inputs: resolvedInputs,
+                    outputs: resolvedOutputs,
+                });
+                setSuccess("Recipe updated successfully!");
+            } else {
+                // Create new recipe
+                await DefaultService.postApiRecipes({
+                    name: recipeName,
+                    inputs: resolvedInputs,
+                    outputs: resolvedOutputs,
+                });
+                setSuccess("Recipe submitted successfully!");
+            }
+
             setName("");
             setHasAutofilled(false);
             setResolvedInputs([]);
             setResolvedOutputs([]);
             setResetKey(k => k + 1);
+            setSelectedRecipe(null);
             if (refetchRecipes) refetchRecipes();
         } catch (e) {
-            setError("Failed to submit recipe");
+            setError(selectedRecipe ? "Failed to update recipe" : "Failed to submit recipe");
         } finally {
             setLoading(false);
         }
@@ -85,7 +114,7 @@ export default function CreateRecipePage() {
     // Autofill name only once if first output is resolved and name is empty
     useEffect(() => {
         // Autofill name as soon as first output is resolved and name is empty
-        if (!hasAutofilled && !name && resolvedOutputs.length > 0) {
+        if (!selectedRecipe && !hasAutofilled && !name && resolvedOutputs.length > 0) {
             const firstOutput = resolvedOutputs[0];
             const outputName = firstOutput.name;
             if (outputName && outputName !== 'Unknown Item') {
@@ -93,11 +122,22 @@ export default function CreateRecipePage() {
                 setHasAutofilled(true);
             }
         }
-    }, [resolvedOutputs]);
+    }, [resolvedOutputs, selectedRecipe]);
+
+    // Auto-clear success/error messages after 4 seconds
+    useEffect(() => {
+        if (success || error) {
+            const timer = setTimeout(() => {
+                setSuccess(null);
+                setError(null);
+            }, 4000);
+            return () => clearTimeout(timer);
+        }
+    }, [success, error]);
 
     return (
         <div className="max-w-2xl mx-auto p-6 card shadow">
-            <h1 className="text-2xl font-bold mb-4">Create Recipe</h1>
+            <h1 className="text-2xl font-bold mb-4">{selectedRecipe ? "Edit Recipe" : "Create Recipe"}</h1>
             {error && <ErrorMessage message={error} />}
             {success && <SuccessMessage message={success} />}
             <div className="mb-4">
@@ -118,6 +158,7 @@ export default function CreateRecipePage() {
                 label="Inputs"
                 tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={setResolvedInputs}
+                initialResolved={selectedRecipe ? resolvedInputs : []}
                 allowRemoveResolved={true}
                 resolveItem={resolveItem}
             />
@@ -126,6 +167,7 @@ export default function CreateRecipePage() {
                 label="Outputs"
                 tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={setResolvedOutputs}
+                initialResolved={selectedRecipe ? resolvedOutputs : []}
                 allowRemoveResolved={true}
                 resolveItem={resolveItem}
             />
@@ -135,7 +177,7 @@ export default function CreateRecipePage() {
                 onClick={handleSubmit}
                 disabled={loading || resolvedOutputs.length === 0 || resolvedInputs.length === 0}
             >
-                {loading ? "Submitting..." : "Submit Recipe"}
+                {loading ? (selectedRecipe ? "Updating..." : "Submitting...") : (selectedRecipe ? "Update Recipe" : "Submit Recipe")}
             </Button>
         </div>
     );
