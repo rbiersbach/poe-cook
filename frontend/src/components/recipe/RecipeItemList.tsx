@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import type { NinjaItem } from "../api/generated/models/NinjaItem";
-import type { RecipeItem } from "../api/generated/models/RecipeItem";
+import type { NinjaItem } from "../../api/generated/models/NinjaItem";
+import type { RecipeItem } from "../../api/generated/models/RecipeItem";
 import { RecipeItemDraft } from "./RecipeItemDraft";
 import { RecipeItemRow } from "./RecipeItemRow";
 

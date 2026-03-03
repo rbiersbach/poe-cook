@@ -1,9 +1,9 @@
 import { Recipe } from "api/generated/models/Recipe";
 import React from "react";
-import { Button } from "./Button";
-import { ItemChip } from "./ItemChip";
-import { ProfitDisplay } from "./ProfitDisplay";
-import { TimeAgo } from "./TimeAgo";
+import { Button } from "../ui/Button";
+import { ItemChip } from "../item/ItemChip";
+import { ProfitDisplay } from "../item/ProfitDisplay";
+import { TimeAgo } from "../ui/TimeAgo";
 
 interface RecipeCardProps {
     recipe: Recipe;

@@ -1,7 +1,7 @@
 import { Recipe } from "api/generated/models/Recipe";
 import { DefaultService } from "api/generated/services/DefaultService";
 import React, { useEffect, useState } from "react";
-import { RecipeCard } from "../components/RecipeCard";
+import { RecipeCard } from "../components/recipe/RecipeCard";
 
 const PAGE_SIZE = 20;
 

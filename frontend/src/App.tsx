@@ -2,7 +2,7 @@
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import CreateRecipePage from "./pages/CreateRecipePage";
 import RecipesListPage from "./pages/RecipesListPage";
-import { TwoColumnLayout } from "./components/TwoColumnLayout";
+import { TwoColumnLayout } from "./components/ui/TwoColumnLayout";
 import React, { createContext, useRef } from "react";
 
 export const RecipesListRefetchContext = createContext<(() => void) | null>(null);

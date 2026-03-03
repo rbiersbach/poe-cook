@@ -1,6 +1,6 @@
 import { Recipe } from "api/generated/models/Recipe";
 import React, { useState } from "react";
-import { getItemPriceChaos } from "../utils/itemHelpers";
+import { getItemPriceChaos } from "../../utils/itemHelpers";
 import CurrencyIcon from "./CurrencyIcon";
 import ItemIcon from "./ItemIcon";
 import { PriceRangeDisplay } from "./PriceRangeDisplay";

@@ -4,7 +4,7 @@ import { NinjaItem } from "../../api/generated/models/NinjaItem";
 import { RecipeItem } from "../../api/generated/models/RecipeItem";
 import type { TradeItem } from "../../api/generated/models/TradeItem";
 import { DefaultService } from "../../api/generated/services/DefaultService";
-import { RecipeItemList } from "../RecipeItemList";
+import { RecipeItemList } from "../recipe/RecipeItemList";
 
 const mockNinjaItem: NinjaItem = {
     id: "orb-of-alteration",

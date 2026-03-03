@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { RecipeItem } from "../../api/generated/models/RecipeItem";
 import { TradeItem } from "../../api/generated/models/TradeItem";
-import { ItemChip } from "../ItemChip";
+import { ItemChip } from "../item/ItemChip";
 
 describe("ItemChip", () => {
     const baseTradeItem: TradeItem = {

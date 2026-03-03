@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { DefaultService } from "../../api/generated/services/DefaultService";
-import { RecipeItemDraft } from "../RecipeItemDraft";
+import { RecipeItemDraft } from "../recipe/RecipeItemDraft";
 
 const draftItem = { tradeUrl: "", qty: 1 };
 

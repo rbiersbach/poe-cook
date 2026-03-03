@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { TextInput } from "../TextInput";
+import { TextInput } from "../ui/TextInput";
 
 describe("TextInput", () => {
     it("renders input and updates value", () => {

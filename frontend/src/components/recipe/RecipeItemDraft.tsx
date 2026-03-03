@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import type { NinjaItem } from "../api/generated/models/NinjaItem";
-import { ItemSearchInput } from "./ItemSearchInput";
-import { Loader } from "./Loader";
+import type { NinjaItem } from "../../api/generated/models/NinjaItem";
+import { ItemSearchInput } from "../item/ItemSearchInput";
+import { Loader } from "../ui/Loader";
 
 export interface RecipeItemDraftProps {
     error?: string | null;

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { DefaultService } from '../api/generated/services/DefaultService';
-import type { NinjaItem } from '../api/generated/models/NinjaItem';
+import { DefaultService } from '../../api/generated/services/DefaultService';
+import type { NinjaItem } from '../../api/generated/models/NinjaItem';
 import ItemIcon from './ItemIcon';
-import { Loader } from './Loader';
+import { Loader } from '../ui/Loader';
 import { PriceDisplay } from './PriceDisplay';
 
 interface ItemSearchInputProps {

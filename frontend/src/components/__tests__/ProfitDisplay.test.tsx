@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Recipe, RecipeItem } from "../../api/generated";
-import { ProfitDisplay } from "../ProfitDisplay";
+import { ProfitDisplay } from "../item/ProfitDisplay";
 
 describe("ProfitDisplay", () => {
     function makeRecipe(profit: number): Recipe {

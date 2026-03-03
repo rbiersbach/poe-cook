@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NinjaItem } from "../../api/generated/models/NinjaItem";
 import { DefaultService } from "../../api/generated/services/DefaultService";
-import { ItemSearchInput } from "../ItemSearchInput";
+import { ItemSearchInput } from "../item/ItemSearchInput";
 
 const mockNinjaItem: NinjaItem = {
     id: "orb-of-alteration",

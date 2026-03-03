@@ -1,6 +1,6 @@
 import React from "react";
-import chaosIcon from "../../resources/assets/chaos.png";
-import divineIcon from "../../resources/assets/divine.png";
+import chaosIcon from "../../../resources/assets/chaos.png";
+import divineIcon from "../../../resources/assets/divine.png";
 
 const currencyIcons: Record<string, string> = {
   chaos: chaosIcon,

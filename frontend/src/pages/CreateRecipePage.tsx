@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { TextInput } from "../components/TextInput";
+import { TextInput } from "../components/ui/TextInput";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { DefaultService } from "../api/generated/services/DefaultService";
 import { RecipesListRefetchContext } from "../App";
-import { Button } from "../components/Button";
-import { RecipeItemList } from "../components/RecipeItemList";
-import { ErrorMessage, SuccessMessage } from "../components/SectionHeader";
+import { Button } from "../components/ui/Button";
+import { RecipeItemList } from "../components/recipe/RecipeItemList";
+import { ErrorMessage, SuccessMessage } from "../components/ui/SectionHeader";
 
 type TradeDraft = { tradeUrl: string; qty: number };
 

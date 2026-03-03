@@ -1,45 +1,3 @@
-## Example: Using the Trade Client
-
-Here is an example of how to use the backend trade client directly:
-
-```ts
-import tradeClient from "trade-client";
-import { TradeSearchRequest } from "trade-types";
-
-async function main() {
-  const req: TradeSearchRequest = {
-    query: {
-      term: "Headhunter",
-      filters: {
-        trade_filters: {
-          filters: {
-            price: { max: 15000 },
-          },
-        },
-      },
-    },
-    sort: { price: "asc" },
-  };
-
-  const search = await tradeClient.search(req);
-  console.log("query id:", search.id, "total:", search.total);
-
-  const first10 = search.result.slice(0, 10);
-  const fetched = await tradeClient.fetchListings(first10, search.id);
-
-  for (const r of fetched.result) {
-    const price = r.listing.price
-      ? `${r.listing.price.amount} ${r.listing.price.currency} (${r.listing.price.type})`
-      : "no price";
-    console.log(r.id, price);
-  }
-}
-
-main().catch((e) => {
-  console.error(e);
-  process.exitCode = 1;
-});
-```
 # POE Tools
 
 Basic TypeScript monorepo layout with a React frontend and Node.js backend.
@@ -85,6 +43,7 @@ npm run build
 
 - **Run unit tests with Vitest:**
   ```bash
+  cd frontend
   npm run test
   ```
 

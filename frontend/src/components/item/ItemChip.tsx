@@ -2,7 +2,7 @@ import type { NinjaItem } from "api/generated/models/NinjaItem";
 import { RecipeItem } from "api/generated/models/RecipeItem";
 import type { TradeItem } from "api/generated/models/TradeItem";
 import React from "react";
-import { isNinjaItem, isTradeItem } from "../utils/itemHelpers";
+import { isNinjaItem, isTradeItem } from "../../utils/itemHelpers";
 import { ItemIconWithHover } from "./ItemIconWithHover";
 import { NinjaPriceTooltip } from "./NinjaPriceTooltip";
 import { PriceWithTooltip } from "./PriceWithTooltip";

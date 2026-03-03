@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { formatVolume, VolumeDisplay } from "../VolumeDisplay";
+import { formatVolume, VolumeDisplay } from "../item/VolumeDisplay";
 
 describe("formatVolume", () => {
     it("formats values below 1000 as plain numbers", () => {
