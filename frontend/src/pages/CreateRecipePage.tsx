@@ -4,7 +4,7 @@ import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { DefaultService } from "../api/generated/services/DefaultService";
 import { RecipesListRefetchContext } from "../App";
 import { Button } from "../components/Button";
-import { RecipeItemDraftManager } from "../components/RecipeItemDraftManager";
+import { RecipeItemList } from "../components/RecipeItemList";
 import { ErrorMessage, SuccessMessage } from "../components/SectionHeader";
 
 type TradeDraft = { tradeUrl: string; qty: number };
@@ -21,7 +21,6 @@ export default function CreateRecipePage() {
     const [success, setSuccess] = useState<string | null>(null);
     const tradeUrlPattern = /^https:\/\/www\.pathofexile\.com\/trade\/search\/[A-Za-z]+\/[A-Za-z0-9]{10}$/;
 
-    // Real resolve logic for RecipeItemDraftManager
     const resolveItem = async (draft: TradeDraft): Promise<RecipeItem> => {
         const res = await DefaultService.postApiResolveItem({ tradeUrl: draft.tradeUrl! });
         return {
@@ -114,7 +113,7 @@ export default function CreateRecipePage() {
                     required
                 />
             </div>
-            <RecipeItemDraftManager
+            <RecipeItemList
                 key={`inputs-${resetKey}`}
                 label="Inputs"
                 tradeUrlPattern={tradeUrlPattern}
@@ -122,7 +121,7 @@ export default function CreateRecipePage() {
                 allowRemoveResolved={true}
                 resolveItem={resolveItem}
             />
-            <RecipeItemDraftManager
+            <RecipeItemList
                 key={`outputs-${resetKey}`}
                 label="Outputs"
                 tradeUrlPattern={tradeUrlPattern}

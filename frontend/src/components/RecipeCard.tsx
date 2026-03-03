@@ -13,8 +13,6 @@ interface RecipeCardProps {
 }
 
 
-// Deprecated: use ProfitDisplay for profit calculation
-
 export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refreshing, refreshError }) => {
     return (
         <div className="recipe-card card-row rounded shadow p-4 mb-4 flex flex-col gap-2" data-testid={`recipe-card-${recipe.id}`}>
@@ -27,14 +25,14 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refre
                     >
                         {recipe.name}
                     </span>
-                    <span className="relative group text-sm font-normal text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0" data-testid="recipe-updated-at">
+                    <span className="relative group text-sm font-normal text-gray-500 dark:text-gray-400 ml-2 shrink-0" data-testid="recipe-updated-at">
                         <TimeAgo date={recipe.updatedAt} />
                         <span className="absolute left-1/2 -translate-x-1/2 mt-2 z-10 hidden group-hover:flex px-2 py-1 rounded bg-surface text-xs text-primary shadow tooltip-fade border border-neutral-200 dark:border-neutral-700 whitespace-nowrap">
                             {new Date(recipe.updatedAt).toLocaleString()}
                         </span>
                     </span>
                 </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
+                <div className="flex items-center gap-2 shrink-0">
                     <div className="profit flex items-center gap-2 text-sm font-semibold text-primary dark:text-primary-dark">
                         <ProfitDisplay recipe={recipe} />
                     </div>

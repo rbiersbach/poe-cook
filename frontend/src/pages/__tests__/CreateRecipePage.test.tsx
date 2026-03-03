@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { RecipeItem } from "../../api/generated/models/RecipeItem";
 import { DefaultService } from "../../api/generated/services/DefaultService";
@@ -88,7 +88,7 @@ describe("CreateRecipePage", () => {
     });
 
     it("can edit input and output fields (tradeUrl, qty)", async () => {
-        vi.spyOn(DefaultService, "postApiResolveItem").mockImplementation(() => new Promise(() => {}) as any);
+        vi.spyOn(DefaultService, "postApiResolveItem").mockImplementation(() => new Promise(() => { }) as any);
         render(<CreateRecipePage />);
         // Edit input draft fields
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
@@ -280,8 +280,9 @@ describe("CreateRecipePage", () => {
         const outputUrl = allInputs[1];
         fireEvent.change(outputUrl, { target: { value: "https://www.pathofexile.com/trade/search/Standard/outputurlC" } });
         expect(await screen.findByText("Output")).toBeInTheDocument();
-        // Submit
+        // Submit — wait for state to propagate up via onResolvedChange before clicking
         const submitBtn = screen.getByRole("button", { name: /submit recipe/i });
+        await waitFor(() => expect(submitBtn).not.toBeDisabled());
         fireEvent.click(submitBtn);
         expect(await screen.findByText(/recipe submitted successfully/i)).toBeInTheDocument();
         // Resolved rows should be cleared
@@ -364,8 +365,9 @@ describe("CreateRecipePage", () => {
         // Wait for Output to resolve
         await screen.findByText("Output");
 
-        // Submit
+        // Submit — wait for state to propagate up via onResolvedChange before clicking
         const submitBtn = screen.getByRole("button", { name: /submit recipe/i });
+        await waitFor(() => expect(submitBtn).not.toBeDisabled());
         fireEvent.click(submitBtn);
         // Error message should appear
         expect(await screen.findByText(/failed to submit recipe/i)).toBeInTheDocument();

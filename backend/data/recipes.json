@@ -286,7 +286,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-03T09:28:19.130Z"
+            "fetchedAt": "2026-03-03T17:12:15.896Z"
           }
         }
       },
@@ -321,24 +321,24 @@
             "name": "Vial of Summoning",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 3,
-              "currency": "divine"
+              "amount": 23,
+              "currency": "chaos"
             },
             "minPrice": {
-              "amount": 540,
+              "amount": 23,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 3,
+              "amount": 1,
               "currency": "divine"
             },
             "medianPrice": {
-              "amount": 540,
+              "amount": 180,
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-02-27T20:59:40.949Z"
+            "fetchedAt": "2026-03-03T17:12:15.895Z"
           }
         }
       },
@@ -387,24 +387,24 @@
             "name": "Chronicle of Atzoatl",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 1,
+              "amount": 5,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 1,
+              "amount": 5,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 2,
+              "amount": 10,
               "currency": "chaos"
             },
             "medianPrice": {
-              "amount": 2,
+              "amount": 10,
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-02-27T21:00:22.160Z"
+            "fetchedAt": "2026-03-03T17:12:15.897Z"
           }
         }
       }
@@ -442,30 +442,30 @@
             "name": "Mask of the Stitched Demon Magistrate Crown",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 9,
+              "amount": 10,
               "currency": "divine"
             },
             "minPrice": {
-              "amount": 1620,
+              "amount": 1800,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 9,
+              "amount": 10,
               "currency": "divine"
             },
             "medianPrice": {
-              "amount": 1620,
+              "amount": 1800,
               "currency": "chaos"
             },
-            "medianCount": 9,
-            "fetchedAt": "2026-02-27T20:59:20.500Z"
+            "medianCount": 6,
+            "fetchedAt": "2026-03-03T17:12:16.570Z"
           }
         }
       }
     ],
     "createdAt": "2026-02-27T21:00:28.950Z",
-    "updatedAt": "2026-03-03T09:28:19.411Z"
+    "updatedAt": "2026-03-03T17:12:16.570Z"
   },
   {
     "id": "1772528616097-a09a0779697d2",
@@ -543,7 +543,6 @@
         "name": "Rain of Chaos",
         "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
         "item": {
-          "type": "ninja",
           "id": "rain-of-chaos",
           "name": "Rain of Chaos",
           "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
@@ -562,7 +561,7 @@
           "volume": 0.1667,
           "maxVolumeCurrency": "chaos",
           "maxVolumeRate": 876,
-          "fetchedAt": "2026-03-03T11:11:07.978Z"
+          "fetchedAt": "2026-03-03T12:01:34.250Z"
         }
       }
     ],
@@ -573,7 +572,6 @@
         "name": "Chaos Orb",
         "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxSYXJlIiwic2NhbGUiOjF9XQ/46a2347805/CurrencyRerollRare.png",
         "item": {
-          "type": "ninja",
           "id": "chaos",
           "name": "Chaos Orb",
           "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxSYXJlIiwic2NhbGUiOjF9XQ/46a2347805/CurrencyRerollRare.png",
@@ -581,23 +579,23 @@
           "detailsId": "chaos-orb",
           "price": 1,
           "priceHistory": [
-            -1.7,
-            -2.64,
-            -10.13,
-            -13.47,
-            -18.22,
-            -23.52,
-            -41.16
+            -1.87,
+            -2.68,
+            -10.32,
+            -14.29,
+            -18.55,
+            -23.76,
+            -41.55
           ],
-          "volume": 362941,
+          "volume": 342917,
           "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 775.2,
-          "fetchedAt": "2026-03-03T11:11:07.050Z"
+          "maxVolumeRate": 779.1,
+          "fetchedAt": "2026-03-03T12:01:33.955Z"
         }
       }
     ],
     "createdAt": "2026-03-03T11:16:40.371Z",
-    "updatedAt": "2026-03-03T11:28:09.540Z"
+    "updatedAt": "2026-03-03T17:12:59.710Z"
   },
   {
     "id": "1772538499020-aff7a5628455e8",
@@ -664,5 +662,134 @@
     ],
     "createdAt": "2026-03-03T11:48:19.020Z",
     "updatedAt": "2026-03-03T11:48:19.020Z"
+  },
+  {
+    "id": "1772558477495-738dce7755d86",
+    "name": "Brothers Gift",
+    "inputs": [
+      {
+        "qty": 1,
+        "type": "ninja",
+        "name": "Brother's Gift",
+        "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
+        "item": {
+          "type": "ninja",
+          "id": "brothers-gift",
+          "name": "Brother's Gift",
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
+          "category": "DivinationCard",
+          "detailsId": "brothers-gift",
+          "price": 1505,
+          "priceHistory": [
+            0,
+            -21.43,
+            0,
+            null,
+            null,
+            null,
+            -42.86
+          ],
+          "volume": 250.8,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 0.25,
+          "fetchedAt": "2026-03-03T08:51:26.345Z"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "qty": 5,
+        "type": "ninja",
+        "name": "Divine Orb",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
+        "item": {
+          "id": "divine",
+          "name": "Divine Orb",
+          "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
+          "category": "Currency",
+          "detailsId": "divine-orb",
+          "price": 806.3,
+          "priceHistory": [
+            3.75,
+            3.56,
+            14.04,
+            19.98,
+            25.36,
+            29.85,
+            78.1
+          ],
+          "volume": 428684,
+          "maxVolumeCurrency": "chaos",
+          "maxVolumeRate": 0.00124,
+          "fetchedAt": "2026-03-03T17:26:12.366Z"
+        }
+      }
+    ],
+    "createdAt": "2026-03-03T17:21:17.495Z",
+    "updatedAt": "2026-03-03T17:26:31.168Z"
+  },
+  {
+    "id": "1772558673902-c64714142d1e7",
+    "name": "I See Brothers",
+    "inputs": [
+      {
+        "qty": 2,
+        "type": "ninja",
+        "name": "I See Brothers",
+        "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
+        "item": {
+          "id": "i-see-brothers",
+          "name": "I See Brothers",
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
+          "category": "DivinationCard",
+          "detailsId": "i-see-brothers",
+          "price": 3202,
+          "priceHistory": [
+            1.11,
+            0,
+            -2.67,
+            4.81,
+            6.67,
+            0.32,
+            -46.67
+          ],
+          "volume": 1067,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 0.25,
+          "fetchedAt": "2026-03-03T17:26:12.625Z"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "qty": 2,
+        "type": "ninja",
+        "name": "Fracturing Orb",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRnJhY3R1cmluZ09yYkNvbWJpbmVkIiwic2NhbGUiOjF9XQ/3fb18e8a5b/FracturingOrbCombined.png",
+        "item": {
+          "id": "fracturing-orb",
+          "name": "Fracturing Orb",
+          "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRnJhY3R1cmluZ09yYkNvbWJpbmVkIiwic2NhbGUiOjF9XQ/3fb18e8a5b/FracturingOrbCombined.png",
+          "category": "Currency",
+          "detailsId": "fracturing-orb",
+          "price": 3757,
+          "priceHistory": [
+            -2.7,
+            0.22,
+            2.1,
+            0.25,
+            8.84,
+            0.05,
+            -46.29
+          ],
+          "volume": 480960,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 0.2146,
+          "fetchedAt": "2026-03-03T17:26:12.366Z"
+        }
+      }
+    ],
+    "createdAt": "2026-03-03T17:24:33.902Z",
+    "updatedAt": "2026-03-03T17:26:37.245Z"
   }
 ]

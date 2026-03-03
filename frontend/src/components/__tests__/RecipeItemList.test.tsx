@@ -4,7 +4,7 @@ import { NinjaItem } from "../../api/generated/models/NinjaItem";
 import { RecipeItem } from "../../api/generated/models/RecipeItem";
 import type { TradeItem } from "../../api/generated/models/TradeItem";
 import { DefaultService } from "../../api/generated/services/DefaultService";
-import { RecipeItemDraftManager } from "../RecipeItemDraftManager";
+import { RecipeItemList } from "../RecipeItemList";
 
 const mockNinjaItem: NinjaItem = {
     id: "orb-of-alteration",
@@ -39,7 +39,7 @@ const mockTradeItem: RecipeItem = {
 const mockResolveItem = vi.fn().mockResolvedValue(mockTradeItem);
 const tradeUrlPattern = /https:\/\/www\.pathofexile\.com\/trade\//;
 
-describe("RecipeItemDraftManager", () => {
+describe("RecipeItemList", () => {
     let mockGetNinjaItems: ReturnType<typeof vi.spyOn>;
 
     beforeEach(() => {
@@ -56,7 +56,7 @@ describe("RecipeItemDraftManager", () => {
 
     it("renders the label and ninja item search input", () => {
         render(
-            <RecipeItemDraftManager
+            <RecipeItemList
                 label="Inputs"
                 tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={vi.fn()}
@@ -71,7 +71,7 @@ describe("RecipeItemDraftManager", () => {
     it("adds a ninja item to resolved list when selected from search", async () => {
         const onResolvedChange = vi.fn();
         render(
-            <RecipeItemDraftManager
+            <RecipeItemList
                 label="Inputs"
                 tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={onResolvedChange}
@@ -104,7 +104,7 @@ describe("RecipeItemDraftManager", () => {
     it("adds a trade item to resolved list when draft URL is resolved", async () => {
         const onResolvedChange = vi.fn();
         render(
-            <RecipeItemDraftManager
+            <RecipeItemList
                 label="Inputs"
                 tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={onResolvedChange}
@@ -136,7 +136,7 @@ describe("RecipeItemDraftManager", () => {
     it("removing a resolved item updates the resolved list", async () => {
         const onResolvedChange = vi.fn();
         render(
-            <RecipeItemDraftManager
+            <RecipeItemList
                 label="Inputs"
                 tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={onResolvedChange}
@@ -162,7 +162,7 @@ describe("RecipeItemDraftManager", () => {
         const neverResolve = vi.fn().mockImplementation(() => new Promise(() => { }));
 
         render(
-            <RecipeItemDraftManager
+            <RecipeItemList
                 label="Inputs"
                 tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={vi.fn()}

@@ -1,59 +1,110 @@
-import React from "react";
-import type { RecipeItem } from "../api/generated/models/RecipeItem";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import type { NinjaItem } from "../api/generated/models/NinjaItem";
+import type { RecipeItem } from "../api/generated/models/RecipeItem";
+import { RecipeItemDraft } from "./RecipeItemDraft";
 import { RecipeItemRow } from "./RecipeItemRow";
 
+type TradeDraft = { tradeUrl: string; qty: number };
+
 interface RecipeItemListProps {
-  errors?: (string | null)[];
-  errorAnims?: boolean[];
-  items: RecipeItem[];
-  draft?: boolean;
-  resolved?: boolean;
-  loading?: boolean;
-  loadingIdx?: number | null;
-  disableRemove?: boolean;
-  onChange?: (idx: number, field: string, value: any) => void;
-  onRemove?: (idx: number) => void;
-  onResolve?: (idx: number) => void;
-  onQtyChange?: (idx: number, qty: number) => void;
-  onSelectNinja?: (item: NinjaItem) => void;
+    label: string;
+    tradeUrlPattern: RegExp;
+    onResolvedChange: (resolved: RecipeItem[]) => void;
+    initialResolved?: RecipeItem[];
+    allowRemoveResolved?: boolean;
+    resolveItem: (draft: TradeDraft) => Promise<RecipeItem>;
 }
 
 export const RecipeItemList: React.FC<RecipeItemListProps> = ({
-  items,
-  draft = false,
-  resolved = false,
-  loading = false,
-  loadingIdx = null,
-  disableRemove = false,
-  onChange,
-  onRemove,
-  onResolve,
-  onQtyChange,
-  onSelectNinja,
-  errors = [],
-  errorAnims = [],
+    label,
+    tradeUrlPattern,
+    onResolvedChange,
+    initialResolved = [],
+    allowRemoveResolved = true,
+    resolveItem,
 }) => {
-  if (!items || items.length === 0) return null;
-  return (
-    <>
-      {items.map((item, idx) => (
-        <RecipeItemRow
-          key={(draft ? "draft-" : "resolved-") + idx}
-          item={item}
-          draft={draft}
-          resolved={resolved}
-          loading={loadingIdx === idx}
-          disableRemove={disableRemove || (draft && (items.length <= 1 || idx === items.length - 1))}
-          onChange={onChange ? (field, value) => onChange(idx, field, value) : undefined}
-          onRemove={onRemove ? () => onRemove(idx) : undefined}
-          onResolve={onResolve ? () => onResolve(idx) : undefined}
-          onQtyChange={onQtyChange ? qty => onQtyChange(idx, qty) : undefined}
-          onSelectNinja={onSelectNinja}
-          error={errors[idx]}
-          errorAnim={errorAnims[idx]}
-        />
-      ))}
-    </>
-  );
+    const [draft, setDraft] = useState<TradeDraft>({ tradeUrl: "", qty: 1 });
+    const [resolved, setResolved] = useState<RecipeItem[]>(initialResolved);
+    const [resolving, setResolving] = useState(false);
+    const [draftError, setDraftError] = useState<string | null>(null);
+    const [draftErrorAnim, setDraftErrorAnim] = useState(false);
+    const lastResolvedUrl = useRef("");
+
+    // Auto-resolve when tradeUrl matches pattern
+    useEffect(() => {
+        if (draft.tradeUrl && tradeUrlPattern.test(draft.tradeUrl) && lastResolvedUrl.current !== draft.tradeUrl) {
+            lastResolvedUrl.current = draft.tradeUrl;
+            handleResolve();
+        }
+    }, [draft.tradeUrl]);
+
+    useEffect(() => {
+        onResolvedChange(resolved);
+    }, [resolved, onResolvedChange]);
+
+    const handleChange = (field: string, value: any) => {
+        setDraft(prev => field === "tradeUrl" ? { ...prev, tradeUrl: value } : { ...prev, qty: value });
+        setDraftError(null);
+        setDraftErrorAnim(false);
+    };
+
+    const handleRemoveResolved = (idx: number) => {
+        setResolved(items => items.filter((_, i) => i !== idx));
+    };
+
+    const handleQtyChange = (idx: number, qty: number) => {
+        setResolved(items => items.map((ri, i) => i === idx ? { ...ri, qty } : ri));
+    };
+
+    const handleSelectNinja = useCallback((item: NinjaItem) => {
+        setResolved(items => [...items, {
+            qty: 1,
+            type: 'ninja' as any,
+            name: item.name,
+            icon: item.icon,
+            item,
+        }]);
+    }, []);
+
+    const handleResolve = async () => {
+        setResolving(true);
+        setDraftError(null);
+        setDraftErrorAnim(false);
+        try {
+            const currentDraft = draft;
+            const resolvedItem = await resolveItem(currentDraft);
+            setResolved(items => [...items, resolvedItem]);
+            setDraft({ tradeUrl: "", qty: 1 });
+            lastResolvedUrl.current = "";
+        } catch (e) {
+            setDraftError("Failed to resolve item");
+            setDraftErrorAnim(true);
+            setTimeout(() => setDraftErrorAnim(false), 800);
+        } finally {
+            setResolving(false);
+        }
+    };
+
+    return (
+        <div className="mb-6">
+            <h3 className="font-semibold mb-2">{label}</h3>
+            {resolved.map((item, idx) => (
+                <RecipeItemRow
+                    key={"resolved-" + idx}
+                    item={item}
+                    onQtyChange={qty => handleQtyChange(idx, qty)}
+                    onRemove={allowRemoveResolved ? () => handleRemoveResolved(idx) : undefined}
+                />
+            ))}
+            <RecipeItemDraft
+                item={draft}
+                loading={resolving}
+                onChange={handleChange}
+                onResolve={handleResolve}
+                onSelectNinja={handleSelectNinja}
+                error={draftError}
+                errorAnim={draftErrorAnim}
+            />
+        </div>
+    );
 };
