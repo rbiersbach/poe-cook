@@ -3,12 +3,12 @@ import type { NinjaItem } from "../../api/generated/models/NinjaItem";
 import type { RecipeItem } from "../../api/generated/models/RecipeItem";
 import { RecipeItemDraft } from "./RecipeItemDraft";
 import { RecipeItemRow } from "./RecipeItemRow";
+import { tradeUrlSchema } from "../../validation/schemas";
 
 type TradeDraft = { tradeUrl: string; qty: number };
 
 interface RecipeItemListProps {
     label: string;
-    tradeUrlPattern: RegExp;
     onResolvedChange: (resolved: RecipeItem[]) => void;
     initialResolved?: RecipeItem[];
     allowRemoveResolved?: boolean;
@@ -17,7 +17,6 @@ interface RecipeItemListProps {
 
 export const RecipeItemList: React.FC<RecipeItemListProps> = ({
     label,
-    tradeUrlPattern,
     onResolvedChange,
     initialResolved = [],
     allowRemoveResolved = true,
@@ -32,7 +31,7 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
 
     // Auto-resolve when tradeUrl matches pattern
     useEffect(() => {
-        if (draft.tradeUrl && tradeUrlPattern.test(draft.tradeUrl) && lastResolvedUrl.current !== draft.tradeUrl) {
+        if (draft.tradeUrl && tradeUrlSchema.safeParse(draft.tradeUrl).success && lastResolvedUrl.current !== draft.tradeUrl) {
             lastResolvedUrl.current = draft.tradeUrl;
             handleResolve();
         }

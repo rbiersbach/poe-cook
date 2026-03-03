@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { TextInput } from "../components/ui/TextInput";
 import type { RecipeItem } from "../api/generated/models/RecipeItem";
 import { DefaultService } from "../api/generated/services/DefaultService";
-import { RecipesListRefetchContext, RecipeEditContext } from "../App";
-import { Button } from "../components/ui/Button";
+import { RecipeEditContext, RecipesListRefetchContext } from "../App";
 import { RecipeItemList } from "../components/recipe/RecipeItemList";
+import { Button } from "../components/ui/Button";
 import { ErrorMessage, SuccessMessage } from "../components/ui/SectionHeader";
+import { TextInput } from "../components/ui/TextInput";
+import { createRecipeSchema } from "../validation/schemas";
 
 type TradeDraft = { tradeUrl: string; qty: number };
 
@@ -15,15 +16,14 @@ export default function CreateRecipePage() {
     const refetchRecipes = useContext(RecipesListRefetchContext);
     const editContext = useContext(RecipeEditContext);
     const selectedRecipe = editContext?.selectedRecipe ?? null;
-    const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => {});
-    
+    const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => { });
+
     const [resolvedInputs, setResolvedInputs] = useState<RecipeItem[]>([]);
     const [resolvedOutputs, setResolvedOutputs] = useState<RecipeItem[]>([]);
     const [resetKey, setResetKey] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
-    const tradeUrlPattern = /^https:\/\/www\.pathofexile\.com\/trade\/search\/[A-Za-z]+\/[A-Za-z0-9]{10}$/;
 
     // Prefill form when editing
     useEffect(() => {
@@ -67,13 +67,14 @@ export default function CreateRecipePage() {
                     setHasAutofilled(true);
                 }
             }
-            if (!recipeName) {
-                setError("Recipe name is required.");
-                setLoading(false);
-                return;
-            }
-            if (resolvedOutputs.length === 0 || resolvedInputs.length === 0) {
-                setError("Please resolve at least one input and one output item.");
+            const validation = createRecipeSchema.safeParse({
+                name: recipeName,
+                inputs: resolvedInputs,
+                outputs: resolvedOutputs,
+            });
+            if (!validation.success) {
+                const { name: nameErr, inputs: inputsErr, outputs: outputsErr } = validation.error.flatten().fieldErrors;
+                setError(nameErr?.[0] ?? inputsErr?.[0] ?? outputsErr?.[0] ?? "Invalid form data.");
                 setLoading(false);
                 return;
             }
@@ -156,7 +157,6 @@ export default function CreateRecipePage() {
             <RecipeItemList
                 key={`inputs-${resetKey}`}
                 label="Inputs"
-                tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={setResolvedInputs}
                 initialResolved={selectedRecipe ? resolvedInputs : []}
                 allowRemoveResolved={true}
@@ -165,7 +165,6 @@ export default function CreateRecipePage() {
             <RecipeItemList
                 key={`outputs-${resetKey}`}
                 label="Outputs"
-                tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={setResolvedOutputs}
                 initialResolved={selectedRecipe ? resolvedOutputs : []}
                 allowRemoveResolved={true}

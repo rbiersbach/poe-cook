@@ -37,7 +37,6 @@ const mockTradeItem: RecipeItem = {
 };
 
 const mockResolveItem = vi.fn().mockResolvedValue(mockTradeItem);
-const tradeUrlPattern = /https:\/\/www\.pathofexile\.com\/trade\//;
 
 describe("RecipeItemList", () => {
     let mockGetNinjaItems: ReturnType<typeof vi.spyOn>;
@@ -58,7 +57,6 @@ describe("RecipeItemList", () => {
         render(
             <RecipeItemList
                 label="Inputs"
-                tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={vi.fn()}
                 resolveItem={mockResolveItem}
             />
@@ -73,7 +71,6 @@ describe("RecipeItemList", () => {
         render(
             <RecipeItemList
                 label="Inputs"
-                tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={onResolvedChange}
                 resolveItem={mockResolveItem}
             />
@@ -106,7 +103,6 @@ describe("RecipeItemList", () => {
         render(
             <RecipeItemList
                 label="Inputs"
-                tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={onResolvedChange}
                 resolveItem={mockResolveItem}
             />
@@ -138,7 +134,6 @@ describe("RecipeItemList", () => {
         render(
             <RecipeItemList
                 label="Inputs"
-                tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={onResolvedChange}
                 resolveItem={mockResolveItem}
                 initialResolved={[mockTradeItem]}
@@ -164,7 +159,6 @@ describe("RecipeItemList", () => {
         render(
             <RecipeItemList
                 label="Inputs"
-                tradeUrlPattern={tradeUrlPattern}
                 onResolvedChange={vi.fn()}
                 resolveItem={neverResolve}
             />

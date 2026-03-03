@@ -105,6 +105,38 @@ describe("POST /api/resolve-item", () => {
         expect(response.body.error).toBe("Invalid ResolveItemRequest");
     });
 
+    it("normalizes a URL missing the https:// scheme", async () => {
+        const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockResolvedValueOnce({
+            resolved: undefined,
+            search: { query: {}, sort: {} },
+        });
+        await supertest(apiServer.server.server)
+            .post("/api/resolve-item")
+            .send({ tradeUrl: "www.pathofexile.com/trade/search/Standard/3qj2DE7ZC5" })
+            .expect(200);
+        expect(spy).toHaveBeenCalledWith(
+            "https://www.pathofexile.com/trade/search/Standard/3qj2DE7ZC5",
+            expect.any(String)
+        );
+        spy.mockRestore();
+    });
+
+    it("normalizes a URL missing both scheme and www", async () => {
+        const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockResolvedValueOnce({
+            resolved: undefined,
+            search: { query: {}, sort: {} },
+        });
+        await supertest(apiServer.server.server)
+            .post("/api/resolve-item")
+            .send({ tradeUrl: "pathofexile.com/trade/search/Standard/3qj2DE7ZC5" })
+            .expect(200);
+        expect(spy).toHaveBeenCalledWith(
+            "https://www.pathofexile.com/trade/search/Standard/3qj2DE7ZC5",
+            expect.any(String)
+        );
+        spy.mockRestore();
+    });
+
     it("returns 400 if ResolveItemError is thrown", async () => {
         const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockRejectedValueOnce(new ResolveItemError("No listings found"));
         const response = await supertest(apiServer.server.server)

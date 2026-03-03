@@ -63,12 +63,25 @@ export const RecipeItemSchema = z.object({
 
 // Request/Response schemas
 export const ResolveItemRequestSchema = z.object({
-    tradeUrl: z.string()
-        .url('Trade URL must be a valid URL')
-        .refine(
-            (url: string) => url.includes('pathofexile.com/trade'),
-            'Must be a valid Path of Exile trade URL'
-        ),
+    tradeUrl: z.preprocess(
+        (val: unknown) => {
+            if (typeof val !== 'string') return val;
+            let url = val.trim();
+            // Add scheme if missing
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = `https://${url}`;
+            }
+            // Add www. if missing (e.g. https://pathofexile.com/...)
+            url = url.replace(/^(https?:\/\/)pathofexile\.com/, '$1www.pathofexile.com');
+            return url;
+        },
+        z.string()
+            .url('Trade URL must be a valid URL')
+            .refine(
+                (url: string) => url.includes('pathofexile.com/trade'),
+                'Must be a valid Path of Exile trade URL'
+            )
+    ),
 });
 
 export const CreateRecipeRequestSchema = z.object({
