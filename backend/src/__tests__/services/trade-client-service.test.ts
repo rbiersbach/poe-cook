@@ -95,8 +95,8 @@ describe("TradeClient", () => {
         expect.objectContaining({ method: "GET" })
       );
       // fetchListings returns raw prices; normalization happens in searchAndFetch
-      expect(res.result[0].listing.price.currency).toBe("divine");
-      expect(res.result[1].listing.price.currency).toBe("chaos");
+      expect(res.result[0].listing.price!.currency).toBe("divine");
+      expect(res.result[1].listing.price!.currency).toBe("chaos");
       expect(res.result[0].listing.normalized_price).toBeUndefined();
     });
 

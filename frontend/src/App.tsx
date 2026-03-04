@@ -2,6 +2,7 @@
 import { createContext, useRef, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import { Recipe } from "./api/generated/models/Recipe";
+import { DivineChaosRate } from "./components/item/DivineChaosRate";
 import { LeaguePicker } from "./components/ui/LeaguePicker";
 import { TwoColumnLayout } from "./components/ui/TwoColumnLayout";
 import { LeagueProvider } from "./context/LeagueContext";
@@ -25,6 +26,7 @@ function App() {
             <Link to="/" className="link">Recipes</Link>
             <Link to="/create" className="link">Create Recipe</Link>
             <LeaguePicker />
+            <DivineChaosRate />
           </nav>
           <Routes>
             <Route

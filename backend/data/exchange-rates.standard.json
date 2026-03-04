@@ -3,571 +3,571 @@
     "id": "chaos",
     "name": "Chaos Orb",
     "chaosValue": 1,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "scour",
     "name": "Orb of Scouring",
-    "chaosValue": 0.7458,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.7785,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "divine",
     "name": "Divine Orb",
-    "chaosValue": 801.5,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 789.1,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "abrasive-catalyst",
     "name": "Abrasive Catalyst",
-    "chaosValue": 1.27,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 5.57,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "eldritch-chaos-orb",
     "name": "Eldritch Chaos Orb",
-    "chaosValue": 149.2,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 144.3,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "explorers-scouting-report",
     "name": "Explorer's Scouting Report",
-    "chaosValue": 4.01,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 3.54,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "orb-of-unmaking",
     "name": "Orb of Unmaking",
-    "chaosValue": 0.09019,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.07551,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "veiled-chaos-orb",
     "name": "Veiled Chaos Orb",
-    "chaosValue": 223,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 219.1,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "aug",
     "name": "Orb of Augmentation",
-    "chaosValue": 0.0005174,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.0005061,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "orb-of-conflict",
     "name": "Orb of Conflict",
-    "chaosValue": 1391,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1338,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "orb-of-remembrance",
     "name": "Orb of Remembrance",
-    "chaosValue": 1965,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 2203,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "vaal",
     "name": "Vaal Orb",
-    "chaosValue": 0.7105,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.7157,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "alch",
     "name": "Orb of Alchemy",
-    "chaosValue": 0.0007142,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.0007839,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "alt",
     "name": "Orb of Alteration",
-    "chaosValue": 0.01133,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.01178,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "wisdom",
     "name": "Scroll of Wisdom",
-    "chaosValue": 0.0001695,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.0001855,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "mavens-chisel-of-avarice",
     "name": "Maven's Chisel of Avarice",
-    "chaosValue": 276.8,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 261.5,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-orb-of-fusing",
     "name": "Tainted Orb of Fusing",
-    "chaosValue": 40.51,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 40.32,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "gcp",
     "name": "Gemcutter's Prism",
-    "chaosValue": 3.49,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 3.37,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "instilling-orb",
     "name": "Instilling Orb",
-    "chaosValue": 0.1632,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.1606,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "chisel",
     "name": "Cartographer's Chisel",
-    "chaosValue": 0.7851,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.7564,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-chromatic-orb",
     "name": "Tainted Chromatic Orb",
-    "chaosValue": 65.9,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 63.91,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "vivid-lifeforce",
     "name": "Vivid Crystallised Lifeforce",
-    "chaosValue": 0.4456,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.4399,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "mavens-orb",
     "name": "Orb of Dominance",
-    "chaosValue": 5031,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 4921,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "wild-lifeforce",
     "name": "Wild Crystallised Lifeforce",
-    "chaosValue": 0.1274,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.1278,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "vaal-scouting-report",
     "name": "Vaal Scouting Report",
-    "chaosValue": 1.38,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1.68,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "enkindling-orb",
     "name": "Enkindling Orb",
-    "chaosValue": 1.76,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1.73,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "grand-eldritch-ichor",
     "name": "Grand Eldritch Ichor",
-    "chaosValue": 9.02,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 9.38,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "exceptional-eldritch-ember",
     "name": "Exceptional Eldritch Ember",
-    "chaosValue": 1651,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1686,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "shapers-exalted-orb",
     "name": "Shaper's Exalted Orb",
-    "chaosValue": 1134,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1192,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "primal-lifeforce",
     "name": "Primal Crystallised Lifeforce",
-    "chaosValue": 0.1213,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.1174,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "warlords-exalted-orb",
     "name": "Warlord's Exalted Orb",
-    "chaosValue": 2040,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 2121,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "lesser-eldritch-ember",
     "name": "Lesser Eldritch Ember",
-    "chaosValue": 0.07162,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.07065,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "fracturing-orb",
     "name": "Fracturing Orb",
-    "chaosValue": 4724,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 4616,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "mavens-chisel-of-scarabs",
     "name": "Maven's Chisel of Scarabs",
-    "chaosValue": 122.9,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 125.3,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "ancient-shard",
     "name": "Ancient Shard",
     "chaosValue": 1.45,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "regal",
     "name": "Regal Orb",
-    "chaosValue": 0.7928,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.7476,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "harbingers-orb",
     "name": "Harbinger's Orb",
-    "chaosValue": 0.4494,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.4297,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "unstable-catalyst",
     "name": "Unstable Catalyst",
-    "chaosValue": 8.49,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1.7,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "eldritch-exalted-orb",
     "name": "Eldritch Exalted Orb",
-    "chaosValue": 71.88,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 65.26,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "lesser-eldritch-ichor",
     "name": "Lesser Eldritch Ichor",
-    "chaosValue": 0.04331,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.04577,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "mavens-chisel-of-procurement",
     "name": "Maven's Chisel of Procurement",
-    "chaosValue": 16.03,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 8.27,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "exceptional-eldritch-ichor",
     "name": "Exceptional Eldritch Ichor",
-    "chaosValue": 1829,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1791,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "elders-exalted-orb",
     "name": "Elder's Exalted Orb",
-    "chaosValue": 1002,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 978.5,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "chrome",
     "name": "Chromatic Orb",
-    "chaosValue": 0.5421,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.5083,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "portal",
     "name": "Portal Scroll",
-    "chaosValue": 0.0005515,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.0004367,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "regret",
     "name": "Orb of Regret",
-    "chaosValue": 1.21,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1.04,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "crusaders-exalted-orb",
     "name": "Crusader's Exalted Orb",
-    "chaosValue": 1202,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1227,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "chance",
     "name": "Orb of Chance",
-    "chaosValue": 0.005195,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.01174,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "eldritch-orb-of-annulment",
     "name": "Eldritch Orb of Annulment",
-    "chaosValue": 102.4,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 97.7,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-chaos-orb",
     "name": "Tainted Chaos Orb",
-    "chaosValue": 111.3,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 109.6,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "regal-implant",
     "name": "Regal Implant",
     "chaosValue": 3,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "augmentation-implant",
     "name": "Augmentation Implant",
     "chaosValue": 10,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "grand-eldritch-ember",
     "name": "Grand Eldritch Ember",
-    "chaosValue": 69.6,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 66.18,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "stacked-deck",
     "name": "Stacked Deck",
-    "chaosValue": 15.63,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 15.67,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "redeemers-exalted-orb",
     "name": "Redeemer's Exalted Orb",
-    "chaosValue": 712.4,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 739.8,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "foulborn-regal-orb",
     "name": "Foulborn Regal Orb",
-    "chaosValue": 0.5,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.5263,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tailoring-orb",
     "name": "Tailoring Orb",
-    "chaosValue": 2803,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 2937,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "awakeners-orb",
     "name": "Awakener's Orb",
-    "chaosValue": 1356,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1716,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "rogues-marker",
     "name": "Rogue's Marker",
-    "chaosValue": 0.0001488,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.0001533,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "mavens-chisel-of-proliferation",
     "name": "Maven's Chisel of Proliferation",
-    "chaosValue": 192.6,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 215.3,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "accelerating-catalyst",
     "name": "Accelerating Catalyst",
-    "chaosValue": 2.25,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 4.24,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "intrinsic-catalyst",
     "name": "Intrinsic Catalyst",
-    "chaosValue": 4.02,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 7.89,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "delirious-scouting-report",
     "name": "Delirious Scouting Report",
-    "chaosValue": 0.8864,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.6466,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "greater-eldritch-ichor",
     "name": "Greater Eldritch Ichor",
-    "chaosValue": 0.2636,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.3004,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "fracturing-shard",
     "name": "Fracturing Shard",
-    "chaosValue": 181.1,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 179.6,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-mythic-orb",
     "name": "Tainted Mythic Orb",
-    "chaosValue": 34,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 30.46,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-divine-teardrop",
     "name": "Tainted Divine Teardrop",
-    "chaosValue": 12493,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 12300,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-jewellers-orb",
     "name": "Tainted Jeweller's Orb",
     "chaosValue": 14,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "bauble",
     "name": "Glassblower's Bauble",
-    "chaosValue": 0.4372,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.04593,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "mavens-chisel-of-divination",
     "name": "Maven's Chisel of Divination",
-    "chaosValue": 56.29,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 54.95,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "whetstone",
     "name": "Blacksmith's Whetstone",
-    "chaosValue": 0.0002724,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.0002676,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "mirror",
     "name": "Mirror of Kalandra",
-    "chaosValue": 1408435,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1386859,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "fusing",
     "name": "Orb of Fusing",
-    "chaosValue": 0.1089,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.5287,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "reflecting-mist",
     "name": "Reflecting Mist",
-    "chaosValue": 21707,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 21215,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tempering-orb",
     "name": "Tempering Orb",
-    "chaosValue": 2752,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 2712,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "jewellers",
     "name": "Jeweller's Orb",
-    "chaosValue": 0.007013,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.006303,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "noxious-catalyst",
     "name": "Noxious Catalyst",
-    "chaosValue": 1.28,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1.51,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-armourers-scrap",
     "name": "Tainted Armourer's Scrap",
-    "chaosValue": 26.17,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.1214,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "exalted",
     "name": "Exalted Orb",
-    "chaosValue": 52.5,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 51,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-exalted-orb",
     "name": "Tainted Exalted Orb",
     "chaosValue": 15,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "orb-of-horizons",
     "name": "Orb of Horizons",
-    "chaosValue": 0.04956,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.04618,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "hinekoras-lock",
     "name": "Hinekora's Lock",
-    "chaosValue": 312763,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 306496,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "influenced-scouting-report",
     "name": "Influenced Scouting Report",
-    "chaosValue": 0.9417,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.58,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "orb-of-unravelling",
     "name": "Orb of Unravelling",
-    "chaosValue": 1202,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 986.4,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "transmute",
     "name": "Orb of Transmutation",
-    "chaosValue": 0.00008955,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.0001094,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "scrap",
     "name": "Armourer's Scrap",
-    "chaosValue": 0.0006908,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.0008048,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "mirror-shard",
     "name": "Mirror Shard",
-    "chaosValue": 71055,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 69814,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "ancient-orb",
     "name": "Ancient Orb",
-    "chaosValue": 85.94,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 79.38,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "prismatic-catalyst",
     "name": "Prismatic Catalyst",
-    "chaosValue": 85.23,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 86.08,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "fertile-catalyst",
     "name": "Fertile Catalyst",
-    "chaosValue": 76.07,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 85.58,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "foulborn-orb-of-augmentation",
     "name": "Foulborn Orb of Augmentation",
-    "chaosValue": 0.2727,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 32.21,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "operatives-scouting-report",
     "name": "Operative's Scouting Report",
-    "chaosValue": 8.01,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 7.89,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "imbued-catalyst",
     "name": "Imbued Catalyst",
-    "chaosValue": 1.43,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1.9,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "blessed",
     "name": "Blessed Orb",
-    "chaosValue": 1.82,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1.75,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-blacksmiths-whetstone",
     "name": "Tainted Blacksmith's Whetstone",
-    "chaosValue": 3.49,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 4.59,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "engineers-shard",
@@ -578,109 +578,109 @@
   {
     "id": "comprehensive-scouting-report",
     "name": "Comprehensive Scouting Report",
-    "chaosValue": 85.07,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 82.7,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "annul",
     "name": "Orb of Annulment",
-    "chaosValue": 19.7,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 19.85,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "foulborn-exalted-orb",
     "name": "Foulborn Exalted Orb",
-    "chaosValue": 7646,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 7479,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "orb-of-intention",
     "name": "Orb of Intention",
     "chaosValue": 100,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "greater-eldritch-ember",
     "name": "Greater Eldritch Ember",
-    "chaosValue": 9.9,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 9.76,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tainted-catalyst",
     "name": "Tainted Catalyst",
-    "chaosValue": 89.52,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 88.13,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "sacred-orb",
     "name": "Sacred Orb",
-    "chaosValue": 133.6,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 132.4,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "veiled-exalted-orb",
     "name": "Veiled Exalted Orb",
-    "chaosValue": 91.08,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 86.54,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "sacred-lifeforce",
     "name": "Sacred Crystallised Lifeforce",
-    "chaosValue": 1052,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1034,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "singular-scouting-report",
     "name": "Singular Scouting Report",
-    "chaosValue": 1.46,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1.83,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "hunters-exalted-orb",
     "name": "Hunter's Exalted Orb",
-    "chaosValue": 1858,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1878,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "turbulent-catalyst",
     "name": "Turbulent Catalyst",
-    "chaosValue": 1.39,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 1.89,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "tempering-catalyst",
     "name": "Tempering Catalyst",
-    "chaosValue": 2.9,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 5.43,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "blighted-scouting-report",
     "name": "Blighted Scouting Report",
     "chaosValue": 1,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "otherworldly-scouting-report",
     "name": "Otherworldly Scouting Report",
     "chaosValue": 1.93,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "horizon-shard",
     "name": "Horizon Shard",
     "chaosValue": 1,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "engineers",
     "name": "Engineer's Orb",
-    "chaosValue": 0.09324,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "chaosValue": 0.09403,
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   },
   {
     "id": "exalted-shard",
     "name": "Exalted Shard",
     "chaosValue": 1,
-    "fetchedAt": "2026-03-04T13:26:09.625Z"
+    "fetchedAt": "2026-03-04T13:42:53.837Z"
   }
 ]
