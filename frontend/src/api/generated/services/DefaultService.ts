@@ -56,6 +56,33 @@ export class DefaultService {
         });
     }
     /**
+     * Get the exchange rate for a single currency normalised to chaos orb
+     * @param league The Path of Exile league name (e.g. "Standard", "Hardcore")
+     * @param currencyId The poe.ninja currency id (e.g. "divine", "chaos")
+     * @returns any Exchange rate for the requested currency
+     * @throws ApiError
+     */
+    public static getApiLeagueExchangeRate(
+        league: string,
+        currencyId: string,
+    ): CancelablePromise<{
+        rate: ExchangeRate;
+    }> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/leagues/{league}/exchange-rates/{currencyId}',
+            path: {
+                'league': league,
+                'currencyId': currencyId,
+            },
+            errors: {
+                400: `Invalid request`,
+                404: `Currency not found`,
+                500: `Server error`,
+            },
+        });
+    }
+    /**
      * List ninja items (paginated, searchable)
      * @param league The Path of Exile league name (e.g. "Standard", "Hardcore")
      * @param search Text to search for in the specified key (e.g., name)

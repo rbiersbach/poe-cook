@@ -1,26 +1,10 @@
-import { useEffect, useState } from "react";
-import { DefaultService } from "../../api/generated/services/DefaultService";
-import { useLeague } from "../../context/LeagueContext";
+import { useExchangeRate } from "../../context/ExchangeRateContext";
 import CurrencyIcon from "./CurrencyIcon";
 
 export function DivineChaosRate() {
-    const { league } = useLeague();
-    const [divineRate, setDivineRate] = useState<number | null>(null);
-    const [loading, setLoading] = useState(false);
+    const { divineRate } = useExchangeRate();
 
-    useEffect(() => {
-        if (!league) return;
-        setLoading(true);
-        DefaultService.getApiLeagueExchangeRates(league.id)
-            .then((res) => {
-                const divine = res.rates.find((r) => r.id === "divine");
-                setDivineRate(divine?.chaosValue ?? null);
-            })
-            .catch(() => setDivineRate(null))
-            .finally(() => setLoading(false));
-    }, [league?.id]);
-
-    if (!league || loading || divineRate === null) return null;
+    if (divineRate === null) return null;
 
     return (
         <div

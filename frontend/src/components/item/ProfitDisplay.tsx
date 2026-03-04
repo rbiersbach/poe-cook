@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { getItemPriceChaos } from "../../utils/itemHelpers";
 import CurrencyIcon from "./CurrencyIcon";
 import ItemIcon from "./ItemIcon";
+import { PriceDisplay } from "./PriceDisplay";
 import { PriceRangeDisplay } from "./PriceRangeDisplay";
 
 interface ProfitDisplayProps {
@@ -47,11 +48,6 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
     function formatChaos(amount: number | undefined): string {
         if (amount == null) return "?";
         return amount.toString();
-    }
-    // Helper for the Range summary line — 1 decimal to match PriceRangeDisplay
-    function formatChaosRounded(amount: number | undefined): string {
-        if (amount == null) return "?";
-        return parseFloat(amount.toFixed(1)).toString();
     }
 
     return (
@@ -101,20 +97,18 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                     </div>
                     <div className="flex items-center gap-2 text-xs mt-2 border-t border-gray-200 dark:border-gray-700 pt-2 justify-end">
                         <span className="font-semibold">Range:</span>
-                        <span className={
-                            `${(conservativeProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} font-semibold flex items-center gap-1`}
-                        >
-                            {formatChaosRounded(conservativeProfit ?? undefined)}
-                            <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
-                        </span>
+                        <PriceDisplay
+                            amount={conservativeProfit ?? undefined}
+                            currency="chaos"
+                            className={`${(conservativeProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} font-semibold flex items-center gap-1`}
+                        />
                         <span className="text-gray-400">(-10%)</span>
                         <span className="text-white">-</span>
-                        <span className={
-                            `${(maxProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} font-semibold flex items-center gap-1`}
-                        >
-                            {formatChaosRounded(maxProfit ?? undefined)}
-                            <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
-                        </span>
+                        <PriceDisplay
+                            amount={maxProfit ?? undefined}
+                            currency="chaos"
+                            className={`${(maxProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} font-semibold flex items-center gap-1`}
+                        />
                     </div>
                 </div>
             )}

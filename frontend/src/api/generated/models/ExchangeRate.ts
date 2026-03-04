@@ -4,7 +4,7 @@
 /* eslint-disable */
 export type ExchangeRate = {
     /**
-     * poe.ninja detailsId (e.g. "divine-orb", "chaos-orb")
+     * poe.ninja item id (e.g. "divine", "chaos")
      */
     id: string;
     /**

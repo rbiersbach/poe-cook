@@ -67,7 +67,9 @@ export const NinjaPriceTooltip: React.FC<NinjaPriceTooltipProps> = ({ item }) =>
         >
             <span className="inline-flex items-center gap-1">
                 <PriceDisplay amount={item.price} currency="chaos" />
-                <span className={`text-xs ${trend.color}`}>{trend.symbol}</span>
+                {isLowVolume(item) && (
+                    <span className="text-xs text-yellow-500 dark:text-yellow-400" title="Low volume">⚠</span>
+                )}
             </span>
             {showPopup && tooltipPos && createPortal(
                 <div

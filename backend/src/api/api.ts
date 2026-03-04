@@ -319,6 +319,31 @@ export class TradeApiServer {
             }
         });
 
+        // GET /api/leagues/:league/exchange-rates/:currencyId
+        this.fastify.get("/api/leagues/:league/exchange-rates/:currencyId", async (request: FastifyRequest, reply) => {
+            try {
+                const params = request.params as Record<string, string>;
+                const leagueData = this.extractLeague(params);
+                if (!leagueData) {
+                    return reply.status(400).send({ error: "League is required" });
+                }
+                const currencyId = params.currencyId;
+                if (!currencyId) {
+                    return reply.status(400).send({ error: "currencyId is required" });
+                }
+                const { league } = leagueData;
+                await this.ninjaScheduler.activate(league);
+                const rate = this.registry.getExchangeRateStore(league).get(currencyId);
+                if (!rate) {
+                    return reply.status(404).send({ error: `Exchange rate for "${currencyId}" not found` });
+                }
+                reply.send({ rate });
+            } catch (err) {
+                this.logger.error({ error: err }, "Unexpected error in GET exchange-rate by id");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+
         // GET /api/leagues/:league/ninja-items
         this.fastify.get("/api/leagues/:league/ninja-items", async (request: FastifyRequest, reply) => {
             try {

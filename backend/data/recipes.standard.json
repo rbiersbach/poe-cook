@@ -512,25 +512,25 @@
           "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
           "category": "Currency",
           "detailsId": "divine-orb",
-          "price": 801.5,
+          "price": 789.1,
           "priceHistory": [
-            1.88,
-            13.78,
-            14.92,
-            19.26,
-            31.05,
-            69.73,
-            72.96
+            -1.21,
+            10.62,
+            11.56,
+            15.27,
+            29.2,
+            63.82,
+            65.06
           ],
-          "volume": 229892,
+          "volume": 242647,
           "maxVolumeCurrency": "chaos",
-          "maxVolumeRate": 0.001248,
-          "fetchedAt": "2026-03-04T13:26:09.625Z"
+          "maxVolumeRate": 0.001267,
+          "fetchedAt": "2026-03-04T13:42:53.837Z"
         }
       }
     ],
     "createdAt": "2026-03-03T17:21:17.495Z",
-    "updatedAt": "2026-03-04T13:38:44.773Z"
+    "updatedAt": "2026-03-04T13:57:42.904Z"
   },
   {
     "id": "1772558673902-c64714142d1e7",
