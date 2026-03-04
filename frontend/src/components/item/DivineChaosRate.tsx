@@ -9,7 +9,7 @@ export function DivineChaosRate() {
     return (
         <div
             data-testid="divine-chaos-rate"
-            className="ml-auto flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300"
+            className="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300"
         >
             <span>1</span>
             <CurrencyIcon currency="divine" className="inline w-5 h-5 align-middle" />

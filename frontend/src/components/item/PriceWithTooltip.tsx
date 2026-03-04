@@ -55,7 +55,7 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
             {showPopup && tooltipPos && createPortal(
                 <div
                     className={`hover-tooltip fixed transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
-                    style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", whiteSpace: "nowrap", zIndex: 50 }}
+                    style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", zIndex: 50 }}
                 >
                     <div className="flex items-center gap-1">
                         <span>Price:</span>
@@ -63,7 +63,7 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
                         {showMinChaos && (
                             <span className="text-muted">(
                                 <PriceDisplay amount={resolved.minPrice?.amount} currency="chaos" exact />
-                            )</span>
+                                )</span>
                         )}
                     </div>
                     <div className="flex items-center gap-1 mt-0.5">
@@ -72,10 +72,10 @@ export const PriceWithTooltip: React.FC<PriceWithTooltipProps> = ({ resolved }) 
                         {showMedianChaos && (
                             <span className="text-muted">(
                                 <PriceDisplay amount={resolved.medianPrice?.amount} currency="chaos" exact />
-                            )</span>
+                                )</span>
                         )}
                     </div>
-                    <div className="mt-0.5 text-muted text-xs">Listings: {resolved.medianCount ?? "?"}</div>
+                    <div className="mt-0.5 text-muted text-xs"># Listings ≤ Median: {resolved.medianCount ?? "?"}</div>
                 </div>,
                 document.body
             )}

@@ -74,7 +74,7 @@ export const NinjaPriceTooltip: React.FC<NinjaPriceTooltipProps> = ({ item }) =>
             {showPopup && tooltipPos && createPortal(
                 <div
                     className={`hover-tooltip fixed transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
-                    style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", whiteSpace: "nowrap", zIndex: 50 }}
+                    style={{ left: tooltipPos.left, top: tooltipPos.top, transform: "translateX(-50%)", zIndex: 50 }}
                 >
                     <div className="flex items-center gap-1">
                         Price:

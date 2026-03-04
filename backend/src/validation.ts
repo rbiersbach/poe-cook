@@ -105,7 +105,6 @@ export const RecipeSchema = CreateRecipeRequestSchema.extend({
 export const ListRecipesQuerySchema = z.object({
     cursor: z.string().optional(),
     limit: z.string().or(z.number()).optional(),
-    'x-invalidate-cache': z.string().optional(),
 }).passthrough();
 
 export const LeagueParamSchema = z.object({

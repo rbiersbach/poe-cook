@@ -35,7 +35,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refre
     };
     return (
         <div className="recipe-card card-row rounded shadow p-4 mb-4 flex flex-col gap-2" data-testid={`recipe-card-${recipe.id}`}>
-            <div className="flex items-center justify-between mb-2 w-full">
+            <div className="flex items-center justify-between gap-4 mb-2 w-full">
                 <div className="flex items-center gap-2 min-w-0 flex-1">
                     <span
                         className="truncate text-sm font-semibold text-primary dark:text-primary-dark min-w-0"
@@ -129,12 +129,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refre
                 </div>
             </div>
             <div className="flex w-full gap-2">
-                <div className="card-section flex flex-wrap gap-2 items-center flex-1 min-w-0">
+                <div className="card-section flex flex-wrap gap-2 items-start content-start flex-1 min-w-0">
                     {recipe.inputs.map((item, idx) => (
                         <ItemChip key={idx} item={item} />
                     ))}
                 </div>
-                <div className="card-section flex flex-wrap gap-2 items-center flex-1 min-w-0 justify-end">
+                <div className="card-section flex flex-wrap gap-2 items-start content-start flex-1 min-w-0">
                     {recipe.outputs.map((item, idx) => (
                         <ItemChip key={"out-" + idx} item={item} />
                     ))}

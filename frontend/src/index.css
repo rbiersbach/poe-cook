@@ -227,5 +227,5 @@ body {
 .hover-tooltip {
   @apply bg-white border border-gray-200 text-gray-900;
   @apply dark:bg-gray-950 dark:border-gray-700 dark:text-gray-50;
-  @apply shadow-lg rounded p-2 text-xs min-w-max z-10;
+  @apply shadow-lg rounded p-2 text-xs min-w-max max-w-xs z-10;
 }

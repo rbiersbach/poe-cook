@@ -64,9 +64,9 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
             {showPopup && (
                 <div
                     className={`tooltip hover-tooltip absolute transition-opacity duration-300 z-20 ${fade ? "opacity-0" : "opacity-100"}`}
-                    style={{ left: "50%", top: "100%", transform: "translateX(-50%)", marginTop: "0.25rem", minWidth: 240 }}
+                    style={{ left: "50%", top: "100%", transform: "translateX(-50%)", marginTop: "0.25rem" }}
                 >
-                    <div className="font-semibold mb-1">Calculation details</div>
+                    <div className="mb-1">Calculation details</div>
                     <div className="mb-1">
                         {recipe.inputs.map((item, idx) => (
                             <div key={"input-" + idx} className="flex items-center justify-between text-xs gap-2 py-0.5">
@@ -96,18 +96,18 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                         ))}
                     </div>
                     <div className="flex items-center gap-2 text-xs mt-2 border-t border-gray-200 dark:border-gray-700 pt-2 justify-end">
-                        <span className="font-semibold">Range:</span>
+                        <span>Range:</span>
                         <PriceDisplay
                             amount={conservativeProfit ?? undefined}
                             currency="chaos"
-                            className={`${(conservativeProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} font-semibold flex items-center gap-1`}
+                            className={`${(conservativeProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} inline-flex items-center gap-1`}
                         />
                         <span className="text-gray-400">(-10%)</span>
                         <span className="text-white">-</span>
                         <PriceDisplay
                             amount={maxProfit ?? undefined}
                             currency="chaos"
-                            className={`${(maxProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} font-semibold flex items-center gap-1`}
+                            className={`${(maxProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} inline-flex items-center gap-1`}
                         />
                     </div>
                 </div>

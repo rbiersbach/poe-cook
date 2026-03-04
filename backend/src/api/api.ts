@@ -150,8 +150,8 @@ export class TradeApiServer {
                     return reply.status(400).send({ error: "Invalid request", details: errors });
                 }
 
-                const { cursor, limit = "20", "x-invalidate-cache": invalidateCacheHeader } = validation.data;
-                const invalidateCache = invalidateCacheHeader === "true";
+                const { cursor, limit = "20" } = validation.data;
+                const invalidateCache = request.headers["x-invalidate-cache"] === "true";
 
                 await this.ninjaScheduler.activate(league);
 
