@@ -108,6 +108,10 @@ export const ListRecipesQuerySchema = z.object({
     'x-invalidate-cache': z.string().optional(),
 }).passthrough();
 
+export const LeagueParamSchema = z.object({
+    league: z.string().min(1, 'League is required'),
+});
+
 // Type exports for use in application code
 export type Price = z.infer<typeof PriceSchema>;
 export type ResolvedMarketData = z.infer<typeof ResolvedMarketDataSchema>;
@@ -120,3 +124,4 @@ export type CreateRecipeRequest = z.infer<typeof CreateRecipeRequestSchema>;
 export type UpdateRecipeRequest = z.infer<typeof UpdateRecipeRequestSchema>;
 export type Recipe = z.infer<typeof RecipeSchema>;
 export type ListRecipesQuery = z.infer<typeof ListRecipesQuerySchema>;
+export type LeagueParam = z.infer<typeof LeagueParamSchema>;

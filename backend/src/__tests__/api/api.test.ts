@@ -7,7 +7,7 @@ import fs from "fs";
 import { Recipe } from "models/trade-types";
 import path from "path";
 import { TradeClientService } from "services/trade-client-service";
-import { INinjaItemStore } from "stores/ninja-item-store";
+import { StoreRegistry } from "stores/store-registry";
 import { TradeApiServer } from "../../api/api";
 import { NoopLogger } from "../../logger";
 import type { IRecipeService } from "../../services/recipe-service";
@@ -15,13 +15,14 @@ import { ResolveItemError, TradeResolverService } from "../../services/trade-res
 import { makeNinjaItem, makeRecipe, makeResolvedMarketData } from "../fixtures";
 
 const TEST_RECIPES_PATH = path.join(__dirname, "../resources/recipes.test.json");
+const TEST_LEAGUE = "Standard";
+const LEAGUE_PREFIX = `/api/leagues/${TEST_LEAGUE}`;
 
-
-const mockGetAllRecipes = vi.fn(async (_invalidateCache?: boolean) => [] as Recipe[]);
-const mockGetRecipeById = vi.fn(async (_id: string, _invalidateCache?: boolean) => undefined as Recipe | undefined);
-const mockAdd = vi.fn(async (_recipe: Recipe) => { });
-const mockRefreshRecipe = vi.fn(async (recipe: Recipe) => recipe);
-const mockRefreshItem = vi.fn(async (item: any) => item);
+const mockGetAllRecipes = vi.fn(async (_league: string, _invalidateCache?: boolean) => [] as Recipe[]);
+const mockGetRecipeById = vi.fn(async (_league: string, _id: string, _invalidateCache?: boolean) => undefined as Recipe | undefined);
+const mockAdd = vi.fn(async (_recipe: Recipe, _league: string) => { });
+const mockRefreshRecipe = vi.fn(async (recipe: Recipe, _league: string) => recipe);
+const mockRefreshItem = vi.fn(async (item: any, _league: string) => item);
 
 const recipeServiceMock: IRecipeService = {
     getAllRecipes: mockGetAllRecipes,
@@ -29,8 +30,8 @@ const recipeServiceMock: IRecipeService = {
     addRecipe: mockAdd,
     refreshRecipe: mockRefreshRecipe,
     refreshItem: mockRefreshItem,
-    deleteRecipe: vi.fn(() => true),
-    updateRecipe: vi.fn(async (id: string, recipe: Recipe) => ({ ...recipe, id })),
+    deleteRecipe: vi.fn((_league: string, _id: string) => true),
+    updateRecipe: vi.fn(async (_league: string, id: string, recipe: Recipe) => ({ ...recipe, id })),
 };
 
 
@@ -38,8 +39,9 @@ let tradeClientMock: TradeClientService;
 let apiServer: TradeApiServer;
 
 const mockFindByText = vi.fn(() => [] as any[]);
-
-let ninjaItemStoreMock: INinjaItemStore
+const mockNinjaItemStore = { findByText: mockFindByText } as any;
+const mockRecipeStore = {} as any;
+let mockRegistry: StoreRegistry;
 
 beforeAll(async () => {
     // Clear test file before starting
@@ -49,8 +51,11 @@ beforeAll(async () => {
         fetchListings: vi.fn(),
         logger: NoopLogger,
     } as unknown as TradeClientService;
-    ninjaItemStoreMock = { findByText: mockFindByText } as unknown as INinjaItemStore;
-    apiServer = new TradeApiServer(tradeClientMock, recipeServiceMock, NoopLogger, ninjaItemStoreMock);
+    mockRegistry = {
+        getNinjaItemStore: vi.fn(() => mockNinjaItemStore),
+        getRecipeStore: vi.fn(() => mockRecipeStore),
+    } as unknown as StoreRegistry;
+    apiServer = new TradeApiServer(tradeClientMock, recipeServiceMock, NoopLogger, mockRegistry);
     await apiServer.server.listen({ port: 0 });
 });
 
@@ -63,7 +68,7 @@ afterAll(async () => {
 
 
 
-describe("POST /api/resolve-item", () => {
+describe("POST /api/leagues/:league/resolve-item", () => {
     it("returns resolved item for a valid request (happy path)", async () => {
         // Mock TradeResolver and tradeClient
         const mockResult = {
@@ -82,7 +87,7 @@ describe("POST /api/resolve-item", () => {
         const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockResolvedValueOnce(mockResult);
 
         const response = await supertest(apiServer.server.server)
-            .post("/api/resolve-item")
+            .post(`${LEAGUE_PREFIX}/resolve-item`)
             .send({ tradeUrl: "https://www.pathofexile.com/trade" })
             .expect(200);
         expect(response.body.resolved).toMatchObject({
@@ -100,7 +105,7 @@ describe("POST /api/resolve-item", () => {
 
     it("returns 400 if tradeUrl is missing", async () => {
         const response = await supertest(apiServer.server.server)
-            .post("/api/resolve-item")
+            .post(`${LEAGUE_PREFIX}/resolve-item`)
             .send({})
             .expect(400);
         expect(response.body.error).toBe("Invalid ResolveItemRequest");
@@ -112,12 +117,13 @@ describe("POST /api/resolve-item", () => {
             search: { query: { name: "Chaos Orb" }, sort: { price: "asc" } },
         });
         await supertest(apiServer.server.server)
-            .post("/api/resolve-item")
+            .post(`${LEAGUE_PREFIX}/resolve-item`)
             .send({ tradeUrl: "www.pathofexile.com/trade/search/Standard/3qj2DE7ZC5" })
             .expect(200);
         expect(spy).toHaveBeenCalledWith(
             "https://www.pathofexile.com/trade/search/Standard/3qj2DE7ZC5",
-            expect.any(String)
+            expect.any(String),
+            TEST_LEAGUE
         );
         spy.mockRestore();
     });
@@ -128,12 +134,13 @@ describe("POST /api/resolve-item", () => {
             search: { query: { name: "Chaos Orb" }, sort: { price: "asc" } },
         });
         await supertest(apiServer.server.server)
-            .post("/api/resolve-item")
+            .post(`${LEAGUE_PREFIX}/resolve-item`)
             .send({ tradeUrl: "pathofexile.com/trade/search/Standard/3qj2DE7ZC5" })
             .expect(200);
         expect(spy).toHaveBeenCalledWith(
             "https://www.pathofexile.com/trade/search/Standard/3qj2DE7ZC5",
-            expect.any(String)
+            expect.any(String),
+            TEST_LEAGUE
         );
         spy.mockRestore();
     });
@@ -141,7 +148,7 @@ describe("POST /api/resolve-item", () => {
     it("returns 400 if ResolveItemError is thrown", async () => {
         const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockRejectedValueOnce(new ResolveItemError("No listings found"));
         const response = await supertest(apiServer.server.server)
-            .post("/api/resolve-item")
+            .post(`${LEAGUE_PREFIX}/resolve-item`)
             .send({ tradeUrl: "https://www.pathofexile.com/trade" })
             .expect(400);
         expect(response.body.error).toBe("No listings found");
@@ -151,7 +158,7 @@ describe("POST /api/resolve-item", () => {
     it("returns 500 for unexpected errors", async () => {
         const spy = vi.spyOn(TradeResolverService.prototype, "resolveItemFromUrl").mockRejectedValueOnce(new Error("Unexpected failure"));
         const response = await supertest(apiServer.server.server)
-            .post("/api/resolve-item")
+            .post(`${LEAGUE_PREFIX}/resolve-item`)
             .send({ tradeUrl: "https://www.pathofexile.com/trade" })
             .expect(500);
         expect(response.body.error).toBe("Server error");
@@ -159,7 +166,7 @@ describe("POST /api/resolve-item", () => {
     });
 });
 
-describe("POST /api/recipes", () => {
+describe("POST /api/leagues/:league/recipes", () => {
     beforeEach(() => {
         mockAdd.mockClear();
         mockGetAllRecipes.mockClear();
@@ -256,9 +263,9 @@ describe("POST /api/recipes", () => {
             ]
         };
 
-        mockAdd.mockImplementation(async recipe => { });
+        mockAdd.mockImplementation(async () => { });
         const response = await supertest(apiServer.server.server)
-            .post("/api/recipes")
+            .post(`${LEAGUE_PREFIX}/recipes`)
             .send(recipeInput)
             .expect(200);
         expect(mockAdd).toHaveBeenCalled();
@@ -275,7 +282,7 @@ describe("POST /api/recipes", () => {
 
     it("returns 400 for missing inputs, outputs, or name", async () => {
         const response = await supertest(apiServer.server.server)
-            .post("/api/recipes")
+            .post(`${LEAGUE_PREFIX}/recipes`)
             .send({})
             .expect(400);
         expect(response.body.error).toBe("Invalid CreateRecipeRequest");
@@ -283,7 +290,7 @@ describe("POST /api/recipes", () => {
 
     it("returns 400 for non-array inputs", async () => {
         const response = await supertest(apiServer.server.server)
-            .post("/api/recipes")
+            .post(`${LEAGUE_PREFIX}/recipes`)
             .send({ name: "Test", inputs: "not-an-array", outputs: [{ tradeUrl: "url", qty: 1 }] })
             .expect(400);
         expect(response.body.error).toBe("Invalid CreateRecipeRequest");
@@ -315,7 +322,7 @@ describe("POST /api/recipes", () => {
         };
         mockAdd.mockImplementation(async () => { });
         const response = await supertest(apiServer.server.server)
-            .post("/api/recipes")
+            .post(`${LEAGUE_PREFIX}/recipes`)
             .send({ name: "Ninja Recipe", inputs: [ninjaItem], outputs: [tradeItem] })
             .expect(200);
         expect(mockAdd).toHaveBeenCalled();
@@ -324,7 +331,7 @@ describe("POST /api/recipes", () => {
     });
 });
 
-describe("GET /api/recipes/:id", () => {
+describe("GET /api/leagues/:league/recipes/:id", () => {
     beforeEach(() => {
         mockGetRecipeById.mockClear();
     });
@@ -333,7 +340,7 @@ describe("GET /api/recipes/:id", () => {
         const recipe = { id: "r1", name: "Test Recipe", inputs: [], outputs: [], createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" };
         mockGetRecipeById.mockResolvedValueOnce(recipe);
         const response = await supertest(apiServer.server.server)
-            .get("/api/recipes/r1")
+            .get(`${LEAGUE_PREFIX}/recipes/r1`)
             .expect(200);
         expect(response.body.id).toBe("r1");
     });
@@ -341,13 +348,13 @@ describe("GET /api/recipes/:id", () => {
     it("returns 404 if recipe not found", async () => {
         mockGetRecipeById.mockResolvedValueOnce(undefined);
         const response = await supertest(apiServer.server.server)
-            .get("/api/recipes/doesnotexist")
+            .get(`${LEAGUE_PREFIX}/recipes/doesnotexist`)
             .expect(404);
         expect(response.body.error).toBe("Recipe not found");
     });
 });
 
-describe("GET /api/recipes/:id", () => {
+describe("GET /api/leagues/:league/recipes/:id (dup)", () => {
     beforeEach(() => {
         mockGetRecipeById.mockClear();
     });
@@ -356,7 +363,7 @@ describe("GET /api/recipes/:id", () => {
         const recipe = { id: "r1", name: "Test Recipe", inputs: [], outputs: [], createdAt: "2024-01-01T00:00:00Z", updatedAt: "2024-01-01T00:00:00Z" };
         mockGetRecipeById.mockResolvedValueOnce(recipe);
         const response = await supertest(apiServer.server.server)
-            .get("/api/recipes/r1")
+            .get(`${LEAGUE_PREFIX}/recipes/r1`)
             .expect(200);
         expect(response.body.id).toBe("r1");
     });
@@ -364,13 +371,13 @@ describe("GET /api/recipes/:id", () => {
     it("returns 404 if recipe not found", async () => {
         mockGetRecipeById.mockResolvedValueOnce(undefined);
         const response = await supertest(apiServer.server.server)
-            .get("/api/recipes/doesnotexist")
+            .get(`${LEAGUE_PREFIX}/recipes/doesnotexist`)
             .expect(404);
         expect(response.body.error).toBe("Recipe not found");
     });
 });
 
-describe("PUT /api/recipes/:id", () => {
+describe("PUT /api/leagues/:league/recipes/:id", () => {
     beforeEach(() => {
         (recipeServiceMock.updateRecipe as any).mockClear();
     });
@@ -431,12 +438,12 @@ describe("PUT /api/recipes/:id", () => {
         };
         (recipeServiceMock.updateRecipe as any).mockResolvedValueOnce(updatedRecipe);
         const response = await supertest(apiServer.server.server)
-            .put("/api/recipes/r1")
+            .put(`${LEAGUE_PREFIX}/recipes/r1`)
             .send(updateRequest)
             .expect(200);
         expect(response.body.id).toBe("r1");
         expect(response.body.name).toBe("Updated Recipe");
-        expect((recipeServiceMock.updateRecipe as any)).toHaveBeenCalledWith("r1", expect.objectContaining({
+        expect((recipeServiceMock.updateRecipe as any)).toHaveBeenCalledWith(TEST_LEAGUE, "r1", expect.objectContaining({
             id: "r1",
             name: "Updated Recipe",
         }));
@@ -444,7 +451,7 @@ describe("PUT /api/recipes/:id", () => {
 
     it("returns 400 for missing required fields", async () => {
         const response = await supertest(apiServer.server.server)
-            .put("/api/recipes/r1")
+            .put(`${LEAGUE_PREFIX}/recipes/r1`)
             .send({ name: "Updated Recipe" })
             .expect(400);
         expect(response.body.error).toBe("Invalid UpdateRecipeRequest");
@@ -452,7 +459,7 @@ describe("PUT /api/recipes/:id", () => {
 
     it("returns 400 if outputs is empty", async () => {
         const response = await supertest(apiServer.server.server)
-            .put("/api/recipes/r1")
+            .put(`${LEAGUE_PREFIX}/recipes/r1`)
             .send({
                 name: "Updated Recipe",
                 inputs: [],
@@ -464,7 +471,7 @@ describe("PUT /api/recipes/:id", () => {
 
     it("returns 400 if inputs or outputs are not arrays", async () => {
         const response = await supertest(apiServer.server.server)
-            .put("/api/recipes/r1")
+            .put(`${LEAGUE_PREFIX}/recipes/r1`)
             .send({
                 name: "Updated Recipe",
                 inputs: "not an array",
@@ -476,7 +483,7 @@ describe("PUT /api/recipes/:id", () => {
 
     it("returns 400 if trade items missing search object", async () => {
         const response = await supertest(apiServer.server.server)
-            .put("/api/recipes/r1")
+            .put(`${LEAGUE_PREFIX}/recipes/r1`)
             .send({
                 name: "Updated Recipe",
                 inputs: [
@@ -508,7 +515,7 @@ describe("PUT /api/recipes/:id", () => {
     it("returns 404 if recipe not found", async () => {
         (recipeServiceMock.updateRecipe as any).mockRejectedValueOnce(new Error("Recipe not found"));
         const response = await supertest(apiServer.server.server)
-            .put("/api/recipes/doesnotexist")
+            .put(`${LEAGUE_PREFIX}/recipes/doesnotexist`)
             .send({
                 name: "Updated Recipe",
                 inputs: [
@@ -541,7 +548,7 @@ describe("PUT /api/recipes/:id", () => {
     });
 });
 
-describe("DELETE /api/recipes/:id", () => {
+describe("DELETE /api/leagues/:league/recipes/:id", () => {
     beforeEach(() => {
         (recipeServiceMock.deleteRecipe as any).mockClear();
     });
@@ -549,22 +556,22 @@ describe("DELETE /api/recipes/:id", () => {
     it("deletes a recipe successfully", async () => {
         (recipeServiceMock.deleteRecipe as any).mockReturnValueOnce(true);
         const response = await supertest(apiServer.server.server)
-            .delete("/api/recipes/r1")
+            .delete(`${LEAGUE_PREFIX}/recipes/r1`)
             .expect(204);
-        expect((recipeServiceMock.deleteRecipe as any)).toHaveBeenCalledWith("r1");
+        expect((recipeServiceMock.deleteRecipe as any)).toHaveBeenCalledWith(TEST_LEAGUE, "r1");
         expect(response.body).toEqual({});
     });
 
     it("returns 404 if recipe not found", async () => {
         (recipeServiceMock.deleteRecipe as any).mockReturnValueOnce(false);
         const response = await supertest(apiServer.server.server)
-            .delete("/api/recipes/doesnotexist")
+            .delete(`${LEAGUE_PREFIX}/recipes/doesnotexist`)
             .expect(404);
         expect(response.body.error).toBe("Recipe not found");
     });
 });
 
-describe("GET /api/recipes", () => {
+describe("GET /api/leagues/:league/recipes", () => {
     beforeEach(() => {
         mockGetAllRecipes.mockClear();
         mockGetAllRecipes.mockResolvedValue([
@@ -576,7 +583,7 @@ describe("GET /api/recipes", () => {
 
     it("returns all recipes if no cursor/limit", async () => {
         const response = await supertest(apiServer.server.server)
-            .get("/api/recipes")
+            .get(`${LEAGUE_PREFIX}/recipes`)
             .expect(200);
         expect(response.body.recipes.length).toBe(3);
         expect(response.body.recipes[0].id).toBe("r1");
@@ -584,7 +591,7 @@ describe("GET /api/recipes", () => {
 
     it("returns limited recipes and nextCursor", async () => {
         const response = await supertest(apiServer.server.server)
-            .get("/api/recipes?limit=2")
+            .get(`${LEAGUE_PREFIX}/recipes?limit=2`)
             .expect(200);
         expect(response.body.recipes.length).toBe(2);
         expect(response.body.nextCursor).toBe("r2");
@@ -592,7 +599,7 @@ describe("GET /api/recipes", () => {
 
     it("returns recipes after cursor", async () => {
         const response = await supertest(apiServer.server.server)
-            .get("/api/recipes?cursor=r1&limit=1")
+            .get(`${LEAGUE_PREFIX}/recipes?cursor=r1&limit=1`)
             .expect(200);
         expect(response.body.recipes.length).toBe(1);
         expect(response.body.recipes[0].id).toBe("r2");
@@ -600,12 +607,12 @@ describe("GET /api/recipes", () => {
 
     it("returns empty array if cursor at end", async () => {
         const response = await supertest(apiServer.server.server)
-            .get("/api/recipes?cursor=r3")
+            .get(`${LEAGUE_PREFIX}/recipes?cursor=r3`)
             .expect(200);
         expect(response.body.recipes.length).toBe(0);
     });
 });
-describe("GET /api/ninja-items", () => {
+describe("GET /api/leagues/:league/ninja-items", () => {
     it("calls store with all query parameters and returns real items", async () => {
         const realItems = [
             {
@@ -642,9 +649,9 @@ describe("GET /api/ninja-items", () => {
             limit: "2"
         };
         const response = await supertest(apiServer.server.server)
-            .get(`/api/ninja-items?search=${params.search}&key=${params.key}&limit=${params.limit}`)
+            .get(`${LEAGUE_PREFIX}/ninja-items?search=${params.search}&key=${params.key}&limit=${params.limit}`)
             .expect(200);
-        expect(ninjaItemStoreMock.findByText).toHaveBeenCalledWith(params.key, params.search);
+        expect(mockNinjaItemStore.findByText).toHaveBeenCalledWith(params.key, params.search);
         expect(response.body.items.length).toBeGreaterThanOrEqual(2);
         expect(response.body.items[0].id).toBe("0");
         expect(response.body.items[1].id).toBe("1");

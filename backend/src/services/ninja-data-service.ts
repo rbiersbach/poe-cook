@@ -1,6 +1,6 @@
 import type { FastifyBaseLogger } from "fastify";
 import { NinjaCategory, NinjaItem } from "../models/ninja-types";
-import type { INinjaItemStore } from "../stores/ninja-item-store";
+import type { StoreRegistry } from "../stores/store-registry";
 import type { INinjaClientService } from "./ninja-client-service";
 
 export interface INinjaDataService {
@@ -12,7 +12,7 @@ export class NinjaDataService implements INinjaDataService {
     constructor(
         private logger: FastifyBaseLogger,
         private ninjaClient: INinjaClientService,
-        private ninjaItemStore: INinjaItemStore
+        private registry: StoreRegistry
     ) { }
 
     /**
@@ -21,12 +21,13 @@ export class NinjaDataService implements INinjaDataService {
      */
     async refresh(categories: NinjaCategory[], league: string): Promise<NinjaItem[]> {
         this.logger.info({ categories, league }, "Refreshing ninja items for categories");
+        const ninjaItemStore = this.registry.getNinjaItemStore(league);
         let allItems: NinjaItem[] = [];
         for (const category of categories) {
             try {
                 const items = await this.ninjaClient.fetchBulkItems(league, category);
                 this.logger.info({ category, count: items.length }, "Fetched ninja items");
-                this.ninjaItemStore.addMany(items);
+                ninjaItemStore.addMany(items);
                 allItems = allItems.concat(items);
 
             } catch (err) {
@@ -39,14 +40,11 @@ export class NinjaDataService implements INinjaDataService {
 
     /**
      * Refreshes ninja items for all categories defined in NinjaCategory.
-     */
-    /**
-     * Refreshes ninja items for all categories defined in NinjaCategory.
      * Only refetches if any item is older than 1 hour, or if force is true.
      */
     async refreshAll(league: string, force = false): Promise<NinjaItem[]> {
         const categories = Object.values(NinjaCategory) as NinjaCategory[];
-        const items = this.ninjaItemStore.getAll();
+        const items = this.registry.getNinjaItemStore(league).getAll();
         const now = Date.now();
         const oneHour = 60 * 60 * 1000;
         let needsRefresh = force;

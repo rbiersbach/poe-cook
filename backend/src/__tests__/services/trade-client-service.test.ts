@@ -11,7 +11,7 @@ describe("TradeClient", () => {
 
   beforeEach(() => {
     fetchImpl = vi.fn();
-    client = new TradeClientService("test-agent", "TestLeague", NoopLogger, "https://www.pathofexile.com", undefined, fetchImpl as any);
+    client = new TradeClientService("test-agent", NoopLogger, "https://www.pathofexile.com", undefined, fetchImpl as any);
   });
 
   describe("search", () => {
@@ -23,7 +23,7 @@ describe("TradeClient", () => {
         json: async () => mockRes,
         headers: new Map(),
       });
-      const res = await client.search(req);
+      const res = await client.search(req, "TestLeague");
       expect(fetchImpl).toHaveBeenCalledWith(
         expect.stringContaining("/api/trade/search/TestLeague"),
         expect.objectContaining({ method: "POST" })
@@ -38,7 +38,7 @@ describe("TradeClient", () => {
         statusText: "Forbidden",
         text: async () => "rate limited",
       });
-      await expect(client.search({} as any)).rejects.toThrow(/HTTP 403/);
+      await expect(client.search({} as any, "TestLeague")).rejects.toThrow(/HTTP 403/);
     });
   });
 
@@ -112,7 +112,7 @@ describe("TradeClient", () => {
       expect(h["Accept"]).toBe("application/json");
     });
     it("includes POESESSID cookie if set", () => {
-      const c = new TradeClientService("test-agent", "TestLeague", NoopLogger, "https://www.pathofexile.com", "abc", fetchImpl as any);
+      const c = new TradeClientService("test-agent", NoopLogger, "https://www.pathofexile.com", "abc", fetchImpl as any);
       const h = (c as any).headers();
       expect(h["Cookie"]).toMatch(/POESESSID=abc/);
     });
@@ -140,7 +140,7 @@ describe("TradeClient", () => {
         headers: new Map(),
       });
 
-      const res = await client.searchAndFetch(req, 2);
+      const res = await client.searchAndFetch(req, "TestLeague", 2);
       expect(res.search).toEqual(mockSearch);
       expect(res.listings).toEqual(mockFetch);
       expect(fetchImpl).toHaveBeenCalledTimes(2);

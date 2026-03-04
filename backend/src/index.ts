@@ -1,26 +1,41 @@
 import { TradeApiServer } from "api/api";
+import { LeagueService } from "services/league-service";
 import { NinjaClientService } from "services/ninja-client-service";
 import { NinjaDataService } from "services/ninja-data-service";
-import { NinjaItemStore } from "stores/ninja-item-store";
+import { NinjaScheduler } from "services/ninja-scheduler";
+import { StoreRegistry } from "stores/store-registry";
 
 
 
-const ninjaItemStore = new NinjaItemStore();
-const apiServer = new TradeApiServer(undefined, undefined, undefined, ninjaItemStore);
-const league = "Standard";
+const registry = new StoreRegistry();
 
-// Instantiate and refresh all ninja items on server start
+const apiServer = new TradeApiServer(
+  undefined,
+  undefined,
+  undefined,
+  registry,
+);
+
 const ninjaClient = new NinjaClientService(apiServer.server.log);
+const ninjaDataService = new NinjaDataService(apiServer.server.log, ninjaClient, registry);
+const leagueService = new LeagueService(apiServer.server.log);
+const ninjaScheduler = new NinjaScheduler(ninjaDataService, apiServer.server.log);
 
-const ninjaDataService = new NinjaDataService(apiServer.server.log, ninjaClient, ninjaItemStore);
-ninjaDataService.refreshAll(league).then(() => {
-  apiServer.server.log.info("Ninja items refreshed on startup");
-}).catch((err) => {
-  apiServer.server.log.error({ err }, "Failed to refresh ninja items on startup");
-});
+// Re-wire services that need ninjaDataService/scheduler
+// (Achieved by passing into the TradeApiServer constructor below)
+const apiServerFull = new TradeApiServer(
+  undefined,
+  undefined,
+  undefined,
+  registry,
+  leagueService,
+  ninjaScheduler,
+);
+
+ninjaScheduler.start();
 
 // Start the API server
-apiServer.server.listen({ port: 3001 }, (err, address) => {
+apiServerFull.server.listen({ port: 3001 }, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);

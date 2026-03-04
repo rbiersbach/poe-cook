@@ -1,7 +1,7 @@
 export interface ITradeResolverService {
     resolveTradeRequestFromUrl(url: string, poeSessid: string): Promise<TradeSearchRequest>;
-    resolveItemFromUrl(url: string, poeSessid: string): Promise<{ resolved: ResolvedMarketData; search: TradeSearchRequest; }>;
-    resolveItemFromSearch(search: TradeSearchRequest, poeSessid: string): Promise<ResolvedMarketData>;
+    resolveItemFromUrl(url: string, poeSessid: string, league: string): Promise<{ resolved: ResolvedMarketData; search: TradeSearchRequest; }>;
+    resolveItemFromSearch(search: TradeSearchRequest, poeSessid: string, league: string): Promise<ResolvedMarketData>;
 }
 import { FastifyBaseLogger } from "fastify";
 import { Price, ResolvedMarketData, TradeFilters, TradeQuery, TradeSearchRequest } from "models/trade-types";
@@ -65,19 +65,19 @@ export class TradeResolverService implements ITradeResolverService {
     /**
      * Resolves a trade item from a tradeUrl, returning enriched market data.
      */
-    async resolveItemFromUrl(tradeUrl: string, poeSessid: string): Promise<{ resolved: ResolvedMarketData, search: TradeSearchRequest }> {
+    async resolveItemFromUrl(tradeUrl: string, poeSessid: string, league: string): Promise<{ resolved: ResolvedMarketData, search: TradeSearchRequest }> {
         const searchRequest = await this.resolveTradeRequestFromUrl(tradeUrl, poeSessid);
-        const resolved = await this.resolveItemFromSearch(searchRequest, poeSessid);
+        const resolved = await this.resolveItemFromSearch(searchRequest, poeSessid, league);
         return { resolved, search: searchRequest };
     }
 
     /**
      * Resolves a trade item from a TradeSearchRequest, returning enriched market data.
      */
-    async resolveItemFromSearch(searchRequest: TradeSearchRequest, poeSessid: string): Promise<ResolvedMarketData> {
+    async resolveItemFromSearch(searchRequest: TradeSearchRequest, poeSessid: string, league: string): Promise<ResolvedMarketData> {
         this.logger.info({ searchRequest }, "Resolving item from search");
         // Use combined search and fetch
-        const { search, listings } = await this.tradeClient.searchAndFetch(searchRequest, 10);
+        const { search, listings } = await this.tradeClient.searchAndFetch(searchRequest, league, 10);
 
         if (!listings || !listings.result || listings.result.length === 0) {
             this.logger.warn({ searchRequest }, "No listings found");

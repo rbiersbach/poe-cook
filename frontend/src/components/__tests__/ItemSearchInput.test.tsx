@@ -2,7 +2,12 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NinjaItem } from "../../api/generated/models/NinjaItem";
 import { DefaultService } from "../../api/generated/services/DefaultService";
+import { LeagueProvider } from "../../context/LeagueContext";
 import { ItemSearchInput } from "../item/ItemSearchInput";
+
+function wrap(ui: React.ReactElement) {
+    return render(<LeagueProvider defaultLeague={{ id: "Standard", realm: "pc", text: "Standard" }}>{ui}</LeagueProvider>);
+}
 
 const mockNinjaItem: NinjaItem = {
     id: "orb-of-alteration",
@@ -30,7 +35,7 @@ describe("ItemSearchInput", () => {
     let mockGet: ReturnType<typeof vi.spyOn>;
 
     beforeEach(() => {
-        mockGet = vi.spyOn(DefaultService, "getApiNinjaItems").mockResolvedValue({
+        mockGet = vi.spyOn(DefaultService, "getApiLeagueNinjaItems").mockResolvedValue({
             items: [mockNinjaItem, mockNinjaItem2],
         });
     });
@@ -40,12 +45,12 @@ describe("ItemSearchInput", () => {
     });
 
     it("renders the search input", () => {
-        render(<ItemSearchInput onSelect={vi.fn()} />);
+        wrap(<ItemSearchInput onSelect={vi.fn()} />);
         expect(screen.getByTestId("item-search-field")).toBeInTheDocument();
     });
 
     it("fetches suggestions after debounce and shows dropdown", async () => {
-        render(<ItemSearchInput onSelect={vi.fn()} />);
+        wrap(<ItemSearchInput onSelect={vi.fn()} />);
         const input = screen.getByTestId("item-search-field");
 
         fireEvent.change(input, { target: { value: "orb" } });
@@ -59,7 +64,7 @@ describe("ItemSearchInput", () => {
 
     it("calls onSelect with the item when a suggestion is clicked", async () => {
         const onSelect = vi.fn();
-        render(<ItemSearchInput onSelect={onSelect} />);
+        wrap(<ItemSearchInput onSelect={onSelect} />);
         const input = screen.getByTestId("item-search-field");
 
         fireEvent.change(input, { target: { value: "orb" } });
@@ -72,7 +77,7 @@ describe("ItemSearchInput", () => {
     });
 
     it("clears input and closes dropdown after selection", async () => {
-        render(<ItemSearchInput onSelect={vi.fn()} />);
+        wrap(<ItemSearchInput onSelect={vi.fn()} />);
         const input = screen.getByTestId("item-search-field");
 
         fireEvent.change(input, { target: { value: "orb" } });
@@ -86,7 +91,7 @@ describe("ItemSearchInput", () => {
     });
 
     it("closes dropdown on Escape key", async () => {
-        render(<ItemSearchInput onSelect={vi.fn()} />);
+        wrap(<ItemSearchInput onSelect={vi.fn()} />);
         const input = screen.getByTestId("item-search-field");
 
         fireEvent.change(input, { target: { value: "orb" } });
@@ -100,7 +105,7 @@ describe("ItemSearchInput", () => {
 
     it("navigates suggestions with arrow keys and selects on Enter", async () => {
         const onSelect = vi.fn();
-        render(<ItemSearchInput onSelect={onSelect} />);
+        wrap(<ItemSearchInput onSelect={onSelect} />);
         const input = screen.getByTestId("item-search-field");
 
         fireEvent.change(input, { target: { value: "orb" } });
@@ -118,7 +123,7 @@ describe("ItemSearchInput", () => {
 
     it("does not fetch or show dropdown for empty query", async () => {
         vi.useFakeTimers();
-        render(<ItemSearchInput onSelect={vi.fn()} />);
+        wrap(<ItemSearchInput onSelect={vi.fn()} />);
         const input = screen.getByTestId("item-search-field");
 
         fireEvent.change(input, { target: { value: "" } });
@@ -131,7 +136,7 @@ describe("ItemSearchInput", () => {
     });
 
     it("is disabled when disabled prop is true", () => {
-        render(<ItemSearchInput onSelect={vi.fn()} disabled={true} />);
+        wrap(<ItemSearchInput onSelect={vi.fn()} disabled={true} />);
         expect(screen.getByTestId("item-search-field")).toBeDisabled();
     });
 });

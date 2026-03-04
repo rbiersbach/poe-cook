@@ -1,6 +1,5 @@
 
 import {
-  LeagueName,
   TradeFetchResponse,
   TradeSearchRequest,
   TradeSearchResponse,
@@ -11,9 +10,9 @@ import { TradeRate } from "trade-rate";
 import { FastifyBaseLogger } from "fastify";
 
 export interface ITradeClientService {
-  search(body: TradeSearchRequest): Promise<TradeSearchResponse>;
+  search(body: TradeSearchRequest, league: string): Promise<TradeSearchResponse>;
   fetchListings(ids: string[], queryId: string): Promise<TradeFetchResponse>;
-  searchAndFetch(body: TradeSearchRequest, maxResults?: number): Promise<{ search: TradeSearchResponse; listings: TradeFetchResponse; }>;
+  searchAndFetch(body: TradeSearchRequest, league: string, maxResults?: number): Promise<{ search: TradeSearchResponse; listings: TradeFetchResponse; }>;
 }
 
 export class TradeClientService implements ITradeClientService {
@@ -21,13 +20,11 @@ export class TradeClientService implements ITradeClientService {
   private baseUrl: string;
   private userAgent: string;
   private poeSessId?: string;
-  private league: LeagueName;
   private fetchImpl: typeof fetch;
   private logger: FastifyBaseLogger;
 
   constructor(
     userAgent: string,
-    league: LeagueName,
     logger: FastifyBaseLogger,
     baseUrl: string = "https://www.pathofexile.com",
     poeSessId?: string,
@@ -37,13 +34,12 @@ export class TradeClientService implements ITradeClientService {
     this.userAgent = userAgent;
     this.poeSessId = poeSessId;
     this.fetchImpl = fetchImpl;
-    this.league = league;
     this.logger = logger;
   }
 
   /** POST /api/trade/search/{league} */
-  async search(body: TradeSearchRequest): Promise<TradeSearchResponse> {
-    const url = `${this.baseUrl}/api/trade/search/${encodeURIComponent(this.league)}`;
+  async search(body: TradeSearchRequest, league: string): Promise<TradeSearchResponse> {
+    const url = `${this.baseUrl}/api/trade/search/${encodeURIComponent(league)}`;
 
     const res = await this.fetchImpl(url, {
       method: "POST",
@@ -104,8 +100,8 @@ export class TradeClientService implements ITradeClientService {
  * Combined search and fetch for item resolution.
  * Returns { search, listings } for the given TradeSearchRequest.
  */
-  async searchAndFetch(body: TradeSearchRequest, maxResults = 10): Promise<{ search: TradeSearchResponse, listings: TradeFetchResponse }> {
-    const search = await this.search(body);
+  async searchAndFetch(body: TradeSearchRequest, league: string, maxResults = 10): Promise<{ search: TradeSearchResponse, listings: TradeFetchResponse }> {
+    const search = await this.search(body, league);
     const ids = search.result.slice(0, maxResults);
     const listings = await this.fetchListings(ids, search.id);
     return { search, listings };

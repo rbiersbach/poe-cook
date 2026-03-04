@@ -9,6 +9,7 @@ const mockStore = {
     get: vi.fn((_id: string) => undefined),
     add: vi.fn((recipe: Recipe) => recipe),
     clear: vi.fn(),
+    delete: vi.fn(),
 };
 const mockResolver = {
     resolveTradeRequestFromUrl: vi.fn(),
@@ -18,11 +19,15 @@ const mockResolver = {
 const mockLogger = { info: vi.fn(), warn: vi.fn(), error: vi.fn() };
 const mockNinjaItemStore = { get: vi.fn() };
 
+const mockRegistry = {
+    getRecipeStore: vi.fn(() => mockStore),
+    getNinjaItemStore: vi.fn(() => mockNinjaItemStore),
+};
+
 const service = new RecipeService(
-    mockStore as any,
+    mockRegistry as any,
     mockResolver as any,
     mockLogger as any,
-    mockNinjaItemStore as any
 );
 
 describe("RecipeService", () => {
@@ -32,13 +37,13 @@ describe("RecipeService", () => {
 
     it("getAllRecipes returns recipes from store", async () => {
         (mockStore.getAll as any).mockReturnValue([{ id: "r1" }]);
-        const recipes = await service.getAllRecipes();
+        const recipes = await service.getAllRecipes("Standard");
         expect(recipes).toEqual([{ id: "r1" }]);
     });
 
     it("getRecipeById returns recipe from store", async () => {
         (mockStore.get as any).mockReturnValue({ id: "r2" });
-        const recipe = await service.getRecipeById("r2");
+        const recipe = await service.getRecipeById("Standard", "r2");
         expect(recipe).toEqual({ id: "r2" });
     });
 
@@ -52,7 +57,7 @@ describe("RecipeService", () => {
             createdAt: "2024-01-01T00:00:00Z",
             updatedAt: "2024-01-01T00:00:00Z",
         };
-        const refreshed = await service.refreshRecipe(recipe);
+        const refreshed = await service.refreshRecipe(recipe, "Standard");
 
         if (isTradeItem(refreshed.inputs[0])) {
             expect((refreshed.inputs[0].item as TradeItem).resolved).toEqual({ name: "resolved", iconUrl: "icon.png" });
@@ -93,7 +98,7 @@ describe("RecipeService", () => {
         const updatedNinjaItemData = { ...ninjaItemData, price: 130 };
 
         mockNinjaItemStore.get.mockReturnValue(updatedNinjaItemData);
-        const refreshed = await service.refreshRecipe(recipe);
+        const refreshed = await service.refreshRecipe(recipe, "Standard");
         expect((refreshed.inputs[0].item as NinjaItem).price).toBe(130);
         expect((refreshed.outputs[0].item as NinjaItem).price).toBe(130);
         expect(refreshed.inputs[0].name).toBe(ninjaItemData.name);

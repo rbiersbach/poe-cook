@@ -8,11 +8,37 @@ servers:
   - url: http://localhost:3001
 
 paths:
-  /api/ninja-items:
+  /api/leagues:
     get:
-      operationId: getApiNinjaItems
+      operationId: getApiLeagues
+      summary: List available Path of Exile leagues
+      responses:
+        "200":
+          description: List of leagues
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - leagues
+                properties:
+                  leagues:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/League"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/leagues/{league}/ninja-items:
+    get:
+      operationId: getApiLeagueNinjaItems
       summary: List ninja items (paginated, searchable)
       parameters:
+        - $ref: "#/components/parameters/leagueParam"
         - in: query
           name: search
           schema:
@@ -23,7 +49,6 @@ paths:
           name: key
           schema:
             type: string
-            default: name
           required: false
           description: Field to search in (e.g., name)
         - in: query
@@ -36,7 +61,6 @@ paths:
           name: limit
           schema:
             type: integer
-            default: 20
           required: false
           description: Maximum number of items to return
       responses:
@@ -55,16 +79,25 @@ paths:
                     type: string
                     nullable: true
                     description: Cursor for the next page, or null if no more items
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
         "500":
           description: Server error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /api/resolve-item:
+
+  /api/leagues/{league}/resolve-item:
     post:
-      operationId: postApiResolveItem
+      operationId: postApiLeagueResolveItem
       summary: Resolve a trade item (fetch price and icon)
+      parameters:
+        - $ref: "#/components/parameters/leagueParam"
       requestBody:
         required: true
         content:
@@ -91,10 +124,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
-  /api/recipes:
+  /api/leagues/{league}/recipes:
     post:
-      operationId: postApiRecipes
+      operationId: postApiLeagueRecipes
       summary: Create a recipe
+      parameters:
+        - $ref: "#/components/parameters/leagueParam"
       requestBody:
         required: true
         content:
@@ -121,9 +156,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
     get:
-      operationId: getApiRecipes
+      operationId: getApiLeagueRecipes
       summary: List recipes
       parameters:
+        - $ref: "#/components/parameters/leagueParam"
         - in: query
           name: cursor
           schema:
@@ -159,11 +195,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-  /api/recipes/{id}:
+
+  /api/leagues/{league}/recipes/{id}:
     get:
-      operationId: getApiRecipeById
+      operationId: getApiLeagueRecipeById
       summary: Get recipe details by id
       parameters:
+        - $ref: "#/components/parameters/leagueParam"
         - in: path
           name: id
           required: true
@@ -195,9 +233,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
     put:
-      operationId: putApiRecipeById
+      operationId: putApiLeagueRecipeById
       summary: Update a recipe
       parameters:
+        - $ref: "#/components/parameters/leagueParam"
         - in: path
           name: id
           required: true
@@ -235,9 +274,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
     delete:
-      operationId: deleteApiRecipeById
+      operationId: deleteApiLeagueRecipeById
       summary: Delete a recipe
       parameters:
+        - $ref: "#/components/parameters/leagueParam"
         - in: path
           name: id
           required: true
@@ -258,8 +298,34 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+
 components:
+  parameters:
+    leagueParam:
+      in: path
+      name: league
+      required: true
+      schema:
+        type: string
+        minLength: 1
+      description: The Path of Exile league name (e.g. "Standard", "Hardcore")
   schemas:
+    League:
+      type: object
+      required:
+        - id
+        - realm
+        - text
+      properties:
+        id:
+          type: string
+          description: League identifier used in API paths
+        realm:
+          type: string
+          description: Platform realm (pc, xbox, sony)
+        text:
+          type: string
+          description: Display name of the league
     NinjaItem:
       type: object
       required:

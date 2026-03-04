@@ -18,6 +18,10 @@ const mockNinjaItemStore = {
     getAll: () => storeItems,
 };
 
+const mockRegistry = {
+    getNinjaItemStore: vi.fn(() => mockNinjaItemStore),
+};
+
 describe("NinjaDataService refreshAll", () => {
     let service: NinjaDataService;
 
@@ -27,7 +31,7 @@ describe("NinjaDataService refreshAll", () => {
         service = new NinjaDataService(
             mockLogger as any,
             mockNinjaClient as any,
-            mockNinjaItemStore as any
+            mockRegistry as any
         );
     });
 
@@ -66,7 +70,7 @@ describe("NinjaDataService", () => {
         service = new NinjaDataService(
             NoopLogger,
             mockNinjaClient as any,
-            mockNinjaItemStore as any
+            mockRegistry as any
         );
     });
 

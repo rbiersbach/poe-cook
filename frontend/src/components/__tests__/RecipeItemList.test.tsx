@@ -3,7 +3,12 @@ import { RecipeItem } from "api/generated";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { makeNinjaItem, makeTradeItem, makeTradeRecipeItem } from "../../__tests__/fixtures";
 import { DefaultService } from "../../api/generated/services/DefaultService";
+import { LeagueProvider } from "../../context/LeagueContext";
 import { RecipeItemList } from "../recipe/RecipeItemList";
+
+function wrap(ui: React.ReactElement) {
+    return render(<LeagueProvider defaultLeague={{ id: "Standard", realm: "pc", text: "Standard" }}>{ui}</LeagueProvider>);
+}
 
 const mockNinjaItem = makeNinjaItem();
 
@@ -28,7 +33,7 @@ describe("RecipeItemList", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         mockResolveItem.mockResolvedValue(mockTradeItem);
-        mockGetNinjaItems = vi.spyOn(DefaultService, "getApiNinjaItems").mockResolvedValue({
+        mockGetNinjaItems = vi.spyOn(DefaultService, "getApiLeagueNinjaItems").mockResolvedValue({
             items: [mockNinjaItem],
         });
     });
@@ -38,7 +43,7 @@ describe("RecipeItemList", () => {
     });
 
     it("renders the label and ninja item search input", () => {
-        render(
+        wrap(
             <RecipeItemList
                 label="Inputs"
                 onResolvedChange={vi.fn()}
@@ -52,7 +57,7 @@ describe("RecipeItemList", () => {
 
     it("adds a ninja item to resolved list when selected from search", async () => {
         const onResolvedChange = vi.fn();
-        render(
+        wrap(
             <RecipeItemList
                 label="Inputs"
                 onResolvedChange={onResolvedChange}
@@ -84,7 +89,7 @@ describe("RecipeItemList", () => {
 
     it("adds a trade item to resolved list when draft URL is resolved", async () => {
         const onResolvedChange = vi.fn();
-        render(
+        wrap(
             <RecipeItemList
                 label="Inputs"
                 onResolvedChange={onResolvedChange}
@@ -115,7 +120,7 @@ describe("RecipeItemList", () => {
 
     it("removing a resolved item updates the resolved list", async () => {
         const onResolvedChange = vi.fn();
-        render(
+        wrap(
             <RecipeItemList
                 label="Inputs"
                 onResolvedChange={onResolvedChange}
@@ -140,7 +145,7 @@ describe("RecipeItemList", () => {
         // Use a promise that never resolves to keep resolvingIdx set
         const neverResolve = vi.fn().mockImplementation(() => new Promise(() => { }));
 
-        render(
+        wrap(
             <RecipeItemList
                 label="Inputs"
                 onResolvedChange={vi.fn()}

@@ -1,0 +1,338 @@
+[
+  {
+    "id": "chaos",
+    "name": "Chaos Orb",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxSYXJlIiwic2NhbGUiOjF9XQ/46a2347805/CurrencyRerollRare.png",
+    "category": "Currency",
+    "detailsId": "chaos-orb",
+    "price": 1,
+    "priceHistory": [
+      0,
+      null,
+      null,
+      13.12,
+      13.12,
+      -27.85,
+      -50
+    ],
+    "volume": 83.33,
+    "maxVolumeCurrency": "divine",
+    "maxVolumeRate": 500,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "alch",
+    "name": "Orb of Alchemy",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlVG9SYXJlIiwic2NhbGUiOjF9XQ/0c72cd1d44/CurrencyUpgradeToRare.png",
+    "category": "Currency",
+    "detailsId": "orb-of-alchemy",
+    "price": 0.3333,
+    "priceHistory": [
+      0,
+      400,
+      null,
+      null,
+      400,
+      400,
+      233.3
+    ],
+    "volume": 1,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 3,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "alt",
+    "name": "Orb of Alteration",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxNYWdpYyIsInNjYWxlIjoxfV0/6308fc8ca2/CurrencyRerollMagic.png",
+    "category": "Currency",
+    "detailsId": "orb-of-alteration",
+    "price": 0.1982,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      0,
+      3.81
+    ],
+    "volume": 30,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 5.04,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "bauble",
+    "name": "Glassblower's Bauble",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lGbGFza1F1YWxpdHkiLCJzY2FsZSI6MX1d/59e57027e5/CurrencyFlaskQuality.png",
+    "category": "Currency",
+    "detailsId": "glassblowers-bauble",
+    "price": 3.33,
+    "priceHistory": [
+      null,
+      0,
+      null,
+      null,
+      null,
+      200,
+      400
+    ],
+    "volume": 3.33,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 0.3,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "divine",
+    "name": "Divine Orb",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
+    "category": "Currency",
+    "detailsId": "divine-orb",
+    "price": 500,
+    "priceHistory": [
+      0,
+      null,
+      null,
+      -11.6,
+      -11.6,
+      38.6,
+      100
+    ],
+    "volume": 83.33,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 0.002,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "exalted",
+    "name": "Exalted Orb",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lBZGRNb2RUb1JhcmUiLCJzY2FsZSI6MX1d/33f2656aea/CurrencyAddModToRare.png",
+    "category": "Currency",
+    "detailsId": "exalted-orb",
+    "price": 29.26,
+    "priceHistory": [
+      null,
+      null,
+      0,
+      null,
+      0,
+      -50,
+      -26.85
+    ],
+    "volume": 151.2,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 0.03418,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "jewellers",
+    "name": "Jeweller's Orb",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxTb2NrZXROdW1iZXJzIiwic2NhbGUiOjF9XQ/ba411ff58a/CurrencyRerollSocketNumbers.png",
+    "category": "Currency",
+    "detailsId": "jewellers-orb",
+    "price": 0.25,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      0,
+      25
+    ],
+    "volume": 0.1667,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 4,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "lesser-eldritch-ichor",
+    "name": "Lesser Eldritch Ichor",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVGFuZ2xlT3JiUmFuazEiLCJzY2FsZSI6MX1d/70e5e53590/TangleOrbRank1.png",
+    "category": "Currency",
+    "detailsId": "lesser-eldritch-ichor",
+    "price": 1.5,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+    ],
+    "volume": 0.5,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 0.6667,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "regal",
+    "name": "Regal Orb",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlTWFnaWNUb1JhcmUiLCJzY2FsZSI6MX1d/0ded706f57/CurrencyUpgradeMagicToRare.png",
+    "category": "Currency",
+    "detailsId": "regal-orb",
+    "price": 2,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      0,
+      0,
+      -47.5,
+      0
+    ],
+    "volume": 0.3333,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 0.5,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "regret",
+    "name": "Orb of Regret",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lQYXNzaXZlU2tpbGxSZWZ1bmQiLCJzY2FsZSI6MX1d/32d499f562/CurrencyPassiveSkillRefund.png",
+    "category": "Currency",
+    "detailsId": "orb-of-regret",
+    "price": 1,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+    ],
+    "volume": 1.33,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 1,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "chrome",
+    "name": "Chromatic Orb",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxTb2NrZXRDb2xvdXJzIiwic2NhbGUiOjF9XQ/19c8ddae20/CurrencyRerollSocketColours.png",
+    "category": "Currency",
+    "detailsId": "chromatic-orb",
+    "price": 0.08083,
+    "priceHistory": [
+      null,
+      0,
+      1.17,
+      -8.95,
+      6.23,
+      4.09,
+      -26.4
+    ],
+    "volume": 5.83,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 12.37,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "gcp",
+    "name": "Gemcutter's Prism",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lHZW1RdWFsaXR5Iiwic2NhbGUiOjF9XQ/dbe9678a28/CurrencyGemQuality.png",
+    "category": "Currency",
+    "detailsId": "gemcutters-prism",
+    "price": 3,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      0,
+      0,
+      0,
+      50
+    ],
+    "volume": 3,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 0.3333,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "stacked-deck",
+    "name": "Stacked Deck",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9EZWNrIiwic2NhbGUiOjF9XQ/8e83aea79a/Deck.png",
+    "category": "Currency",
+    "detailsId": "stacked-deck",
+    "price": 2,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      null,
+      0,
+      50,
+      100
+    ],
+    "volume": 5,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 0.5,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "fusing",
+    "name": "Orb of Fusing",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxTb2NrZXRMaW5rcyIsInNjYWxlIjoxfV0/c5e1959880/CurrencyRerollSocketLinks.png",
+    "category": "Currency",
+    "detailsId": "orb-of-fusing",
+    "price": 0.1,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      0,
+      -70
+    ],
+    "volume": 0.1667,
+    "maxVolumeCurrency": "chaos",
+    "maxVolumeRate": 10,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "vivid-lifeforce",
+    "name": "Vivid Crystallised Lifeforce",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGFydmVzdC9WaXZpZExpZmVmb3JjZSIsInNjYWxlIjoxfV0/a355b8a5a2/VividLifeforce.png",
+    "category": "Currency",
+    "detailsId": "vivid-crystallised-lifeforce",
+    "price": 0.1667,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+    ],
+    "volume": 1417,
+    "maxVolumeCurrency": "divine",
+    "maxVolumeRate": 3000,
+    "fetchedAt": "2026-03-04T06:57:25.996Z"
+  },
+  {
+    "id": "prismatic-oil",
+    "name": "Prismatic Oil",
+    "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9QcmlzbWF0aWNPaWwiLCJzY2FsZSI6MX1d/271183afbe/PrismaticOil.png",
+    "category": "Oil",
+    "detailsId": "prismatic-oil",
+    "price": 1000,
+    "priceHistory": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      0
+    ],
+    "volume": 333.3,
+    "maxVolumeCurrency": "divine",
+    "maxVolumeRate": 0.5,
+    "fetchedAt": "2026-03-04T06:57:26.865Z"
+  }
+]

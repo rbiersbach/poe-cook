@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { DefaultService } from '../../api/generated/services/DefaultService';
 import type { NinjaItem } from '../../api/generated/models/NinjaItem';
-import ItemIcon from './ItemIcon';
+import { DefaultService } from '../../api/generated/services/DefaultService';
+import { useLeague } from '../../context/LeagueContext';
 import { Loader } from '../ui/Loader';
+import ItemIcon from './ItemIcon';
 import { PriceDisplay } from './PriceDisplay';
 
 interface ItemSearchInputProps {
@@ -27,22 +28,23 @@ export const ItemSearchInput: React.FC<ItemSearchInputProps> = ({
     const [activeIdx, setActiveIdx] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
     const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const { league } = useLeague();
 
     const fetchSuggestions = useCallback((search: string) => {
-        if (!search.trim()) {
+        if (!search.trim() || !league) {
             setSuggestions([]);
             setOpen(false);
             return;
         }
         setLoading(true);
-        DefaultService.getApiNinjaItems(search, 'name', undefined, 8)
+        DefaultService.getApiLeagueNinjaItems(league.id, search, 'name', undefined, 8)
             .then(res => {
                 setSuggestions(res.items ?? []);
                 setOpen(true);
             })
             .catch(() => setSuggestions([]))
             .finally(() => setLoading(false));
-    }, []);
+    }, [league]);
 
     useEffect(() => {
         if (debounceRef.current) clearTimeout(debounceRef.current);

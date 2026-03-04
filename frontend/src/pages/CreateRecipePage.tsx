@@ -6,6 +6,7 @@ import { RecipeItemList } from "../components/recipe/RecipeItemList";
 import { Button } from "../components/ui/Button";
 import { ErrorMessage, SuccessMessage } from "../components/ui/SectionHeader";
 import { TextInput } from "../components/ui/TextInput";
+import { useLeague } from "../context/LeagueContext";
 import { createRecipeSchema } from "../validation/schemas";
 
 type TradeDraft = { tradeUrl: string; qty: number };
@@ -17,6 +18,7 @@ export default function CreateRecipePage() {
     const editContext = useContext(RecipeEditContext);
     const selectedRecipe = editContext?.selectedRecipe ?? null;
     const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => { });
+    const { league } = useLeague();
 
     const [resolvedInputs, setResolvedInputs] = useState<RecipeItem[]>([]);
     const [resolvedOutputs, setResolvedOutputs] = useState<RecipeItem[]>([]);
@@ -37,7 +39,7 @@ export default function CreateRecipePage() {
     }, [selectedRecipe]);
 
     const resolveItem = async (draft: TradeDraft): Promise<RecipeItem> => {
-        const res = await DefaultService.postApiResolveItem({ tradeUrl: draft.tradeUrl! });
+        const res = await DefaultService.postApiLeagueResolveItem(league!.id, { tradeUrl: draft.tradeUrl! });
         return {
             qty: draft.qty,
             type: 'trade' as any,
@@ -81,7 +83,7 @@ export default function CreateRecipePage() {
 
             if (selectedRecipe) {
                 // Update existing recipe
-                await DefaultService.putApiRecipeById(selectedRecipe.id, {
+                await DefaultService.putApiLeagueRecipeById(league!.id, selectedRecipe.id, {
                     name: recipeName,
                     inputs: resolvedInputs,
                     outputs: resolvedOutputs,
@@ -89,7 +91,7 @@ export default function CreateRecipePage() {
                 setSuccess("Recipe updated successfully!");
             } else {
                 // Create new recipe
-                await DefaultService.postApiRecipes({
+                await DefaultService.postApiLeagueRecipes(league!.id, {
                     name: recipeName,
                     inputs: resolvedInputs,
                     outputs: resolvedOutputs,
@@ -135,6 +137,14 @@ export default function CreateRecipePage() {
             return () => clearTimeout(timer);
         }
     }, [success, error]);
+
+    if (!league) {
+        return (
+            <div className="max-w-2xl mx-auto p-6 card shadow">
+                <p className="text-muted" data-testid="no-league-message">Please select a league to create recipes.</p>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-2xl mx-auto p-6 card shadow">

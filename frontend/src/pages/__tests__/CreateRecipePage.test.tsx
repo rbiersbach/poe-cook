@@ -4,6 +4,14 @@ import { makeRecipe, makeResolveItemResponse } from "../../__tests__/fixtures";
 import { RecipeItem } from "../../api/generated/models/RecipeItem";
 import { DefaultService } from "../../api/generated/services/DefaultService";
 import CreateRecipePage from "../CreateRecipePage";
+import { LeagueProvider } from "../../context/LeagueContext";
+import type { SelectedLeague } from "../../context/LeagueContext";
+
+const TEST_LEAGUE: SelectedLeague = { id: "Standard", realm: "pc", text: "Standard" };
+
+function renderWithLeague(ui: React.ReactElement) {
+    return render(<LeagueProvider defaultLeague={TEST_LEAGUE}>{ui}</LeagueProvider>);
+}
 
 const VALID_URL = "https://www.pathofexile.com/trade/search/Standard/abcdefghij";
 const ALT_URL = "https://www.pathofexile.com/trade/search/Standard/klmnopqrst";
@@ -13,7 +21,7 @@ const INPUT_URL_B = "https://www.pathofexile.com/trade/search/Standard/inputurlB
 const OUTPUT_URL_C = "https://www.pathofexile.com/trade/search/Standard/outputurlC";
 
 function mockThreeResolves() {
-    return vi.spyOn(DefaultService, "postApiResolveItem")
+    return vi.spyOn(DefaultService, "postApiLeagueResolveItem")
         .mockResolvedValueOnce(makeResolveItemResponse({ name: "Input1", iconUrl: "input1.png", amount: 1, search: { query: { filters: { type: "input1-filter" } }, sort: {} } }))
         .mockResolvedValueOnce(makeResolveItemResponse({ name: "Input2", iconUrl: "input2.png", amount: 2, search: { query: { filters: { type: "input2-filter" } }, sort: {} } }))
         .mockResolvedValueOnce(makeResolveItemResponse({ name: "Output", iconUrl: "output.png", amount: 3, search: { query: { filters: { type: "output-filter" } }, sort: {} } }));
@@ -22,10 +30,10 @@ function mockThreeResolves() {
 describe("CreateRecipePage", () => {
 
     it("autofills the name field with the resolved output name when only output is filled", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockResolvedValue(
             makeResolveItemResponse({ name: "Resolved Output Name" })
         );
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         // Only fill the output draft (second trade-url-input)
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
         fireEvent.change(outputUrl, { target: { value: VALID_URL } });
@@ -38,10 +46,10 @@ describe("CreateRecipePage", () => {
     });
 
     it("autofills the name field with the first output's resolved name if empty", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockResolvedValue(
             makeResolveItemResponse({ name: "Autofill Output Name", search: { query: { tradeUrl: VALID_URL }, sort: {} } })
         );
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         // Output draft is the second trade-url-input
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
         fireEvent.change(outputUrl, { target: { value: VALID_URL } });
@@ -54,7 +62,7 @@ describe("CreateRecipePage", () => {
         mockResolve.mockRestore();
     });
     it("renders all main sections (inputs, output, submit button)", () => {
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         // Inputs section
         expect(screen.getByTestId("recipe-item-list-inputs")).toBeInTheDocument();
         // Output section
@@ -64,11 +72,11 @@ describe("CreateRecipePage", () => {
     });
 
     it("can add and remove input drafts (never fewer than one)", async () => {
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         // Should start with two input drafts (input + output)
         expect(screen.getAllByTestId("trade-url-input")).toHaveLength(2);
         // Add input by providing a valid trade URL (mock API)
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockResolvedValue(
             makeResolveItemResponse({ search: { query: { tradeUrl: VALID_URL }, sort: {} } })
         );
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
@@ -89,8 +97,8 @@ describe("CreateRecipePage", () => {
     });
 
     it("can edit input and output fields (tradeUrl, qty)", async () => {
-        vi.spyOn(DefaultService, "postApiResolveItem").mockImplementation(() => new Promise(() => { }) as any);
-        render(<CreateRecipePage />);
+        vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockImplementation(() => new Promise(() => { }) as any);
+        renderWithLeague(<CreateRecipePage />);
         // Edit input draft fields
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: VALID_URL } });
@@ -112,10 +120,10 @@ describe("CreateRecipePage", () => {
     });
 
     it("triggers resolve when a valid trade URL is entered (mock API)", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockResolvedValue(
             makeResolveItemResponse({ search: { query: { tradeUrl: VALID_URL }, sort: {} } })
         );
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         // Wait for resolved item to appear
@@ -128,11 +136,11 @@ describe("CreateRecipePage", () => {
         let resolveDeferred: (value: any) => void;
         const deferredPromise = new Promise(resolve => { resolveDeferred = resolve; });
         // Return a CancelablePromise<ResolveItemResponse> for correct typing
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockImplementation(() => {
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockImplementation(() => {
             // @ts-expect-error: ignore internal CancelablePromise implementation details for test
             return deferredPromise as unknown as CancelablePromise<ResolveItemResponse>;
         });
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         // Loader should appear while promise is unresolved
@@ -150,8 +158,8 @@ describe("CreateRecipePage", () => {
     });
 
     it("shows an error message if resolving an input fails", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
-        render(<CreateRecipePage />);
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockRejectedValue(new Error("Network error"));
+        renderWithLeague(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         expect(await screen.findByText(/failed to resolve item/i)).toBeInTheDocument();
@@ -159,10 +167,10 @@ describe("CreateRecipePage", () => {
     });
 
     it("moves resolved items to the resolved list", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockResolvedValue(
             makeResolveItemResponse({ search: { query: { tradeUrl: VALID_URL }, sort: {} } })
         );
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         // Enter a valid trade URL
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: VALID_URL } });
@@ -178,10 +186,10 @@ describe("CreateRecipePage", () => {
     });
 
     it("moves resolved output to the resolved output row", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockResolvedValue(
             makeResolveItemResponse({ name: "Output Item", iconUrl: "output.png", amount: 50, search: { query: { tradeUrl: ALT_URL }, sort: {} } })
         );
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         // Enter a valid trade URL for output (second trade-url-input is output)
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
         fireEvent.change(outputUrl, { target: { value: ALT_URL } });
@@ -197,8 +205,8 @@ describe("CreateRecipePage", () => {
     });
 
     it("shows an error message if resolving the output fails", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
-        render(<CreateRecipePage />);
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockRejectedValue(new Error("Network error"));
+        renderWithLeague(<CreateRecipePage />);
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
         fireEvent.change(outputUrl, { target: { value: ALT_URL } });
         expect(await screen.findByText(/failed to resolve item/i)).toBeInTheDocument();
@@ -207,10 +215,10 @@ describe("CreateRecipePage", () => {
 
     it("submits successfully with two inputs and one output", async () => {
         const mockResolve = mockThreeResolves();
-        const mockSubmit = vi.spyOn(DefaultService, "postApiRecipes").mockResolvedValue({
+        const mockSubmit = vi.spyOn(DefaultService, "postApiLeagueRecipes").mockResolvedValue({
             recipe: makeRecipe({ id: "mock-id", name: "Output" }),
         });
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         // Fill and resolve first input draft
         let inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: INPUT_URL_A } });
@@ -232,7 +240,7 @@ describe("CreateRecipePage", () => {
         // Resolved rows should be cleared
         expect(screen.queryAllByTestId("recipe-item-row-resolved").length).toBe(0);
         // Assert submit API was called with correct payload and search property
-        expect(mockSubmit).toHaveBeenCalledWith({
+        expect(mockSubmit).toHaveBeenCalledWith(TEST_LEAGUE.id, {
             name: "Output",
             inputs: [
                 expect.objectContaining({
@@ -271,8 +279,8 @@ describe("CreateRecipePage", () => {
     });
     it("shows an error message if recipe submit fails", async () => {
         const mockResolve = mockThreeResolves();
-        const mockSubmit = vi.spyOn(DefaultService, "postApiRecipes").mockRejectedValue(new Error("API error: failed to submit"));
-        render(<CreateRecipePage />);
+        const mockSubmit = vi.spyOn(DefaultService, "postApiLeagueRecipes").mockRejectedValue(new Error("API error: failed to submit"));
+        renderWithLeague(<CreateRecipePage />);
 
         // Fill out name
         const nameInput = screen.getByTestId("recipe-name-input");
@@ -305,8 +313,8 @@ describe("CreateRecipePage", () => {
         mockSubmit.mockRestore();
     });
     it("resolves input only when pressing Enter with invalid trade URL", async () => {
-        render(<CreateRecipePage />);
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+        renderWithLeague(<CreateRecipePage />);
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockResolvedValue(
             makeResolveItemResponse({ name: "Manual Item", amount: 5, search: { query: { tradeUrl: INVALID_URL }, sort: {} } })
         );
         // Use an invalid trade URL (does not match auto-resolve pattern)
@@ -321,8 +329,8 @@ describe("CreateRecipePage", () => {
     });
 
     it("shows error and animates output draft row on failed resolve", async () => {
-        render(<CreateRecipePage />);
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
+        renderWithLeague(<CreateRecipePage />);
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockRejectedValue(new Error("Network error"));
         // Use an invalid trade URL to avoid auto-resolve
         const outputUrl = screen.getAllByTestId("trade-url-input")[1];
         fireEvent.change(outputUrl, { target: { value: INVALID_URL } });
@@ -340,8 +348,8 @@ describe("CreateRecipePage", () => {
     });
 
     it("shows error and animates input draft row on failed resolve", async () => {
-        render(<CreateRecipePage />);
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockRejectedValue(new Error("Network error"));
+        renderWithLeague(<CreateRecipePage />);
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockRejectedValue(new Error("Network error"));
         // Use an invalid trade URL to avoid auto-resolve
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: INVALID_URL } });
@@ -359,10 +367,10 @@ describe("CreateRecipePage", () => {
     });
 
     it("shows a link icon to the original trade URL in resolved rows (query does not contain tradeUrl)", async () => {
-        const mockResolve = vi.spyOn(DefaultService, "postApiResolveItem").mockResolvedValue(
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockResolvedValue(
             makeResolveItemResponse({ search: { query: { someOtherField: "foo" }, sort: {} } })
         );
-        render(<CreateRecipePage />);
+        renderWithLeague(<CreateRecipePage />);
         const inputUrl = screen.getAllByTestId("trade-url-input")[0];
         fireEvent.change(inputUrl, { target: { value: VALID_URL } });
         fireEvent.keyDown(inputUrl, { key: "Enter", code: "Enter" });

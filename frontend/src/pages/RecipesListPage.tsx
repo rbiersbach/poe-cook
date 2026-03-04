@@ -3,6 +3,7 @@ import { DefaultService } from "api/generated/services/DefaultService";
 import React, { useContext, useEffect, useState } from "react";
 import { RecipeEditContext } from "../App";
 import { RecipeCard } from "../components/recipe/RecipeCard";
+import { useLeague } from "../context/LeagueContext";
 
 const PAGE_SIZE = 20;
 
@@ -16,11 +17,13 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
     const [loadMoreLoading, setLoadMoreLoading] = useState(false);
     const editContext = useContext(RecipeEditContext);
     const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => { });
+    const { league } = useLeague();
 
     const fetchRecipes = () => {
+        if (!league) return;
         setLoading(true);
         setError(null);
-        DefaultService.getApiRecipes("", PAGE_SIZE)
+        DefaultService.getApiLeagueRecipes(league.id, "", PAGE_SIZE)
             .then((resp) => {
                 setRecipes(resp.recipes || []);
                 setNextCursor(resp.nextCursor ?? null);
@@ -36,12 +39,12 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
         if (refetchRef) {
             refetchRef.current = fetchRecipes;
         }
-    }, []);
+    }, [league]);
 
     const handleLoadMore = () => {
-        if (!nextCursor) return;
+        if (!nextCursor || !league) return;
         setLoadMoreLoading(true);
-        DefaultService.getApiRecipes(nextCursor, PAGE_SIZE)
+        DefaultService.getApiLeagueRecipes(league.id, nextCursor, PAGE_SIZE)
             .then((resp) => {
                 setRecipes((prev) => [...prev, ...(resp.recipes || [])]);
                 setNextCursor(resp.nextCursor ?? null);
@@ -57,7 +60,7 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
         setRefreshingIds((prev) => ({ ...prev, [id]: true }));
         setRefreshErrors((prev) => ({ ...prev, [id]: null }));
         try {
-            const updated = await DefaultService.getApiRecipeById(id, true);
+            const updated = await DefaultService.getApiLeagueRecipeById(league!.id, id, true);
             setRecipes((prev) => prev.map(r => r.id === id ? updated : r));
         } catch (err: any) {
             setRefreshErrors((prev) => ({ ...prev, [id]: err?.message || "Refresh failed" }));
@@ -72,13 +75,21 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
 
     const handleDelete = async (id: string) => {
         try {
-            await DefaultService.deleteApiRecipeById(id);
+            await DefaultService.deleteApiLeagueRecipeById(league!.id, id);
             setRecipes((prev) => prev.filter(r => r.id !== id));
             setSelectedRecipe(null);
         } catch (err: any) {
             throw err;
         }
     };
+
+    if (!league) {
+        return (
+            <div className="recipes-list-page card mx-auto w-full md:min-w-xl md:max-w-6xl py-8 px-4">
+                <p className="text-muted" data-testid="no-league-message">Please select a league to view recipes.</p>
+            </div>
+        );
+    }
 
     return (
         <div className="recipes-list-page card mx-auto w-full md:min-w-xl md:max-w-6xl py-8 px-4">

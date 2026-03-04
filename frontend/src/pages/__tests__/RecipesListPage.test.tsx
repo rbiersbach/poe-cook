@@ -1,10 +1,18 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it, vi } from "vitest";
-import { DefaultService } from "../../api/generated/services/DefaultService";
-import { makeRecipe } from "../../__tests__/fixtures";
-import RecipesListPage from "../RecipesListPage";
 import { Recipe, RecipeItem } from "api/generated";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { makeRecipe } from "../../__tests__/fixtures";
+import { DefaultService } from "../../api/generated/services/DefaultService";
+import type { SelectedLeague } from "../../context/LeagueContext";
+import { LeagueProvider } from "../../context/LeagueContext";
+import RecipesListPage from "../RecipesListPage";
+
+const TEST_LEAGUE: SelectedLeague = { id: "Standard", realm: "pc", text: "Standard" };
+
+function renderWithLeague(ui: React.ReactElement) {
+    return render(<LeagueProvider defaultLeague={TEST_LEAGUE}>{ui}</LeagueProvider>);
+}
 
 const defaultRecipe = makeRecipe({ inputs: [] });
 
@@ -14,9 +22,9 @@ describe("RecipesListPage", () => {
     });
 
     it("renders page title, recipe card, and load more button", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
-        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
-        render(<RecipesListPage />);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
+        renderWithLeague(<RecipesListPage />);
         expect(screen.getByTestId("recipes-page-title")).toBeInTheDocument();
         expect(screen.getByTestId("page-loader")).toBeInTheDocument();
         await waitFor(() => expect(screen.queryByTestId("page-loader")).not.toBeInTheDocument());
@@ -26,44 +34,44 @@ describe("RecipesListPage", () => {
 
     it("displays loading state while fetching recipes", async () => {
         let resolveRecipes: (v: any) => void;
-        vi.spyOn(DefaultService, "getApiRecipes").mockImplementation(() => new Promise(r => { resolveRecipes = r; }) as any);
-        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
-        render(<RecipesListPage />);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockImplementation(() => new Promise(r => { resolveRecipes = r; }) as any);
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
+        renderWithLeague(<RecipesListPage />);
         expect(screen.getByTestId("page-loader")).toBeInTheDocument();
         await act(async () => { resolveRecipes!({ recipes: [], nextCursor: null }); });
     });
 
     it("shows error message if API call fails", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockRejectedValueOnce(new Error("API fail"));
-        render(<RecipesListPage />);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockRejectedValueOnce(new Error("API fail"));
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("page-error")).toBeInTheDocument());
         expect(screen.getByTestId("page-error")).toHaveTextContent("API fail");
     });
 
     it("displays each recipe’s profit range and last updated time", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
-        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
-        render(<RecipesListPage />);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         expect(screen.getByTestId("profit-tooltip")).toBeInTheDocument();
         expect(screen.getByTestId("recipe-updated-at")).toBeInTheDocument();
     });
 
     it("refresh button triggers API refresh and updates the recipe", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
-        const spy = vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
-        render(<RecipesListPage />);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
+        const spy = vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const refreshBtn = screen.getByTestId("refresh-recipe-test1");
         await userEvent.click(refreshBtn);
-        expect(spy).toHaveBeenCalledWith("test1", true);
+        expect(spy).toHaveBeenCalledWith(TEST_LEAGUE.id, "test1", true);
     });
 
     it("shows loading indicator on refresh button when refreshing", async () => {
         let resolveRefresh: ((v: any) => void) | undefined;
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
-        vi.spyOn(DefaultService, "getApiRecipeById").mockImplementationOnce(() => new Promise(r => { resolveRefresh = r; }) as any).mockResolvedValue(defaultRecipe);
-        render(<RecipesListPage />);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: "abc" });
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockImplementationOnce(() => new Promise(r => { resolveRefresh = r; }) as any).mockResolvedValue(defaultRecipe);
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const refreshBtn = screen.getByTestId("refresh-recipe-test1");
         await userEvent.click(refreshBtn);
@@ -82,18 +90,18 @@ describe("RecipesListPage", () => {
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
         };
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [missingPriceRecipe], nextCursor: undefined });
-        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(missingPriceRecipe);
-        render(<RecipesListPage />);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [missingPriceRecipe], nextCursor: undefined });
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(missingPriceRecipe);
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test2")).toBeInTheDocument());
         expect(screen.getByTestId("missing-price")).toBeInTheDocument();
     });
 
     it("calls onEdit handler when edit button is clicked", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
-        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
         const user = userEvent.setup();
-        render(<RecipesListPage />);
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const editBtn = screen.getByTestId("edit-recipe-test1");
         expect(editBtn).toBeInTheDocument();
@@ -102,11 +110,11 @@ describe("RecipesListPage", () => {
     });
 
     it("deletes recipe when delete is confirmed", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
-        const deleteApiSpy = vi.spyOn(DefaultService, "deleteApiRecipeById").mockResolvedValue(undefined as any);
-        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+        const deleteApiSpy = vi.spyOn(DefaultService, "deleteApiLeagueRecipeById").mockResolvedValue(undefined as any);
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
         const user = userEvent.setup();
-        render(<RecipesListPage />);
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const deleteBtn = screen.getByTestId("delete-recipe-test1");
         await user.click(deleteBtn);
@@ -114,16 +122,16 @@ describe("RecipesListPage", () => {
         const confirmDeleteBtn = screen.getByTestId("delete-modal-confirm-btn");
         await user.click(confirmDeleteBtn);
         await waitFor(() => {
-            expect(deleteApiSpy).toHaveBeenCalledWith("test1");
+            expect(deleteApiSpy).toHaveBeenCalledWith(TEST_LEAGUE.id, "test1");
         });
     });
 
     it("removes recipe from list after successful delete", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
-        vi.spyOn(DefaultService, "deleteApiRecipeById").mockResolvedValue(undefined as any);
-        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+        vi.spyOn(DefaultService, "deleteApiLeagueRecipeById").mockResolvedValue(undefined as any);
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
         const user = userEvent.setup();
-        render(<RecipesListPage />);
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const deleteBtn = screen.getByTestId("delete-recipe-test1");
         await user.click(deleteBtn);
@@ -135,11 +143,11 @@ describe("RecipesListPage", () => {
     });
 
     it("displays error message if delete fails", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
-        vi.spyOn(DefaultService, "deleteApiRecipeById").mockRejectedValueOnce(new Error("Delete failed"));
-        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+        vi.spyOn(DefaultService, "deleteApiLeagueRecipeById").mockRejectedValueOnce(new Error("Delete failed"));
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
         const user = userEvent.setup();
-        render(<RecipesListPage />);
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const deleteBtn = screen.getByTestId("delete-recipe-test1");
         await user.click(deleteBtn);
@@ -151,11 +159,11 @@ describe("RecipesListPage", () => {
     });
 
     it("keeps recipe in list if delete is cancelled", async () => {
-        vi.spyOn(DefaultService, "getApiRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
-        vi.spyOn(DefaultService, "deleteApiRecipeById").mockResolvedValue(undefined as any);
-        vi.spyOn(DefaultService, "getApiRecipeById").mockResolvedValue(defaultRecipe);
+        vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+        vi.spyOn(DefaultService, "deleteApiLeagueRecipeById").mockResolvedValue(undefined as any);
+        vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
         const user = userEvent.setup();
-        render(<RecipesListPage />);
+        renderWithLeague(<RecipesListPage />);
         await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
         const deleteBtn = screen.getByTestId("delete-recipe-test1");
         await user.click(deleteBtn);

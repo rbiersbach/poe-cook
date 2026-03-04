@@ -2,7 +2,9 @@
 import { createContext, useRef, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import { Recipe } from "./api/generated/models/Recipe";
+import { LeaguePicker } from "./components/ui/LeaguePicker";
 import { TwoColumnLayout } from "./components/ui/TwoColumnLayout";
+import { LeagueProvider } from "./context/LeagueContext";
 import CreateRecipePage from "./pages/CreateRecipePage";
 import RecipesListPage from "./pages/RecipesListPage";
 
@@ -16,26 +18,29 @@ function App() {
   const refetchFn = useRef<() => void>(() => { });
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   return (
-    <RecipeEditContext.Provider value={{ selectedRecipe, setSelectedRecipe }}>
-      <RecipesListRefetchContext.Provider value={() => refetchFn.current()}>
-        <nav className="nav-bar">
-          <Link to="/" className="link">Recipes</Link>
-          <Link to="/create" className="link">Create Recipe</Link>
-        </nav>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <TwoColumnLayout
-                left={<RecipesListPage refetchRef={refetchFn} />}
-                right={<CreateRecipePage />}
-              />
-            }
-          />
-          <Route path="/create" element={<CreateRecipePage />} />
-        </Routes>
-      </RecipesListRefetchContext.Provider>
-    </RecipeEditContext.Provider>
+    <LeagueProvider>
+      <RecipeEditContext.Provider value={{ selectedRecipe, setSelectedRecipe }}>
+        <RecipesListRefetchContext.Provider value={() => refetchFn.current()}>
+          <nav className="nav-bar">
+            <Link to="/" className="link">Recipes</Link>
+            <Link to="/create" className="link">Create Recipe</Link>
+            <LeaguePicker />
+          </nav>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <TwoColumnLayout
+                  left={<RecipesListPage refetchRef={refetchFn} />}
+                  right={<CreateRecipePage />}
+                />
+              }
+            />
+            <Route path="/create" element={<CreateRecipePage />} />
+          </Routes>
+        </RecipesListRefetchContext.Provider>
+      </RecipeEditContext.Provider>
+    </LeagueProvider>
   );
 }
 
