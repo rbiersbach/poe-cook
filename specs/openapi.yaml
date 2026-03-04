@@ -33,6 +33,39 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
+  /api/leagues/{league}/exchange-rates:
+    get:
+      operationId: getApiLeagueExchangeRates
+      summary: Get current exchange rates normalised to chaos orb for a league
+      parameters:
+        - $ref: "#/components/parameters/leagueParam"
+      responses:
+        "200":
+          description: List of exchange rates
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - rates
+                properties:
+                  rates:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ExchangeRate"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
   /api/leagues/{league}/ninja-items:
     get:
       operationId: getApiLeagueNinjaItems
@@ -326,6 +359,27 @@ components:
         text:
           type: string
           description: Display name of the league
+    ExchangeRate:
+      type: object
+      required:
+        - id
+        - name
+        - chaosValue
+        - fetchedAt
+      properties:
+        id:
+          type: string
+          description: poe.ninja item id (e.g. "divine", "chaos")
+        name:
+          type: string
+          description: Display name (e.g. "Divine Orb")
+        chaosValue:
+          type: number
+          description: How many chaos orbs one unit of this currency is worth
+        fetchedAt:
+          type: string
+          format: date-time
+          description: When this rate was last fetched from poe.ninja
     NinjaItem:
       type: object
       required:

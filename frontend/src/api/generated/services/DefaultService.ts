@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { CreateRecipeRequest } from '../models/CreateRecipeRequest';
 import type { CreateRecipeResponse } from '../models/CreateRecipeResponse';
+import type { ExchangeRate } from '../models/ExchangeRate';
 import type { League } from '../models/League';
 import type { ListRecipesResponse } from '../models/ListRecipesResponse';
 import type { NinjaItem } from '../models/NinjaItem';
@@ -27,6 +28,29 @@ export class DefaultService {
             method: 'GET',
             url: '/api/leagues',
             errors: {
+                500: `Server error`,
+            },
+        });
+    }
+    /**
+     * Get current exchange rates normalised to chaos orb for a league
+     * @param league The Path of Exile league name (e.g. "Standard", "Hardcore")
+     * @returns any List of exchange rates
+     * @throws ApiError
+     */
+    public static getApiLeagueExchangeRates(
+        league: string,
+    ): CancelablePromise<{
+        rates: Array<ExchangeRate>;
+    }> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/leagues/{league}/exchange-rates',
+            path: {
+                'league': league,
+            },
+            errors: {
+                400: `Invalid request`,
                 500: `Server error`,
             },
         });

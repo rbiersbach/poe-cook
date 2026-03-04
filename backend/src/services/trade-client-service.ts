@@ -4,8 +4,7 @@ import {
   TradeSearchRequest,
   TradeSearchResponse,
 } from "models/trade-types";
-import { TradeRate } from "trade-rate";
-
+import type { ITradeRateService } from "services/trade-rate-service";
 
 import { FastifyBaseLogger } from "fastify";
 
@@ -20,28 +19,28 @@ export class TradeClientService implements ITradeClientService {
   private baseUrl: string;
   private userAgent: string;
   private poeSessId?: string;
-  private fetchImpl: typeof fetch;
   private logger: FastifyBaseLogger;
+  private tradeRateService: ITradeRateService;
 
   constructor(
+    tradeRateService: ITradeRateService,
     userAgent: string,
     logger: FastifyBaseLogger,
     baseUrl: string = "https://www.pathofexile.com",
     poeSessId?: string,
-    fetchImpl: typeof fetch = fetch
   ) {
     this.baseUrl = baseUrl;
     this.userAgent = userAgent;
     this.poeSessId = poeSessId;
-    this.fetchImpl = fetchImpl;
     this.logger = logger;
+    this.tradeRateService = tradeRateService;
   }
 
   /** POST /api/trade/search/{league} */
   async search(body: TradeSearchRequest, league: string): Promise<TradeSearchResponse> {
     const url = `${this.baseUrl}/api/trade/search/${encodeURIComponent(league)}`;
 
-    const res = await this.fetchImpl(url, {
+    const res = await fetch(url, {
       method: "POST",
       headers: this.headers({ "Content-Type": "application/json" }),
       body: JSON.stringify(body),
@@ -69,7 +68,7 @@ export class TradeClientService implements ITradeClientService {
       `${this.baseUrl}/api/trade/fetch/${encodeURIComponent(chunk)}` +
       `?query=${encodeURIComponent(queryId)}`;
 
-    const res = await this.fetchImpl(url, {
+    const res = await fetch(url, {
       method: "GET",
       headers: this.headers(),
     });
@@ -81,29 +80,33 @@ export class TradeClientService implements ITradeClientService {
       throw err;
     }
     const raw = await res.json() as TradeFetchResponse;
-    // Normalize prices for each listing
-    if (raw.result && Array.isArray(raw.result)) {
-      for (const item of raw.result) {
-        const price = item.listing.price;
-        if (price?.amount && price?.currency) {
-          item.listing.normalized_price = {
-            amount: TradeRate.normalize_to_chaos(Number(price.amount), String(price.currency)),
-            currency: "chaos"
-          };
-        }
-      }
-    }
     return raw;
   }
 
   /**
  * Combined search and fetch for item resolution.
  * Returns { search, listings } for the given TradeSearchRequest.
+ * Normalises listing prices to chaos using TradeRateService if available.
  */
   async searchAndFetch(body: TradeSearchRequest, league: string, maxResults = 10): Promise<{ search: TradeSearchResponse, listings: TradeFetchResponse }> {
     const search = await this.search(body, league);
     const ids = search.result.slice(0, maxResults);
     const listings = await this.fetchListings(ids, search.id);
+    // Normalise prices to chaos
+    if (listings.result && Array.isArray(listings.result)) {
+      for (const item of listings.result) {
+        const price = item.listing?.price;
+        if (price?.amount && price?.currency) {
+          const chaosValue = this.tradeRateService
+            ? this.tradeRateService.getChaosValue(String(price.currency), league)
+            : 1;
+          item.listing.normalized_price = {
+            amount: Number(price.amount) * chaosValue,
+            currency: "chaos",
+          };
+        }
+      }
+    }
     return { search, listings };
   }
 

@@ -7,6 +7,7 @@ import { NinjaScheduler } from "services/ninja-scheduler";
 import { IRecipeService, RecipeService } from "services/recipe-service";
 import type { ITradeClientService } from "services/trade-client-service";
 import { TradeClientService } from "services/trade-client-service";
+import { ITradeRateService, TradeRateService } from "services/trade-rate-service";
 import { ResolveItemError, TradeResolverService } from "services/trade-resolver-service";
 import { StoreRegistry } from "stores/store-registry";
 import {
@@ -25,6 +26,7 @@ export class TradeApiServer {
     private registry: StoreRegistry;
     private leagueService!: ILeagueService;
     private ninjaScheduler!: NinjaScheduler;
+    private tradeRateService!: ITradeRateService;
 
     constructor(
         tradeClient?: ITradeClientService,
@@ -33,6 +35,7 @@ export class TradeApiServer {
         registry?: StoreRegistry,
         leagueService?: ILeagueService,
         ninjaScheduler?: NinjaScheduler,
+        tradeRateService?: ITradeRateService,
     ) {
         let loggerDefinition;
         if (!logger) {
@@ -57,9 +60,13 @@ export class TradeApiServer {
             credentials: true
         });
         this.registry = registry || new StoreRegistry();
+        this.tradeRateService = tradeRateService || new TradeRateService(this.registry, this.logger);
         this.tradeClient = tradeClient || new TradeClientService(
+            this.tradeRateService,
             "poe-tools-api/1.0 (contact: you@example.com)",
-            this.logger
+            this.logger,
+            undefined,
+            undefined,
         );
         this.recipeService = recipeService || new RecipeService(
             this.registry,
@@ -291,6 +298,23 @@ export class TradeApiServer {
                 reply.status(204).send();
             } catch (err) {
                 this.logger.error({ error: err, params: request.params }, "Unexpected error in DELETE recipe");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+
+        // GET /api/leagues/:league/exchange-rates
+        this.fastify.get("/api/leagues/:league/exchange-rates", async (request: FastifyRequest, reply) => {
+            try {
+                const leagueData = this.extractLeague(request.params);
+                if (!leagueData) {
+                    return reply.status(400).send({ error: "League is required" });
+                }
+                const { league } = leagueData;
+                await this.ninjaScheduler.activate(league);
+                const rates = this.registry.getExchangeRateStore(league).getAll();
+                reply.send({ rates });
+            } catch (err) {
+                this.logger.error({ error: err }, "Unexpected error in GET exchange-rates");
                 return reply.status(500).send({ error: "Server error" });
             }
         });

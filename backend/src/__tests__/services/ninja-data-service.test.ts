@@ -18,8 +18,14 @@ const mockNinjaItemStore = {
     getAll: () => storeItems,
 };
 
+const mockExchangeRateStore = {
+    addMany: vi.fn(),
+    getAll: vi.fn(() => []),
+};
+
 const mockRegistry = {
     getNinjaItemStore: vi.fn(() => mockNinjaItemStore),
+    getExchangeRateStore: vi.fn(() => mockExchangeRateStore),
 };
 
 describe("NinjaDataService refreshAll", () => {

@@ -1,5 +1,5 @@
 import type { FastifyBaseLogger } from "fastify";
-import { NinjaCategory, NinjaItem } from "../models/ninja-types";
+import { ExchangeRate, NinjaCategory, NinjaItem } from "../models/ninja-types";
 import type { StoreRegistry } from "../stores/store-registry";
 import type { INinjaClientService } from "./ninja-client-service";
 
@@ -30,12 +30,36 @@ export class NinjaDataService implements INinjaDataService {
                 ninjaItemStore.addMany(items);
                 allItems = allItems.concat(items);
 
+                if (category === NinjaCategory.Currency) {
+                    this.updateExchangeRates(items, league);
+                }
+
             } catch (err) {
                 this.logger.error({ category, err }, "Failed to fetch or persist ninja items");
                 throw err;
             }
         }
         return allItems;
+    }
+
+    /**
+     * Derives exchange rates from fetched Currency items and persists them in the
+     * league-scoped ExchangeRateStore. Chaos orb is always injected as the baseline (1:1).
+     */
+    private updateExchangeRates(currencyItems: NinjaItem[], league: string): void {
+        const fetchedAt = new Date().toISOString();
+        const rates: ExchangeRate[] = [
+            // Chaos is the normalisation baseline and is not returned by poe.ninja as a line.
+            { id: "chaos", name: "Chaos Orb", chaosValue: 1, fetchedAt },
+            ...currencyItems.map(item => ({
+                id: item.id,
+                name: item.name,
+                chaosValue: item.price,
+                fetchedAt: item.fetchedAt,
+            })),
+        ];
+        this.registry.getExchangeRateStore(league).addMany(rates);
+        this.logger.info({ league, count: rates.length }, "Updated exchange rates from Currency ninja data");
     }
 
     /**

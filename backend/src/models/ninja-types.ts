@@ -62,3 +62,14 @@ export interface NinjaCurrencyLine {
     };
 }
 
+/**
+ * A single league-scoped exchange rate, normalised to chaos orb = 1.
+ * `id` is the poe.ninja item id (e.g. "divine", "chaos").
+ */
+export interface ExchangeRate {
+    id: string;
+    name: string;
+    chaosValue: number;
+    fetchedAt: string;
+}
+

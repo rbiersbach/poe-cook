@@ -35,24 +35,24 @@
             "name": "Tempered Flesh Crimson Jewel",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 1,
-              "currency": "annul"
+              "amount": 5,
+              "currency": "chaos"
             },
             "minPrice": {
-              "amount": 1,
+              "amount": 5,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 25,
+              "amount": 5,
               "currency": "chaos"
             },
             "medianPrice": {
-              "amount": 25,
+              "amount": 5,
               "currency": "chaos"
             },
-            "medianCount": 6,
-            "fetchedAt": "2026-03-03T18:49:52.325Z"
+            "medianCount": 10,
+            "fetchedAt": "2026-03-04T13:26:13.358Z"
           }
         }
       },
@@ -96,15 +96,15 @@
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 40,
+              "amount": 39,
               "currency": "chaos"
             },
             "medianPrice": {
-              "amount": 40,
+              "amount": 39,
               "currency": "chaos"
             },
-            "medianCount": 10,
-            "fetchedAt": "2026-03-03T18:49:52.324Z"
+            "medianCount": 6,
+            "fetchedAt": "2026-03-04T13:26:13.367Z"
           }
         }
       },
@@ -153,24 +153,24 @@
             "name": "Chronicle of Atzoatl",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 1,
+              "amount": 3,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 1,
+              "amount": 3,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 3,
+              "amount": 5,
               "currency": "chaos"
             },
             "medianPrice": {
-              "amount": 3,
+              "amount": 5,
               "currency": "chaos"
             },
-            "medianCount": 6,
-            "fetchedAt": "2026-03-03T21:43:09.010Z"
+            "medianCount": 10,
+            "fetchedAt": "2026-03-04T13:26:13.760Z"
           }
         }
       }
@@ -212,7 +212,7 @@
               "currency": "divine"
             },
             "minPrice": {
-              "amount": 360,
+              "amount": 1603,
               "currency": "chaos"
             },
             "originalMedianPrice": {
@@ -221,17 +221,17 @@
               "currency": "divine"
             },
             "medianPrice": {
-              "amount": 360,
+              "amount": 1603,
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-03T18:49:53.102Z"
+            "fetchedAt": "2026-03-04T13:26:14.210Z"
           }
         }
       }
     ],
     "createdAt": "2026-03-03T18:50:09.473Z",
-    "updatedAt": "2026-03-03T21:43:09.311Z"
+    "updatedAt": "2026-03-04T13:26:14.210Z"
   },
   {
     "id": "1772226028950-9b0ffa526a0a8",
@@ -269,11 +269,11 @@
             "name": "Mask of the Spirit Drinker Magistrate Crown",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 1,
+              "amount": 2,
               "currency": "divine"
             },
             "minPrice": {
-              "amount": 180,
+              "amount": 1603,
               "currency": "chaos"
             },
             "originalMedianPrice": {
@@ -282,11 +282,11 @@
               "currency": "divine"
             },
             "medianPrice": {
-              "amount": 360,
+              "amount": 1603,
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-03T21:43:06.967Z"
+            "fetchedAt": "2026-03-04T13:38:13.324Z"
           }
         }
       },
@@ -321,11 +321,11 @@
             "name": "Vial of Summoning",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 179,
-              "currency": "chaos"
+              "amount": 1,
+              "currency": "divine"
             },
             "minPrice": {
-              "amount": 179,
+              "amount": 801.5,
               "currency": "chaos"
             },
             "originalMedianPrice": {
@@ -334,11 +334,11 @@
               "currency": "divine"
             },
             "medianPrice": {
-              "amount": 180,
+              "amount": 801.5,
               "currency": "chaos"
             },
-            "medianCount": 8,
-            "fetchedAt": "2026-03-03T21:43:06.965Z"
+            "medianCount": 10,
+            "fetchedAt": "2026-03-04T13:38:13.297Z"
           }
         }
       },
@@ -387,24 +387,24 @@
             "name": "Chronicle of Atzoatl",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 1,
+              "amount": 3,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 1,
+              "amount": 3,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 3,
+              "amount": 5,
               "currency": "chaos"
             },
             "medianPrice": {
-              "amount": 3,
+              "amount": 5,
               "currency": "chaos"
             },
-            "medianCount": 6,
-            "fetchedAt": "2026-03-03T21:43:06.968Z"
+            "medianCount": 10,
+            "fetchedAt": "2026-03-04T13:38:13.331Z"
           }
         }
       }
@@ -414,7 +414,7 @@
         "qty": 1,
         "type": "trade",
         "name": "Mask of the Stitched Demon Magistrate Crown",
-        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/0e24c9f156/MaskoftheStitchedDemon.png",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MSwicmVsaWMiOjB9XQ/4b956a7b8f/MaskoftheStitchedDemon.png",
         "item": {
           "type": "trade",
           "tradeUrl": "https://www.pathofexile.com/trade/search/Standard/Bg327P9wF8",
@@ -438,34 +438,34 @@
             }
           },
           "resolved": {
-            "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/0e24c9f156/MaskoftheStitchedDemon.png",
+            "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MSwicmVsaWMiOjB9XQ/4b956a7b8f/MaskoftheStitchedDemon.png",
             "name": "Mask of the Stitched Demon Magistrate Crown",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 9,
+              "amount": 15,
               "currency": "divine"
             },
             "minPrice": {
-              "amount": 1620,
+              "amount": 12022.5,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 10,
+              "amount": 30,
               "currency": "divine"
             },
             "medianPrice": {
-              "amount": 1800,
+              "amount": 24045,
               "currency": "chaos"
             },
             "medianCount": 6,
-            "fetchedAt": "2026-03-03T21:43:07.677Z"
+            "fetchedAt": "2026-03-04T13:38:13.865Z"
           }
         }
       }
     ],
     "createdAt": "2026-02-27T21:00:28.950Z",
-    "updatedAt": "2026-03-03T21:43:07.677Z"
+    "updatedAt": "2026-03-04T13:38:13.866Z"
   },
   {
     "id": "1772558477495-738dce7755d86",
@@ -512,25 +512,25 @@
           "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
           "category": "Currency",
           "detailsId": "divine-orb",
-          "price": 772.9,
+          "price": 801.5,
           "priceHistory": [
-            5.92,
-            4.87,
-            18.07,
-            20.98,
-            28.36,
-            41.88,
-            72.78
+            1.88,
+            13.78,
+            14.92,
+            19.26,
+            31.05,
+            69.73,
+            72.96
           ],
-          "volume": 419287,
+          "volume": 229892,
           "maxVolumeCurrency": "chaos",
-          "maxVolumeRate": 0.001294,
-          "fetchedAt": "2026-03-03T21:40:56.131Z"
+          "maxVolumeRate": 0.001248,
+          "fetchedAt": "2026-03-04T13:26:09.625Z"
         }
       }
     ],
     "createdAt": "2026-03-03T17:21:17.495Z",
-    "updatedAt": "2026-03-03T21:42:35.737Z"
+    "updatedAt": "2026-03-04T13:38:44.773Z"
   },
   {
     "id": "1772558673902-c64714142d1e7",
@@ -547,20 +547,20 @@
           "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
           "category": "DivinationCard",
           "detailsId": "i-see-brothers",
-          "price": 2834,
+          "price": 5610,
           "priceHistory": [
-            -2.22,
-            10,
-            -1.33,
-            -1.67,
-            4.44,
-            -4.13,
-            -51.11
+            0,
+            2.76,
+            -1.1,
+            -7.18,
+            6.08,
+            -3.39,
+            -7.18
           ],
-          "volume": 1417,
+          "volume": 3740,
           "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 0.2727,
-          "fetchedAt": "2026-03-03T21:40:56.461Z"
+          "maxVolumeRate": 0.1429,
+          "fetchedAt": "2026-03-04T13:26:09.749Z"
         }
       }
     ],
@@ -576,25 +576,25 @@
           "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRnJhY3R1cmluZ09yYkNvbWJpbmVkIiwic2NhbGUiOjF9XQ/3fb18e8a5b/FracturingOrbCombined.png",
           "category": "Currency",
           "detailsId": "fracturing-orb",
-          "price": 3563,
+          "price": 4724,
           "priceHistory": [
-            0.88,
-            1.93,
-            3.97,
-            6.56,
-            10.37,
-            -9.36,
-            -45.21
+            2.7,
+            2.72,
+            5.64,
+            11.53,
+            -0.32,
+            -35.86,
+            -29.87
           ],
-          "volume": 512419,
+          "volume": 377898,
           "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 0.2169,
-          "fetchedAt": "2026-03-03T21:40:56.131Z"
+          "maxVolumeRate": 0.1697,
+          "fetchedAt": "2026-03-04T13:26:09.625Z"
         }
       }
     ],
     "createdAt": "2026-03-03T17:24:33.902Z",
-    "updatedAt": "2026-03-03T21:42:31.894Z"
+    "updatedAt": "2026-03-04T13:38:37.308Z"
   },
   {
     "id": "1772574135098-f4efa23060b21",
@@ -617,14 +617,14 @@
             null,
             null,
             null,
-            -25,
-            -25,
-            -25
+            0,
+            0,
+            0
           ],
-          "volume": 250,
+          "volume": 201,
           "maxVolumeCurrency": "chaos",
           "maxVolumeRate": 0.3333,
-          "fetchedAt": "2026-03-03T21:40:56.461Z"
+          "fetchedAt": "2026-03-03T23:27:31.131Z"
         }
       }
     ],
@@ -642,22 +642,22 @@
           "detailsId": "chaos-orb",
           "price": 1,
           "priceHistory": [
-            -5.57,
-            -4.62,
-            -15.21,
-            -17.29,
-            -22.01,
-            -28.84,
-            -42.13
+            -1.85,
+            -11.94,
+            -12.94,
+            -16.15,
+            -23.59,
+            -41.12,
+            -42.23
           ],
-          "volume": 419287,
+          "volume": 229892,
           "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 772.9,
-          "fetchedAt": "2026-03-03T21:40:56.131Z"
+          "maxVolumeRate": 801.5,
+          "fetchedAt": "2026-03-04T13:26:09.625Z"
         }
       }
     ],
     "createdAt": "2026-03-03T21:42:15.098Z",
-    "updatedAt": "2026-03-03T21:42:15.098Z"
+    "updatedAt": "2026-03-04T13:38:57.441Z"
   }
 ]

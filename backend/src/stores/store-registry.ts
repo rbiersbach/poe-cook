@@ -1,4 +1,5 @@
 import path from "path";
+import { ExchangeRateStore } from "stores/exchange-rate-store";
 import { NinjaItemStore } from "stores/ninja-item-store";
 import { RecipeStore } from "stores/recipe-store";
 import { fileURLToPath } from "url";
@@ -12,6 +13,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export class StoreRegistry {
     private recipeStores = new Map<string, RecipeStore>();
     private ninjaItemStores = new Map<string, NinjaItemStore>();
+    private exchangeRateStores = new Map<string, ExchangeRateStore>();
 
     private sanitize(league: string): string {
         return league.toLowerCase().replace(/[^a-z0-9]/g, "-");
@@ -37,9 +39,17 @@ export class StoreRegistry {
         return this.ninjaItemStores.get(key)!;
     }
 
+    getExchangeRateStore(league: string): ExchangeRateStore {
+        const key = this.sanitize(league);
+        if (!this.exchangeRateStores.has(key)) {
+            this.exchangeRateStores.set(key, new ExchangeRateStore(this.dataPath(`exchange-rates.${key}.json`)));
+        }
+        return this.exchangeRateStores.get(key)!;
+    }
+
     /** Returns all league keys that have at least one store instantiated. */
     getActiveLeagues(): string[] {
-        const keys = new Set([...this.recipeStores.keys(), ...this.ninjaItemStores.keys()]);
+        const keys = new Set([...this.recipeStores.keys(), ...this.ninjaItemStores.keys(), ...this.exchangeRateStores.keys()]);
         return [...keys];
     }
 }

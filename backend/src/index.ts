@@ -3,6 +3,7 @@ import { LeagueService } from "services/league-service";
 import { NinjaClientService } from "services/ninja-client-service";
 import { NinjaDataService } from "services/ninja-data-service";
 import { NinjaScheduler } from "services/ninja-scheduler";
+import { TradeRateService } from "services/trade-rate-service";
 import { StoreRegistry } from "stores/store-registry";
 
 
@@ -20,6 +21,7 @@ const ninjaClient = new NinjaClientService(apiServer.server.log);
 const ninjaDataService = new NinjaDataService(apiServer.server.log, ninjaClient, registry);
 const leagueService = new LeagueService(apiServer.server.log);
 const ninjaScheduler = new NinjaScheduler(ninjaDataService, apiServer.server.log);
+const tradeRateService = new TradeRateService(registry, apiServer.server.log);
 
 // Re-wire services that need ninjaDataService/scheduler
 // (Achieved by passing into the TradeApiServer constructor below)
@@ -30,6 +32,7 @@ const apiServerFull = new TradeApiServer(
   registry,
   leagueService,
   ninjaScheduler,
+  tradeRateService,
 );
 
 ninjaScheduler.start();

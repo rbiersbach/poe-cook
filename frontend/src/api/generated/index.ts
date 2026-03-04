@@ -10,6 +10,7 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 export type { CreateRecipeRequest } from './models/CreateRecipeRequest';
 export type { CreateRecipeResponse } from './models/CreateRecipeResponse';
 export type { ErrorResponse } from './models/ErrorResponse';
+export type { ExchangeRate } from './models/ExchangeRate';
 export type { League } from './models/League';
 export type { leagueParam } from './models/leagueParam';
 export type { ListRecipesResponse } from './models/ListRecipesResponse';
