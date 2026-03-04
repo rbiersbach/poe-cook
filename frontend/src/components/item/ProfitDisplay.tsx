@@ -44,10 +44,10 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
         return <span className="missing-price text-red-500" data-testid="missing-price">Missing price</span>;
     }
 
-    // Helper for formatting chaos values in the tooltip — always show exact value
+    // Helper for formatting chaos values in the tooltip — max 4 decimal places
     function formatChaos(amount: number | undefined): string {
         if (amount == null) return "?";
-        return amount.toString();
+        return parseFloat(amount.toFixed(4)).toString();
     }
 
     return (
@@ -76,7 +76,7 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                                 <span className="flex items-center gap-1 profit-red ml-2">
                                     {formatChaos(getItemPriceChaos(item))}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
-                                    <span className="text-white">×</span> <span className="text-white">{item.qty}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
+                                    <span className="text-white">×</span> <span className="text-white">{parseFloat(item.qty.toFixed(4))}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
                                 </span>
                             </div>
@@ -89,7 +89,7 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                                 <span className="flex items-center gap-1 profit-green ml-2">
                                     {formatChaos(getItemPriceChaos(item))}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
-                                    <span className="text-white">×</span> <span className="text-white">{item.qty}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
+                                    <span className="text-white">×</span> <span className="text-white">{parseFloat(item.qty.toFixed(4))}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
                                 </span>
                             </div>

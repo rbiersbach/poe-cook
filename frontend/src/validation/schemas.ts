@@ -8,7 +8,7 @@ export const tradeUrlSchema = z
     );
 
 const recipeItemSchema = z.object({
-    qty: z.number().int().positive(),
+    qty: z.number().positive(),
     type: z.enum(["trade", "ninja"]),
     name: z.string().min(1),
     icon: z.string(),

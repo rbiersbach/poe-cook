@@ -468,71 +468,6 @@
     "updatedAt": "2026-03-04T13:38:13.866Z"
   },
   {
-    "id": "1772558477495-738dce7755d86",
-    "name": "Brothers Gift",
-    "inputs": [
-      {
-        "qty": 1,
-        "type": "ninja",
-        "name": "Brother's Gift",
-        "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
-        "item": {
-          "type": "ninja",
-          "id": "brothers-gift",
-          "name": "Brother's Gift",
-          "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
-          "category": "DivinationCard",
-          "detailsId": "brothers-gift",
-          "price": 1505,
-          "priceHistory": [
-            0,
-            -21.43,
-            0,
-            null,
-            null,
-            null,
-            -42.86
-          ],
-          "volume": 250.8,
-          "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 0.25,
-          "fetchedAt": "2026-03-03T08:51:26.345Z"
-        }
-      }
-    ],
-    "outputs": [
-      {
-        "qty": 5,
-        "type": "ninja",
-        "name": "Divine Orb",
-        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
-        "item": {
-          "id": "divine",
-          "name": "Divine Orb",
-          "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJzY2FsZSI6MX1d/ec48896769/CurrencyModValues.png",
-          "category": "Currency",
-          "detailsId": "divine-orb",
-          "price": 789.1,
-          "priceHistory": [
-            -1.21,
-            10.62,
-            11.56,
-            15.27,
-            29.2,
-            63.82,
-            65.06
-          ],
-          "volume": 242647,
-          "maxVolumeCurrency": "chaos",
-          "maxVolumeRate": 0.001267,
-          "fetchedAt": "2026-03-04T13:42:53.837Z"
-        }
-      }
-    ],
-    "createdAt": "2026-03-03T17:21:17.495Z",
-    "updatedAt": "2026-03-04T13:57:42.904Z"
-  },
-  {
     "id": "1772558673902-c64714142d1e7",
     "name": "I See Brothers",
     "inputs": [
@@ -659,5 +594,455 @@
     ],
     "createdAt": "2026-03-03T21:42:15.098Z",
     "updatedAt": "2026-03-04T13:38:57.441Z"
+  },
+  {
+    "id": "1772633788428-179ac3e132529",
+    "name": "Sirus",
+    "inputs": [
+      {
+        "qty": 1,
+        "type": "ninja",
+        "name": "Veritania's Crest",
+        "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9SZWRlZW1lckZyYWdtZW50Iiwic2NhbGUiOjF9XQ/86d22a34cc/RedeemerFragment.png",
+        "item": {
+          "id": "veritanias-crest",
+          "name": "Veritania's Crest",
+          "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9SZWRlZW1lckZyYWdtZW50Iiwic2NhbGUiOjF9XQ/86d22a34cc/RedeemerFragment.png",
+          "category": "Fragment",
+          "detailsId": "veritanias-crest",
+          "price": 78.91,
+          "priceHistory": [
+            0,
+            0,
+            0,
+            -2.78,
+            null,
+            10,
+            10
+          ],
+          "volume": 263,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 10,
+          "fetchedAt": "2026-03-04T14:02:59.682Z"
+        }
+      },
+      {
+        "qty": 1,
+        "type": "ninja",
+        "name": "Drox's Crest",
+        "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9XYXJsb3JkRnJhZ21lbnQiLCJzY2FsZSI6MX1d/3d735a8303/WarlordFragment.png",
+        "item": {
+          "id": "droxs-crest",
+          "name": "Drox's Crest",
+          "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9XYXJsb3JkRnJhZ21lbnQiLCJzY2FsZSI6MX1d/3d735a8303/WarlordFragment.png",
+          "category": "Fragment",
+          "detailsId": "droxs-crest",
+          "price": 78.91,
+          "priceHistory": [
+            0,
+            0,
+            0,
+            0,
+            10,
+            10,
+            10
+          ],
+          "volume": 526.1,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 10,
+          "fetchedAt": "2026-03-04T14:02:59.682Z"
+        }
+      },
+      {
+        "qty": 1,
+        "type": "ninja",
+        "name": "Al-Hezmin's Crest",
+        "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9IdW50ZXJGcmFnbWVudCIsInNjYWxlIjoxfV0/3ad268c533/HunterFragment.png",
+        "item": {
+          "id": "al-hezmins-crest",
+          "name": "Al-Hezmin's Crest",
+          "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9IdW50ZXJGcmFnbWVudCIsInNjYWxlIjoxfV0/3ad268c533/HunterFragment.png",
+          "category": "Fragment",
+          "detailsId": "al-hezmins-crest",
+          "price": 19,
+          "priceHistory": [
+            -19.44,
+            -6.48,
+            -12.69,
+            -25.67,
+            -5.83,
+            9.58,
+            -36.67
+          ],
+          "volume": 41.17,
+          "maxVolumeCurrency": "chaos",
+          "maxVolumeRate": 0.05263,
+          "fetchedAt": "2026-03-04T14:02:59.682Z"
+        }
+      },
+      {
+        "qty": 1,
+        "type": "ninja",
+        "name": "Baran's Crest",
+        "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9DcnVzYWRlckZyYWdtZW50Iiwic2NhbGUiOjF9XQ/3e2fecf3bc/CrusaderFragment.png",
+        "item": {
+          "id": "barans-crest",
+          "name": "Baran's Crest",
+          "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9DcnVzYWRlckZyYWdtZW50Iiwic2NhbGUiOjF9XQ/3e2fecf3bc/CrusaderFragment.png",
+          "category": "Fragment",
+          "detailsId": "barans-crest",
+          "price": 78.91,
+          "priceHistory": [
+            0,
+            0,
+            0,
+            0,
+            null,
+            -0.93,
+            10
+          ],
+          "volume": 263,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 10,
+          "fetchedAt": "2026-03-04T14:02:59.682Z"
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "qty": 0.1,
+        "type": "ninja",
+        "name": "Orb of Dominance",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvTWF2ZW5PcmIiLCJzY2FsZSI6MX1d/f307d80bfd/MavenOrb.png",
+        "item": {
+          "id": "mavens-orb",
+          "name": "Orb of Dominance",
+          "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvTWF2ZW5PcmIiLCJzY2FsZSI6MX1d/f307d80bfd/MavenOrb.png",
+          "category": "Currency",
+          "detailsId": "orb-of-dominance",
+          "price": 4921,
+          "priceHistory": [
+            12.99,
+            4.43,
+            -9.51,
+            1.39,
+            3.9,
+            -1.59,
+            3.3
+          ],
+          "volume": 45110,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 0.1603,
+          "fetchedAt": "2026-03-04T14:02:59.647Z"
+        }
+      },
+      {
+        "qty": 0.15,
+        "type": "ninja",
+        "name": "Awakener's Orb",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVHJhbnNmZXJPcmIiLCJzY2FsZSI6MX1d/f3b1c1566f/TransferOrb.png",
+        "item": {
+          "id": "awakeners-orb",
+          "name": "Awakener's Orb",
+          "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVHJhbnNmZXJPcmIiLCJzY2FsZSI6MX1d/f3b1c1566f/TransferOrb.png",
+          "category": "Currency",
+          "detailsId": "awakeners-orb",
+          "price": 1716,
+          "priceHistory": [
+            -29.32,
+            -21.78,
+            -8.41,
+            -10.1,
+            -9.94,
+            -25.3,
+            -1.76
+          ],
+          "volume": 27750,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 0.4597,
+          "fetchedAt": "2026-03-04T14:02:59.647Z"
+        }
+      },
+      {
+        "qty": 0.05,
+        "type": "trade",
+        "name": "Crimson Jewel",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL0Nvbm5lY3RlZEpld2VsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/1d2c1f698a/ConnectedJewel.png",
+        "item": {
+          "tradeUrl": "https://www.pathofexile.com/trade/search/Standard/KlYo0X7EF5",
+          "search": {
+            "query": {
+              "status": {
+                "option": "securable"
+              },
+              "name": "Thread of Hope",
+              "type": "Crimson Jewel",
+              "stats": [
+                {
+                  "type": "and",
+                  "filters": [],
+                  "disabled": false
+                }
+              ],
+              "filters": {
+                "misc_filters": {
+                  "filters": {
+                    "corrupted": {
+                      "option": "false"
+                    },
+                    "identified": {
+                      "option": "false"
+                    }
+                  },
+                  "disabled": false
+                }
+              }
+            },
+            "sort": {
+              "price": "asc"
+            }
+          },
+          "resolved": {
+            "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL0Nvbm5lY3RlZEpld2VsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/1d2c1f698a/ConnectedJewel.png",
+            "name": "Crimson Jewel",
+            "originalMinPrice": {
+              "type": "~b/o",
+              "amount": 19,
+              "currency": "chaos"
+            },
+            "minPrice": {
+              "amount": 19,
+              "currency": "chaos"
+            },
+            "originalMedianPrice": {
+              "type": "~b/o",
+              "amount": 200,
+              "currency": "chaos"
+            },
+            "medianPrice": {
+              "amount": 200,
+              "currency": "chaos"
+            },
+            "medianCount": 6,
+            "fetchedAt": "2026-03-04T14:32:21.684Z"
+          }
+        }
+      },
+      {
+        "qty": 0.04,
+        "type": "ninja",
+        "name": "A Fate Worse Than Death",
+        "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
+        "item": {
+          "id": "a-fate-worse-than-death",
+          "name": "A Fate Worse Than Death",
+          "icon": "https://web.poecdn.com/image/Art/2DItems/Divination/InventoryIcon.png",
+          "category": "DivinationCard",
+          "detailsId": "a-fate-worse-than-death",
+          "price": 795,
+          "priceHistory": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            0
+          ],
+          "volume": 132.5,
+          "maxVolumeCurrency": "divine",
+          "maxVolumeRate": 1,
+          "fetchedAt": "2026-03-03T23:27:31.131Z"
+        }
+      },
+      {
+        "qty": 0.2,
+        "type": "trade",
+        "name": "The Burden of Truth Crystal Belt",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvU2lydXNCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/757f213691/SirusBelt.png",
+        "item": {
+          "tradeUrl": "https://www.pathofexile.com/trade/search/Standard/opV77DEwsl",
+          "search": {
+            "query": {
+              "status": {
+                "option": "securable"
+              },
+              "name": "The Burden of Truth",
+              "type": "Crystal Belt",
+              "stats": [
+                {
+                  "type": "and",
+                  "filters": [],
+                  "disabled": false
+                }
+              ],
+              "filters": {
+                "misc_filters": {
+                  "filters": {
+                    "corrupted": {
+                      "option": "false"
+                    }
+                  },
+                  "disabled": false
+                }
+              }
+            },
+            "sort": {
+              "price": "asc"
+            }
+          },
+          "resolved": {
+            "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQmVsdHMvU2lydXNCZWx0IiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/757f213691/SirusBelt.png",
+            "name": "The Burden of Truth Crystal Belt",
+            "originalMinPrice": {
+              "type": "~b/o",
+              "amount": 5,
+              "currency": "chaos"
+            },
+            "minPrice": {
+              "amount": 5,
+              "currency": "chaos"
+            },
+            "originalMedianPrice": {
+              "type": "~b/o",
+              "amount": 5,
+              "currency": "chaos"
+            },
+            "medianPrice": {
+              "amount": 5,
+              "currency": "chaos"
+            },
+            "medianCount": 10,
+            "fetchedAt": "2026-03-04T14:32:21.679Z"
+          }
+        }
+      },
+      {
+        "qty": 0.35,
+        "type": "trade",
+        "name": "Crown of the Inward Eye Prophet Crown",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL0Nyb3duT2ZUaGVJbndhcmRFeWUiLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/fdb20856e4/CrownOfTheInwardEye.png",
+        "item": {
+          "tradeUrl": "https://www.pathofexile.com/trade/search/Standard/Yp9QD53viY",
+          "search": {
+            "query": {
+              "status": {
+                "option": "securable"
+              },
+              "name": "Crown of the Inward Eye",
+              "type": "Prophet Crown",
+              "stats": [
+                {
+                  "type": "and",
+                  "filters": [],
+                  "disabled": false
+                }
+              ],
+              "filters": {
+                "misc_filters": {
+                  "filters": {
+                    "corrupted": {
+                      "option": "false"
+                    }
+                  },
+                  "disabled": false
+                }
+              }
+            },
+            "sort": {
+              "price": "asc"
+            }
+          },
+          "resolved": {
+            "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL0Nyb3duT2ZUaGVJbndhcmRFeWUiLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/fdb20856e4/CrownOfTheInwardEye.png",
+            "name": "Crown of the Inward Eye Prophet Crown",
+            "originalMinPrice": {
+              "type": "~b/o",
+              "amount": 5,
+              "currency": "chaos"
+            },
+            "minPrice": {
+              "amount": 5,
+              "currency": "chaos"
+            },
+            "originalMedianPrice": {
+              "type": "~b/o",
+              "amount": 10,
+              "currency": "chaos"
+            },
+            "medianPrice": {
+              "amount": 10,
+              "currency": "chaos"
+            },
+            "medianCount": 6,
+            "fetchedAt": "2026-03-04T14:32:21.704Z"
+          }
+        }
+      },
+      {
+        "qty": 0.4,
+        "type": "trade",
+        "name": "Hands of the High Templar Crusader Gloves",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9HbG92ZXMvSGFuZHNPZlRoZUhpZ2hUZW1wbGFyIiwidyI6MiwiaCI6Miwic2NhbGUiOjF9XQ/239b2df5cf/HandsOfTheHighTemplar.png",
+        "item": {
+          "tradeUrl": "https://www.pathofexile.com/trade/search/Standard/D6V4Vdzvu5",
+          "search": {
+            "query": {
+              "status": {
+                "option": "securable"
+              },
+              "name": "Hands of the High Templar",
+              "type": "Crusader Gloves",
+              "stats": [
+                {
+                  "type": "and",
+                  "filters": [],
+                  "disabled": false
+                }
+              ],
+              "filters": {
+                "misc_filters": {
+                  "filters": {
+                    "corrupted": {
+                      "option": "false"
+                    }
+                  },
+                  "disabled": false
+                }
+              }
+            },
+            "sort": {
+              "price": "asc"
+            }
+          },
+          "resolved": {
+            "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9HbG92ZXMvSGFuZHNPZlRoZUhpZ2hUZW1wbGFyIiwidyI6MiwiaCI6Miwic2NhbGUiOjF9XQ/239b2df5cf/HandsOfTheHighTemplar.png",
+            "name": "Hands of the High Templar Crusader Gloves",
+            "originalMinPrice": {
+              "type": "~b/o",
+              "amount": 20,
+              "currency": "chaos"
+            },
+            "minPrice": {
+              "amount": 20,
+              "currency": "chaos"
+            },
+            "originalMedianPrice": {
+              "type": "~b/o",
+              "amount": 40,
+              "currency": "chaos"
+            },
+            "medianPrice": {
+              "amount": 40,
+              "currency": "chaos"
+            },
+            "medianCount": 6,
+            "fetchedAt": "2026-03-04T14:32:21.701Z"
+          }
+        }
+      }
+    ],
+    "createdAt": "2026-03-04T14:18:45.693Z",
+    "updatedAt": "2026-03-04T14:32:21.704Z"
   }
 ]
