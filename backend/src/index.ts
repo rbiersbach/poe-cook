@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import { TradeApiServer } from "api/api";
 import { LeagueService } from "services/league-service";
 import { NinjaClientService } from "services/ninja-client-service";
@@ -6,7 +9,7 @@ import { NinjaScheduler } from "services/ninja-scheduler";
 import { TradeRateService } from "services/trade-rate-service";
 import { StoreRegistry } from "stores/store-registry";
 
-
+const poeSessId = process.env.POE_SESSID;
 
 const registry = new StoreRegistry();
 
@@ -33,6 +36,7 @@ const apiServerFull = new TradeApiServer(
   leagueService,
   ninjaScheduler,
   tradeRateService,
+  poeSessId,
 );
 
 ninjaScheduler.start();

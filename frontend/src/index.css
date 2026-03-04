@@ -87,7 +87,7 @@ body {
 ========================== */
 
 .nav-bar {
-  @apply w-full flex items-center gap-6 mb-6 py-3 px-6;
+  @apply w-full flex items-center gap-6 py-3 px-6;
   @apply bg-white border-b border-gray-200 shadow-sm;
   @apply dark:bg-gray-950/90 dark:border-gray-700/90 dark:border-b-2;
 }
@@ -228,4 +228,8 @@ body {
   @apply bg-white border border-gray-200 text-gray-900;
   @apply dark:bg-gray-950 dark:border-gray-700 dark:text-gray-50;
   @apply shadow-lg rounded p-2 text-xs min-w-max max-w-xs z-10;
+}
+
+.animate-spin {
+  animation-duration: 2s;
 }

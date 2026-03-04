@@ -66,7 +66,7 @@ describe("RecipeCard", () => {
         expect(refreshBtn.disabled).toBe(true);
     });
 
-    it("displays refresh spinner when refreshing", () => {
+    it("displays spinning refresh icon when refreshing", () => {
         const mockOnRefresh = vi.fn();
         render(
             <RecipeCard
@@ -75,7 +75,21 @@ describe("RecipeCard", () => {
                 refreshing={true}
             />
         );
-        expect(screen.getByTestId("refresh-spinner")).toBeInTheDocument();
+        const spinner = screen.getByTestId("refresh-spinner");
+        expect(spinner).toBeInTheDocument();
+        expect(spinner).toHaveClass("animate-spin");
+    });
+
+    it("does not show spinner when not refreshing", () => {
+        const mockOnRefresh = vi.fn();
+        render(
+            <RecipeCard
+                recipe={defaultRecipe}
+                onRefresh={mockOnRefresh}
+                refreshing={false}
+            />
+        );
+        expect(screen.queryByTestId("refresh-spinner")).not.toBeInTheDocument();
     });
 
     it("hides edit button when onEdit is not provided", () => {

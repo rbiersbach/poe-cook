@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { HtmlExtractorService } from "services/html-extractor-service";
+import { HtmlExtractorService, JsonParsingError } from "services/html-extractor-service";
 import { describe, expect, it } from "vitest";
 const pageHtmlPath = path.join(__dirname, "../resources/trade_page.html");
 const pageJsonPath = path.join(__dirname, "../resources/trade_page.json");
@@ -20,9 +20,9 @@ describe("HTML JSON extraction", () => {
         expect(json).toEqual(expected);
     });
 
-    it("throws if JSON is missing", () => {
+    it("throws JsonParsingError if JSON is missing", () => {
         const badHtml = "<html><body><script>console.log('no json');</script></body></html>";
-        expect(() => HtmlExtractorService.extractJsonFromHtml(badHtml)).toThrow();
+        expect(() => HtmlExtractorService.extractJsonFromHtml(badHtml)).toThrowError(JsonParsingError);
     });
 
     it("throws if JSON is invalid", () => {

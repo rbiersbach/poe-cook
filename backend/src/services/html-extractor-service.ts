@@ -1,6 +1,13 @@
 import axios from "axios";
 import { JSDOM } from "jsdom";
 
+export class JsonParsingError extends Error {
+    constructor(message: string, public readonly details?: unknown) {
+        super(message);
+        this.name = "JsonParsingError";
+    }
+}
+
 export class HtmlExtractorService {
     /**
      * Fetches HTML from a URL and returns the HTML string.
@@ -37,11 +44,11 @@ export class HtmlExtractorService {
                 try {
                     return JSON.parse(match[1]);
                 } catch (e) {
-                    throw new Error("Invalid JSON in HTML");
+                    throw new JsonParsingError("Invalid JSON found in trade page HTML", { rawJson: match[1], parseError: (e as Error).message });
                 }
             }
         }
-        throw new Error("JSON not found in HTML");
+        throw new JsonParsingError("Trade page JSON not found in HTML", { htmlLength: html.length });
     }
 
     /**
@@ -50,12 +57,12 @@ export class HtmlExtractorService {
      */
     static validateExtractedJson(data: any): void {
         if (!data || typeof data !== "object") {
-            throw new Error("Extracted data is not an object");
+            throw new JsonParsingError("Extracted data is not an object", { data });
         }
         const requiredFields = ["tab", "realm", "realms", "leagues", "news", "basePath", "league", "state"];
         for (const field of requiredFields) {
             if (!(field in data)) {
-                throw new Error(`Missing required field: ${field}`);
+                throw new JsonParsingError(`Extracted JSON is missing required field: ${field}`, { missingField: field });
             }
         }
         // Optionally, add more checks for nested fields or types

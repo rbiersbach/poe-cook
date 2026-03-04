@@ -20,7 +20,7 @@ export const ItemChip: React.FC<ItemChipProps> = ({ item }) => {
     const qtyBadge = qty !== 1 ? (
         qtyFmt.isRate
             ? <span className="font-bold text-gray-300 dark:text-gray-400">{qtyFmt.value}</span>
-            : <span><span className="font-bold">{qtyFmt.value}</span>{" x"}</span>
+            : <span className="font-bold">{qtyFmt.value}x</span>
     ) : null;
 
     if (isTradeItem(item)) {

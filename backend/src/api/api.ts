@@ -8,7 +8,8 @@ import { IRecipeService, RecipeService } from "services/recipe-service";
 import type { ITradeClientService } from "services/trade-client-service";
 import { TradeClientService } from "services/trade-client-service";
 import { ITradeRateService, TradeRateService } from "services/trade-rate-service";
-import { ResolveItemError, TradeResolverService } from "services/trade-resolver-service";
+import { RateLimitedError } from "services/trade-client-service";
+import { ResolveItemError, SessionExpiredError, TradeResolverService } from "services/trade-resolver-service";
 import { StoreRegistry } from "stores/store-registry";
 import {
     CreateRecipeRequestSchema,
@@ -27,6 +28,7 @@ export class TradeApiServer {
     private leagueService!: ILeagueService;
     private ninjaScheduler!: NinjaScheduler;
     private tradeRateService!: ITradeRateService;
+    private poeSessId?: string;
 
     constructor(
         tradeClient?: ITradeClientService,
@@ -36,6 +38,7 @@ export class TradeApiServer {
         leagueService?: ILeagueService,
         ninjaScheduler?: NinjaScheduler,
         tradeRateService?: ITradeRateService,
+        poeSessId?: string,
     ) {
         let loggerDefinition;
         if (!logger) {
@@ -60,18 +63,20 @@ export class TradeApiServer {
             credentials: true
         });
         this.registry = registry || new StoreRegistry();
+        this.poeSessId = poeSessId;
         this.tradeRateService = tradeRateService || new TradeRateService(this.registry, this.logger);
         this.tradeClient = tradeClient || new TradeClientService(
             this.tradeRateService,
             "poe-tools-api/1.0 (contact: you@example.com)",
             this.logger,
             undefined,
-            undefined,
+            this.poeSessId,
         );
         this.recipeService = recipeService || new RecipeService(
             this.registry,
             new TradeResolverService(this.logger, this.tradeClient, HtmlExtractorService),
             this.logger,
+            this.poeSessId ?? "",
         );
         this.leagueService = leagueService || new LeagueService(this.logger);
         this.ninjaScheduler = ninjaScheduler || new NinjaScheduler(
@@ -96,7 +101,7 @@ export class TradeApiServer {
                 const leagues = await this.leagueService.getLeagues();
                 reply.send({ leagues });
             } catch (err) {
-                this.logger.error({ error: err }, "Unexpected error in GET /api/leagues");
+                this.logger.error({ err }, "Unexpected error in GET /api/leagues");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -120,16 +125,23 @@ export class TradeApiServer {
                 await this.ninjaScheduler.activate(league);
 
                 const { tradeUrl } = validation.data;
-                const poeSessid = "example-session-id";
                 const resolver = new TradeResolverService(this.logger, this.tradeClient, HtmlExtractorService);
-                const result = await resolver.resolveItemFromUrl(tradeUrl, poeSessid, league);
+                const result = await resolver.resolveItemFromUrl(tradeUrl, this.poeSessId ?? "", league);
                 reply.send(result);
             } catch (err) {
+                if (err instanceof RateLimitedError) {
+                    this.logger.warn({ err, body: request.body }, "RateLimitedError in resolve-item");
+                    return reply.status(429).send({ error: err.message });
+                }
+                if (err instanceof SessionExpiredError) {
+                    this.logger.warn({ err, body: request.body }, "SessionExpiredError in resolve-item");
+                    return reply.status(403).send({ error: err.message });
+                }
                 if (err instanceof ResolveItemError) {
-                    this.logger.warn({ error: err, body: request.body }, "ResolveItemError in resolve-item");
+                    this.logger.warn({ err, body: request.body }, "ResolveItemError in resolve-item");
                     return reply.status(400).send({ error: err.message });
                 }
-                this.logger.error({ error: err, body: request.body }, "Unexpected error in resolve-item");
+                this.logger.error({ err, body: request.body }, "Unexpected error in resolve-item");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -170,7 +182,11 @@ export class TradeApiServer {
                 this.logger.info({ cursor, limit: pageLimit, count: limitedRecipes.length, invalidateCache, league }, "List recipes");
                 reply.send({ recipes: limitedRecipes, ...(nextCursor ? { nextCursor } : {}) });
             } catch (err) {
-                this.logger.error({ error: err, query: request.query }, "Unexpected error in GET recipes");
+                if (err instanceof RateLimitedError) {
+                    this.logger.warn({ err }, "RateLimitedError in GET recipes");
+                    return reply.status(429).send({ error: (err as RateLimitedError).message });
+                }
+                this.logger.error({ err, query: request.query }, "Unexpected error in GET recipes");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -209,7 +225,7 @@ export class TradeApiServer {
                 await this.recipeService.addRecipe(recipe, league);
                 reply.send({ recipe });
             } catch (err) {
-                this.logger.error({ error: err, body: request.body }, "Unexpected error in POST recipes");
+                this.logger.error({ err, body: request.body }, "Unexpected error in POST recipes");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -232,7 +248,11 @@ export class TradeApiServer {
                 this.logger.info({ id, league, invalidateCache }, "Fetched recipe by id");
                 reply.send(recipe);
             } catch (err) {
-                this.logger.error({ error: err, params: request.params }, "Unexpected error in GET recipe by id");
+                if (err instanceof RateLimitedError) {
+                    this.logger.warn({ err }, "RateLimitedError in GET recipe by id");
+                    return reply.status(429).send({ error: (err as RateLimitedError).message });
+                }
+                this.logger.error({ err, params: request.params }, "Unexpected error in GET recipe by id");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -276,7 +296,7 @@ export class TradeApiServer {
                     this.logger.info({ params: request.params }, "Recipe not found in PUT recipe");
                     return reply.status(404).send({ error: "Recipe not found" });
                 }
-                this.logger.error({ error: err, params: request.params, body: request.body }, "Unexpected error in PUT recipe");
+                this.logger.error({ err, params: request.params, body: request.body }, "Unexpected error in PUT recipe");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -297,7 +317,7 @@ export class TradeApiServer {
                 }
                 reply.status(204).send();
             } catch (err) {
-                this.logger.error({ error: err, params: request.params }, "Unexpected error in DELETE recipe");
+                this.logger.error({ err, params: request.params }, "Unexpected error in DELETE recipe");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -314,7 +334,7 @@ export class TradeApiServer {
                 const rates = this.registry.getExchangeRateStore(league).getAll();
                 reply.send({ rates });
             } catch (err) {
-                this.logger.error({ error: err }, "Unexpected error in GET exchange-rates");
+                this.logger.error({ err }, "Unexpected error in GET exchange-rates");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -339,7 +359,7 @@ export class TradeApiServer {
                 }
                 reply.send({ rate });
             } catch (err) {
-                this.logger.error({ error: err }, "Unexpected error in GET exchange-rate by id");
+                this.logger.error({ err }, "Unexpected error in GET exchange-rate by id");
                 return reply.status(500).send({ error: "Server error" });
             }
         });
@@ -369,7 +389,7 @@ export class TradeApiServer {
                 }
                 reply.send({ items: paged, nextCursor });
             } catch (err) {
-                this.logger.error({ error: err, query: request.query }, "Unexpected error in GET ninja-items");
+                this.logger.error({ err, query: request.query }, "Unexpected error in GET ninja-items");
                 return reply.status(500).send({ error: "Server error" });
             }
         });

@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Recipe, RecipeItem } from "api/generated";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -173,5 +173,67 @@ describe("RecipesListPage", () => {
             expect(screen.queryByTestId("delete-modal")).not.toBeInTheDocument();
         });
         expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument();
+    });
+
+    describe("Auto Refresh toggle", () => {
+        it("renders auto-refresh toggle with 'Enable auto refresh' label by default", async () => {
+            vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+            vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
+            renderWithLeague(<RecipesListPage />);
+            await waitFor(() => expect(screen.getByTestId("recipes-page-title")).toBeInTheDocument());
+            const toggle = screen.getByTestId("auto-refresh-toggle");
+            expect(toggle).toBeInTheDocument();
+            expect(toggle).toHaveAttribute("aria-label", "Enable auto refresh");
+        });
+
+        it("toggles aria-label when clicked", async () => {
+            vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+            vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(defaultRecipe);
+            const user = userEvent.setup();
+            renderWithLeague(<RecipesListPage />);
+            await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
+            const toggle = screen.getByTestId("auto-refresh-toggle");
+            await user.click(toggle);
+            expect(toggle).toHaveAttribute("aria-label", "Disable auto refresh");
+            await user.click(toggle);
+            expect(toggle).toHaveAttribute("aria-label", "Enable auto refresh");
+        });
+
+        it("shows spinning icon while a refresh is in progress", async () => {
+            let resolveRefresh: (v: any) => void;
+            vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [defaultRecipe], nextCursor: undefined });
+            vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockImplementation(() => new Promise(r => { resolveRefresh = r; }) as any);
+            const user = userEvent.setup();
+            renderWithLeague(<RecipesListPage />);
+            await waitFor(() => expect(screen.getByTestId("recipe-card-test1")).toBeInTheDocument());
+            const toggle = screen.getByTestId("auto-refresh-toggle");
+            expect(screen.queryByTestId("auto-refresh-spinner")).not.toBeInTheDocument();
+            await user.click(toggle);
+            expect(screen.getByTestId("auto-refresh-spinner")).toBeInTheDocument();
+            await act(async () => { resolveRefresh!(defaultRecipe); });
+        });
+
+        it("immediately refreshes oldest recipe when enabled, then again after 60 seconds", async () => {
+            const olderRecipe = makeRecipe({ id: "old1", updatedAt: new Date("2024-01-01T00:00:00Z").toISOString() });
+            const newerRecipe = makeRecipe({ id: "new1", updatedAt: new Date("2024-06-01T00:00:00Z").toISOString() });
+            vi.spyOn(DefaultService, "getApiLeagueRecipes").mockResolvedValue({ recipes: [newerRecipe, olderRecipe], nextCursor: undefined });
+            const refreshSpy = vi.spyOn(DefaultService, "getApiLeagueRecipeById").mockResolvedValue(olderRecipe);
+            renderWithLeague(<RecipesListPage />);
+            // Wait for initial render with real timers
+            await waitFor(() => expect(screen.getByTestId("recipe-card-old1")).toBeInTheDocument());
+            // Switch to fake timers after async setup is done
+            vi.useFakeTimers();
+            try {
+                await act(async () => { fireEvent.click(screen.getByTestId("auto-refresh-toggle")); });
+                // Should fire immediately at t=0
+                expect(refreshSpy).toHaveBeenCalledTimes(1);
+                expect(refreshSpy).toHaveBeenCalledWith(TEST_LEAGUE.id, "old1", true);
+                // Advance 60s for the interval tick
+                await act(async () => { vi.advanceTimersByTime(60_000); });
+                expect(refreshSpy).toHaveBeenCalledTimes(2);
+            } finally {
+                vi.useRealTimers();
+            }
+        });
     });
 });

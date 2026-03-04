@@ -1,6 +1,7 @@
 import { NoopLogger } from "logger";
 import type { TradeFetchResponse, TradeSearchRequest, TradeSearchResponse } from "models/trade-types";
-import { TradeClientService } from "services/trade-client-service";
+import { PoERequestQueue } from "services/poe-request-queue";
+import { RateLimitedError, TradeClientService } from "services/trade-client-service";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 
@@ -14,7 +15,7 @@ describe("TradeClient", () => {
     mockFetch = vi.fn();
     vi.stubGlobal("fetch", mockFetch);
     mockRateService = { getChaosValue: vi.fn((id: string) => id === "divine" ? 180 : 1) };
-    client = new TradeClientService(mockRateService as any, "test-agent", NoopLogger, "https://www.pathofexile.com");
+    client = new TradeClientService(mockRateService as any, "test-agent", NoopLogger, "https://www.pathofexile.com", undefined, new PoERequestQueue(10, 5000, 0));
   });
 
   afterEach(() => {
@@ -100,14 +101,49 @@ describe("TradeClient", () => {
       expect(res.result[0].listing.normalized_price).toBeUndefined();
     });
 
-    it("throws on non-ok response", async () => {
+    it("throws RateLimitedError on 429 response", async () => {
       mockFetch.mockResolvedValue({
         ok: false,
         status: 429,
         statusText: "Too Many Requests",
         text: async () => "rate limited",
+        headers: new Map(),
       });
-      await expect(client.fetchListings(["id1"], "q1")).rejects.toThrow(/HTTP 429/);
+      const err = await client.fetchListings(["id1"], "q1").catch(e => e);
+      expect(err).toBeInstanceOf(RateLimitedError);
+      expect(err.message).toMatch(/Rate limited/);
+    });
+
+    it("throws RateLimitedError with retryAfter from state headers on 429", async () => {
+      const headers = new Map([
+        ["x-rate-limit-ip", "8:10:60"],
+        ["x-rate-limit-ip-state", "8:10:45"],
+      ]);
+      mockFetch.mockResolvedValue({
+        ok: false,
+        status: 429,
+        statusText: "Too Many Requests",
+        text: async () => "rate limited",
+        headers,
+      });
+      const err = await client.fetchListings(["id1"], "q1").catch(e => e);
+      expect(err).toBeInstanceOf(RateLimitedError);
+      expect((err as RateLimitedError).retryAfterSeconds).toBe(45);
+    });
+
+    it("throws RateLimitedError proactively when active restriction in response headers", async () => {
+      const headers = new Map([
+        ["x-rate-limit-ip", "8:10:60,15:60:120"],
+        ["x-rate-limit-ip-state", "1:10:0,2:60:30"],
+      ]);
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({ result: [] }),
+        headers,
+      });
+      const err = await client.fetchListings(["id1"], "q1").catch(e => e);
+      expect(err).toBeInstanceOf(RateLimitedError);
+      expect(err.message).toMatch(/30s/);
     });
   });
 
@@ -118,7 +154,7 @@ describe("TradeClient", () => {
       expect(h["Accept"]).toBe("application/json");
     });
     it("includes POESESSID cookie if set", () => {
-      const c = new TradeClientService(mockRateService as any, "test-agent", NoopLogger, "https://www.pathofexile.com", "abc");
+      const c = new TradeClientService(mockRateService as any, "test-agent", NoopLogger, "https://www.pathofexile.com", "abc", new PoERequestQueue(10, 5000, 0));
       const h = (c as any).headers();
       expect(h["Cookie"]).toMatch(/POESESSID=abc/);
     });
@@ -154,7 +190,7 @@ describe("TradeClient", () => {
 
     it("normalises listing prices to chaos using TradeRateService", async () => {
       const customRateService = { getChaosValue: vi.fn((id: string) => id === "divine" ? 180 : 1) } as any;
-      const clientWithRates = new TradeClientService(customRateService, "test-agent", NoopLogger, "https://www.pathofexile.com");
+      const clientWithRates = new TradeClientService(customRateService, "test-agent", NoopLogger, "https://www.pathofexile.com", undefined, new PoERequestQueue(10, 5000, 0));
 
       const mockSearch: TradeSearchResponse = { result: ["id1", "id2"], id: "q1" } as any;
       const mockFetchResponse: TradeFetchResponse = {
@@ -180,7 +216,7 @@ describe("TradeClient", () => {
       const errorRateService = {
         getChaosValue: vi.fn(() => { throw new Error("Unknown currency"); }),
       } as any;
-      const clientWithRates = new TradeClientService(errorRateService, "test-agent", NoopLogger, "https://www.pathofexile.com");
+      const clientWithRates = new TradeClientService(errorRateService, "test-agent", NoopLogger, "https://www.pathofexile.com", undefined, new PoERequestQueue(10, 5000, 0));
       const mockSearch: TradeSearchResponse = { result: ["id1"], id: "q1" } as any;
       const mockFetchResponse: TradeFetchResponse = {
         result: [{ id: "id1", listing: { price: { amount: 1, currency: "mirror", type: "~b/o" } }, item: {} }],

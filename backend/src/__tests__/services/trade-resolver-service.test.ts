@@ -8,13 +8,7 @@ import { ResolveItemError, TradeResolverService } from "../../services/trade-res
 
 const exampleHtmlPath = path.join(__dirname, "../resources/trade_page.html");
 
-
-vi.spyOn(HtmlExtractorService, "fetchHtml").mockImplementation(async () => {
-    return fs.readFileSync(exampleHtmlPath, "utf8");
-});
-
-// Mock extractJsonFromHtml to return all required fields for validation
-vi.spyOn(HtmlExtractorService, "extractJsonFromHtml").mockImplementation(() => ({
+const mockExtractedJson = {
     tab: {},
     realm: "pc",
     realms: {},
@@ -29,7 +23,7 @@ vi.spyOn(HtmlExtractorService, "extractJsonFromHtml").mockImplementation(() => (
         stats: [{ type: "and" }],
         filters: undefined,
     },
-}));
+};
 
 describe("TradeResolver", () => {
     let NoopLogger;
@@ -39,6 +33,11 @@ describe("TradeResolver", () => {
     let listingsData: any;
 
     beforeEach(async () => {
+        vi.spyOn(HtmlExtractorService, "fetchHtml").mockImplementation(async () =>
+            fs.readFileSync(exampleHtmlPath, "utf8")
+        );
+        vi.spyOn(HtmlExtractorService, "extractJsonFromHtml").mockImplementation(() => mockExtractedJson);
+
         NoopLogger = (await import("../../logger")).NoopLogger;
         listingsData = {
             result: [
@@ -113,19 +112,18 @@ describe("TradeResolver", () => {
         const tradeUrlNoProtocol = "pathofexile.com/trade";
         const tradeUrlNoWww = "https://pathofexile.com/trade";
         const poeSessid = "test-session-id";
-        // Spy on fetchHtml to capture the URL used
-        const fetchHtmlSpy = vi.spyOn(HtmlExtractorService, "fetchHtml");
+        const fetchHtmlSpy = vi.mocked(HtmlExtractorService.fetchHtml);
+        fetchHtmlSpy.mockClear();
         await resolver.resolveTradeRequestFromUrl(tradeUrlNoProtocol, poeSessid);
         expect(fetchHtmlSpy).toHaveBeenCalledWith("https://www.pathofexile.com/trade", poeSessid);
         await resolver.resolveTradeRequestFromUrl(tradeUrlNoWww, poeSessid);
         expect(fetchHtmlSpy).toHaveBeenCalledWith("https://www.pathofexile.com/trade", poeSessid);
-        fetchHtmlSpy.mockRestore();
     });
 
     it("should resolve item with relevant mock listings data", async () => {
         const tradeUrl = "https://www.pathofexile.com/trade";
         const poeSessid = "test-session-id";
-        const result = await resolver.resolveItemFromUrl(tradeUrl, poeSessid);
+        const result = await resolver.resolveItemFromUrl(tradeUrl, poeSessid, "Sanctum");
         expect(result).toBeDefined();
         expect(result.resolved.iconUrl).toContain("InjectorBelt.png");
         expect(result.resolved.name).toBe("Mageblood");
@@ -156,8 +154,8 @@ describe("TradeResolver", () => {
         listingsData.result = [];
         const tradeUrl = "https://www.pathofexile.com/trade";
         const poeSessid = "test-session-id";
-        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid)).rejects.toThrowError(/No listings found/);
-        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid)).rejects.toThrowError(ResolveItemError);
+        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid, "Sanctum")).rejects.toThrowError(/No listings found/);
+        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid, "Sanctum")).rejects.toThrowError(ResolveItemError);
     });
 
     it("should throw ResolveItemError if no valid normalized prices found", async () => {
@@ -170,7 +168,7 @@ describe("TradeResolver", () => {
         ];
         const tradeUrl = "https://www.pathofexile.com/trade";
         const poeSessid = "test-session-id";
-        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid)).rejects.toThrowError(/No valid normalized prices/);
-        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid)).rejects.toThrowError(ResolveItemError);
+        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid, "Sanctum")).rejects.toThrowError(/No valid normalized prices/);
+        await expect(resolver.resolveItemFromUrl(tradeUrl, poeSessid, "Sanctum")).rejects.toThrowError(ResolveItemError);
     });
 });

@@ -5,10 +5,15 @@ export interface ITradeResolverService {
 }
 import { FastifyBaseLogger } from "fastify";
 import { Price, ResolvedMarketData, TradeFilters, TradeQuery, TradeSearchRequest } from "models/trade-types";
-import { HtmlExtractorService } from "services/html-extractor-service";
-import type { ITradeClientService } from "services/trade-client-service";
+import { HtmlExtractorService, JsonParsingError } from "services/html-extractor-service";
+import { RateLimitedError, type ITradeClientService } from "services/trade-client-service";
 
-
+export class SessionExpiredError extends Error {
+    constructor() {
+        super("POE session ID is expired or not provided. Please set a valid POESESSID on the server.");
+        this.name = "SessionExpiredError";
+    }
+}
 
 export class ResolveItemError extends Error {
     constructor(message: string, public details?: unknown) {
@@ -40,9 +45,18 @@ export class TradeResolverService implements ITradeResolverService {
             this.logger.info({ url: normalizedUrl }, "Fetching HTML from URL");
             const html = await this.htmlExtractor.fetchHtml(normalizedUrl, poeSessid);
             this.logger.info({ url: normalizedUrl }, "HTML fetched, extracting JSON");
-            const json = this.htmlExtractor.extractJsonFromHtml(html);
-            this.logger.info({ url: normalizedUrl }, "JSON extracted, validating");
-            this.htmlExtractor.validateExtractedJson(json);
+            let json: any;
+            try {
+                json = this.htmlExtractor.extractJsonFromHtml(html);
+                this.htmlExtractor.validateExtractedJson(json);
+            } catch (e) {
+                if (e instanceof JsonParsingError) {
+                    this.logger.warn({ err: e, details: e.details, url: normalizedUrl }, "Trade page JSON parsing failed — likely invalid or expired POESESSID");
+                    throw new SessionExpiredError();
+                }
+                throw e;
+            }
+            this.logger.info({ url: normalizedUrl }, "JSON extracted and validated");
             this.logger.info({ url: normalizedUrl }, "JSON validated, mapping to TradeSearchRequest");
 
             // Map the extracted JSON to TradeSearchRequest
@@ -57,7 +71,15 @@ export class TradeResolverService implements ITradeResolverService {
             this.logger.info({ url }, "TradeSearchRequest created successfully");
             return new TradeSearchRequest({ query });
         } catch (error) {
-            this.logger.error({ error, url }, "Failed to resolve TradeSearchRequest");
+            if (error instanceof SessionExpiredError) throw error;
+            if (error instanceof RateLimitedError) throw error;
+            if (error instanceof JsonParsingError) {
+                this.logger.warn({ err: error, details: error.details, url }, "Trade page JSON parsing failed — likely invalid or expired POESESSID");
+                throw new SessionExpiredError();
+            }
+            // HtmlExtractorService.fetchHtml throws a generic error on 429
+            if ((error as Error).message?.includes("429")) throw new RateLimitedError();
+            this.logger.error({ err: error, url }, "Failed to resolve TradeSearchRequest");
             throw new Error(`Failed to resolve TradeSearchRequest from URL: ${url} - ${(error as Error).message}`);
         }
     }
@@ -75,7 +97,7 @@ export class TradeResolverService implements ITradeResolverService {
      * Resolves a trade item from a TradeSearchRequest, returning enriched market data.
      */
     async resolveItemFromSearch(searchRequest: TradeSearchRequest, poeSessid: string, league: string): Promise<ResolvedMarketData> {
-        this.logger.info({ searchRequest }, "Resolving item from search");
+        this.logger.info({}, "Resolving item from search");
         // Use combined search and fetch
         const { search, listings } = await this.tradeClient.searchAndFetch(searchRequest, league, 10);
 

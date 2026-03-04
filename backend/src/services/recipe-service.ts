@@ -9,6 +9,7 @@ export interface IRecipeService {
 }
 import { FastifyBaseLogger } from "fastify";
 import { Recipe, RecipeItem } from "models/trade-types";
+import { RateLimitedError } from "services/trade-client-service";
 import type { ITradeResolverService } from "services/trade-resolver-service";
 import type { StoreRegistry } from "stores/store-registry";
 
@@ -17,7 +18,8 @@ export class RecipeService implements IRecipeService {
         private registry: StoreRegistry,
         private resolver: ITradeResolverService,
         private logger: FastifyBaseLogger,
-    ) {}
+        private poeSessId: string,
+    ) { }
 
     /**
      * Adds a recipe to the league-specific store.
@@ -102,7 +104,7 @@ export class RecipeService implements IRecipeService {
         try {
             if (item.type === 'trade') {
                 const tradeData = item.item as import('models/trade-types').TradeItem;
-                const resolved = await this.resolver.resolveItemFromSearch(tradeData.search, "example-session-id", league);
+                const resolved = await this.resolver.resolveItemFromSearch(tradeData.search, this.poeSessId, league);
                 return {
                     ...item,
                     name: resolved?.name ?? item.name,
@@ -127,7 +129,8 @@ export class RecipeService implements IRecipeService {
                 return item;
             }
         } catch (err) {
-            this.logger.warn({ error: err, item }, "Failed to refresh item");
+            if (err instanceof RateLimitedError) throw err;
+            this.logger.warn({ err, item }, "Failed to refresh item");
             return item;
         }
     }

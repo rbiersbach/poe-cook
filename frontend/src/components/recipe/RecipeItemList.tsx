@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { ApiError } from "../../api/generated/core/ApiError";
 import type { NinjaItem } from "../../api/generated/models/NinjaItem";
 import type { RecipeItem } from "../../api/generated/models/RecipeItem";
+import { useRateLimit } from "../../context/RateLimitContext";
+import { tradeUrlSchema } from "../../validation/schemas";
 import { RecipeItemDraft } from "./RecipeItemDraft";
 import { RecipeItemRow } from "./RecipeItemRow";
-import { tradeUrlSchema } from "../../validation/schemas";
 
 type TradeDraft = { tradeUrl: string; qty: number };
 
@@ -28,6 +30,7 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
     const [draftError, setDraftError] = useState<string | null>(null);
     const [draftErrorAnim, setDraftErrorAnim] = useState(false);
     const lastResolvedUrl = useRef("");
+    const { triggerRateLimit } = useRateLimit();
 
     // Auto-resolve when tradeUrl matches pattern
     useEffect(() => {
@@ -76,7 +79,16 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
             setDraft({ tradeUrl: "", qty: 1 });
             lastResolvedUrl.current = "";
         } catch (e) {
-            setDraftError("Failed to resolve item");
+            if (e instanceof ApiError && e.status === 429) {
+                triggerRateLimit(e.body?.error ?? e.message);
+            }
+            const msg =
+                e instanceof ApiError && e.status === 403
+                    ? "Session expired: POE session ID is invalid or not set on the server."
+                    : e instanceof ApiError && e.status === 429
+                        ? "Rate limited by PoE servers"
+                        : "Failed to resolve item";
+            setDraftError(msg);
             setDraftErrorAnim(true);
             setTimeout(() => setDraftErrorAnim(false), 800);
         } finally {
