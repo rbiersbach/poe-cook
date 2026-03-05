@@ -52,7 +52,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T11:56:43.746Z"
+            "fetchedAt": "2026-03-05T14:37:03.709Z"
           }
         }
       },
@@ -87,11 +87,11 @@
             "name": "Vial of Transcendence",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 25,
+              "amount": 35,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 25,
+              "amount": 35,
               "currency": "chaos"
             },
             "originalMedianPrice": {
@@ -104,7 +104,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T11:56:48.728Z"
+            "fetchedAt": "2026-03-05T14:37:08.676Z"
           }
         }
       },
@@ -153,11 +153,11 @@
             "name": "Chronicle of Atzoatl",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 5,
+              "amount": 2,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 5,
+              "amount": 2,
               "currency": "chaos"
             },
             "originalMedianPrice": {
@@ -170,7 +170,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T11:56:48.994Z"
+            "fetchedAt": "2026-03-05T14:37:08.949Z"
           }
         }
       }
@@ -212,7 +212,7 @@
               "currency": "divine"
             },
             "minPrice": {
-              "amount": 1454.8,
+              "amount": 1487.6,
               "currency": "chaos"
             },
             "originalMedianPrice": {
@@ -221,17 +221,17 @@
               "currency": "divine"
             },
             "medianPrice": {
-              "amount": 1454.8,
+              "amount": 1487.6,
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T11:56:49.424Z"
+            "fetchedAt": "2026-03-05T14:37:09.622Z"
           }
         }
       }
     ],
     "createdAt": "2026-03-03T18:50:09.473Z",
-    "updatedAt": "2026-03-05T11:56:49.424Z"
+    "updatedAt": "2026-03-05T14:37:09.622Z"
   },
   {
     "id": "1772226028950-9b0ffa526a0a8",
@@ -577,23 +577,23 @@
           "detailsId": "chaos-orb",
           "price": 1,
           "priceHistory": [
-            -9.41,
-            -12.78,
-            -17.56,
-            -22.91,
-            -37.07,
-            -42.69,
-            -36.79
+            -8.88,
+            -13.26,
+            -16.96,
+            -20.84,
+            -39.72,
+            -41.85,
+            -37.06
           ],
-          "volume": 214100,
+          "volume": 245453,
           "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 727.4,
-          "fetchedAt": "2026-03-05T11:22:42.452Z"
+          "maxVolumeRate": 743.8,
+          "fetchedAt": "2026-03-05T14:36:57.133Z"
         }
       }
     ],
     "createdAt": "2026-03-03T21:42:15.098Z",
-    "updatedAt": "2026-03-05T11:54:33.606Z"
+    "updatedAt": "2026-03-05T14:36:59.417Z"
   },
   {
     "id": "1772633788428-179ac3e132529",

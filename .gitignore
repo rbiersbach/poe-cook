@@ -14,6 +14,7 @@ pnpm-debug.log*
 # env
 .env
 .env.*
+!.env.example
 
 # OS
 .DS_Store
@@ -21,3 +22,7 @@ pnpm-debug.log*
 # editor
 .vscode/
 .idea/
+
+# misc
+ideas.md
+test.json
