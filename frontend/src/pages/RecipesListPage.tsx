@@ -1,10 +1,12 @@
 import { Recipe } from "api/generated/models/Recipe";
 import { DefaultService } from "api/generated/services/DefaultService";
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ApiError } from "../api/generated/core/ApiError";
 import { RecipeEditContext } from "../App";
 import { DivineChaosRate } from "../components/item/DivineChaosRate";
 import { RecipeCard } from "../components/recipe/RecipeCard";
+import { useSidebarVisible } from "../components/ui/TwoColumnLayout";
 import { useLeague } from "../context/LeagueContext";
 import { RateLimitContext } from "../context/RateLimitContext";
 
@@ -26,6 +28,9 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
     const rateLimitCtx = useContext(RateLimitContext);
     const editContext = useContext(RecipeEditContext);
     const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => { });
+    const navigate = useNavigate();
+    // True when the right-column sidebar in TwoColumnLayout is visible
+    const isSidebarVisible = useSidebarVisible();
     const { league } = useLeague();
 
     const fetchRecipes = (invalidateCache = false) => {
@@ -128,6 +133,10 @@ const RecipesListPage: React.FC<{ refetchRef?: React.MutableRefObject<() => void
 
     const handleEdit = (recipe: Recipe) => {
         setSelectedRecipe(recipe);
+        // Navigate to the standalone create page when the right sidebar is not visible
+        if (!isSidebarVisible) {
+            navigate("/create");
+        }
     };
 
     const handleDelete = async (id: string) => {

@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import { MemoryRouter } from "react-router-dom";
 import { makeRecipe, makeResolveItemResponse } from "../../__tests__/fixtures";
 import { RecipeItem } from "../../api/generated/models/RecipeItem";
 import { DefaultService } from "../../api/generated/services/DefaultService";
@@ -10,7 +11,11 @@ import type { SelectedLeague } from "../../context/LeagueContext";
 const TEST_LEAGUE: SelectedLeague = { id: "Standard", realm: "pc", text: "Standard" };
 
 function renderWithLeague(ui: React.ReactElement) {
-    return render(<LeagueProvider defaultLeague={TEST_LEAGUE}>{ui}</LeagueProvider>);
+    return render(
+        <MemoryRouter>
+            <LeagueProvider defaultLeague={TEST_LEAGUE}>{ui}</LeagueProvider>
+        </MemoryRouter>
+    );
 }
 
 const VALID_URL = "https://www.pathofexile.com/trade/search/Standard/abcdefghij";

@@ -7,6 +7,7 @@ import { Button } from "../components/ui/Button";
 import { ErrorMessage, SuccessMessage } from "../components/ui/SectionHeader";
 import { TextInput } from "../components/ui/TextInput";
 import { useLeague } from "../context/LeagueContext";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createRecipeSchema } from "../validation/schemas";
 
 type TradeDraft = { tradeUrl: string; qty: number };
@@ -19,6 +20,10 @@ export default function CreateRecipePage() {
     const selectedRecipe = editContext?.selectedRecipe ?? null;
     const setSelectedRecipe = editContext?.setSelectedRecipe ?? (() => { });
     const { league } = useLeague();
+    const navigate = useNavigate();
+    const location = useLocation();
+    // True when rendered as a standalone page (not embedded in TwoColumnLayout sidebar)
+    const isStandalonePage = location.pathname === "/create";
 
     const [resolvedInputs, setResolvedInputs] = useState<RecipeItem[]>([]);
     const [resolvedOutputs, setResolvedOutputs] = useState<RecipeItem[]>([]);
@@ -62,6 +67,7 @@ export default function CreateRecipePage() {
         setSelectedRecipe(null);
         setError(null);
         setSuccess(null);
+        if (isStandalonePage) navigate("/");
     };
 
     const handleSubmit = async () => {
@@ -117,6 +123,7 @@ export default function CreateRecipePage() {
             setResetKey(k => k + 1);
             setSelectedRecipe(null);
             if (refetchRecipes) refetchRecipes();
+            if (isStandalonePage) navigate("/");
         } catch (e) {
             setError(selectedRecipe ? "Failed to update recipe" : "Failed to submit recipe");
         } finally {

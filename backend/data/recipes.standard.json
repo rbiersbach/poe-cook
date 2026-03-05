@@ -52,7 +52,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T09:57:40.578Z"
+            "fetchedAt": "2026-03-05T10:02:43.113Z"
           }
         }
       },
@@ -104,7 +104,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T09:57:45.594Z"
+            "fetchedAt": "2026-03-05T10:02:48.105Z"
           }
         }
       },
@@ -170,7 +170,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T09:57:45.950Z"
+            "fetchedAt": "2026-03-05T10:02:48.330Z"
           }
         }
       }
@@ -225,13 +225,13 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T09:57:46.363Z"
+            "fetchedAt": "2026-03-05T10:02:48.854Z"
           }
         }
       }
     ],
     "createdAt": "2026-03-03T18:50:09.473Z",
-    "updatedAt": "2026-03-05T09:57:46.363Z"
+    "updatedAt": "2026-03-05T10:02:48.854Z"
   },
   {
     "id": "1772226028950-9b0ffa526a0a8",
@@ -286,7 +286,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T09:56:40.589Z"
+            "fetchedAt": "2026-03-05T10:01:42.328Z"
           }
         }
       },
@@ -338,7 +338,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T09:56:45.583Z"
+            "fetchedAt": "2026-03-05T10:01:47.293Z"
           }
         }
       },
@@ -404,7 +404,7 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T09:56:45.846Z"
+            "fetchedAt": "2026-03-05T10:01:47.517Z"
           }
         }
       }
@@ -414,7 +414,7 @@
         "qty": 1,
         "type": "trade",
         "name": "Mask of the Stitched Demon Magistrate Crown",
-        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MSwicmVsaWMiOjB9XQ/4b956a7b8f/MaskoftheStitchedDemon.png",
+        "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/0e24c9f156/MaskoftheStitchedDemon.png",
         "item": {
           "type": "trade",
           "tradeUrl": "https://www.pathofexile.com/trade/search/Standard/Bg327P9wF8",
@@ -438,34 +438,34 @@
             }
           },
           "resolved": {
-            "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MSwicmVsaWMiOjB9XQ/4b956a7b8f/MaskoftheStitchedDemon.png",
+            "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL01hc2tvZnRoZVN0aXRjaGVkRGVtb24iLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/0e24c9f156/MaskoftheStitchedDemon.png",
             "name": "Mask of the Stitched Demon Magistrate Crown",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 15,
+              "amount": 13,
               "currency": "divine"
             },
             "minPrice": {
-              "amount": 10968,
+              "amount": 9505.6,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 23,
+              "amount": 20,
               "currency": "divine"
             },
             "medianPrice": {
-              "amount": 16817.600000000002,
+              "amount": 14624,
               "currency": "chaos"
             },
             "medianCount": 6,
-            "fetchedAt": "2026-03-05T09:56:46.349Z"
+            "fetchedAt": "2026-03-05T10:01:48.024Z"
           }
         }
       }
     ],
     "createdAt": "2026-02-27T21:00:28.950Z",
-    "updatedAt": "2026-03-05T09:56:46.349Z"
+    "updatedAt": "2026-03-05T10:01:48.024Z"
   },
   {
     "id": "1772558673902-c64714142d1e7",
@@ -529,7 +529,7 @@
       }
     ],
     "createdAt": "2026-03-03T17:24:33.902Z",
-    "updatedAt": "2026-03-05T09:58:40.726Z"
+    "updatedAt": "2026-03-05T10:03:43.166Z"
   },
   {
     "id": "1772574135098-f4efa23060b21",

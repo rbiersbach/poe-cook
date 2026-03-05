@@ -99,6 +99,7 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
     return (
         <div className="mb-6">
             <h3 className="font-semibold mb-2" data-testid={`recipe-item-list-${label.toLowerCase()}`}>{label}</h3>
+            <div className="flex flex-col gap-2">
             {resolved.map((item, idx) => (
                 <RecipeItemRow
                     key={"resolved-" + idx}
@@ -116,6 +117,7 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({
                 error={draftError}
                 errorAnim={draftErrorAnim}
             />
+            </div>
         </div>
     );
 };

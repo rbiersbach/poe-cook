@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event";
 import { Recipe, RecipeItem } from "api/generated";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { MemoryRouter } from "react-router-dom";
 import { makeRecipe } from "../../__tests__/fixtures";
 import { DefaultService } from "../../api/generated/services/DefaultService";
 import type { SelectedLeague } from "../../context/LeagueContext";
@@ -11,7 +12,11 @@ import RecipesListPage from "../RecipesListPage";
 const TEST_LEAGUE: SelectedLeague = { id: "Standard", realm: "pc", text: "Standard" };
 
 function renderWithLeague(ui: React.ReactElement) {
-    return render(<LeagueProvider defaultLeague={TEST_LEAGUE}>{ui}</LeagueProvider>);
+    return render(
+        <MemoryRouter>
+            <LeagueProvider defaultLeague={TEST_LEAGUE}>{ui}</LeagueProvider>
+        </MemoryRouter>
+    );
 }
 
 const defaultRecipe = makeRecipe({ inputs: [] });
