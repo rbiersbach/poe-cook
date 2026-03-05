@@ -34,33 +34,43 @@ export function LeaguePicker() {
     const selectedKey = league ? leagueKey(league) : "";
 
     return (
-        <select
-            data-testid="league-picker"
-            value={selectedKey}
-            onChange={(e) => {
-                const [realm, ...rest] = e.target.value.split(":");
-                const id = rest.join(":");
-                const found = leagues.find((l) => l.realm === realm && l.id === id);
-                if (found) setLeague(found);
-            }}
-            disabled={loading}
-            className="rounded border border-gray-300 bg-white px-2 py-1 text-sm text-gray-900
-                       dark:border-gray-700 dark:bg-gray-800 dark:text-gray-50"
-        >
-            {!league && (
-                <option value="" disabled>
-                    Select a league
-                </option>
-            )}
-            {grouped.map(({ realm, items }) => (
-                <optgroup key={realm} label={REALM_LABEL[realm] ?? realm}>
-                    {items.map((l) => (
-                        <option key={leagueKey(l)} value={leagueKey(l)}>
-                            {l.text}
-                        </option>
-                    ))}
-                </optgroup>
-            ))}
-        </select>
+        <label className="flex h-full cursor-pointer flex-col items-start justify-center gap-2
+                          px-4 py-3 lg:px-8 lg:py-4
+                          text-gray-700 dark:text-gray-200
+                          hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <span className="text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500 leading-none select-none">
+                League
+            </span>
+            <select
+                data-testid="league-picker"
+                value={selectedKey}
+                onChange={(e) => {
+                    const [realm, ...rest] = e.target.value.split(":");
+                    const id = rest.join(":");
+                    const found = leagues.find((l) => l.realm === realm && l.id === id);
+                    if (found) setLeague(found);
+                }}
+                disabled={loading}
+                className="cursor-pointer bg-transparent
+                       text-base font-semibold text-nowrap text-gray-900 dark:text-gray-50
+                       border-0 outline-none
+                       disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+                {!league && (
+                    <option value="" disabled>
+                        Select a league
+                    </option>
+                )}
+                {grouped.map(({ realm, items }) => (
+                    <optgroup key={realm} label={REALM_LABEL[realm] ?? realm}>
+                        {items.map((l) => (
+                            <option key={leagueKey(l)} value={leagueKey(l)}>
+                                {l.text}
+                            </option>
+                        ))}
+                    </optgroup>
+                ))}
+            </select>
+        </label>
     );
 }

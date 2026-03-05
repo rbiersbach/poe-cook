@@ -1,0 +1,49 @@
+[
+  {
+    "id": "chaos",
+    "name": "Chaos Orb",
+    "fetchedAt": "2026-03-05T11:51:23.152Z"
+  },
+  {
+    "id": "alch",
+    "name": "Orb of Alchemy",
+    "chaosValue": 0.3333,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
+  },
+  {
+    "id": "fusing",
+    "name": "Orb of Fusing",
+    "chaosValue": 0.5,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
+  },
+  {
+    "id": "jewellers",
+    "name": "Jeweller's Orb",
+    "chaosValue": 0.2326,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
+  },
+  {
+    "id": "lesser-eldritch-ichor",
+    "name": "Lesser Eldritch Ichor",
+    "chaosValue": 1.5,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
+  },
+  {
+    "id": "regal",
+    "name": "Regal Orb",
+    "chaosValue": 2,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
+  },
+  {
+    "id": "chrome",
+    "name": "Chromatic Orb",
+    "chaosValue": 0.102,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
+  },
+  {
+    "id": "alt",
+    "name": "Orb of Alteration",
+    "chaosValue": 0.2,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
+  }
+]

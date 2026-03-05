@@ -1,6 +1,6 @@
 
 import { createContext, useCallback, useRef, useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 import { Recipe } from "./api/generated/models/Recipe";
 import { LeaguePicker } from "./components/ui/LeaguePicker";
 import { TwoColumnLayout } from "./components/ui/TwoColumnLayout";
@@ -37,9 +37,11 @@ function App() {
           <RecipeEditContext.Provider value={{ selectedRecipe, setSelectedRecipe }}>
             <RecipesListRefetchContext.Provider value={() => refetchFn.current()}>
               <nav className="nav-bar">
-                <Link to="/" className="link">Recipes</Link>
-                <Link to="/create" className="link">Create Recipe</Link>
-                <LeaguePicker />
+                <NavLink to="/" end className="nav-link">Recipes</NavLink>
+                <NavLink to="/create" className="nav-link">Create Recipe</NavLink>
+                <div className="ml-auto self-stretch">
+                  <LeaguePicker />
+                </div>
               </nav>
               {rateLimited && (
                 <div

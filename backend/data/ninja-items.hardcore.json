@@ -5,20 +5,8 @@
     "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxSYXJlIiwic2NhbGUiOjF9XQ/46a2347805/CurrencyRerollRare.png",
     "category": "Currency",
     "detailsId": "chaos-orb",
-    "price": 1,
-    "priceHistory": [
-      0,
-      null,
-      null,
-      13.12,
-      13.12,
-      -27.85,
-      -50
-    ],
-    "volume": 83.33,
-    "maxVolumeCurrency": "divine",
-    "maxVolumeRate": 500,
-    "fetchedAt": "2026-03-04T06:57:25.996Z"
+    "priceHistory": [],
+    "fetchedAt": "2026-03-05T11:51:23.152Z"
   },
   {
     "id": "alch",
@@ -29,17 +17,17 @@
     "price": 0.3333,
     "priceHistory": [
       0,
-      400,
       null,
+      0,
       null,
-      400,
-      400,
-      233.3
+      0,
+      -33.33,
+      -33.33
     ],
-    "volume": 1,
+    "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 3,
-    "fetchedAt": "2026-03-04T06:57:25.996Z"
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
   },
   {
     "id": "alt",
@@ -47,20 +35,20 @@
     "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxNYWdpYyIsInNjYWxlIjoxfV0/6308fc8ca2/CurrencyRerollMagic.png",
     "category": "Currency",
     "detailsId": "orb-of-alteration",
-    "price": 0.1982,
+    "price": 0.2,
     "priceHistory": [
       null,
       null,
       null,
       null,
-      null,
       0,
-      3.81
+      -0.18,
+      2.31
     ],
-    "volume": 30,
+    "volume": 0.8333,
     "maxVolumeCurrency": "chaos",
-    "maxVolumeRate": 5.04,
-    "fetchedAt": "2026-03-04T06:57:25.996Z"
+    "maxVolumeRate": 5,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
   },
   {
     "id": "bauble",
@@ -131,20 +119,20 @@
     "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxTb2NrZXROdW1iZXJzIiwic2NhbGUiOjF9XQ/ba411ff58a/CurrencyRerollSocketNumbers.png",
     "category": "Currency",
     "detailsId": "jewellers-orb",
-    "price": 0.25,
+    "price": 0.2326,
     "priceHistory": [
       null,
       null,
       null,
       null,
-      null,
       0,
-      25
+      41.7,
+      43.11
     ],
-    "volume": 0.1667,
+    "volume": 1.67,
     "maxVolumeCurrency": "chaos",
-    "maxVolumeRate": 4,
-    "fetchedAt": "2026-03-04T06:57:25.996Z"
+    "maxVolumeRate": 4.3,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
   },
   {
     "id": "lesser-eldritch-ichor",
@@ -159,13 +147,13 @@
       null,
       null,
       null,
-      null,
+      0,
       0
     ],
-    "volume": 0.5,
+    "volume": 1.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6667,
-    "fetchedAt": "2026-03-04T06:57:25.996Z"
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
   },
   {
     "id": "regal",
@@ -177,16 +165,16 @@
     "priceHistory": [
       null,
       null,
-      null,
       0,
       0,
       -47.5,
+      -8.33,
       0
     ],
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-04T06:57:25.996Z"
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
   },
   {
     "id": "regret",
@@ -215,20 +203,20 @@
     "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxTb2NrZXRDb2xvdXJzIiwic2NhbGUiOjF9XQ/19c8ddae20/CurrencyRerollSocketColours.png",
     "category": "Currency",
     "detailsId": "chromatic-orb",
-    "price": 0.08083,
+    "price": 0.102,
     "priceHistory": [
-      null,
-      0,
-      1.17,
-      -8.95,
-      6.23,
-      4.09,
-      -26.4
+      -16.43,
+      -7.14,
+      -16.43,
+      4.46,
+      -8.02,
+      -38.71,
+      -14.79
     ],
-    "volume": 5.83,
+    "volume": 4.33,
     "maxVolumeCurrency": "chaos",
-    "maxVolumeRate": 12.37,
-    "fetchedAt": "2026-03-04T06:57:25.996Z"
+    "maxVolumeRate": 9.81,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
   },
   {
     "id": "gcp",
@@ -278,20 +266,20 @@
     "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxTb2NrZXRMaW5rcyIsInNjYWxlIjoxfV0/c5e1959880/CurrencyRerollSocketLinks.png",
     "category": "Currency",
     "detailsId": "orb-of-fusing",
-    "price": 0.1,
+    "price": 0.5,
     "priceHistory": [
       null,
       null,
       null,
       null,
-      null,
       0,
-      -70
+      174.6,
+      181.2
     ],
-    "volume": 0.1667,
+    "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
-    "maxVolumeRate": 10,
-    "fetchedAt": "2026-03-04T06:57:25.996Z"
+    "maxVolumeRate": 2,
+    "fetchedAt": "2026-03-05T11:51:23.153Z"
   },
   {
     "id": "vivid-lifeforce",
