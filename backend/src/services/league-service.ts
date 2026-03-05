@@ -45,7 +45,7 @@ export class LeagueService implements ILeagueService {
             const res = await this.fetchImpl(LEAGUES_URL, {
                 headers: {
                     Accept: "application/json",
-                    "User-Agent": "poe-tools/1.0",
+                    "User-Agent": "poe-cook/1.0",
                 },
             });
             if (!res.ok) {

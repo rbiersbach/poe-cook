@@ -81,6 +81,7 @@
 - [Project Structure](#project-structure)
 - [Running Tests](#running-tests)
 - [API & Code Generation](#api--code-generation)
+- [FAQ](#faq)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 
@@ -111,8 +112,8 @@
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/rbiersbach/poe-tools.git
-cd poe-tools
+git clone https://github.com/rbiersbach/poe-cook.git
+cd poe-cook
 ```
 
 **2. Configure your session ID**
@@ -195,7 +196,7 @@ Open http://localhost:5173 in your browser.
 ## Project Structure
 
 ```
-poe-tools/
+poe-cook/
 ├── backend/                  # Fastify API server (Node.js + TypeScript)
 │   ├── src/
 │   │   ├── api/              # Route handlers

@@ -1,5 +1,5 @@
 {
-  "name": "poe-tools",
+  "name": "poe-cook",
   "private": true,
   "workspaces": [
     "backend",
@@ -17,6 +17,5 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

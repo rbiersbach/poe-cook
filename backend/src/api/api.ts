@@ -6,9 +6,8 @@ import { ILeagueService, LeagueService } from "services/league-service";
 import { NinjaScheduler } from "services/ninja-scheduler";
 import { IRecipeService, RecipeService } from "services/recipe-service";
 import type { ITradeClientService } from "services/trade-client-service";
-import { TradeClientService } from "services/trade-client-service";
+import { RateLimitedError, TradeClientService } from "services/trade-client-service";
 import { ITradeRateService, TradeRateService } from "services/trade-rate-service";
-import { RateLimitedError } from "services/trade-client-service";
 import { ResolveItemError, SessionExpiredError, TradeResolverService } from "services/trade-resolver-service";
 import { StoreRegistry } from "stores/store-registry";
 import {
@@ -67,7 +66,7 @@ export class TradeApiServer {
         this.tradeRateService = tradeRateService || new TradeRateService(this.registry, this.logger);
         this.tradeClient = tradeClient || new TradeClientService(
             this.tradeRateService,
-            "poe-tools-api/1.0 (contact: you@example.com)",
+            "poe-cook-api/1.0 (contact: you@example.com)",
             this.logger,
             undefined,
             this.poeSessId,
