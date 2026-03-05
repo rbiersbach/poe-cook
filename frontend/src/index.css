@@ -71,7 +71,7 @@ body {
 }
 
 .card-row {
-  @apply w-full flex items-center gap-3 mb-2 p-2 rounded-sm;
+  @apply w-full flex items-center gap-3 p-2 rounded-sm;
   @apply transition-colors duration-150;
   @apply border border-gray-200 bg-gray-50 hover:bg-gray-100;
   @apply dark:border-gray-700/80 dark:bg-gray-900/60;
@@ -159,6 +159,16 @@ body {
 /* Default button color */
 .button[data-color="default"] {
   @apply bg-gray-900 text-white dark:bg-gray-800 dark:text-gray-50 hover:bg-emerald-700 dark:hover:bg-emerald-600;
+}
+
+/* Primary button color */
+.button[data-color="primary"] {
+  @apply bg-emerald-600 text-white hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600;
+}
+
+/* Secondary button color */
+.button[data-color="secondary"] {
+  @apply bg-transparent text-gray-700 border border-gray-300 hover:bg-gray-100 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-800;
 }
 
 /* Danger button color */

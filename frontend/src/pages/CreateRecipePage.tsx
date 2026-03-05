@@ -53,6 +53,17 @@ export default function CreateRecipePage() {
         } as RecipeItem;
     };
 
+    const clearForm = () => {
+        setName("");
+        setHasAutofilled(false);
+        setResolvedInputs([]);
+        setResolvedOutputs([]);
+        setResetKey(k => k + 1);
+        setSelectedRecipe(null);
+        setError(null);
+        setSuccess(null);
+    };
+
     const handleSubmit = async () => {
         setLoading(true);
         setError(null);
@@ -180,14 +191,26 @@ export default function CreateRecipePage() {
                 allowRemoveResolved={true}
                 resolveItem={resolveItem}
             />
-            <Button
-                color="blue"
-                className="px-4 py-2 rounded"
-                onClick={handleSubmit}
-                disabled={loading || resolvedOutputs.length === 0 || resolvedInputs.length === 0}
-            >
-                {loading ? (selectedRecipe ? "Updating..." : "Submitting...") : (selectedRecipe ? "Update Recipe" : "Submit Recipe")}
-            </Button>
+            <div className="flex gap-2 items-center">
+                <Button
+                    data-color="primary"
+                    className="px-4 py-2 rounded"
+                    onClick={handleSubmit}
+                    disabled={loading || resolvedOutputs.length === 0 || resolvedInputs.length === 0}
+                    data-testid="submit-recipe-button"
+                >
+                    {loading ? (selectedRecipe ? "Updating..." : "Submitting...") : (selectedRecipe ? "Update Recipe" : "Submit Recipe")}
+                </Button>
+                <Button
+                    data-color="secondary"
+                    className="px-4 py-2 rounded"
+                    onClick={clearForm}
+                    disabled={loading || (!selectedRecipe && !name && resolvedInputs.length === 0 && resolvedOutputs.length === 0)}
+                    data-testid="cancel-recipe-button"
+                >
+                    {selectedRecipe ? "Cancel" : "Clear"}
+                </Button>
+            </div>
         </div>
     );
 }

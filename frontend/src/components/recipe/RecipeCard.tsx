@@ -34,8 +34,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refre
         }
     };
     return (
-        <div className="recipe-card card-row rounded shadow p-4 mb-4 flex flex-col gap-2" data-testid={`recipe-card-${recipe.id}`}>
-            <div className="flex items-center justify-between gap-4 mb-2 w-full">
+        <div className="recipe-card card-row rounded shadow p-4 flex flex-col gap-2" data-testid={`recipe-card-${recipe.id}`}>
+            <div className="flex items-center justify-between gap-4 w-full">
                 <div className="flex items-center gap-2 min-w-0 flex-1">
                     <span
                         className="truncate text-sm font-semibold text-primary dark:text-primary-dark min-w-0"

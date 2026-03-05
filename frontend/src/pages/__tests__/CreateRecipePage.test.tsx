@@ -61,7 +61,7 @@ describe("CreateRecipePage", () => {
         expect(nameInput).toHaveValue("Autofill Output Name");
         mockResolve.mockRestore();
     });
-    it("renders all main sections (inputs, output, submit button)", () => {
+    it("renders all main sections (inputs, output, submit button, clear button)", () => {
         renderWithLeague(<CreateRecipePage />);
         // Inputs section
         expect(screen.getByTestId("recipe-item-list-inputs")).toBeInTheDocument();
@@ -69,6 +69,11 @@ describe("CreateRecipePage", () => {
         expect(screen.getByTestId("recipe-item-list-outputs")).toBeInTheDocument();
         // Submit button
         expect(screen.getByRole("button", { name: /submit recipe/i })).toBeInTheDocument();
+        // Clear button (disabled when form is empty)
+        const clearBtn = screen.getByTestId("cancel-recipe-button");
+        expect(clearBtn).toBeInTheDocument();
+        expect(clearBtn).toHaveTextContent(/clear/i);
+        expect(clearBtn).toBeDisabled();
     });
 
     it("can add and remove input drafts (never fewer than one)", async () => {
@@ -381,6 +386,44 @@ describe("CreateRecipePage", () => {
         expect(link).toHaveAttribute("href", VALID_URL);
         expect(link).toHaveAttribute("target", "_blank");
         expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"));
+        mockResolve.mockRestore();
+    });
+
+    it("'Clear' button becomes enabled when name is filled and resets the form on click", async () => {
+        renderWithLeague(<CreateRecipePage />);
+        const nameInput = screen.getByTestId("recipe-name-input");
+        const clearBtn = screen.getByTestId("cancel-recipe-button");
+
+        // Disabled initially
+        expect(clearBtn).toBeDisabled();
+
+        // Type a name — button should enable
+        fireEvent.change(nameInput, { target: { value: "My Recipe" } });
+        expect(clearBtn).not.toBeDisabled();
+
+        // Click clear — name should be reset and button disabled again
+        fireEvent.click(clearBtn);
+        expect(nameInput).toHaveValue("");
+        expect(clearBtn).toBeDisabled();
+    });
+
+    it("'Clear' button becomes enabled when an input is resolved and clears resolved items on click", async () => {
+        const mockResolve = vi.spyOn(DefaultService, "postApiLeagueResolveItem").mockResolvedValue(
+            makeResolveItemResponse({ name: "Some Item", search: { query: { tradeUrl: VALID_URL }, sort: {} } })
+        );
+        renderWithLeague(<CreateRecipePage />);
+        const inputUrl = screen.getAllByTestId("trade-url-input")[0];
+        fireEvent.change(inputUrl, { target: { value: VALID_URL } });
+        await screen.findByText(/some item/i);
+
+        const clearBtn = screen.getByTestId("cancel-recipe-button");
+        expect(clearBtn).not.toBeDisabled();
+
+        fireEvent.click(clearBtn);
+
+        // Resolved rows should be gone
+        expect(screen.queryAllByTestId("recipe-item-row-resolved")).toHaveLength(0);
+        expect(clearBtn).toBeDisabled();
         mockResolve.mockRestore();
     });
 });
