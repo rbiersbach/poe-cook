@@ -1,8 +1,11 @@
-# PoE Cook
+<h1>
+  <img src="frontend/resources/assets/logo_dark.png" alt="" height="50" style="vertical-align: bottom;" />
+  PoE Cook
+</h1>
 
 **Your currency-making strategy tracker for Path of Exile.**
 
-"Cooking" is what the PoE community calls the art of turning knowlegde into strategies that yield profit — whether that's flipping Divination cards, sacrificing items in Temples, running Bestiary recipes, farming bosses for drops, or crafting items to sell. PoE Cook lets you define, evaluate, and track these strategies as recipes: specify your inputs, set your output, and see in real-time whether the numbers make sense — powered by live poe.ninja prices and direct trade listing lookups.
+"Cooking" is the art of turning knowlegde into strategies that yield profit — whether that's flipping Divination cards, sacrificing items in Temples, running Bestiary recipes, farming bosses for drops, or crafting items to sell. PoE Cook lets you define, evaluate, and track these strategies as recipes: specify your inputs, set your outputs, and see in real-time whether the numbers make sense — powered by live poe.ninja prices and direct trade listing lookups.
 
 > **Developer Alpha** — functional and usable locally, but rough edges remain. See the [Roadmap](#roadmap).
 
@@ -108,7 +111,7 @@
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/<your-org>/poe-tools.git
+git clone https://github.com/rbiersbach/poe-tools.git
 cd poe-tools
 ```
 
@@ -118,6 +121,8 @@ cp .env.example .env
 ```
 Open `.env` and replace `your_session_id_here` with your actual `POESESSID`.  
 → See [Getting your POESESSID](#getting-your-poesessid) if you're not sure where to find it.
+
+> **Session ID** is needed to resolve trade urls to search parameters, I found no better way to do this for now.
 
 **3. Start the app**
 ```bash
@@ -137,7 +142,7 @@ This builds the Docker images and starts both services. Once complete:
 
 ## Getting your POESESSID
 
-POE Tools needs your Path of Exile session cookie to fetch trade listings on your behalf, because the PoE trade API requires authentication.
+POE Tools needs your Path of Exile session cookie to fetch trade listings on your behalf, because opening a trade link and deriving the search parameters from there requires authentication.
 
 1. Open [pathofexile.com](https://www.pathofexile.com) and **log in**
 2. Open your browser's DevTools (`F12` / `Cmd+Option+I`)
@@ -146,6 +151,9 @@ POE Tools needs your Path of Exile session cookie to fetch trade listings on you
 5. Paste it as the value of `POE_SESSID` in your `.env` file
 
 > **Note:** the session cookie expires when you log out of the Path of Exile website. If recipe resolution stops working, refresh the cookie by logging in again and repeating the steps above.
+Sharing a session cookie with a third party app is not recommended and should be avoided.
+A final version of this app should find a better solution.
+If you are afraid of running my code, check first that its safe.
 
 ---
 
@@ -247,7 +255,7 @@ The generated files land in `frontend/src/api/generated/` — do not edit them m
 - [ ] Initial set of pre-built recipes to get started without creating everything from scratch
 - [ ] Light mode polish
 - [ ] Custom price overrides per item
-- [ ] Filter out input items below a configurable volume threshold
+- [ ] Filter out items/recipes below a configurable volume or profit threshold
 - [ ] Baseline currency toggle (e.g. price everything in Divine instead of Chaos)
 
 ### Future / Backlog
@@ -260,7 +268,7 @@ The generated files land in `frontend/src/api/generated/` — do not edit them m
 - [ ] User accounts and cloud sync
 - [ ] Hosted version (no local setup required)
 - [ ] IP rate limiting and abuse protection
-- [ ] GitHub Actions CI (lint + type-check + test on pull requests)
+- [ ] Migrate recipes to a different league 
 
 ---
 
