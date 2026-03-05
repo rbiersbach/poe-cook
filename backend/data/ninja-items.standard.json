@@ -18,7 +18,7 @@
     "volume": 33719,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 634.1,
-    "fetchedAt": "2026-03-05T14:36:57.133Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "divine",
@@ -39,7 +39,7 @@
     "volume": 245453,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.001344,
-    "fetchedAt": "2026-03-05T14:36:57.133Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "chaos",
@@ -60,7 +60,7 @@
     "volume": 245453,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 743.8,
-    "fetchedAt": "2026-03-05T14:36:57.133Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "explorers-scouting-report",
@@ -81,7 +81,7 @@
     "volume": 3105,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4479,
-    "fetchedAt": "2026-03-05T14:36:57.133Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "orb-of-unmaking",
@@ -102,7 +102,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2525,
-    "fetchedAt": "2026-03-05T14:36:57.133Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "veiled-chaos-orb",
@@ -123,7 +123,7 @@
     "volume": 11901,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.66,
-    "fetchedAt": "2026-03-05T14:36:57.133Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "orb-of-conflict",
@@ -144,7 +144,7 @@
     "volume": 110454,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.5556,
-    "fetchedAt": "2026-03-05T14:36:57.133Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "vaal",
@@ -165,7 +165,7 @@
     "volume": 2798,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.56,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "alch",
@@ -186,7 +186,7 @@
     "volume": 9.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1049,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "mavens-chisel-of-avarice",
@@ -207,7 +207,7 @@
     "volume": 86652,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.22,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-orb-of-fusing",
@@ -228,7 +228,7 @@
     "volume": 4215,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 12.29,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "gcp",
@@ -249,7 +249,7 @@
     "volume": 10661,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 156,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "chisel",
@@ -270,7 +270,7 @@
     "volume": 11777,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1040,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-chromatic-orb",
@@ -291,7 +291,7 @@
     "volume": 4091,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 16,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "mavens-orb",
@@ -312,7 +312,7 @@
     "volume": 64586,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.1574,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "vivid-lifeforce",
@@ -333,7 +333,7 @@
     "volume": 1247719,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1673,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "wild-lifeforce",
@@ -354,7 +354,7 @@
     "volume": 83801,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 6906,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "vaal-scouting-report",
@@ -375,7 +375,7 @@
     "volume": 6198,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 190.5,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "enkindling-orb",
@@ -396,7 +396,7 @@
     "volume": 249,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.62,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "grand-eldritch-ichor",
@@ -417,7 +417,7 @@
     "volume": 12273,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 60.93,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "exceptional-eldritch-ember",
@@ -438,7 +438,7 @@
     "volume": 33471,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.5148,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "shapers-exalted-orb",
@@ -459,7 +459,7 @@
     "volume": 9917,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.525,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "primal-lifeforce",
@@ -480,7 +480,7 @@
     "volume": 86652,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 6729,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "warlords-exalted-orb",
@@ -501,7 +501,7 @@
     "volume": 3471,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.2857,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "lesser-eldritch-ember",
@@ -522,7 +522,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1776,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "mavens-chisel-of-scarabs",
@@ -543,7 +543,7 @@
     "volume": 2355,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 8.53,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "regal",
@@ -564,7 +564,7 @@
     "volume": 92.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 12.29,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "aug",
@@ -585,7 +585,7 @@
     "volume": 6.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2240,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "unstable-catalyst",
@@ -606,7 +606,7 @@
     "volume": 26.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.7834,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "eldritch-exalted-orb",
@@ -627,7 +627,7 @@
     "volume": 13388,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 11.45,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "lesser-eldritch-ichor",
@@ -648,7 +648,7 @@
     "volume": 25.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 51.7,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "mavens-chisel-of-procurement",
@@ -669,7 +669,7 @@
     "volume": 2355,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 39.32,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "orb-of-remembrance",
@@ -690,7 +690,7 @@
     "volume": 49462,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.2406,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "exceptional-eldritch-ichor",
@@ -711,7 +711,7 @@
     "volume": 45620,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.4565,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "wisdom",
@@ -732,7 +732,7 @@
     "volume": 1.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 5064,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "chrome",
@@ -753,7 +753,7 @@
     "volume": 12149,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2580,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "eldritch-chaos-orb",
@@ -774,7 +774,7 @@
     "volume": 124462,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.72,
-    "fetchedAt": "2026-03-05T14:36:57.133Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "portal",
@@ -795,7 +795,7 @@
     "volume": 2.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1995,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "regret",
@@ -816,7 +816,7 @@
     "volume": 10165,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 613.3,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "chance",
@@ -837,7 +837,7 @@
     "volume": 2727,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3132,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "eldritch-orb-of-annulment",
@@ -858,7 +858,7 @@
     "volume": 23430,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 7.36,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "abrasive-catalyst",
@@ -879,7 +879,7 @@
     "volume": 1240,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 129.5,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-chaos-orb",
@@ -921,7 +921,7 @@
     "volume": 40661,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 10.04,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "stacked-deck",
@@ -942,7 +942,7 @@
     "volume": 232436,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 50.15,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tailoring-orb",
@@ -963,7 +963,7 @@
     "volume": 537517,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.2733,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "rogues-marker",
@@ -984,7 +984,7 @@
     "volume": 157.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 13204,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "mavens-chisel-of-proliferation",
@@ -1005,7 +1005,7 @@
     "volume": 10537,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.72,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "accelerating-catalyst",
@@ -1026,7 +1026,7 @@
     "volume": 280.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.08021,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "intrinsic-catalyst",
@@ -1047,7 +1047,7 @@
     "volume": 2479,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 80.4,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "delirious-scouting-report",
@@ -1068,7 +1068,7 @@
     "volume": 10.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.59,
-    "fetchedAt": "2026-03-05T14:36:57.133Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "greater-eldritch-ichor",
@@ -1089,7 +1089,7 @@
     "volume": 1116,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 332.9,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "fracturing-shard",
@@ -1110,7 +1110,7 @@
     "volume": 3347,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 4.44,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-mythic-orb",
@@ -1131,7 +1131,7 @@
     "volume": 2479,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 24.2,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-divine-teardrop",
@@ -1152,7 +1152,7 @@
     "volume": 19959,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.06832,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "fracturing-orb",
@@ -1173,7 +1173,7 @@
     "volume": 173305,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.1624,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "bauble",
@@ -1194,7 +1194,7 @@
     "volume": 475.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 4.61,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "mavens-chisel-of-divination",
@@ -1215,7 +1215,7 @@
     "volume": 1116,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 20,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "awakeners-orb",
@@ -1236,7 +1236,7 @@
     "volume": 21322,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.5698,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "whetstone",
@@ -1257,7 +1257,7 @@
     "volume": 2.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 3370,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "mirror",
@@ -1278,7 +1278,7 @@
     "volume": 27191339,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.0005653,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "fusing",
@@ -1299,7 +1299,7 @@
     "volume": 17851,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1066,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "reflecting-mist",
@@ -1320,7 +1320,7 @@
     "volume": 272973,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.03043,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tempering-orb",
@@ -1341,7 +1341,7 @@
     "volume": 699665,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.3604,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "jewellers",
@@ -1362,7 +1362,7 @@
     "volume": 188.7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 81.66,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "exalted",
@@ -1383,7 +1383,7 @@
     "volume": 100165,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 14.22,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-exalted-orb",
@@ -1404,7 +1404,7 @@
     "volume": 57892,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.7495,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "orb-of-horizons",
@@ -1425,7 +1425,7 @@
     "volume": 10.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 198,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "hinekoras-lock",
@@ -1446,7 +1446,7 @@
     "volume": 3835634,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.002553,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-armourers-scrap",
@@ -1467,7 +1467,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 31.5,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "influenced-scouting-report",
@@ -1488,7 +1488,7 @@
     "volume": 551.3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3978,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "transmute",
@@ -1509,7 +1509,7 @@
     "volume": 0.8333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 7020,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "scrap",
@@ -1530,7 +1530,7 @@
     "volume": 19.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 526,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "mirror-shard",
@@ -1551,7 +1551,7 @@
     "volume": 2810187,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.0112,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "instilling-orb",
@@ -1572,7 +1572,7 @@
     "volume": 22.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 60.52,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "prismatic-catalyst",
@@ -1593,7 +1593,7 @@
     "volume": 11529,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 9.74,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "fertile-catalyst",
@@ -1614,7 +1614,7 @@
     "volume": 10413,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 8.58,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "imbued-catalyst",
@@ -1635,7 +1635,7 @@
     "volume": 1.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 14,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "crusaders-exalted-orb",
@@ -1656,7 +1656,7 @@
     "volume": 2355,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.6316,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tempering-catalyst",
@@ -1677,7 +1677,7 @@
     "volume": 5578,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 22.78,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "blessed",
@@ -1698,7 +1698,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 675,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "annul",
@@ -1719,7 +1719,7 @@
     "volume": 19959,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 34.82,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "elders-exalted-orb",
@@ -1740,7 +1740,7 @@
     "volume": 2107,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.35,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "operatives-scouting-report",
@@ -1761,7 +1761,7 @@
     "volume": 3.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6842,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "comprehensive-scouting-report",
@@ -1782,7 +1782,7 @@
     "volume": 622,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.08923,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-catalyst",
@@ -1803,7 +1803,7 @@
     "volume": 30124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 7.02,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "greater-eldritch-ember",
@@ -1824,7 +1824,7 @@
     "volume": 8306,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 66.48,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "sacred-orb",
@@ -1845,7 +1845,7 @@
     "volume": 13016,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 6.11,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "veiled-exalted-orb",
@@ -1866,7 +1866,7 @@
     "volume": 46859,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 8.69,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "alt",
@@ -1887,7 +1887,7 @@
     "volume": 1783,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 46.69,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "sacred-lifeforce",
@@ -1908,7 +1908,7 @@
     "volume": 80454,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.718,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "singular-scouting-report",
@@ -1929,7 +1929,7 @@
     "volume": 572.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.01,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "hunters-exalted-orb",
@@ -1950,7 +1950,7 @@
     "volume": 6446,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.3654,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "turbulent-catalyst",
@@ -1971,7 +1971,7 @@
     "volume": 296.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.16,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "blighted-scouting-report",
@@ -1992,7 +1992,7 @@
     "volume": 13.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.7531,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "noxious-catalyst",
@@ -2013,7 +2013,7 @@
     "volume": 491.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2119,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "otherworldly-scouting-report",
@@ -2034,7 +2034,7 @@
     "volume": 18.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6881,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "ancient-orb",
@@ -2055,7 +2055,7 @@
     "volume": 16735,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 17.65,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "orb-of-unravelling",
@@ -2076,7 +2076,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "engineers",
@@ -2097,7 +2097,7 @@
     "volume": 16.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 35.05,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-jewellers-orb",
@@ -2118,7 +2118,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 150,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "exalted-shard",
@@ -2139,7 +2139,7 @@
     "volume": 3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.7778,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "harbingers-orb",
@@ -2160,7 +2160,7 @@
     "volume": 7.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 11.17,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "redeemers-exalted-orb",
@@ -2181,7 +2181,7 @@
     "volume": 1116,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tuls-flawless-breachstone",
@@ -2202,7 +2202,7 @@
     "volume": 2355,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "simulacrum-splinter",
@@ -2223,7 +2223,7 @@
     "volume": 91.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 3.38,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "fragment-of-knowledge",
@@ -2244,7 +2244,7 @@
     "volume": 4339,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.4,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "an-audience-with-the-king",
@@ -2265,7 +2265,7 @@
     "volume": 9173,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.35,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "eshs-flawless-breachstone",
@@ -2286,7 +2286,7 @@
     "volume": 1116,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.22,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "veritanias-crest",
@@ -2307,7 +2307,7 @@
     "volume": 142.2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01172,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "sacred-blossom",
@@ -2328,7 +2328,7 @@
     "volume": 8182,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.52,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "fragment-of-constriction",
@@ -2349,7 +2349,7 @@
     "volume": 1859,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.93,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "awakening-fragment",
@@ -2370,7 +2370,7 @@
     "volume": 1488,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 10.83,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "chayulas-breachstone",
@@ -2391,7 +2391,7 @@
     "volume": 5207,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.67,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "offer-dedication",
@@ -2412,7 +2412,7 @@
     "volume": 1116,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.22,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "splinter-xoph",
@@ -2433,7 +2433,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 50,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "crescent-splinter",
@@ -2454,7 +2454,7 @@
     "volume": 630,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01217,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "offer",
@@ -2475,7 +2475,7 @@
     "volume": 38,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6711,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "blessing-xoph",
@@ -2496,7 +2496,7 @@
     "volume": 5578,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.16,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "voidborn-reliquary-key",
@@ -2517,7 +2517,7 @@
     "volume": 135991,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.4102,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "ign",
@@ -2538,7 +2538,7 @@
     "volume": 371.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 8,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "fragment-of-terror",
@@ -2559,7 +2559,7 @@
     "volume": 3719,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.1,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "fragment-of-shape",
@@ -2580,7 +2580,7 @@
     "volume": 3347,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.11,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "reality-fragment",
@@ -2601,7 +2601,7 @@
     "volume": 46611,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.6543,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "simulacrum",
@@ -2622,7 +2622,7 @@
     "volume": 20950,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.7,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "xophs-breachstone",
@@ -2643,7 +2643,7 @@
     "volume": 321.2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.05189,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "echo-of-trauma",
@@ -2664,7 +2664,7 @@
     "volume": 14752,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.3109,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "the-mavens-writ",
@@ -2685,7 +2685,7 @@
     "volume": 29876,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.56,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "timeless-karui-emblem",
@@ -2706,7 +2706,7 @@
     "volume": 21.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "cosmic-fragment",
@@ -2727,7 +2727,7 @@
     "volume": 24049,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.75,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "dawn",
@@ -2748,7 +2748,7 @@
     "volume": 8.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2.69,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "echo-of-loneliness",
@@ -2769,7 +2769,7 @@
     "volume": 2851,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.3478,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "fragment-of-purification",
@@ -2790,7 +2790,7 @@
     "volume": 1736,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.21,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "timeless-maraketh-emblem",
@@ -2811,7 +2811,7 @@
     "volume": 554.2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.02617,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "hope",
@@ -2832,7 +2832,7 @@
     "volume": 619.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 20,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "blazing-fragment",
@@ -2853,7 +2853,7 @@
     "volume": 44504,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.5627,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "phoenix",
@@ -2874,7 +2874,7 @@
     "volume": 170.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.02537,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "barans-crest",
@@ -2895,7 +2895,7 @@
     "volume": 116.2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01148,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "timeless-templar-emblem",
@@ -2916,7 +2916,7 @@
     "volume": 454.7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.04729,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "blessing-chayula",
@@ -2937,7 +2937,7 @@
     "volume": 30868,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.4859,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "splinter-chayula",
@@ -2958,7 +2958,7 @@
     "volume": 36.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2055,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "fragment-of-emptiness",
@@ -2979,7 +2979,7 @@
     "volume": 4215,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.41,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "ritual-vessel",
@@ -3000,7 +3000,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 31,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "valdos-puzzle-box",
@@ -3021,7 +3021,7 @@
     "volume": 472063,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.37,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "reverent-fragment",
@@ -3042,7 +3042,7 @@
     "volume": 52066,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.3548,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "noon",
@@ -3063,7 +3063,7 @@
     "volume": 139.3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6328,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "xophs-flawless-breachstone",
@@ -3084,7 +3084,7 @@
     "volume": 15372,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.7419,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "tuls-breachstone",
@@ -3105,7 +3105,7 @@
     "volume": 371.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 34,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "minot",
@@ -3126,7 +3126,7 @@
     "volume": 619.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 12.2,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "traumatic-fragment",
@@ -3147,7 +3147,7 @@
     "volume": 4711,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.68,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "uber-timeless-eternal-emblem",
@@ -3168,7 +3168,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "lonely-fragment",
@@ -3189,7 +3189,7 @@
     "volume": 7190,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.79,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "offer-tribute",
@@ -3210,7 +3210,7 @@
     "volume": 43.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1221,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "devouring-fragment",
@@ -3231,7 +3231,7 @@
     "volume": 94586,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.7064,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "fragment-of-eradication",
@@ -3252,7 +3252,7 @@
     "volume": 1116,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.89,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "timeless-vaal-emblem",
@@ -3273,7 +3273,7 @@
     "volume": 129.2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1497,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "eshs-breachstone",
@@ -3294,7 +3294,7 @@
     "volume": 88.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1604,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "mid",
@@ -3315,7 +3315,7 @@
     "volume": 320,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2375,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "synthesising-fragment",
@@ -3336,7 +3336,7 @@
     "volume": 7066,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.86,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "al-hezmins-crest",
@@ -3357,7 +3357,7 @@
     "volume": 89,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01498,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "fragment-of-enslavement",
@@ -3378,7 +3378,7 @@
     "volume": 1364,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.18,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "uber-timeless-vaal-emblem",
@@ -3399,7 +3399,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "offer-gift",
@@ -3420,7 +3420,7 @@
     "volume": 8926,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.6944,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "grie",
@@ -3441,7 +3441,7 @@
     "volume": 22.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2847,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "uul-breachstone",
@@ -3462,7 +3462,7 @@
     "volume": 48.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.06897,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "blessing-uul-netol",
@@ -3483,7 +3483,7 @@
     "volume": 4587,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.8108,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "timeless-eternal-emblem",
@@ -3504,7 +3504,7 @@
     "volume": 49.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6532,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "dusk",
@@ -3525,7 +3525,7 @@
     "volume": 5.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 6.55,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "echo-of-reverence",
@@ -3546,7 +3546,7 @@
     "volume": 36694,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.152,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "splinter-tul",
@@ -3567,7 +3567,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 24,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "uber-timeless-maraketh-emblem",
@@ -3588,7 +3588,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "syndicate-medallion",
@@ -3609,7 +3609,7 @@
     "volume": 29628,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.3138,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "blessing-esh",
@@ -3630,7 +3630,7 @@
     "volume": 3719,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.67,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "uber-timeless-karui-emblem",
@@ -3651,7 +3651,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "hydra",
@@ -3672,7 +3672,7 @@
     "volume": 867.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.71,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "decaying-fragment",
@@ -3693,7 +3693,7 @@
     "volume": 43884,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.11,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "uber-timeless-templar-emblem",
@@ -3714,7 +3714,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "uul-flawless-breachstone",
@@ -3735,7 +3735,7 @@
     "volume": 1859,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.9333,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "divine-vessel",
@@ -3756,7 +3756,7 @@
     "volume": 1.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 5,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "chayulas-flawless-breachstone",
@@ -3777,7 +3777,7 @@
     "volume": 23678,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.2304,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "droxs-crest",
@@ -3798,7 +3798,7 @@
     "volume": 91.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01821,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "chimer",
@@ -3819,7 +3819,7 @@
     "volume": 743.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 5.83,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "runegraft-of-treachery",
@@ -3840,7 +3840,7 @@
     "volume": 1364,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-the-warp",
@@ -3861,7 +3861,7 @@
     "volume": 3967,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.6562,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-the-sinistral",
@@ -3882,7 +3882,7 @@
     "volume": 34.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01463,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-refraction",
@@ -3903,7 +3903,7 @@
     "volume": 727.3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.006874,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-the-soulwick",
@@ -3924,7 +3924,7 @@
     "volume": 371.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-the-fortress",
@@ -3945,7 +3945,7 @@
     "volume": 1612,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.85,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-restitching",
@@ -3987,7 +3987,7 @@
     "volume": 1.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-gemcraft",
@@ -4008,7 +4008,7 @@
     "volume": 2231,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.6111,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-time",
@@ -4029,7 +4029,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-bellows",
@@ -4050,7 +4050,7 @@
     "volume": 9.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2321,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-the-bound",
@@ -4071,7 +4071,7 @@
     "volume": 3.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.05263,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-stability",
@@ -4134,7 +4134,7 @@
     "volume": 12769,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.466,
-    "fetchedAt": "2026-03-05T14:36:57.201Z"
+    "fetchedAt": "2026-03-05T15:36:11.327Z"
   },
   {
     "id": "allflame-ember-of-resplendence",
@@ -4155,7 +4155,7 @@
     "volume": 10.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.03077,
-    "fetchedAt": "2026-03-05T14:36:57.201Z"
+    "fetchedAt": "2026-03-05T15:36:11.328Z"
   },
   {
     "id": "allflame-ember-of-the-ethereal",
@@ -4176,7 +4176,7 @@
     "volume": 8678,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.2857,
-    "fetchedAt": "2026-03-05T14:36:57.201Z"
+    "fetchedAt": "2026-03-05T15:36:11.328Z"
   },
   {
     "id": "allflame-ember-of-the-gilded",
@@ -4197,7 +4197,7 @@
     "volume": 77107,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.1768,
-    "fetchedAt": "2026-03-05T14:36:57.201Z"
+    "fetchedAt": "2026-03-05T15:36:11.328Z"
   },
   {
     "id": "tattoo-of-the-hinekora-warmonger",
@@ -4218,7 +4218,7 @@
     "volume": 3595,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.03,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-ramako-shaman",
@@ -4239,7 +4239,7 @@
     "volume": 6694,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.6481,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tasalio-warrior",
@@ -4260,7 +4260,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-ramako-archer",
@@ -4281,7 +4281,7 @@
     "volume": 867.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 4,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-hinekora-storyteller",
@@ -4302,7 +4302,7 @@
     "volume": 4463,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.03,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-ngamahu-warrior",
@@ -4344,7 +4344,7 @@
     "volume": 3843,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.39,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-rongokurai-turtle",
@@ -4365,7 +4365,7 @@
     "volume": 61.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.04043,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-hinekora-warrior",
@@ -4386,7 +4386,7 @@
     "volume": 2107,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 4,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tasalio-scout",
@@ -4428,7 +4428,7 @@
     "volume": 12149,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.5204,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-valako-shieldbearer",
@@ -4449,7 +4449,7 @@
     "volume": 6446,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.3654,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-ramako-sniper",
@@ -4470,7 +4470,7 @@
     "volume": 3843,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-hinekora-shaman",
@@ -4491,7 +4491,7 @@
     "volume": 0.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tawhoa-warrior",
@@ -4512,7 +4512,7 @@
     "volume": 3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.05556,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-arohongui-shaman",
@@ -4533,7 +4533,7 @@
     "volume": 7934,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.3594,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tukohama-warrior",
@@ -4554,7 +4554,7 @@
     "volume": 24.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.09524,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tawhoa-shaman",
@@ -4575,7 +4575,7 @@
     "volume": 1488,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-kitava-rebel",
@@ -4617,7 +4617,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 7,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "journey-tattoo-of-the-body",
@@ -4638,7 +4638,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.25,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-kitava-blood-drinker",
@@ -4659,7 +4659,7 @@
     "volume": 37.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.292,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-ramako-fleetfoot",
@@ -4680,7 +4680,7 @@
     "volume": 142.3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01405,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-arohongui-warmonger",
@@ -4701,7 +4701,7 @@
     "volume": 5.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-ramako-scout",
@@ -4722,7 +4722,7 @@
     "volume": 29.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2727,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-ngamahu-warmonger",
@@ -4743,7 +4743,7 @@
     "volume": 9173,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.5405,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "journey-tattoo-of-the-mind",
@@ -4764,7 +4764,7 @@
     "volume": 246569,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.006033,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tawhoa-herbalist",
@@ -4785,7 +4785,7 @@
     "volume": 13.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tasalio-tideshifter",
@@ -4806,7 +4806,7 @@
     "volume": 416.7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.034,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-hinekora-deathwarden",
@@ -4827,7 +4827,7 @@
     "volume": 66.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.05276,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-rongokurai-warrior",
@@ -4848,7 +4848,7 @@
     "volume": 40.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.209,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-arohongui-moonwarden",
@@ -4869,7 +4869,7 @@
     "volume": 991.7,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 4.25,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "journey-tattoo-of-the-soul",
@@ -4890,7 +4890,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-valako-stormrider",
@@ -4911,7 +4911,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.25,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-arohongui-scout",
@@ -4932,7 +4932,7 @@
     "volume": 17.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tukohama-brawler",
@@ -4953,7 +4953,7 @@
     "volume": 41.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.284,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "omen-of-deaths-door",
@@ -4995,7 +4995,7 @@
     "volume": 9669,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.6923,
-    "fetchedAt": "2026-03-05T14:36:57.248Z"
+    "fetchedAt": "2026-03-05T15:36:11.372Z"
   },
   {
     "id": "omen-of-refreshment",
@@ -5037,7 +5037,7 @@
     "volume": 77603,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.246,
-    "fetchedAt": "2026-03-05T14:36:57.248Z"
+    "fetchedAt": "2026-03-05T15:36:11.372Z"
   },
   {
     "id": "omen-of-connections",
@@ -5058,7 +5058,7 @@
     "volume": 14380,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.09483,
-    "fetchedAt": "2026-03-05T14:36:57.248Z"
+    "fetchedAt": "2026-03-05T15:36:11.372Z"
   },
   {
     "id": "omen-of-death-dancing",
@@ -5079,7 +5079,7 @@
     "volume": 5.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3429,
-    "fetchedAt": "2026-03-05T14:36:57.248Z"
+    "fetchedAt": "2026-03-05T15:36:11.372Z"
   },
   {
     "id": "omen-of-fortune",
@@ -5100,7 +5100,7 @@
     "volume": 84545,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.02639,
-    "fetchedAt": "2026-03-05T14:36:57.248Z"
+    "fetchedAt": "2026-03-05T15:36:11.372Z"
   },
   {
     "id": "omen-of-the-jeweller",
@@ -5121,7 +5121,7 @@
     "volume": 227.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01026,
-    "fetchedAt": "2026-03-05T14:36:57.248Z"
+    "fetchedAt": "2026-03-05T15:36:11.372Z"
   },
   {
     "id": "omen-of-brilliance",
@@ -5142,7 +5142,7 @@
     "volume": 277.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.0168,
-    "fetchedAt": "2026-03-05T14:36:57.248Z"
+    "fetchedAt": "2026-03-05T15:36:11.372Z"
   },
   {
     "id": "arrogance-of-the-vaal",
@@ -5184,7 +5184,7 @@
     "volume": 5731696,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.003396,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "luminous-trove",
@@ -5205,7 +5205,7 @@
     "volume": 17.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.009524,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-side-quest",
@@ -5226,7 +5226,7 @@
     "volume": 2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.25,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "alone-in-the-darkness",
@@ -5309,7 +5309,7 @@
     "volume": 976481,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.006348,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-enthusiasts",
@@ -5350,7 +5350,7 @@
     "volume": 610409,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.0199,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "lingering-remnants",
@@ -5392,7 +5392,7 @@
     "volume": 1116,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.56,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "desecrated-virtue",
@@ -5413,7 +5413,7 @@
     "volume": 19711,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.1384,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-nurse",
@@ -5434,7 +5434,7 @@
     "volume": 80,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01667,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "emperors-luck",
@@ -5455,7 +5455,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-hook",
@@ -5476,7 +5476,7 @@
     "volume": 2355,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-deep-ones",
@@ -5497,7 +5497,7 @@
     "volume": 8.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.02,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-celestial-justicar",
@@ -5538,7 +5538,7 @@
     "volume": 2231,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.3333,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-apothecary",
@@ -5559,7 +5559,7 @@
     "volume": 300866,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.02761,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-sephirot",
@@ -5580,7 +5580,7 @@
     "volume": 2134,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.002031,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "doryanis-epiphany",
@@ -5601,7 +5601,7 @@
     "volume": 33.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.009901,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "lachrymal-necrosis",
@@ -5622,7 +5622,7 @@
     "volume": 5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-fortunate",
@@ -5643,7 +5643,7 @@
     "volume": 281.7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01065,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "lonely-warrior",
@@ -5706,7 +5706,7 @@
     "volume": 24.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.006897,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-rusted-bard",
@@ -5790,7 +5790,7 @@
     "volume": 154214,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.006431,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-cheater",
@@ -5811,7 +5811,7 @@
     "volume": 18223,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.06803,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "monochrome",
@@ -5832,7 +5832,7 @@
     "volume": 29,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.03448,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "seven-years-bad-luck",
@@ -5853,7 +5853,7 @@
     "volume": 89751,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.1492,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-price-of-devotion",
@@ -5895,7 +5895,7 @@
     "volume": 12.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01316,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-seeker",
@@ -5977,7 +5977,7 @@
     "volume": 743.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 7.5,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "winters-embrace",
@@ -6040,7 +6040,7 @@
     "volume": 10,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "i-see-brothers",
@@ -6061,7 +6061,7 @@
     "volume": 13.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.0125,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "anarchys-price",
@@ -6082,7 +6082,7 @@
     "volume": 150,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "burial-medallion",
@@ -6103,7 +6103,7 @@
     "volume": 2107,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 74.76,
-    "fetchedAt": "2026-03-05T14:36:57.291Z"
+    "fetchedAt": "2026-03-05T15:36:11.416Z"
   },
   {
     "id": "astragali",
@@ -6124,7 +6124,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1000,
-    "fetchedAt": "2026-03-05T14:36:57.291Z"
+    "fetchedAt": "2026-03-05T15:36:11.416Z"
   },
   {
     "id": "exotic-coinage",
@@ -6145,7 +6145,7 @@
     "volume": 10165,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 44.4,
-    "fetchedAt": "2026-03-05T14:36:57.291Z"
+    "fetchedAt": "2026-03-05T15:36:11.416Z"
   },
   {
     "id": "scrap-metal",
@@ -6166,7 +6166,7 @@
     "volume": 7190,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 27.07,
-    "fetchedAt": "2026-03-05T14:36:57.291Z"
+    "fetchedAt": "2026-03-05T15:36:11.416Z"
   },
   {
     "id": "black-oil",
@@ -6187,7 +6187,7 @@
     "volume": 794.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01217,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "reflective-oil",
@@ -6208,7 +6208,7 @@
     "volume": 619.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.6,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "verdant-oil",
@@ -6229,7 +6229,7 @@
     "volume": 10.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.95,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "tainted-oil",
@@ -6250,7 +6250,7 @@
     "volume": 35206,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.2676,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "clear-oil",
@@ -6271,7 +6271,7 @@
     "volume": 14.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 59.04,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "amber-oil",
@@ -6292,7 +6292,7 @@
     "volume": 14,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 3.93,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "prismatic-oil",
@@ -6313,7 +6313,7 @@
     "volume": 25289,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.299,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "sepia-oil",
@@ -6334,7 +6334,7 @@
     "volume": 3.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 4.6,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "indigo-oil",
@@ -6355,7 +6355,7 @@
     "volume": 104.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.07177,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "opalescent-oil",
@@ -6376,7 +6376,7 @@
     "volume": 3719,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.83,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "teal-oil",
@@ -6397,7 +6397,7 @@
     "volume": 619.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 7.4,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "crimson-oil",
@@ -6418,7 +6418,7 @@
     "volume": 444.3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.02288,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "golden-oil",
@@ -6439,7 +6439,7 @@
     "volume": 20950,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.32,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "silver-oil",
@@ -6460,7 +6460,7 @@
     "volume": 12149,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.63,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "azure-oil",
@@ -6481,7 +6481,7 @@
     "volume": 18.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2679,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "violet-oil",
@@ -6502,7 +6502,7 @@
     "volume": 172.7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.05212,
-    "fetchedAt": "2026-03-05T14:36:57.312Z"
+    "fetchedAt": "2026-03-05T15:36:11.444Z"
   },
   {
     "id": "divination-scarab-of-pilfering",
@@ -6523,7 +6523,7 @@
     "volume": 2107,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 7.35,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "cartography-scarab-of-the-multitude",
@@ -6544,7 +6544,7 @@
     "volume": 176.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3617,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "domination-scarab",
@@ -6565,7 +6565,7 @@
     "volume": 283.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3175,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "abyss-scarab-of-edifice",
@@ -6586,7 +6586,7 @@
     "volume": 2.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 3,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "horned-scarab-of-nemeses",
@@ -6607,7 +6607,7 @@
     "volume": 16735,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 13.13,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "beyond-scarab-of-haemophilia",
@@ -6628,7 +6628,7 @@
     "volume": 26.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.67,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "anarchy-scarab",
@@ -6649,7 +6649,7 @@
     "volume": 58.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4473,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ritual-scarab-of-abundance",
@@ -6670,7 +6670,7 @@
     "volume": 3843,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 17.65,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "influencing-scarab-of-conversion",
@@ -6691,7 +6691,7 @@
     "volume": 194.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.04,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "scarab-of-hunted-traitors",
@@ -6712,7 +6712,7 @@
     "volume": 142.7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6086,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "expedition-scarab-of-runefinding",
@@ -6733,7 +6733,7 @@
     "volume": 2603,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 25.52,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "scarab-of-monstrous-lineage",
@@ -6754,7 +6754,7 @@
     "volume": 1589,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4806,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "betrayal-scarab",
@@ -6775,7 +6775,7 @@
     "volume": 62.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.8901,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "delirium-scarab-of-neuroses",
@@ -6796,7 +6796,7 @@
     "volume": 203.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.08258,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ambush-scarab-of-containment",
@@ -6817,7 +6817,7 @@
     "volume": 234048,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.7733,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "breach-scarab-of-snares",
@@ -6838,7 +6838,7 @@
     "volume": 991.7,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 7.38,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "titanic-scarab-of-treasures",
@@ -6859,7 +6859,7 @@
     "volume": 70.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2571,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "blight-scarab-of-blooming",
@@ -6880,7 +6880,7 @@
     "volume": 2727,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.14,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "beyond-scarab",
@@ -6901,7 +6901,7 @@
     "volume": 33.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.9552,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "kalguuran-scarab",
@@ -6922,7 +6922,7 @@
     "volume": 2107,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 45,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "beyond-scarab-of-the-invasion",
@@ -6943,7 +6943,7 @@
     "volume": 867.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 29.29,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "abyss-scarab",
@@ -6964,7 +6964,7 @@
     "volume": 62,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.7688,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "scarab-of-adversaries",
@@ -6985,7 +6985,7 @@
     "volume": 82,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6362,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "influencing-scarab-of-the-elder",
@@ -7006,7 +7006,7 @@
     "volume": 73.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.09,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "harvest-scarab",
@@ -7027,7 +7027,7 @@
     "volume": 290.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5656,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "horned-scarab-of-glittering",
@@ -7048,7 +7048,7 @@
     "volume": 1612,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 4.23,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "divination-scarab-of-the-cloister",
@@ -7069,7 +7069,7 @@
     "volume": 6570,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 48.3,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "essence-scarab-of-adaptation",
@@ -7090,7 +7090,7 @@
     "volume": 3843,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 6.13,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "domination-scarab-of-evolution",
@@ -7111,7 +7111,7 @@
     "volume": 36818,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 11.17,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "horned-scarab-of-preservation",
@@ -7132,7 +7132,7 @@
     "volume": 19215,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.1742,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "cartography-scarab-of-escalation",
@@ -7153,7 +7153,7 @@
     "volume": 4091,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 75.27,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "legion-scarab-of-officers",
@@ -7174,7 +7174,7 @@
     "volume": 280.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.08675,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "abyss-scarab-of-profound-depth",
@@ -7195,7 +7195,7 @@
     "volume": 40,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.008333,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "bestiary-scarab-of-the-herd",
@@ -7216,7 +7216,7 @@
     "volume": 7314,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 24.88,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "expedition-scarab-of-archaeology",
@@ -7237,7 +7237,7 @@
     "volume": 1612,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 13,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "essence-scarab-of-ascent",
@@ -7258,7 +7258,7 @@
     "volume": 789.3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.05954,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "titanic-scarab",
@@ -7279,7 +7279,7 @@
     "volume": 619.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 73,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "influencing-scarab-of-hordes",
@@ -7300,7 +7300,7 @@
     "volume": 138.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3325,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ambush-scarab-of-discernment",
@@ -7321,7 +7321,7 @@
     "volume": 2197,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.05157,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "harvest-scarab-of-doubling",
@@ -7342,7 +7342,7 @@
     "volume": 23430,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 4.51,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "torment-scarab-of-possession",
@@ -7363,7 +7363,7 @@
     "volume": 3347,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 21.15,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "divination-scarab-of-plenty",
@@ -7384,7 +7384,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 25.75,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ultimatum-scarab-of-dueling",
@@ -7405,7 +7405,7 @@
     "volume": 2851,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 4.78,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "harvest-scarab-of-cornucopia",
@@ -7426,7 +7426,7 @@
     "volume": 18595,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.08,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "harbinger-scarab-of-obelisks",
@@ -7447,7 +7447,7 @@
     "volume": 5578,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 106.7,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ultimatum-scarab-of-inscription",
@@ -7468,7 +7468,7 @@
     "volume": 619.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 31,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "bestiary-scarab",
@@ -7489,7 +7489,7 @@
     "volume": 140.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4651,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "harbinger-scarab-of-warhoards",
@@ -7510,7 +7510,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 170,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "legion-scarab",
@@ -7531,7 +7531,7 @@
     "volume": 2355,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 36.37,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "bestiary-scarab-of-duplicating",
@@ -7552,7 +7552,7 @@
     "volume": 7066,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 22.42,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "essence-scarab",
@@ -7573,7 +7573,7 @@
     "volume": 1303,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1631,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "scarab-of-stability",
@@ -7594,7 +7594,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "kalguuran-scarab-of-refinement",
@@ -7615,7 +7615,7 @@
     "volume": 2479,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.3,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "incursion-scarab-of-invasion",
@@ -7636,7 +7636,7 @@
     "volume": 69.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.28,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "influencing-scarab-of-the-shaper",
@@ -7657,7 +7657,7 @@
     "volume": 51.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "delirium-scarab-of-mania",
@@ -7678,7 +7678,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 47.5,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "horned-scarab-of-tradition",
@@ -7699,7 +7699,7 @@
     "volume": 93.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "incursion-scarab-of-timelines",
@@ -7720,7 +7720,7 @@
     "volume": 4587,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 4,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "horned-scarab-of-awakening",
@@ -7741,7 +7741,7 @@
     "volume": 125702,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.5562,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "expedition-scarab-of-verisium-powder",
@@ -7762,7 +7762,7 @@
     "volume": 743.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 59.5,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "torment-scarab",
@@ -7783,7 +7783,7 @@
     "volume": 150.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4785,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "breach-scarab",
@@ -7804,7 +7804,7 @@
     "volume": 570,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.08392,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "blight-scarab",
@@ -7825,7 +7825,7 @@
     "volume": 36.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.44,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ultimatum-scarab",
@@ -7846,7 +7846,7 @@
     "volume": 51.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.9218,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "sulphite-scarab",
@@ -7867,7 +7867,7 @@
     "volume": 146.2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6306,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "betrayal-scarab-of-reinforcements",
@@ -7888,7 +7888,7 @@
     "volume": 162.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2108,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "horned-scarab-of-bloodlines",
@@ -7909,7 +7909,7 @@
     "volume": 41281,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.6697,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ultimatum-scarab-of-catalysing",
@@ -7930,7 +7930,7 @@
     "volume": 9917,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.81,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "legion-scarab-of-eternal-conflict",
@@ -7951,7 +7951,7 @@
     "volume": 12397,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 4.71,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "domination-scarab-of-apparitions",
@@ -7972,7 +7972,7 @@
     "volume": 54.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.8349,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "beyond-scarab-of-resurgence",
@@ -8014,7 +8014,7 @@
     "volume": 20950,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 14.8,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "titanic-scarab-of-legend",
@@ -8035,7 +8035,7 @@
     "volume": 2603,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 19.19,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "blight-scarab-of-the-blightheart",
@@ -8056,7 +8056,7 @@
     "volume": 57.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3459,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "incursion-scarab-of-champions",
@@ -8077,7 +8077,7 @@
     "volume": 4339,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 19,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ambush-scarab",
@@ -8098,7 +8098,7 @@
     "volume": 1485,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.137,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "kalguuran-scarab-of-guarded-riches",
@@ -8119,7 +8119,7 @@
     "volume": 203,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2011,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ultimatum-scarab-of-bribing",
@@ -8140,7 +8140,7 @@
     "volume": 1116,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 40.44,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "essence-scarab-of-calcification",
@@ -8161,7 +8161,7 @@
     "volume": 8306,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.72,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "delirium-scarab-of-paranoia",
@@ -8182,7 +8182,7 @@
     "volume": 7438,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 21.07,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "sulphite-scarab-of-fumes",
@@ -8203,7 +8203,7 @@
     "volume": 58.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4318,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "harbinger-scarab",
@@ -8224,7 +8224,7 @@
     "volume": 5331,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 86.42,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "blight-scarab-of-invigoration",
@@ -8245,7 +8245,7 @@
     "volume": 6570,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.64,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "breach-scarab-of-lordship",
@@ -8266,7 +8266,7 @@
     "volume": 30.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2692,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ritual-scarab-of-selectiveness",
@@ -8287,7 +8287,7 @@
     "volume": 1364,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 112.2,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "essence-scarab-of-stability",
@@ -8308,7 +8308,7 @@
     "volume": 371.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 63,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "legion-scarab-of-command",
@@ -8329,7 +8329,7 @@
     "volume": 26.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2857,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "incursion-scarab",
@@ -8350,7 +8350,7 @@
     "volume": 11.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2.13,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "domination-scarab-of-terrors",
@@ -8371,7 +8371,7 @@
     "volume": 162.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.02968,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "abyss-scarab-of-multitudes",
@@ -8392,7 +8392,7 @@
     "volume": 32.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.37,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "anarchy-scarab-of-gigantification",
@@ -8413,7 +8413,7 @@
     "volume": 47.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.7614,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ambush-scarab-of-hidden-compartments",
@@ -8434,7 +8434,7 @@
     "volume": 30,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1.54,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ritual-scarab-of-wisps",
@@ -8455,7 +8455,7 @@
     "volume": 138,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4469,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "cartography-scarab-of-risk",
@@ -8476,7 +8476,7 @@
     "volume": 9297,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 19.33,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "betrayal-scarab-of-the-allflame",
@@ -8497,7 +8497,7 @@
     "volume": 13.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2.16,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "delirium-scarab-of-delusions",
@@ -8518,7 +8518,7 @@
     "volume": 2.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2143,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "ambush-scarab-of-potency",
@@ -8539,7 +8539,7 @@
     "volume": 619.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 104,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "cartography-scarab-of-corruption",
@@ -8560,7 +8560,7 @@
     "volume": 589.2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4891,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "expedition-scarab",
@@ -8581,7 +8581,7 @@
     "volume": 18.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2.26,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "delirium-scarab",
@@ -8602,7 +8602,7 @@
     "volume": 60.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6934,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "torment-scarab-of-peculiarity",
@@ -8623,7 +8623,7 @@
     "volume": 11.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 3,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "harbinger-scarab-of-regency",
@@ -8644,7 +8644,7 @@
     "volume": 371.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 155,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "scorched-fossil",
@@ -8665,7 +8665,7 @@
     "volume": 115.3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.8873,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "aetheric-fossil",
@@ -8686,7 +8686,7 @@
     "volume": 4835,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 5.59,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "sanctified-fossil",
@@ -8707,7 +8707,7 @@
     "volume": 12025,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.63,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "dense-fossil",
@@ -8728,7 +8728,7 @@
     "volume": 2975,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 30.5,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "bound-fossil",
@@ -8749,7 +8749,7 @@
     "volume": 472.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.0455,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "shuddering-fossil",
@@ -8770,7 +8770,7 @@
     "volume": 11157,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 10.01,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "serrated-fossil",
@@ -8791,7 +8791,7 @@
     "volume": 1736,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 11.64,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "fundamental-fossil",
@@ -8812,7 +8812,7 @@
     "volume": 8058,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 7.86,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "pristine-fossil",
@@ -8833,7 +8833,7 @@
     "volume": 155.7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6424,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "prismatic-fossil",
@@ -8854,7 +8854,7 @@
     "volume": 279,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.08483,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "glyphic-fossil",
@@ -8875,7 +8875,7 @@
     "volume": 2231,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.94,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "faceted-fossil",
@@ -8896,7 +8896,7 @@
     "volume": 28512,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.4609,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "metallic-fossil",
@@ -8917,7 +8917,7 @@
     "volume": 138.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.7978,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "hollow-fossil",
@@ -8938,7 +8938,7 @@
     "volume": 8306,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.04,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "gilded-fossil",
@@ -8959,7 +8959,7 @@
     "volume": 38.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.09052,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "fractured-fossil",
@@ -8980,7 +8980,7 @@
     "volume": 867.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "aberrant-fossil",
@@ -9001,7 +9001,7 @@
     "volume": 130.2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.9181,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "corroded-fossil",
@@ -9022,7 +9022,7 @@
     "volume": 2727,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 13.55,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "frigid-fossil",
@@ -9043,7 +9043,7 @@
     "volume": 3347,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 100,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "jagged-fossil",
@@ -9064,7 +9064,7 @@
     "volume": 284.7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3261,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "deft-fossil",
@@ -9085,7 +9085,7 @@
     "volume": 14132,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 16.49,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "potent-chaotic-resonator",
@@ -9106,7 +9106,7 @@
     "volume": 4711,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 28.11,
-    "fetchedAt": "2026-03-05T14:36:57.450Z"
+    "fetchedAt": "2026-03-05T15:36:11.581Z"
   },
   {
     "id": "powerful-chaotic-resonator",
@@ -9127,7 +9127,7 @@
     "volume": 5826,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 10.19,
-    "fetchedAt": "2026-03-05T14:36:57.450Z"
+    "fetchedAt": "2026-03-05T15:36:11.581Z"
   },
   {
     "id": "prime-chaotic-resonator",
@@ -9148,7 +9148,7 @@
     "volume": 3595,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.41,
-    "fetchedAt": "2026-03-05T14:36:57.450Z"
+    "fetchedAt": "2026-03-05T15:36:11.581Z"
   },
   {
     "id": "primitive-chaotic-resonator",
@@ -9169,7 +9169,7 @@
     "volume": 15620,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 62.33,
-    "fetchedAt": "2026-03-05T14:36:57.450Z"
+    "fetchedAt": "2026-03-05T15:36:11.581Z"
   },
   {
     "id": "deafening-essence-of-fear",
@@ -9190,7 +9190,7 @@
     "volume": 3843,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 15.52,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-woe",
@@ -9211,7 +9211,7 @@
     "volume": 33471,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 15.01,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-contempt",
@@ -9232,7 +9232,7 @@
     "volume": 34958,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 13.74,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-sorrow",
@@ -9253,7 +9253,7 @@
     "volume": 12025,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 16.29,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-loathing",
@@ -9274,7 +9274,7 @@
     "volume": 10.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.7344,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "muttering-essence-of-sorrow",
@@ -9295,7 +9295,7 @@
     "volume": 1.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "essence-of-delirium",
@@ -9316,7 +9316,7 @@
     "volume": 13884,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.72,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-doubt",
@@ -9337,7 +9337,7 @@
     "volume": 1116,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 38.56,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-hatred",
@@ -9358,7 +9358,7 @@
     "volume": 9050,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 16.16,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-wrath",
@@ -9379,7 +9379,7 @@
     "volume": 18595,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 11.01,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "wailing-essence-of-spite",
@@ -9421,7 +9421,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "muttering-essence-of-hatred",
@@ -9442,7 +9442,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-misery",
@@ -9463,7 +9463,7 @@
     "volume": 10661,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 17.69,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-greed",
@@ -9484,7 +9484,7 @@
     "volume": 9421,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 33.04,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-zeal",
@@ -9505,7 +9505,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "essence-of-horror",
@@ -9526,7 +9526,7 @@
     "volume": 117892,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.65,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-suffering",
@@ -9547,7 +9547,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 45,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "muttering-essence-of-contempt",
@@ -9568,7 +9568,7 @@
     "volume": 0.8333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-anger",
@@ -9589,7 +9589,7 @@
     "volume": 8058,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 17.43,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-dread",
@@ -9610,7 +9610,7 @@
     "volume": 1692,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.03821,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "wailing-essence-of-rage",
@@ -9631,7 +9631,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "muttering-essence-of-greed",
@@ -9652,7 +9652,7 @@
     "volume": 1.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "muttering-essence-of-woe",
@@ -9673,7 +9673,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "essence-of-insanity",
@@ -9694,7 +9694,7 @@
     "volume": 35206,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.42,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-spite",
@@ -9715,7 +9715,7 @@
     "volume": 83181,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 6.25,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-envy",
@@ -9736,7 +9736,7 @@
     "volume": 18223,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 9.72,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-zeal",
@@ -9757,7 +9757,7 @@
     "volume": 19463,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 13.5,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-rage",
@@ -9778,7 +9778,7 @@
     "volume": 37066,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 15.36,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "muttering-essence-of-anger",
@@ -9799,7 +9799,7 @@
     "volume": 0.6667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-anguish",
@@ -9820,7 +9820,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 50,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-torment",
@@ -9841,7 +9841,7 @@
     "volume": 2975,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 23.25,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-wrath",
@@ -9862,7 +9862,7 @@
     "volume": 0.6667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.25,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "deafening-essence-of-scorn",
@@ -9883,7 +9883,7 @@
     "volume": 92603,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 5,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "wailing-essence-of-wrath",
@@ -9904,7 +9904,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "weeping-essence-of-rage",
@@ -9946,7 +9946,7 @@
     "volume": 18967,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 11.24,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "muttering-essence-of-torment",
@@ -9967,7 +9967,7 @@
     "volume": 2,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "essence-of-hysteria",
@@ -9988,7 +9988,7 @@
     "volume": 507.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01313,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-anger",
@@ -10009,7 +10009,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-doubt",
@@ -10051,7 +10051,7 @@
     "volume": 4,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.25,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-dread",
@@ -10072,7 +10072,7 @@
     "volume": 7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1429,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "wailing-essence-of-doubt",
@@ -10093,7 +10093,7 @@
     "volume": 1.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2222,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "screaming-essence-of-spite",
@@ -10135,7 +10135,7 @@
     "volume": 50.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1462,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "weeping-essence-of-sorrow",
@@ -10219,7 +10219,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "screaming-essence-of-zeal",
@@ -10240,7 +10240,7 @@
     "volume": 1,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1667,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "weeping-essence-of-doubt",
@@ -10261,7 +10261,7 @@
     "volume": 0.8333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "foulborn-orb-of-augmentation",
@@ -10282,7 +10282,7 @@
     "volume": 1488,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 20.67,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "foulborn-exalted-orb",
@@ -10303,7 +10303,7 @@
     "volume": 77851,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.1019,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "orb-of-intention",
@@ -10324,7 +10324,7 @@
     "volume": 50,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.003333,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "exalted-implant",
@@ -10366,7 +10366,7 @@
     "volume": 0.6667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "tainted-blacksmiths-whetstone",
@@ -10387,7 +10387,7 @@
     "volume": 123.3,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1514,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "foulborn-regal-orb",
@@ -10408,7 +10408,7 @@
     "volume": 10289,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 5.11,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "regal-implant",
@@ -10450,7 +10450,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 5000,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "augmentation-implant",
@@ -10471,7 +10471,7 @@
     "volume": 2.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3077,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "unstable-implant",
@@ -10513,7 +10513,7 @@
     "volume": 109.7,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.09878,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "timeless-karui-splinter",
@@ -10618,7 +10618,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 12,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "runegraft-of-blasphemy",
@@ -10639,7 +10639,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-the-jeweller",
@@ -10660,7 +10660,7 @@
     "volume": 0.8333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-the-river",
@@ -10681,7 +10681,7 @@
     "volume": 1.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.125,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "runegraft-of-the-witchmark",
@@ -10702,7 +10702,7 @@
     "volume": 27.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.0122,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "type": "ninja",
@@ -10787,7 +10787,7 @@
     "volume": 3347,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.7778,
-    "fetchedAt": "2026-03-05T14:36:57.201Z"
+    "fetchedAt": "2026-03-05T15:36:11.328Z"
   },
   {
     "id": "tattoo-of-the-kitava-warrior",
@@ -10808,7 +10808,7 @@
     "volume": 147.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01243,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-ngamahu-shaman",
@@ -10829,7 +10829,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 12,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-rongokurai-brute",
@@ -10850,7 +10850,7 @@
     "volume": 9,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.7778,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-rongokurai-guard",
@@ -10871,7 +10871,7 @@
     "volume": 5702,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.6522,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tawhoa-scout",
@@ -10913,7 +10913,7 @@
     "volume": 224.8,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.04818,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-valako-scout",
@@ -10934,7 +10934,7 @@
     "volume": 22,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-valako-shaman",
@@ -10955,7 +10955,7 @@
     "volume": 2.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-valako-warrior",
@@ -10976,7 +10976,7 @@
     "volume": 35.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3084,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-ngamahu-woodcarver",
@@ -10997,7 +10997,7 @@
     "volume": 2479,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tasalio-shaman",
@@ -11018,7 +11018,7 @@
     "volume": 13.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.6265,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tawhoa-naturalist",
@@ -11039,7 +11039,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 3.5,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-tukohama-warmonger",
@@ -11060,7 +11060,7 @@
     "volume": 2.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "tattoo-of-the-kitava-shaman",
@@ -11081,7 +11081,7 @@
     "volume": 282.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.00708,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "omen-of-adrenaline",
@@ -11187,7 +11187,7 @@
     "volume": 1736,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "broken-promises",
@@ -11293,7 +11293,7 @@
     "volume": 10.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.06557,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "altered-perception",
@@ -11356,7 +11356,7 @@
     "volume": 1240,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "avian-pursuit",
@@ -11462,7 +11462,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "dark-temptation",
@@ -11547,7 +11547,7 @@
     "volume": 0.6667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "type": "ninja",
@@ -11673,7 +11673,7 @@
     "volume": 7438,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.08333,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "lysahs-respite",
@@ -11714,7 +11714,7 @@
     "volume": 10,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01667,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "merciless-armament",
@@ -11882,7 +11882,7 @@
     "volume": 0.6667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-catalyst",
@@ -12008,7 +12008,7 @@
     "volume": 29.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.005714,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "type": "ninja",
@@ -12051,7 +12051,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-innocent",
@@ -12092,7 +12092,7 @@
     "volume": 247.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-lion",
@@ -12283,7 +12283,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-stormcaller",
@@ -12324,7 +12324,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-wind",
@@ -12408,7 +12408,7 @@
     "volume": 1.83,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "time-lost-relic",
@@ -12429,7 +12429,7 @@
     "volume": 8.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.02,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "wealth-and-power",
@@ -12450,7 +12450,7 @@
     "volume": 1612,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.7692,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "chaotic-disposition",
@@ -12619,7 +12619,7 @@
     "volume": 0.8333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "dying-light",
@@ -12762,7 +12762,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 9,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "hunters-reward",
@@ -12866,7 +12866,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "rebirth-and-renewal",
@@ -12887,7 +12887,7 @@
     "volume": 10,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.05,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "rebirth",
@@ -12908,7 +12908,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "something-dark",
@@ -13098,7 +13098,7 @@
     "volume": 46.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01079,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-dungeon-master",
@@ -13140,7 +13140,7 @@
     "volume": 7.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.08696,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-eternal-war",
@@ -13182,7 +13182,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-garish-power",
@@ -13203,7 +13203,7 @@
     "volume": 1.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-gulf",
@@ -13245,7 +13245,7 @@
     "volume": 8.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.02,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-mayor",
@@ -13287,7 +13287,7 @@
     "volume": 1,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3333,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-minds-eyes",
@@ -13308,7 +13308,7 @@
     "volume": 1.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.4,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "type": "ninja",
@@ -13351,7 +13351,7 @@
     "volume": 34.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1111,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "type": "ninja",
@@ -13603,7 +13603,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.5,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-shepherds-sandals",
@@ -13666,7 +13666,7 @@
     "volume": 495.9,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.25,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "anarchy-scarab-of-partnership",
@@ -13687,7 +13687,7 @@
     "volume": 4,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "horned-scarab-of-pandemonium",
@@ -13708,7 +13708,7 @@
     "volume": 1736,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 8.29,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "scarab-of-divinity",
@@ -13729,7 +13729,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 55,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "scarab-of-bisection",
@@ -13750,7 +13750,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 59,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "scarab-of-radiant-storms",
@@ -13771,7 +13771,7 @@
     "volume": 0.6667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "lucent-fossil",
@@ -13792,7 +13792,7 @@
     "volume": 4463,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 15.64,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "opulent-fossil",
@@ -13813,7 +13813,7 @@
     "volume": 6.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2.64,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "tangled-fossil",
@@ -13834,7 +13834,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "screaming-essence-of-contempt",
@@ -13918,7 +13918,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "screaming-essence-of-loathing",
@@ -13981,7 +13981,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "screaming-essence-of-woe",
@@ -14002,7 +14002,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 7,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-envy",
@@ -14023,7 +14023,7 @@
     "volume": 33.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.005,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-greed",
@@ -14044,7 +14044,7 @@
     "volume": 0.8333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-hatred",
@@ -14065,7 +14065,7 @@
     "volume": 2.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-spite",
@@ -14086,7 +14086,7 @@
     "volume": 1.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.2857,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "weeping-essence-of-anger",
@@ -14149,7 +14149,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "screaming-essence-of-sorrow",
@@ -14191,7 +14191,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "type": "ninja",
@@ -14234,7 +14234,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "shrieking-essence-of-woe",
@@ -14318,7 +14318,7 @@
     "volume": 40,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "type": "ninja",
@@ -14444,7 +14444,7 @@
     "volume": 27,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01235,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "toxic-tidings",
@@ -14465,7 +14465,7 @@
     "volume": 1.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "screaming-essence-of-envy",
@@ -14528,7 +14528,7 @@
     "volume": 1.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "weeping-essence-of-contempt",
@@ -14696,7 +14696,7 @@
     "volume": 7.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "dementophobia",
@@ -14760,7 +14760,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "runic-luck",
@@ -14781,7 +14781,7 @@
     "volume": 5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "type": "ninja",
@@ -15041,7 +15041,7 @@
     "volume": 12397,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 0.1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "squandered-prosperity",
@@ -15278,7 +15278,7 @@
     "volume": 2.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.0625,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "type": "ninja",
@@ -15321,7 +15321,7 @@
     "volume": 2231,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1.28,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "shrieking-essence-of-rage",
@@ -15384,7 +15384,7 @@
     "volume": 83.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.007984,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "screaming-essence-of-torment",
@@ -15405,7 +15405,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 135,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "weeping-essence-of-wrath",
@@ -15426,7 +15426,7 @@
     "volume": 1.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "binding-shard",
@@ -15468,7 +15468,7 @@
     "volume": 0.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "id": "horizon-shard",
@@ -15489,7 +15489,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 8,
-    "fetchedAt": "2026-03-05T14:36:57.134Z"
+    "fetchedAt": "2026-03-05T15:36:11.260Z"
   },
   {
     "type": "ninja",
@@ -15532,7 +15532,7 @@
     "volume": 2975,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "runegraft-of-quaffing",
@@ -15574,7 +15574,7 @@
     "volume": 1.67,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.1,
-    "fetchedAt": "2026-03-05T14:36:57.179Z"
+    "fetchedAt": "2026-03-05T15:36:11.307Z"
   },
   {
     "id": "omen-of-the-soul-devourer",
@@ -15742,7 +15742,7 @@
     "volume": 0.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "fateful-meeting",
@@ -15847,7 +15847,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 2,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-shortcut",
@@ -15931,7 +15931,7 @@
     "volume": 20,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.008333,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "breach-scarab-of-resonant-cascade",
@@ -15952,7 +15952,7 @@
     "volume": 619.8,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 10.2,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "breach-scarab-of-splintering",
@@ -15973,7 +15973,7 @@
     "volume": 8.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.412Z"
+    "fetchedAt": "2026-03-05T15:36:11.465Z"
   },
   {
     "id": "bloodstained-fossil",
@@ -15994,7 +15994,7 @@
     "volume": 1240,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 2.7,
-    "fetchedAt": "2026-03-05T14:36:57.432Z"
+    "fetchedAt": "2026-03-05T15:36:11.560Z"
   },
   {
     "id": "whispering-essence-of-hatred",
@@ -16015,7 +16015,7 @@
     "volume": 0.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "costly-curio",
@@ -16120,7 +16120,7 @@
     "volume": 0.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "auspicious-ambitions",
@@ -16309,7 +16309,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 10,
-    "fetchedAt": "2026-03-05T14:36:57.159Z"
+    "fetchedAt": "2026-03-05T15:36:11.287Z"
   },
   {
     "id": "vanity",
@@ -16372,7 +16372,7 @@
     "volume": 33.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.03,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-throne",
@@ -16519,7 +16519,7 @@
     "volume": 0.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-endurance",
@@ -16624,7 +16624,7 @@
     "volume": 0.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "screaming-essence-of-anguish",
@@ -16645,7 +16645,7 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "the-eye-of-terror",
@@ -16708,7 +16708,7 @@
     "volume": 34.17,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01463,
-    "fetchedAt": "2026-03-05T14:36:57.226Z"
+    "fetchedAt": "2026-03-05T15:36:11.352Z"
   },
   {
     "id": "wailing-essence-of-greed",
@@ -17086,7 +17086,7 @@
     "volume": 0.5,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.472Z"
+    "fetchedAt": "2026-03-05T15:36:11.604Z"
   },
   {
     "id": "assassins-gift",
@@ -17275,7 +17275,7 @@
     "volume": 1,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.3333,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-wolfs-legacy",
@@ -17527,7 +17527,7 @@
     "volume": 124,
     "maxVolumeCurrency": "divine",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-eldritch-decay",
@@ -17548,7 +17548,7 @@
     "volume": 0.3333,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 1,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "brotherhood-in-exile",
@@ -17569,7 +17569,7 @@
     "volume": 33.33,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 0.01,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   },
   {
     "id": "the-lover",
@@ -17590,6 +17590,6 @@
     "volume": 0.1667,
     "maxVolumeCurrency": "chaos",
     "maxVolumeRate": 5000,
-    "fetchedAt": "2026-03-05T14:36:57.269Z"
+    "fetchedAt": "2026-03-05T15:36:11.394Z"
   }
 ]

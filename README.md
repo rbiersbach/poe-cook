@@ -248,19 +248,45 @@ The generated files land in `frontend/src/api/generated/` — do not edit them m
 
 ---
 
+## FAQ
+
+**Why do you need my PoE Session ID?**
+
+The session ID is not strictly required to use the trade search API, but it is needed to open an existing Trade URL and extract the search parameters from it. Without an active session, that lookup will be blocked by the trade site. If you know a better way to achieve this without a session, please reach out!
+
+**Why isn't this available as a hosted website?**
+
+This project started not too long ago as a personal side project. A hosted version is something I'll consider if there is enough interest. That said, the session ID requirement (see above) also complicates hosting, since users would still need to supply their own credentials.
+
+**Why is refreshing items so slow?**
+
+The PoE trade API enforces a rate limit of 5 requests per 5 seconds. If you prefer not to babysit the refresh button, enable **Auto Refresh** — it will automatically work through your recipe list at a safe pace without triggering throttling.
+
+**I'm getting rate-limit errors while using PoE Cook alongside the trade site.**
+
+This is expected behaviour. When both the app and the trade site fire requests at the same time, they share the same rate-limit budget. If this becomes disruptive, try turning off Auto Refresh while you are actively browsing the trade site.
+
+**Some poe.ninja items can't be found in the search.**
+
+This is a known limitation. Certain item types — especially uniques — are difficult to price reliably from ninja data alone due to variance in rolls and implicit mods. For now the item search is focused on bulk currencies, and you can always paste a trade URL directly for anything else. Support for more item types may be added in the future.
+
+**Why does the frontend look rough around the edges?**
+
+Fair point — I'm primarily a backend developer and picked this project partly to learn more React and TypeScript. Polish is ongoing, and all tips, suggestions, and pull requests are genuinely welcome!
+
+---
+
 ## Roadmap
 
 ### Planned for next releases
 
 - [ ] Initial set of pre-built recipes to get started without creating everything from scratch
-- [ ] Light mode polish
 - [ ] Custom price overrides per item
-- [ ] Filter out items/recipes below a configurable volume or profit threshold
-- [ ] Baseline currency toggle (e.g. price everything in Divine instead of Chaos)
 
 ### Future / Backlog
-
+- [ ] Import more items from PoE Ninja e.g. Uniques
 - [ ] Tag recipes and show/hide groups
+- [ ] Filter recipes
 - [ ] Favourite recipes
 - [ ] Read-only predefined core recipes with persisted refresh results
 - [ ] Browser-based login / PoE OAuth (remove the need to copy POESESSID manually)
@@ -268,7 +294,9 @@ The generated files land in `frontend/src/api/generated/` — do not edit them m
 - [ ] User accounts and cloud sync
 - [ ] Hosted version (no local setup required)
 - [ ] IP rate limiting and abuse protection
-- [ ] Migrate recipes to a different league 
+- [ ] Migrate recipes to a different league
+- [ ] Baseline currency toggle (e.g. price everything in Divine instead of Chaos)
+
 
 ---
 

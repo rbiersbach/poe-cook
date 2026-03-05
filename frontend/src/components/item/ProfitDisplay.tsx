@@ -76,7 +76,7 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                                 <span className="flex items-center gap-1 profit-red ml-2">
                                     {formatChaos(getItemPriceChaos(item))}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
-                                    <span className="text-white">×</span> <span className="text-white">{parseFloat(item.qty.toFixed(4))}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
+                                    <span className="text-primary">×</span> <span className="text-primary">{parseFloat(item.qty.toFixed(4))}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
                                 </span>
                             </div>
@@ -89,7 +89,7 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                                 <span className="flex items-center gap-1 profit-green ml-2">
                                     {formatChaos(getItemPriceChaos(item))}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
-                                    <span className="text-white">×</span> <span className="text-white">{parseFloat(item.qty.toFixed(4))}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
+                                    <span className="text-primary">×</span> <span className="text-primary">{parseFloat(item.qty.toFixed(4))}</span> = {formatChaos((getItemPriceChaos(item) ?? 0) * item.qty)}
                                     <CurrencyIcon currency="chaos" className="inline w-4 h-4 align-middle" />
                                 </span>
                             </div>
@@ -103,7 +103,7 @@ export const ProfitDisplay: React.FC<ProfitDisplayProps> = ({ recipe }) => {
                             className={`${(conservativeProfit ?? 0) < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'} inline-flex items-center gap-1`}
                         />
                         <span className="text-gray-400">(-10%)</span>
-                        <span className="text-white">-</span>
+                        <span className="text-primary">-</span>
                         <PriceDisplay
                             amount={maxProfit ?? undefined}
                             currency="chaos"

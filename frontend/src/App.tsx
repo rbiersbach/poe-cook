@@ -1,7 +1,8 @@
 
 import { createContext, useCallback, useRef, useState } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
-import logoUrl from "../resources/assets/logo_dark.png";
+import logoDarkUrl from "../resources/assets/logo_dark.png";
+import logoLightUrl from "../resources/assets/logo_light.png";
 import { Recipe } from "./api/generated/models/Recipe";
 import { LeaguePicker } from "./components/ui/LeaguePicker";
 import { TwoColumnLayout } from "./components/ui/TwoColumnLayout";
@@ -39,7 +40,10 @@ function App() {
             <RecipesListRefetchContext.Provider value={() => refetchFn.current()}>
               <nav className="nav-bar">
                 <NavLink to="/" end className="flex items-center self-stretch px-4 lg:px-6 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                  <img src={logoUrl} alt="PoE Cook" className="h-16 w-auto" />
+                  <picture>
+                    <source srcSet={logoDarkUrl} media="(prefers-color-scheme: dark)" />
+                    <img src={logoLightUrl} alt="PoE Cook" className="h-16 w-auto" />
+                  </picture>
                 </NavLink>
                 <NavLink to="/" end className="nav-link">Recipes</NavLink>
                 <NavLink to="/create" className="nav-link">Create Recipe</NavLink>

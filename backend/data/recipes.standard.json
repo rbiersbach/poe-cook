@@ -610,20 +610,20 @@
           "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9SZWRlZW1lckZyYWdtZW50Iiwic2NhbGUiOjF9XQ/86d22a34cc/RedeemerFragment.png",
           "category": "Fragment",
           "detailsId": "veritanias-crest",
-          "price": 72.74,
+          "price": 85.3,
           "priceHistory": [
-            0,
-            0,
-            -2.78,
-            null,
-            10,
-            10,
-            10
+            -2.73,
+            -15.11,
+            -3.33,
+            -10,
+            -10.07,
+            126.3,
+            326.5
           ],
-          "volume": 121.2,
-          "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 10,
-          "fetchedAt": "2026-03-05T11:22:42.481Z"
+          "volume": 142.2,
+          "maxVolumeCurrency": "chaos",
+          "maxVolumeRate": 0.01172,
+          "fetchedAt": "2026-03-05T14:36:57.159Z"
         }
       },
       {
@@ -637,20 +637,20 @@
           "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9XYXJsb3JkRnJhZ21lbnQiLCJzY2FsZSI6MX1d/3d735a8303/WarlordFragment.png",
           "category": "Fragment",
           "detailsId": "droxs-crest",
-          "price": 59.91,
+          "price": 54.9,
           "priceHistory": [
-            0,
-            -17.34,
-            0,
+            -3.75,
+            -22.67,
+            -5,
             -10,
-            -6.37,
-            23.33,
-            199.6
+            31.57,
+            103.5,
+            174.5
           ],
-          "volume": 109.8,
+          "volume": 91.5,
           "maxVolumeCurrency": "chaos",
-          "maxVolumeRate": 0.01669,
-          "fetchedAt": "2026-03-05T11:22:42.482Z"
+          "maxVolumeRate": 0.01821,
+          "fetchedAt": "2026-03-05T14:36:57.159Z"
         }
       },
       {
@@ -664,20 +664,20 @@
           "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9IdW50ZXJGcmFnbWVudCIsInNjYWxlIjoxfV0/3ad268c533/HunterFragment.png",
           "category": "Fragment",
           "detailsId": "al-hezmins-crest",
-          "price": 99.89,
+          "price": 66.75,
           "priceHistory": [
-            16.67,
-            10.33,
-            17.59,
-            26.81,
-            3.92,
-            60.7,
-            344
+            26.85,
+            -7,
+            24.81,
+            14.44,
+            112.6,
+            27.41,
+            196.7
           ],
-          "volume": 149.8,
+          "volume": 89,
           "maxVolumeCurrency": "chaos",
-          "maxVolumeRate": 0.01001,
-          "fetchedAt": "2026-03-05T11:22:42.482Z"
+          "maxVolumeRate": 0.01498,
+          "fetchedAt": "2026-03-05T14:36:57.159Z"
         }
       },
       {
@@ -691,20 +691,20 @@
           "icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9DcnVzYWRlckZyYWdtZW50Iiwic2NhbGUiOjF9XQ/3e2fecf3bc/CrusaderFragment.png",
           "category": "Fragment",
           "detailsId": "barans-crest",
-          "price": 99.88,
+          "price": 87.12,
           "priceHistory": [
-            0,
-            -24.02,
-            -12.5,
-            -23.33,
-            -23.04,
-            -42.86,
-            232.9
+            -1.83,
+            -24.22,
+            -18.33,
+            -24.44,
+            11.92,
+            33,
+            190.4
           ],
-          "volume": 133.2,
+          "volume": 116.2,
           "maxVolumeCurrency": "chaos",
-          "maxVolumeRate": 0.01001,
-          "fetchedAt": "2026-03-05T11:22:42.482Z"
+          "maxVolumeRate": 0.01148,
+          "fetchedAt": "2026-03-05T14:36:57.159Z"
         }
       }
     ],
@@ -720,20 +720,20 @@
           "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvTWF2ZW5PcmIiLCJzY2FsZSI6MX1d/f307d80bfd/MavenOrb.png",
           "category": "Currency",
           "detailsId": "orb-of-dominance",
-          "price": 4248,
+          "price": 4726,
           "priceHistory": [
-            11.12,
-            -2.92,
-            7.27,
-            25.95,
-            8.13,
-            5.48,
-            6.76
+            0.91,
+            -4.1,
+            3.05,
+            17.89,
+            -7.52,
+            -5.52,
+            8.51
           ],
-          "volume": 66558,
+          "volume": 64586,
           "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 0.1712,
-          "fetchedAt": "2026-03-05T11:22:42.452Z"
+          "maxVolumeRate": 0.1574,
+          "fetchedAt": "2026-03-05T14:36:57.134Z"
         }
       },
       {
@@ -747,20 +747,20 @@
           "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVHJhbnNmZXJPcmIiLCJzY2FsZSI6MX1d/f3b1c1566f/TransferOrb.png",
           "category": "Currency",
           "detailsId": "awakeners-orb",
-          "price": 1353,
+          "price": 1305,
           "priceHistory": [
-            -6.23,
-            21.14,
-            20.17,
-            35.42,
-            3.88,
-            19.04,
-            15.12
+            0.51,
+            23.85,
+            24.84,
+            36.44,
+            3.55,
+            24.74,
+            9.08
           ],
-          "volume": 12851,
+          "volume": 21322,
           "maxVolumeCurrency": "divine",
-          "maxVolumeRate": 0.5377,
-          "fetchedAt": "2026-03-05T11:22:42.452Z"
+          "maxVolumeRate": 0.5698,
+          "fetchedAt": "2026-03-05T14:36:57.134Z"
         }
       },
       {
@@ -824,7 +824,7 @@
               "currency": "chaos"
             },
             "medianCount": 6,
-            "fetchedAt": "2026-03-05T11:54:42.643Z"
+            "fetchedAt": "2026-03-05T15:24:44.746Z"
           }
         }
       },
@@ -896,11 +896,11 @@
             "name": "The Burden of Truth Crystal Belt",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 5,
+              "amount": 4,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 5,
+              "amount": 4,
               "currency": "chaos"
             },
             "originalMedianPrice": {
@@ -913,14 +913,14 @@
               "currency": "chaos"
             },
             "medianCount": 10,
-            "fetchedAt": "2026-03-05T11:54:47.609Z"
+            "fetchedAt": "2026-03-05T15:24:49.560Z"
           }
         }
       },
       {
         "qty": 0.35,
         "type": "trade",
-        "name": "Crown of the Inward Eye Prophet Crown",
+        "name": "Prophet Crown",
         "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL0Nyb3duT2ZUaGVJbndhcmRFeWUiLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/fdb20856e4/CrownOfTheInwardEye.png",
         "item": {
           "tradeUrl": "https://www.pathofexile.com/trade/search/Standard/Yp9QD53viY",
@@ -955,27 +955,27 @@
           },
           "resolved": {
             "iconUrl": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL0Nyb3duT2ZUaGVJbndhcmRFeWUiLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/fdb20856e4/CrownOfTheInwardEye.png",
-            "name": "Crown of the Inward Eye Prophet Crown",
+            "name": "Prophet Crown",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 40,
+              "amount": 10,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 40,
+              "amount": 10,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 45,
+              "amount": 40,
               "currency": "chaos"
             },
             "medianPrice": {
-              "amount": 45,
+              "amount": 40,
               "currency": "chaos"
             },
-            "medianCount": 6,
-            "fetchedAt": "2026-03-05T11:54:52.807Z"
+            "medianCount": 7,
+            "fetchedAt": "2026-03-05T15:24:54.709Z"
           }
         }
       },
@@ -1020,29 +1020,29 @@
             "name": "Hands of the High Templar Crusader Gloves",
             "originalMinPrice": {
               "type": "~b/o",
-              "amount": 25,
+              "amount": 23,
               "currency": "chaos"
             },
             "minPrice": {
-              "amount": 25,
+              "amount": 23,
               "currency": "chaos"
             },
             "originalMedianPrice": {
               "type": "~b/o",
-              "amount": 35,
+              "amount": 50,
               "currency": "chaos"
             },
             "medianPrice": {
-              "amount": 35,
+              "amount": 50,
               "currency": "chaos"
             },
-            "medianCount": 6,
-            "fetchedAt": "2026-03-05T11:54:53.036Z"
+            "medianCount": 10,
+            "fetchedAt": "2026-03-05T15:24:54.903Z"
           }
         }
       }
     ],
     "createdAt": "2026-03-04T17:25:15.667Z",
-    "updatedAt": "2026-03-05T11:54:53.036Z"
+    "updatedAt": "2026-03-05T15:24:54.903Z"
   }
 ]
