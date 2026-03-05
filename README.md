@@ -3,70 +3,49 @@
   PoE Cook
 </h1>
 
-**Your currency-making strategy tracker for Path of Exile.**
+**Your strategy profit live tracker for Path of Exile.**
 
-"Cooking" is the art of turning knowlegde into strategies that yield profit — whether that's flipping Divination cards, sacrificing items in Temples, running Bestiary recipes, farming bosses for drops, or crafting items to sell. PoE Cook lets you define, evaluate, and track these strategies as recipes: specify your inputs, set your outputs, and see in real-time whether the numbers make sense — powered by live poe.ninja prices and direct trade listing lookups.
+"Cooking" is the art of turning knowlegde into strategies that yield profit — whether that's flipping Divination cards, sacrificing items in Temples, running Bestiary recipes, farming bosses for drops, or crafting items to sell.
 
-> **Developer Alpha** — functional and usable locally, but rough edges remain. See the [Roadmap](#roadmap).
+*PoE Cook* lets you define, evaluate, and track these strategies as recipes: specify your inputs, set your outputs, and see in real-time whether they are profitable — powered by live poe.ninja prices and direct trade listing lookups.
+
+Defining a specifc item with the PoE trade website is as easy as it gets: just paste the trade URL, and PoE Cook will fetch the live listings and extract the item details for you. The price will be frequently updated based on your initial search, saving you the hassle of refreshing the trade site and manually checking your profit margins while you play.
+
+> **Developer Alpha** — functional and usable locally with [Docker](#quick-start-docker), but rough edges remain. See the [Roadmap](#roadmap) for further plans.
 
 ---
 
 ## Showcase
 
-<!-- ─────────────────────────────────────────────────────────────────────────
-  GIF 1 — Browsing the recipe list
-  SCRIPT:
-    - Open the app at http://localhost:8080 with a couple of pre-created recipes visible
-    - Scroll through the recipe cards; each card shows input items, output item,
-      profit range (min / median), and a "last updated" timestamp
-    - Click the manual refresh button on one card → show the loading spinner,
-      then the updated profit value
-    - Toggle the Auto Refresh switch → demonstrate it cycling through recipes automatically
-───────────────────────────────────────────────────────────────────────────── -->
+This is a very early version of the app, but here are some highlights of what it can do already:
 
-*[GIF placeholder — browsing the recipe list, viewing profit ranges and auto-refresh]*
+![PoE Cook Showcase](resources/showcase/PoECookShowcase.gif)
 
----
 
-<!-- ─────────────────────────────────────────────────────────────────────────
-  GIF 2 — Creating a recipe
-  SCRIPT:
-    - Click "Create Recipe" in the nav bar
-    - Paste a Path of Exile trade URL into an input slot → item resolves (name, icon, price appear)
-    - Set the quantity to 4
-    - Click "+ Add Input" to add a second input slot, paste another trade URL, watch it resolve
-    - Set the output item by pasting a trade URL into the output slot
-    - The recipe name auto-fills; optionally edit it
-    - Click "Create Recipe" → recipe appears in the list with an initial profit estimate
-───────────────────────────────────────────────────────────────────────────── -->
+### Farming Bosses for Drops (Example: Sirus)
+![Sirus Strategy](resources/showcase/Sirus.png)
 
-*[GIF placeholder — creating a new recipe from trade URLs]*
+### Evaluating Scarab Strategies (Example: 8-Mod Map Farming)
+![Scarab Strategy](resources/showcase/MapFarming.png)
 
----
+### Flipping Divination Cards (Example: The Fortunate)
+![Divination Card Strategy](resources/showcase/DivFlipping.png)
 
-<!-- ─────────────────────────────────────────────────────────────────────────
-  GIF 3 — Editing a recipe
-  SCRIPT:
-    - On a recipe card, click the Edit button
-    - The Create Recipe form opens pre-filled with the existing recipe data
-    - Change the quantity of one input from 4 to 6
-    - Click "Save" → the recipe card updates with the new quantity and recalculated profit
-    - Edit again, make a change, then click "Cancel" → confirm no changes were saved
-───────────────────────────────────────────────────────────────────────────── -->
+### Sacrificing items in the Temple (Example: Transcendent Mind)
+![Temple Sacrifice Strategy](resources/showcase/TranscendentMind.png)
 
-*[GIF placeholder — editing an existing recipe and cancelling vs. saving]*
+### Crafting and selling items (Example: Kinetic Fusillade Wand)
+![Crafting Strategy](resources/showcase/WandCrafting.png)
 
----
+### Breakdown of profit calculation:  
+<img src="resources/showcase/SirusDetails.png" alt="Profit Breakdown" width="300" />
 
-<!-- ─────────────────────────────────────────────────────────────────────────
-  GIF 4 — Switching leagues
-  SCRIPT:
-    - Open the league picker in the top-right of the nav bar
-    - Change from Standard to the current challenge league
-    - Show all recipe prices updating to reflect that league's poe.ninja data
-───────────────────────────────────────────────────────────────────────────── -->
+### Bulk Item Details from poe.ninja:  
+<img src="resources/showcase/BulkDetails.png" alt="Bulk Item Details" width="200" />
 
-*[GIF placeholder — switching leagues and watching prices update]*
+### Trade Search Listing overview: 
+<img src="resources/showcase/TradeDetails.png" alt="Trade Search Listing" width="200" />
+
 
 ---
 
