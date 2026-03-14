@@ -133,12 +133,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onRefresh, refre
                 </div>
             </div>
             <div className="flex w-full gap-2">
-                <div className="card-section flex flex-wrap gap-2 items-start content-start flex-1 min-w-0">
+                <div className="card-section grid gap-2 justify-items-center items-start content-start flex-1 min-w-0" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
                     {recipe.inputs.map((item, idx) => (
                         <ItemChip key={idx} item={item} />
                     ))}
                 </div>
-                <div className="card-section flex flex-wrap gap-2 items-start content-start flex-1 min-w-0">
+                <div className="card-section grid gap-2 justify-items-center items-start content-start flex-1 min-w-0" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
                     {recipe.outputs.map((item, idx) => (
                         <ItemChip key={"out-" + idx} item={item} />
                     ))}

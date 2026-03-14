@@ -15,13 +15,13 @@ describe("ItemChip", () => {
         expect(screen.getByAltText("chaos")).toBeInTheDocument();
     });
 
-    it("renders quantity before icon if qty > 1", () => {
+    it("renders quantity after icon if qty > 1", () => {
         render(<ItemChip item={{ ...baseItem, qty: 3 }} />);
         const qty = screen.getByText("3x");
         expect(qty).toBeInTheDocument();
-        // Quantity should appear before the icon in the DOM
+        // Icon should appear before the quantity badge in the DOM
         const icon = screen.getByAltText("Test Item");
-        expect(qty.compareDocumentPosition(icon) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        expect(icon.compareDocumentPosition(qty) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     });
 
     it("renders nothing if resolved is missing", () => {

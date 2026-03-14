@@ -72,14 +72,24 @@ body {
 
 .card-row {
   @apply w-full flex items-center gap-3 p-2 rounded-sm;
-  @apply transition-colors duration-150;
-  @apply border border-gray-200 bg-gray-50 hover:bg-gray-100;
+  @apply border border-gray-200 bg-gray-50;
   @apply dark:border-gray-700/80 dark:bg-gray-900/60;
-  @apply dark:hover:bg-gray-800/65;
 }
 
 .card-section {
   @apply bg-gray-100 dark:bg-gray-800 rounded px-2 py-1;
+}
+
+.item-chip {
+  @apply flex items-center gap-2 rounded px-2 py-1;
+  @apply bg-gray-200 dark:bg-gray-700;
+  @apply border border-gray-300 dark:border-gray-600;
+  @apply hover:bg-gray-300/70 dark:hover:bg-gray-600;
+  @apply hover:border-gray-400 dark:hover:border-gray-500;
+  @apply transition-colors duration-150;
+  @apply cursor-default;
+  @apply w-full;
+  min-width: 0;
 }
 
 /* =========================
