@@ -168,6 +168,40 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
 
+  /api/leagues/{league}/travel:
+    post:
+      operationId: postApiLeagueTravelToItem
+      summary: Travel to the hideout of the cheapest seller for a trade search
+      parameters:
+        - $ref: "#/components/parameters/leagueParam"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TravelToItemRequest"
+      responses:
+        "200":
+          description: Travel request sent successfully
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: Rate limited
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
   /api/leagues/{league}/resolve-item:
     post:
       operationId: postApiLeagueResolveItem
@@ -514,6 +548,14 @@ components:
           type: string
         details:
           type: string
+
+    TravelToItemRequest:
+      type: object
+      properties:
+        search:
+          $ref: "#/components/schemas/TradeSearchRequest"
+      required:
+        - search
 
     ResolveItemRequest:
       type: object

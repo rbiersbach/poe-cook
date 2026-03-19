@@ -176,6 +176,7 @@ export class TradeFetchedListing {
     account?: { name?: string; online?: unknown; };
     whisper?: string;
     indexed?: string;
+    hideout_token?: string;
     [k: string]: unknown;
   };
 

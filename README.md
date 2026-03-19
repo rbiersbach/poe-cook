@@ -74,6 +74,7 @@ This is a very early version of the app, but here are some highlights of what it
 - **Multi-league support** — switch between leagues; all prices update instantly
 - **Auto-refresh** — background scheduler keeps recipe values current while you play, so you always know which strategies are worth running
 - **poe.ninja integration** — currency and item prices fetched and cached from poe.ninja
+- **Travel to Hideout with a Click** — quickly navigate to the cheapest list ing for any recipe output directly from the app
 
 ---
 

@@ -6,7 +6,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import fs from "fs";
 import { Recipe } from "models/trade-types";
 import path from "path";
-import { TradeClientService } from "services/trade-client-service";
+import { RateLimitedError, TradeClientService } from "services/trade-client-service";
 import { StoreRegistry } from "stores/store-registry";
 import { TradeApiServer } from "../../api/api";
 import { NoopLogger } from "../../logger";
@@ -49,6 +49,7 @@ beforeAll(async () => {
     tradeClientMock = {
         search: vi.fn(),
         fetchListings: vi.fn(),
+        travelToHideout: vi.fn(),
         logger: NoopLogger,
     } as unknown as TradeClientService;
     mockRegistry = {
@@ -655,5 +656,57 @@ describe("GET /api/leagues/:league/ninja-items", () => {
         expect(response.body.items.length).toBeGreaterThanOrEqual(2);
         expect(response.body.items[0].id).toBe("0");
         expect(response.body.items[1].id).toBe("1");
+    });
+});
+
+describe("POST /api/leagues/:league/travel", () => {
+    beforeEach(() => {
+        (tradeClientMock as any).travelToHideout.mockClear();
+    });
+
+    it("returns 200 and calls travelToHideout with the search payload", async () => {
+        (tradeClientMock as any).travelToHideout.mockResolvedValueOnce(undefined);
+
+        const response = await supertest(apiServer.server.server)
+            .post(`${LEAGUE_PREFIX}/travel`)
+            .send({ search: { query: { name: "Chaos Orb" }, sort: { price: "asc" } } })
+            .expect(200);
+
+        expect(response.body).toEqual({});
+        expect((tradeClientMock as any).travelToHideout).toHaveBeenCalledWith(
+            { query: { name: "Chaos Orb" }, sort: { price: "asc" } },
+            TEST_LEAGUE
+        );
+    });
+
+    it("returns 400 if the search field is missing", async () => {
+        const response = await supertest(apiServer.server.server)
+            .post(`${LEAGUE_PREFIX}/travel`)
+            .send({})
+            .expect(400);
+
+        expect(response.body.error).toBe("Invalid TravelToItemRequest");
+    });
+
+    it("returns 429 when a RateLimitedError is thrown", async () => {
+        (tradeClientMock as any).travelToHideout.mockRejectedValueOnce(new RateLimitedError(30));
+
+        const response = await supertest(apiServer.server.server)
+            .post(`${LEAGUE_PREFIX}/travel`)
+            .send({ search: { query: {} } })
+            .expect(429);
+
+        expect(response.body.error).toMatch(/Rate limited/i);
+    });
+
+    it("returns 500 for unexpected errors", async () => {
+        (tradeClientMock as any).travelToHideout.mockRejectedValueOnce(new Error("upstream failure"));
+
+        const response = await supertest(apiServer.server.server)
+            .post(`${LEAGUE_PREFIX}/travel`)
+            .send({ search: { query: {} } })
+            .expect(500);
+
+        expect(response.body.error).toBe("Server error");
     });
 });

@@ -1,10 +1,16 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { LeagueProvider } from "../../context/LeagueContext";
 import { makeRecipe } from "../../__tests__/fixtures";
 import { RecipeCard } from "../recipe/RecipeCard";
 
 const defaultRecipe = makeRecipe();
+
+/** Wraps with LeagueProvider so ItemChip's useLeague() hook resolves without throwing. */
+function renderCard(ui: React.ReactElement) {
+    return render(<LeagueProvider>{ui}</LeagueProvider>);
+}
 
 describe("RecipeCard", () => {
     beforeEach(() => {
@@ -13,7 +19,7 @@ describe("RecipeCard", () => {
 
     it("renders recipe name, inputs, and outputs", () => {
         const mockOnRefresh = vi.fn();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -27,7 +33,7 @@ describe("RecipeCard", () => {
 
     it("shows profit display and recipe updated time", () => {
         const mockOnRefresh = vi.fn();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -41,7 +47,7 @@ describe("RecipeCard", () => {
     it("calls onRefresh when refresh button is clicked", async () => {
         const mockOnRefresh = vi.fn();
         const user = userEvent.setup();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -55,7 +61,7 @@ describe("RecipeCard", () => {
 
     it("disables refresh button when refreshing", () => {
         const mockOnRefresh = vi.fn();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -68,7 +74,7 @@ describe("RecipeCard", () => {
 
     it("displays spinning refresh icon when refreshing", () => {
         const mockOnRefresh = vi.fn();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -82,7 +88,7 @@ describe("RecipeCard", () => {
 
     it("does not show spinner when not refreshing", () => {
         const mockOnRefresh = vi.fn();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -94,7 +100,7 @@ describe("RecipeCard", () => {
 
     it("hides edit button when onEdit is not provided", () => {
         const mockOnRefresh = vi.fn();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -108,7 +114,7 @@ describe("RecipeCard", () => {
         const mockOnRefresh = vi.fn();
         const mockOnEdit = vi.fn();
         const user = userEvent.setup();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -124,7 +130,7 @@ describe("RecipeCard", () => {
 
     it("hides delete button when onDelete is not provided", () => {
         const mockOnRefresh = vi.fn();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -138,7 +144,7 @@ describe("RecipeCard", () => {
         const mockOnRefresh = vi.fn();
         const mockOnDelete = vi.fn();
         const user = userEvent.setup();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -157,7 +163,7 @@ describe("RecipeCard", () => {
         const mockOnRefresh = vi.fn();
         const mockOnDelete = vi.fn();
         const user = userEvent.setup();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -179,7 +185,7 @@ describe("RecipeCard", () => {
         const mockOnRefresh = vi.fn();
         const mockOnDelete = vi.fn().mockResolvedValue(undefined);
         const user = userEvent.setup();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -203,7 +209,7 @@ describe("RecipeCard", () => {
             () => new Promise(r => { resolveDelete = r; }) as any
         );
         const user = userEvent.setup();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -232,7 +238,7 @@ describe("RecipeCard", () => {
             () => new Promise(r => { resolveDelete = r; }) as any
         );
         const user = userEvent.setup();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -258,7 +264,7 @@ describe("RecipeCard", () => {
             new Error("Delete failed")
         );
         const user = userEvent.setup();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}
@@ -277,7 +283,7 @@ describe("RecipeCard", () => {
 
     it("displays refresh error if provided", () => {
         const mockOnRefresh = vi.fn();
-        render(
+        renderCard(
             <RecipeCard
                 recipe={defaultRecipe}
                 onRefresh={mockOnRefresh}

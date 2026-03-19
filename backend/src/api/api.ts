@@ -15,6 +15,7 @@ import {
     LeagueParamSchema,
     ListRecipesQuerySchema,
     ResolveItemRequestSchema,
+    TravelToItemRequestSchema,
     UpdateRecipeRequestSchema,
 } from "validation";
 
@@ -141,6 +142,34 @@ export class TradeApiServer {
                     return reply.status(400).send({ error: err.message });
                 }
                 this.logger.error({ err, body: request.body }, "Unexpected error in resolve-item");
+                return reply.status(500).send({ error: "Server error" });
+            }
+        });
+
+        // POST /api/leagues/:league/travel
+        this.fastify.post("/api/leagues/:league/travel", async (request: FastifyRequest, reply) => {
+            try {
+                const leagueData = this.extractLeague(request.params);
+                if (!leagueData) {
+                    return reply.status(400).send({ error: "League is required" });
+                }
+                const { league } = leagueData;
+
+                const validation = TravelToItemRequestSchema.safeParse(request.body);
+                if (!validation.success) {
+                    const errors = validation.error.flatten();
+                    this.logger.warn({ errors }, "Invalid TravelToItemRequest");
+                    return reply.status(400).send({ error: "Invalid TravelToItemRequest" });
+                }
+
+                await this.tradeClient.travelToHideout(validation.data.search, league);
+                reply.status(200).send();
+            } catch (err) {
+                if (err instanceof RateLimitedError) {
+                    this.logger.warn({ err, body: request.body }, "RateLimitedError in travel");
+                    return reply.status(429).send({ error: (err as Error).message });
+                }
+                this.logger.error({ err, body: request.body }, "Unexpected error in travel");
                 return reply.status(500).send({ error: "Server error" });
             }
         });

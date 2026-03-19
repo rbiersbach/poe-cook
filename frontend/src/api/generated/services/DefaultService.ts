@@ -2,6 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { CancelablePromise } from '../core/CancelablePromise';
+import { OpenAPI } from '../core/OpenAPI';
+import { request as __request } from '../core/request';
 import type { CreateRecipeRequest } from '../models/CreateRecipeRequest';
 import type { CreateRecipeResponse } from '../models/CreateRecipeResponse';
 import type { ExchangeRate } from '../models/ExchangeRate';
@@ -11,10 +14,8 @@ import type { NinjaItem } from '../models/NinjaItem';
 import type { Recipe } from '../models/Recipe';
 import type { ResolveItemRequest } from '../models/ResolveItemRequest';
 import type { ResolveItemResponse } from '../models/ResolveItemResponse';
+import type { TravelToItemRequest } from '../models/TravelToItemRequest';
 import type { UpdateRecipeRequest } from '../models/UpdateRecipeRequest';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
 export class DefaultService {
     /**
      * List available Path of Exile leagues
@@ -285,6 +286,33 @@ export class DefaultService {
             },
             errors: {
                 404: `Recipe not found`,
+                500: `Server error`,
+            },
+        });
+    }
+
+    /**
+     * Travel to the hideout of the cheapest seller for a trade search
+     * @param league The Path of Exile league name (e.g. "Standard", "Hardcore")
+     * @param requestBody
+     * @returns void
+     * @throws ApiError
+     */
+    public static postApiLeagueTravelToItem(
+        league: string,
+        requestBody: TravelToItemRequest,
+    ): CancelablePromise<void> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/leagues/{league}/travel',
+            path: {
+                'league': league,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Invalid request`,
+                429: `Rate limited`,
                 500: `Server error`,
             },
         });

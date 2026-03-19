@@ -84,6 +84,10 @@ export const ResolveItemRequestSchema = z.object({
     ),
 });
 
+export const TravelToItemRequestSchema = z.object({
+    search: TradeSearchRequestSchema,
+});
+
 export const CreateRecipeRequestSchema = z.object({
     name: z.string()
         .min(1, 'Recipe name is required')
@@ -119,6 +123,7 @@ export type TradeItem = z.infer<typeof TradeItemSchema>;
 export type NinjaItem = z.infer<typeof NinjaItemSchema>;
 export type RecipeItem = z.infer<typeof RecipeItemSchema>;
 export type ResolveItemRequest = z.infer<typeof ResolveItemRequestSchema>;
+export type TravelToItemRequest = z.infer<typeof TravelToItemRequestSchema>;
 export type CreateRecipeRequest = z.infer<typeof CreateRecipeRequestSchema>;
 export type UpdateRecipeRequest = z.infer<typeof UpdateRecipeRequestSchema>;
 export type Recipe = z.infer<typeof RecipeSchema>;

@@ -16,6 +16,7 @@ export interface ITradeClientService {
   search(body: TradeSearchRequest, league: string): Promise<TradeSearchResponse>;
   fetchListings(ids: string[], queryId: string): Promise<TradeFetchResponse>;
   searchAndFetch(body: TradeSearchRequest, league: string, maxResults?: number): Promise<{ search: TradeSearchResponse; listings: TradeFetchResponse; }>;
+  travelToHideout(search: TradeSearchRequest, league: string): Promise<void>;
 }
 
 export class TradeClientService implements ITradeClientService {
@@ -125,6 +126,36 @@ export class TradeClientService implements ITradeClientService {
       }
     }
     return { search, listings };
+  }
+
+  /**
+   * Travel to the hideout of the cheapest seller for the given trade search.
+   * Fetches a single (cheapest) listing, extracts the hideout_token, and POSTs
+   * it to the PoE whisper endpoint so the game client teleports to the seller.
+   */
+  async travelToHideout(search: TradeSearchRequest, league: string): Promise<void> {
+    const { listings } = await this.searchAndFetch(search, league, 1);
+    const token = listings.result?.[0]?.listing?.hideout_token;
+    if (!token) {
+      throw new Error("No hideout token available for this listing");
+    }
+
+    const url = `${this.baseUrl}/api/trade/whisper`;
+    const res = await fetch(url, {
+      method: "POST",
+      headers: this.headers({
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "Origin": this.baseUrl,
+        "Referer": `${this.baseUrl}/trade/search/${encodeURIComponent(league)}`,
+      }),
+      body: JSON.stringify({ token }),
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`Whisper request failed: HTTP ${res.status} ${res.statusText}: ${text}`);
+    }
   }
 
   private headers(extra?: Record<string, string>): HeadersInit {

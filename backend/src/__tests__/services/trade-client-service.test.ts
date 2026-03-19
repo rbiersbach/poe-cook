@@ -228,4 +228,101 @@ describe("TradeClient", () => {
       );
     });
   });
+
+  describe("travelToHideout", () => {
+    it("calls the whisper endpoint with the hideout_token from the cheapest listing", async () => {
+      const searchRes = { result: ["id1"], id: "q1", total: 1 };
+      const fetchRes = {
+        result: [{ id: "id1", listing: { hideout_token: "jwt-token-abc" }, item: {} }],
+      };
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => searchRes, headers: new Map() });
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => fetchRes, headers: new Map() });
+      mockFetch.mockResolvedValueOnce({ ok: true, text: async () => "", headers: new Map() });
+
+      await client.travelToHideout({ query: {} } as any, "TestLeague");
+
+      expect(mockFetch).toHaveBeenCalledTimes(3);
+      expect(mockFetch).toHaveBeenLastCalledWith(
+        expect.stringContaining("/api/trade/whisper"),
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify({ token: "jwt-token-abc" }),
+        })
+      );
+    });
+
+    it("only fetches 1 listing (cheapest)", async () => {
+      const searchRes = { result: ["id1", "id2", "id3"], id: "q1", total: 3 };
+      const fetchRes = {
+        result: [{ id: "id1", listing: { hideout_token: "token" }, item: {} }],
+      };
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => searchRes, headers: new Map() });
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => fetchRes, headers: new Map() });
+      mockFetch.mockResolvedValueOnce({ ok: true, text: async () => "", headers: new Map() });
+
+      await client.travelToHideout({ query: {} } as any, "Standard");
+
+      const listingsUrl: string = mockFetch.mock.calls[1][0];
+      expect(listingsUrl).toContain("id1");
+      expect(listingsUrl).not.toContain("id2");
+    });
+
+    it("throws if no listings are returned from the search", async () => {
+      const searchRes = { result: [], id: "q1", total: 0 };
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => searchRes, headers: new Map() });
+
+      await expect(client.travelToHideout({ query: {} } as any, "TestLeague"))
+        .rejects.toThrow("No hideout token available for this listing");
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+    });
+
+    it("throws if the listing has no hideout_token", async () => {
+      const searchRes = { result: ["id1"], id: "q1", total: 1 };
+      const fetchRes = {
+        result: [{ id: "id1", listing: { price: { amount: 5, currency: "chaos", type: "~b/o" } }, item: {} }],
+      };
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => searchRes, headers: new Map() });
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => fetchRes, headers: new Map() });
+
+      await expect(client.travelToHideout({ query: {} } as any, "TestLeague"))
+        .rejects.toThrow("No hideout token available for this listing");
+    });
+
+    it("throws with a descriptive error if the whisper POST returns non-ok", async () => {
+      const searchRes = { result: ["id1"], id: "q1", total: 1 };
+      const fetchRes = {
+        result: [{ id: "id1", listing: { hideout_token: "token" }, item: {} }],
+      };
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => searchRes, headers: new Map() });
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => fetchRes, headers: new Map() });
+      mockFetch.mockResolvedValueOnce({
+        ok: false, status: 403, statusText: "Forbidden", text: async () => "forbidden",
+      });
+
+      await expect(client.travelToHideout({ query: {} } as any, "TestLeague"))
+        .rejects.toThrow(/Whisper request failed: HTTP 403/);
+    });
+
+    it("sends X-Requested-With and Content-Type headers to the whisper endpoint", async () => {
+      const searchRes = { result: ["id1"], id: "q1", total: 1 };
+      const fetchRes = {
+        result: [{ id: "id1", listing: { hideout_token: "token" }, item: {} }],
+      };
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => searchRes, headers: new Map() });
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => fetchRes, headers: new Map() });
+      mockFetch.mockResolvedValueOnce({ ok: true, text: async () => "", headers: new Map() });
+
+      await client.travelToHideout({ query: {} } as any, "Standard");
+
+      expect(mockFetch).toHaveBeenLastCalledWith(
+        expect.anything(),
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            "X-Requested-With": "XMLHttpRequest",
+            "Content-Type": "application/json",
+          }),
+        })
+      );
+    });
+  });
 });

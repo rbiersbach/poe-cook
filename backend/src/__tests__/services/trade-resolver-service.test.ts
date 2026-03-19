@@ -104,7 +104,8 @@ describe("TradeResolver", () => {
                 listings: listingsData
             })),
             search: vi.fn(async () => ({ id: "mock-id", result: [], total: 0 })),
-            fetchListings: vi.fn(async () => ({ result: [] }))
+            fetchListings: vi.fn(async () => ({ result: [] })),
+            travelToHideout: vi.fn(async () => {})
         };
         resolver = new TradeResolverService(NoopLogger, mockTradeClient, HtmlExtractorService);
     });
